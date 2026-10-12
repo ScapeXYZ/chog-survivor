@@ -1,0 +1,42 @@
+# Foundry build and broadcast artefacts
+out/
+cache/
+broadcast/
+deployments/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Coverage and generated reports
+coverage/
+lcov.info
+
+# Local pinned static-analysis tooling and generated scan output
+.venv-security/
+.security-tools/
+reports/static-analysis/
+
+# Dependencies and build outputs
+node_modules/
+dist/
+coverage/
+out/
+cache/
+broadcast/
+reports/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+keystore*
