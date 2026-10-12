@@ -59,7 +59,7 @@ try {
   await call('Page.navigate', {url: previewUrl})
   await waitFor("!!document.querySelector('.landing-primary')")
   const reports = []
-  for (const [width, height] of [[1440,900], [1920,1080], [1024,768], [390,844], [360,800], [320,740]]) {
+  for (const [width, height] of [[1440,900], [1920,1080], [1280,900], [1024,768], [768,1024], [390,844], [360,800], [320,740]]) {
     await call('Emulation.setDeviceMetricsOverride', {width, height, deviceScaleFactor: 1, mobile: false})
     await call('Page.navigate', {url: previewUrl})
     await waitFor("!!document.querySelector('.landing-primary')")
@@ -67,13 +67,13 @@ try {
     await settle()
     await waitFor("[...document.querySelectorAll('.cinematic-landing img')].every(i=>i.complete && i.naturalWidth > 0)")
     const homeBefore = await snapshot(`home-${width}`)
-    if (baseline) assert.ok(homeBefore.equals(readFileSync(`${baseline}/home-${width}.png`)), `Milestone 11.2 Home changed at ${width}`)
+    if (baseline) assert.ok(homeBefore.equals(readFileSync(`${baseline}/home-${width}.png`)), `Approved Home changed at ${width}`)
     // Optional comparison against the approved Task 10.2 review artifacts.
     if (process.env.CHOG_COMPARE_APPROVED === '1') assert.ok(homeBefore.equals(readFileSync(`/tmp/chog-task102/after-home-${width}.png`)), `Approved Home changed at ${width}`)
     await evaluate("[...document.querySelectorAll('nav button')].find(b=>b.textContent==='character').click()")
     await waitFor("!!document.querySelector('.survivor-profile')")
     await settle()
-    assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, `Profile overflow at ${width}`)
+    assert.equal(await evaluate('document.documentElement.scrollWidth <= document.documentElement.clientWidth'), true, `Profile overflow at ${width}`)
     assert.equal(await evaluate("document.querySelector('.survivor-control').textContent.includes('Wallet disconnected')"), true)
     assert.equal(await evaluate("document.querySelector('.survivor-progress').textContent.includes('no approved game deployment')"), true)
     assert.equal(await evaluate("document.querySelector('.survivor-history').querySelector('ol,ul,time') === null"), true)
@@ -83,6 +83,25 @@ try {
     assert.equal(await evaluate("document.querySelector('.survivor-profile meter') === null"), true)
     const clipped = await evaluate("[...document.querySelectorAll('nav button,.survivor-entry input,.survivor-entry button,.survivor-retry')].filter(e=>{const r=e.getBoundingClientRect();return r.x < 0 || r.right > innerWidth || (!e.matches('input') && e.scrollWidth > e.clientWidth)}).map(e=>({text:e.textContent,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth}))")
     assert.deepEqual(clipped, [], `Clipped profile controls at ${width}: ${JSON.stringify(clipped)}`)
+    const layout = await evaluate(`(()=>{
+      const sheet = document.querySelector('.survivor-profile').getBoundingClientRect();
+      const header = document.querySelector('.game-header').getBoundingClientRect();
+      const corners = [...document.querySelectorAll('.survivor-profile > .sheet-ornament')];
+      const portrait = document.querySelector('.survivor-portrait-frame').getBoundingClientRect();
+      const badge = document.querySelector('.survivor-readonly').getBoundingClientRect();
+      const topRight = document.querySelector('.sheet-corner-top-right').getBoundingClientRect();
+      return {
+        leftGutter: sheet.left, rightGutter: document.documentElement.clientWidth - sheet.right,
+        headerAligned: Math.abs(header.left - sheet.left) < 1 && Math.abs(header.right - sheet.right) < 1,
+        cornersVisible: corners.every(e=>{const r=e.getBoundingClientRect();return r.left >= sheet.left && r.right <= sheet.right && r.top >= sheet.top && r.bottom <= sheet.bottom}),
+        portraitUndistorted: Math.abs(portrait.height / portrait.width - 1.3) < .01,
+        badgeClearOfCorner: badge.right <= topRight.left || badge.left >= topRight.right || badge.bottom <= topRight.top || badge.top >= topRight.bottom,
+        columns: getComputedStyle(document.querySelector('.survivor-ledger')).gridTemplateColumns.split(' ').length,
+      };
+    })()`)
+    assert.ok(layout.leftGutter >= 10 && layout.leftGutter <= 25 && layout.rightGutter >= 10 && layout.rightGutter <= 25, `Excessive or missing gutters at ${width}: ${JSON.stringify(layout)}`)
+    assert.ok(layout.headerAligned && layout.cornersVisible && layout.portraitUndistorted && layout.badgeClearOfCorner, `Misaligned or clipped sheet at ${width}: ${JSON.stringify(layout)}`)
+    assert.equal(layout.columns, width > 1100 ? 3 : width > 640 ? 2 : 1)
     // Review screenshots show the ordinary unavailable profile, before the boundary-input check.
     await snapshot(`character-${width}`)
     await snapshot(`character-full-${width}`, true)
@@ -93,7 +112,7 @@ try {
     await evaluate("document.querySelector('.survivor-entry button').click()")
     await waitFor("document.querySelector('.survivor-requested')?.textContent.includes('115792089')")
     await settle()
-    assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true, `Long token overflow at ${width}`)
+    assert.equal(await evaluate('document.documentElement.scrollWidth <= document.documentElement.clientWidth'), true, `Long token overflow at ${width}`)
     await snapshot(`character-max-${width}`)
     await evaluate("[...document.querySelectorAll('nav button')].find(b=>b.textContent==='Home').click()")
     await waitFor("!!document.querySelector('.landing-primary')")
@@ -105,10 +124,10 @@ try {
     assert.equal(await evaluate("document.querySelector('.adventure-chain-action').disabled"), true)
     assert.equal(await evaluate("document.querySelector('.adventure-stat-disclosure').textContent"), 'DEMO STATS — NOT SAVED')
     const adventureShot = await snapshot(`adventure-${width}`)
-    if (baseline) assert.ok(adventureShot.equals(readFileSync(`${baseline}/adventure-${width}.png`)), `Milestone 11.2 Adventure changed at ${width}`)
+    if (baseline) assert.ok(adventureShot.equals(readFileSync(`${baseline}/adventure-${width}.png`)), `Approved Adventure changed at ${width}`)
     await evaluate("document.querySelector('.adventure-home').click()")
     await waitFor("!!document.querySelector('.landing-primary')")
-    reports.push({width, height, overflow: false, clippedControls: false, historyFabricated: false, homePreserved: true})
+    reports.push({width, height, ...layout, overflow: false, clippedControls: false, historyFabricated: false, homePreserved: true})
   }
   const walletRequests = await evaluate('window.walletRequests')
   assert.equal(walletRequests.some((method) => /sign|sendTransaction|sendRawTransaction/i.test(method)), false)
