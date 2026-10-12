@@ -6,6 +6,7 @@ import {achievements, events, titles} from './game-data'
 import {parseTokenId} from './utils'
 import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurvivorIdentity'
 import './character.css'
+import {YourSurvivors} from './YourSurvivors'
 
 const criteria = [
   'Resolve your first encounter.', 'Reinforce the Broken Bridge three times.',
@@ -95,8 +96,9 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
         </figure>
         <h1 id="survivor-profile-title">{verified ? `CHOG #${selectedToken}` : 'A Chog. A story.'}</h1>
         <p className="survivor-collection">CHOG GENESIS · TOKEN-BOUND IDENTITY</p>
+        <YourSurvivors selectedToken={selectedToken} onSelectToken={token => { setEnteredId(token.toString()); onSelectToken(token) }}/>
         <div className="survivor-section-heading"><h2 id="identity-title">Find your survivor</h2></div>
-        <p className="survivor-small">Enter a token ID from Chog Genesis. Ownership discovery is not available here; no holdings are assumed.</p>
+        <p className="survivor-small">Enter a token ID from Chog Genesis for manual verification, including when discovery is unavailable or partial.</p>
         <form onSubmit={(event) => { event.preventDefault(); if (token !== undefined) { if (token === selectedToken) void refresh(); else onSelectToken(token) } }}>
           <label htmlFor="token-id">Token ID</label><div className="survivor-entry"><input id="token-id" inputMode="numeric" autoComplete="off" value={enteredId} onChange={(event) => setEnteredId(event.target.value)} aria-invalid={enteredId.length > 0 && token === undefined} aria-describedby="survivor-input-help"/><button type="submit" disabled={token === undefined}>Check token</button></div>
           <p id="survivor-input-help" className={enteredId.length > 0 && token === undefined ? 'survivor-error' : 'survivor-small'}>{enteredId.length > 0 && token === undefined ? 'Use a whole-number token ID from 0 to 2²⁵⁶ − 1.' : 'Your entry becomes a survivor identity only after the collection confirms its owner.'}</p>

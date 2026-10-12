@@ -146,6 +146,28 @@ preserved. Source-backed parity tests compare every event/choice/outcome and
 base effect with the frozen Solidity and rulebook. See `TASK_11_4.md` for
 test evidence, screenshots and remaining limits.
 
+## Your Survivors — Milestone 11.5
+
+In Character, connect on Monad (143) and choose **Find my Chogs**. The collection's
+independently observed `tokensOfOwner(address)` extension supplies candidates;
+canonical `ownerOf` verifies every displayed token. Distinct verified counts must
+match `balanceOf` at a pinned finalized block before results are called complete.
+This is not ERC-721 Enumerable and uses no indexer, key or token/history scan.
+
+Discovery is explicit and read only. Its expensive getter has a 50M-gas budget,
+candidate verification caps at 24, and read deadlines are 20 seconds. Failed,
+duplicate, mismatched or capped results never become a definitive empty inventory.
+Partial results remain labeled; retry and manual token-ID entry stay available.
+Results clear on account/chain/token changes, window focus and after 30 seconds.
+Selecting a survivor rechecks current ownership through the existing shared
+Character/Adventure identity flow; only the NFT token ID persists between screens.
+
+Public/custom RPC gas limits, throttling or collection bytecode changes can disable
+discovery. No verified pagination or artwork is assumed. Larger inventories are
+partial. Game deployment, progression and history limitations remain unchanged.
+See [the feasibility report](../docs/CHOG_DISCOVERY_FEASIBILITY.md) and
+[TASK_11_5.md](TASK_11_5.md) for evidence and validation.
+
 ## Product disclosure
 
 Progress belongs to numeric Chog Genesis token IDs, not wallets. It follows a

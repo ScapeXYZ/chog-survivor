@@ -149,3 +149,10 @@ body:has(.game-shell-character) { min-width: 0; }
 @media (max-width: 360px) {
   .game-shell-character > .game-header nav button { padding-inline: 1px; font-size: 9px; letter-spacing: .03em; }
 }
+.survivor-profile .your-survivors { margin: 1rem 0; padding: .75rem 0; border-block: 1px solid #98724480; }
+.survivor-profile .your-survivors h3 { margin: 0 0 .4rem; font-family: 'Cinzel', serif; color: #3a281b; font-size: 1rem; }
+.survivor-profile .your-survivors ul { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: .65rem 0; }
+.survivor-profile .your-survivors li { max-width: 100%; }
+.survivor-profile .your-survivors li button { max-width: 100%; overflow-wrap: anywhere; white-space: normal; background: #9b71331a; color: #3a281b; border: 1px solid #876331; border-radius: 3px; padding: .4rem .6rem; font-family: 'Cinzel', serif; font-size: .85rem; }
+.survivor-profile .your-survivors li button:hover { background: #9b713333; }
+.survivor-profile .your-survivors button:focus-visible { outline: 2px solid #35576a; outline-offset: 3px; }

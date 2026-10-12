@@ -15,6 +15,7 @@ vi.mock('./contracts', async (original) => ({
 }))
 vi.mock('wagmi', async (original) => ({
   ...await original<typeof import('wagmi')>(),
+  usePublicClient: () => undefined,
   useAccount: () => ({address: fixture.connected ? fixture.account : undefined, isConnected: fixture.connected, chainId: fixture.chain}),
   useChainId: () => 143, // Configured chain may remain Monad while the connected wallet is elsewhere.
   useReadContract: (request: {functionName: string; query: {enabled: boolean}}) => {

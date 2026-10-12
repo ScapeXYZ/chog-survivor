@@ -80,8 +80,11 @@ try {
     assert.equal(await evaluate("document.querySelector('.survivor-stats').textContent.includes('184')"), false)
     assert.equal(await evaluate("document.querySelector('.survivor-portrait img') === null"), true)
     assert.equal(await evaluate("document.querySelectorAll('.survivor-achievements li').length"), 8)
+    assert.equal(await evaluate("document.querySelector('.your-survivors button').disabled"), true)
+    assert.equal(await evaluate("document.querySelector('.your-survivors').textContent.includes('No owned Chogs')"), false)
+    assert.equal(await evaluate("document.querySelector('.your-survivors ul') === null"), true)
     assert.equal(await evaluate("document.querySelector('.survivor-profile meter') === null"), true)
-    const clipped = await evaluate("[...document.querySelectorAll('nav button,.survivor-entry input,.survivor-entry button,.survivor-retry')].filter(e=>{const r=e.getBoundingClientRect();return r.x < 0 || r.right > innerWidth || (!e.matches('input') && e.scrollWidth > e.clientWidth)}).map(e=>({text:e.textContent,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth}))")
+    const clipped = await evaluate("[...document.querySelectorAll('nav button,.survivor-entry input,.survivor-entry button,.survivor-retry,.your-survivors button')].filter(e=>{const r=e.getBoundingClientRect();return r.x < 0 || r.right > innerWidth || (!e.matches('input') && e.scrollWidth > e.clientWidth)}).map(e=>({text:e.textContent,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth}))")
     assert.deepEqual(clipped, [], `Clipped profile controls at ${width}: ${JSON.stringify(clipped)}`)
     const layout = await evaluate(`(()=>{
       const sheet = document.querySelector('.survivor-profile').getBoundingClientRect();

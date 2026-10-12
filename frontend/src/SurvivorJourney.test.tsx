@@ -9,6 +9,7 @@ const wallet = vi.hoisted(() => ({
 }))
 vi.mock('wagmi', async (original) => ({
   ...await original<typeof import('wagmi')>(),
+  usePublicClient: () => undefined,
   useAccount: () => ({address: wallet.connected ? wallet.account : undefined, isConnected: wallet.connected, chainId: wallet.chain}),
   useChainId: () => 143,
   useConnect: () => ({connect: vi.fn(), connectors: [], isPending: false}),

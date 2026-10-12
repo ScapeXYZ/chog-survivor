@@ -3,6 +3,7 @@ import {describe, expect, it, vi} from 'vitest'
 
 vi.mock('wagmi', async (importOriginal) => ({
   ...(await importOriginal<typeof import('wagmi')>()),
+  usePublicClient: () => undefined,
   useAccount: () => ({address: undefined, isConnected: false}), useChainId: () => 143,
   useConnect: () => ({connect: vi.fn(), connectors: [], isPending: false}), useDisconnect: () => ({disconnect: vi.fn()}),
   useReadContract: () => ({data: undefined, isError: false, isLoading: false}),
