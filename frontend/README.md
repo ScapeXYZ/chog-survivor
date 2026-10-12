@@ -96,6 +96,28 @@ Profile-specific styling preserves Home, Adventure, assets, fonts and wallet
 configuration. Mobile navigation styling is scoped to the Character shell.
 See `TASK_11_2.md` for validation evidence and screenshot review instructions.
 
+## Parchment character sheet — Milestone 11.3
+
+Character now uses a continuous antique parchment sheet inspired by the supplied
+`design/chog-parchment-reference.png`: an ornate arched portrait placeholder,
+survivor identity on the left, progression and daily record in the center,
+eight achievement marks on the right, and a ruled Survival History journal
+below. Tablet and phone layouts reorganize these sections into a scrollable sheet.
+Lilita One is reused selectively with the existing Cinzel and IM Fell English
+fonts. Texture, borders and ornaments are CSS/SVG presentation; no new bitmap
+artwork was generated or external art service added. The reference is not a
+runtime background or NFT portrait.
+
+The 11.2 ownership queries, wallet/network gates and unavailable-data safeguards
+are preserved. Only returned Trust and Scars values receive 0–100 meters. XP
+and stored streak have numeric records with no invented level or milestone
+threshold. Unknown achievements remain unavailable, rather than locked. The
+portrait remains decorative even after an owner is verified, because no verified
+NFT artwork source is available. The journal has no fabricated decisions.
+
+See `TASK_11_3.md` for scoped files, responsive validation and screenshot paths.
+Home, Adventure, wallet configuration, ABI, addresses and Solidity remain unchanged.
+
 ## Product disclosure
 
 Progress belongs to numeric Chog Genesis token IDs, not wallets. It follows a

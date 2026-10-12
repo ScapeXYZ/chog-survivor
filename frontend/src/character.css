@@ -1,83 +1,149 @@
-/* Profile-only presentation. Approved Home, Adventure and shared CSS stay untouched. */
-.survivor-profile { --profile-gold: #e7c885; --profile-text: #e8e1ce; --profile-muted: #b9c5c7; padding: 44px 0 24px; color: var(--profile-text); font: 16px/1.6 system-ui, sans-serif; }
+/* One continuous parchment sheet. All shell overrides are Character-only. */
+.game-shell.game-shell-character { background: radial-gradient(ellipse at 50% 5%, #3d3527, #171a17 70%); padding-inline: clamp(16px, 3vw, 44px); }
+.game-shell-character > .mountains, .game-shell-character > .grain { display: none; }
+.game-shell-character > .notice { border-color: #b899624d; background: #322a1e; color: #e9d7b5; }
+.survivor-profile {
+  --sheet-ink: #3e2b19;
+  --sheet-muted: #624c33;
+  --sheet-rule: #81613a66;
+  --sheet-gold: #8b5d23;
+  position: relative;
+  isolation: isolate;
+  margin: 24px 0;
+  padding: 34px clamp(24px, 3vw, 42px) 30px;
+  border: 2px solid #70502d;
+  color: var(--sheet-ink);
+  font: 18px/1.45 'IM Fell English', Georgia, serif;
+  background-color: #dfc393;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch' seed='8'/%3E%3C/filter%3E%3Cpath filter='url(%23paper)' opacity='.15' d='M0 0h240v240H0z'/%3E%3C/svg%3E"), radial-gradient(ellipse at 45% 15%, #f5e4c377, transparent 55%), radial-gradient(ellipse at 0 100%, #98613355, transparent 45%), linear-gradient(90deg, #b68c5755, transparent 9%, transparent 91%, #a7784955);
+  box-shadow: inset 0 0 28px #76482066, inset 0 0 4px 2px #f5dfa9, 0 10px 28px #0005;
+  border-radius: 9px 4px 11px 6px;
+}
+.survivor-profile::before { content: ''; position: absolute; inset: 12px; border: 1px solid #75512a99; outline: 1px solid #75512a44; outline-offset: 4px; pointer-events: none; z-index: -1; }
 .survivor-profile * { min-width: 0; }
-.survivor-heading { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; padding-bottom: 30px; }
-.survivor-profile .survivor-eyebrow { color: var(--profile-gold); font: 700 11px/1.5 Cinzel, serif; letter-spacing: .15em; margin: 0 0 10px; }
-.survivor-heading h1 { font: 700 clamp(32px, 5vw, 62px)/1.16 Cinzel, serif; letter-spacing: -.035em; margin: 0 0 16px; overflow-wrap: anywhere; color: #f1e2bc; }
-.survivor-motto { margin: 0; color: #c3ced0; font: italic clamp(19px, 2vw, 24px)/1.5 'IM Fell English', Georgia, serif; }
-.survivor-motto span { color: #f1e2bc; }
-.survivor-readonly { flex: 0 0 auto; padding: 6px 12px; color: var(--profile-gold); border: 1px solid #e7c88555; font-size: 10px; font-weight: 800; letter-spacing: .15em; }
-.survivor-ledger { display: grid; grid-template-columns: 1.1fr 1fr; border: 1px solid #718c8866; background: linear-gradient(130deg, #1b3030, #101e22); }
-.survivor-ledger > section { padding: clamp(22px, 3vw, 34px); }
-.survivor-identity { border-right: 1px solid #718c8855; }
-.survivor-section-heading { display: flex; align-items: center; gap: 12px; }
-.survivor-section-number { color: #e7c885; font: 16px Cinzel, serif; padding-right: 12px; border-right: 1px solid #e7c88566; }
-.survivor-profile h2 { font: 600 22px/1.35 Cinzel, serif; color: #f1e2bc; margin: 0; }
-.survivor-profile h3 { font: 600 19px/1.4 Cinzel, serif; color: #f1e2bc; margin: 0 0 10px; }
-.survivor-profile p { margin: 12px 0; }
-.survivor-profile label { display: block; font-weight: 600; margin: 22px 0 8px; color: #f1e2bc; }
-.survivor-entry { display: flex; gap: 10px; }
-.survivor-entry input { flex: 1; width: 100%; border: 1px solid #829997; background: #101d21; color: #f5ede0; border-radius: 3px; padding: 11px 12px; min-height: 46px; }
-.survivor-entry input[aria-invalid='true'] { border-color: #df9d9e; }
-.survivor-profile button { min-height: 44px; border: 1px solid #e7c885; background: #e7c885; color: #17232d; padding: 10px 15px; border-radius: 3px; font: 700 13px/1.4 system-ui, sans-serif; }
-.survivor-profile button:disabled { opacity: .55; }
-.survivor-profile button:hover:not(:disabled) { background: #f3ddad; }
-.survivor-profile button:focus-visible, .survivor-profile input:focus-visible { outline: 3px solid #f3ddad; outline-offset: 4px; }
-.survivor-control { border-left: 3px solid #849da3; background: #0c191e; margin-top: 24px; padding: 18px 20px; }
-.survivor-control-owned { border-color: #b6d6c6; }
-.survivor-profile .survivor-retry { background: transparent; color: #f1e2bc; border-color: #8ca3a2; margin: 10px 0; }
-.survivor-profile .survivor-retry:hover:not(:disabled) { background: #293d42; }
-.survivor-control small { display: block; color: var(--profile-muted); line-height: 1.6; }
+.survivor-profile p { margin: 10px 0; }
+.survivor-profile .survivor-eyebrow { margin: 0 0 5px; font: 700 11px/1.5 Cinzel, serif; letter-spacing: .18em; color: var(--sheet-gold); }
+.sheet-ornament { position: absolute; width: 65px; height: 65px; color: #70502d; stroke-width: 1; pointer-events: none; }
+.sheet-corner-top-left { top: 17px; left: 17px; }
+.sheet-corner-top-right { top: 17px; right: 17px; transform: rotate(90deg); }
+.sheet-corner-bottom-left { bottom: 17px; left: 17px; transform: rotate(-90deg); }
+.sheet-corner-bottom-right { bottom: 17px; right: 17px; transform: rotate(180deg); }
+.survivor-heading { position: relative; text-align: center; padding: 0 72px 24px; border-bottom: 3px double var(--sheet-rule); }
+.survivor-sheet-heading { font: 400 clamp(25px, 3vw, 38px)/1.2 'Chog Adventure Display', Georgia, serif; margin: 4px 0 8px !important; }
+.survivor-motto { font-style: italic; color: var(--sheet-muted); font-size: 19px; }
+.survivor-readonly { position: absolute; right: 40px; top: 4px; border: 1px solid #81613a88; padding: 7px 9px; font: 700 9px/1 Cinzel, serif; letter-spacing: .12em; }
+.survivor-ledger { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1fr) minmax(0, 1.05fr); margin-top: 26px; }
+.survivor-ledger > section { padding: 0 24px; }
+.survivor-ledger > .survivor-identity { padding-left: 0; border-right: 1px solid var(--sheet-rule); }
+.survivor-ledger > .survivor-achievements { padding-right: 0; border-left: 1px solid var(--sheet-rule); }
+.survivor-profile h1 { text-align: center; font: 400 clamp(27px, 3vw, 36px)/1.12 'Chog Adventure Display', Georgia, serif; color: #402b18; margin: 23px 0 8px; overflow-wrap: anywhere; }
+.survivor-profile h2 { font: 700 19px/1.3 Cinzel, serif; margin: 0; color: #493019; }
+.survivor-profile h3 { font: 700 21px/1.3 Cinzel, serif; margin: 0 0 12px; color: #493019; }
+.survivor-section-heading { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 3px double var(--sheet-rule); }
+.survivor-section-number { font: 12px Cinzel, serif; color: var(--sheet-gold); }
+.survivor-portrait { margin: 8px 5px 0; }
+.survivor-portrait-frame { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 22px; aspect-ratio: 3 / 3.9; border: 5px double #805728; border-radius: 48% 48% 3px 3px; color: #805728; background: radial-gradient(ellipse at center, #f0ddb6, #b28c5d88); box-shadow: 0 0 0 3px #d6b77c, 0 0 0 4px #805728, inset 0 0 0 5px #d7b884, inset 0 0 0 6px #805728, inset 0 0 34px #8b5d2355; }
+.survivor-portrait-frame::before { content: ''; position: absolute; inset: 17px; border: 1px solid #80572888; border-radius: inherit; }
+.survivor-seal { width: 60%; opacity: .65; stroke-width: 1; }
+.portrait-caption { width: 70%; text-align: center; font-style: italic; font-size: 20px; line-height: 1.3; }
+.portrait-crown { position: absolute; top: -26px; left: calc(50% - 20px); font-size: 40px; text-shadow: 0 1px #fbe8b6; }
+.portrait-corner-left { bottom: -5px; left: -5px; transform: rotate(-90deg); width: 56px; height: 56px; }
+.portrait-corner-right { bottom: -5px; right: -5px; transform: rotate(180deg); width: 56px; height: 56px; }
+.portrait-medallion { position: absolute; bottom: -22px; background: #d5b77e; width: 46px; height: 46px; display: grid; place-items: center; border: 4px double #805728; transform: rotate(45deg); font-size: 32px; }
+.survivor-portrait figcaption { margin-top: 29px; text-align: center; color: var(--sheet-muted); font: 11px/1.5 system-ui, sans-serif; }
+.survivor-collection { text-align: center; font: 700 9px/1.5 Cinzel, serif; letter-spacing: .1em; margin-bottom: 24px !important; }
+.survivor-profile .survivor-small, .survivor-stat-note { font: 12px/1.6 system-ui, sans-serif; color: var(--sheet-muted); }
+.survivor-profile label { display: block; margin: 15px 0 6px; font: 700 12px Cinzel, serif; }
+.survivor-entry { display: flex; gap: 7px; }
+.survivor-entry input { flex: 1; width: 100%; min-height: 44px; padding: 9px; border: 1px solid #826037; background: #f3e1bd88; color: #352314; border-radius: 2px; font: 14px system-ui, sans-serif; }
+.survivor-entry input[aria-invalid='true'] { border: 2px solid #92352c; }
+.survivor-profile button { min-height: 44px; padding: 9px 10px; border: 1px solid #775025; color: #f9edcf; background: #6c4725; box-shadow: inset 0 0 0 2px #d3ab6255; font: 700 12px/1.4 system-ui, sans-serif; border-radius: 2px; }
+.survivor-profile button:disabled { opacity: .6; }
+.survivor-profile button:hover:not(:disabled) { background: #4d321a; }
+.survivor-profile button:focus-visible, .survivor-profile input:focus-visible { outline: 3px solid #4c6570; outline-offset: 3px; }
+.survivor-control { margin-top: 20px; padding-top: 15px; border-top: 3px double var(--sheet-rule); font: 12px/1.6 system-ui, sans-serif; }
+.survivor-control-owned { border-color: #52644a; }
+.survivor-profile .survivor-control .survivor-eyebrow { font-size: 9px; }
+.survivor-profile .survivor-retry { width: 100%; background: #ead2a3; color: #493019; margin-top: 6px; box-shadow: inset 0 0 0 2px #81613a33; }
+.survivor-profile .survivor-retry:hover:not(:disabled) { background: #f3dfb9; }
+.survivor-control small { display: block; margin-top: 9px; font-size: 11px; }
 .survivor-requested, .survivor-address { overflow-wrap: anywhere; }
-.survivor-profile dl { margin: 18px 0 0; }
-.survivor-profile dt { color: var(--profile-muted); font-size: 13px; }
-.survivor-profile dd { margin: 4px 0 16px; }
-.survivor-address { font-size: 14px; }
-.survivor-title { border-bottom: 1px solid #718c8855; padding: 18px 0; display: grid; gap: 4px; }
-.survivor-title span { font-size: 13px; color: var(--profile-muted); }
-.survivor-title strong { color: var(--profile-gold); font: 600 23px/1.4 Cinzel, serif; }
-.survivor-profile .survivor-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 24px; margin-top: 24px; }
-.survivor-stats dd { font: 600 30px/1.3 Cinzel, serif; color: var(--profile-gold); margin: 8px 0; }
-.survivor-stats div:nth-child(2) dd { color: #b6d6c6; }
-.survivor-stats div:nth-child(3) dd { color: #e1a6ad; }
-.survivor-profile .survivor-small { font-size: 13px; color: var(--profile-muted); line-height: 1.7; }
-.survivor-profile .survivor-error { color: #f2b3b4; font-size: 14px; }
-.survivor-achievements, .survivor-daily { border-top: 1px solid #718c8855; }
-.survivor-achievements { border-right: 1px solid #718c8855; }
-.survivor-achievements ul { padding: 0; list-style: none; margin: 22px 0 0; }
-.survivor-achievements li { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: start; padding: 12px 0; border-bottom: 1px solid #718c8833; }
+.survivor-profile dl { margin: 16px 0 0; }
+.survivor-profile dt { color: var(--sheet-muted); font: 700 12px/1.5 Cinzel, serif; }
+.survivor-profile dd { margin: 5px 0 14px; }
+.survivor-address { font: 12px/1.6 system-ui, sans-serif; }
+.survivor-progress > p[role='status'] { font: 12px/1.6 system-ui, sans-serif; padding: 10px 0; }
+.survivor-title { padding: 16px 0; border-block: 1px solid var(--sheet-rule); display: grid; gap: 6px; }
+.survivor-title span { font: 12px Cinzel, serif; color: var(--sheet-muted); }
+.survivor-title strong { font: 400 27px/1.2 'Chog Adventure Display', Georgia, serif; }
+.survivor-profile .survivor-stats { display: grid; gap: 18px; margin: 24px 0; }
+.survivor-stats > div { display: grid; grid-template-columns: 1fr auto; align-items: baseline; }
+.survivor-stats dd { font: 400 27px/1.15 'Chog Adventure Display', Georgia, serif; margin: 0; }
+.survivor-stat-note { grid-column: 1 / -1; margin-top: 5px; }
+.survivor-stats meter, .survivor-meter-unavailable { grid-column: 1 / -1; width: 100%; height: 13px; margin-top: 9px; background: #9c7e5133; border: 3px double #8b673e; border-radius: 0; }
+.survivor-stats meter { appearance: none; }
+.survivor-stats meter::-webkit-meter-bar { border: 0; border-radius: 0; background: #9c7e5133; height: 100%; }
+.survivor-stats meter::-webkit-meter-optimum-value { background: #586748; }
+.survivor-stat-scars meter::-webkit-meter-optimum-value { background: #9a4e3b; }
+.survivor-stats meter::-moz-meter-bar { background: #586748; }
+.survivor-stat-scars meter::-moz-meter-bar { background: #9a4e3b; }
+.survivor-meter-unavailable { border-style: dashed; }
+.survivor-profile .survivor-error { color: #822a25; font: 13px/1.5 system-ui, sans-serif; }
+.survivor-daily { border-top: 3px double var(--sheet-rule); padding-top: 18px; margin-top: 22px; }
+.survivor-daily h2 { font-size: 16px; }
+.survivor-daily > p { font-size: 16px; }
+.survivor-daily dd { font: 12px/1.6 system-ui, sans-serif; overflow-wrap: anywhere; }
+.survivor-achievements > p { font-size: 16px; }
+.survivor-achievements ul { padding: 0; list-style: none; margin: 16px 0 0; }
+.survivor-achievements li { display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: start; padding: 13px 0; border-bottom: 1px solid var(--sheet-rule); }
 .survivor-achievements li:last-child { border: 0; }
-.survivor-achievements li > span { color: #9eb0b4; }
-.survivor-achievements strong { font-size: 14px; }
-.survivor-achievements small { display: block; font-size: 12px; color: var(--profile-muted); margin-top: 3px; }
-.survivor-achievements b { font-size: 11px; font-weight: 500; color: var(--profile-muted); padding-top: 3px; }
-.survivor-achievements .survivor-earned > span, .survivor-earned b { color: var(--profile-gold); }
-.survivor-daily dt { margin-top: 24px; }
-.survivor-daily dd { font-size: 15px; overflow-wrap: anywhere; }
-.survivor-history { grid-column: 1 / -1; border-top: 1px solid #718c8855; }
-.survivor-history-unavailable { display: flex; align-items: flex-start; gap: 22px; margin-top: 24px; padding: 24px; background: #0c191e; border: 1px solid #718c8844; }
-.survivor-history-symbol { font: 42px/1 Cinzel, serif; color: var(--profile-gold); }
-.survivor-history-unavailable p { color: var(--profile-muted); max-width: 780px; font-size: 14px; }
-.survivor-inheritance { padding: 26px 0 0; max-width: 900px; }
-.survivor-inheritance h2 { font-size: 20px; }
-@media (max-width: 820px) {
-  .survivor-ledger { grid-template-columns: 1fr; }
-  .survivor-identity, .survivor-achievements { border-right: 0; }
-  .survivor-progress { border-top: 1px solid #718c8855; }
+.survivor-achievement-symbol { border: 3px double #87663a99; background: #b9925133; height: 38px; width: 38px; display: grid; place-items: center; font: 25px/1 Georgia, serif; color: #74552d; }
+.survivor-achievements strong { font: 700 13px/1.4 Cinzel, serif; }
+.survivor-achievements small { display: block; font: 12px/1.55 system-ui, sans-serif; color: var(--sheet-muted); margin-top: 4px; }
+.survivor-achievements b { display: block; font: 700 9px/1.5 system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--sheet-muted); margin-top: 4px; }
+.survivor-earned .survivor-achievement-symbol { background: #a87930; color: #fff0c4; border-color: #654619; box-shadow: inset 0 0 0 2px #dfbd70; }
+.survivor-earned b { color: #365132; }
+.survivor-locked .survivor-achievement-symbol { background: transparent; border-style: dashed; }
+.survivor-ledger > .survivor-history { grid-column: 1 / -1; margin-top: 28px; padding: 22px 0 0; border-top: 3px double var(--sheet-rule); }
+.survivor-journal-label { margin-left: auto; font: 700 9px Cinzel, serif; letter-spacing: .12em; color: var(--sheet-muted); }
+.survivor-history-unavailable { position: relative; display: flex; gap: 28px; padding: 24px 32px 64px; border: 3px double #87663a88; background: repeating-linear-gradient(transparent 0 33px, #81613a22 33px 34px); min-height: 250px; }
+.survivor-history-unavailable::after { content: '◇'; position: absolute; bottom: 12px; left: calc(50% - 12px); font-size: 24px; color: #8b673e; }
+.survivor-history-symbol { font: 48px/1 Georgia, serif; color: var(--sheet-gold); }
+.survivor-history-unavailable p { max-width: 680px; font-size: 17px; }
+.survivor-inheritance { display: flex; align-items: flex-start; gap: 24px; margin: 26px auto 0; padding: 22px 20px 0; border-top: 3px double var(--sheet-rule); max-width: 960px; }
+.survivor-inheritance h2 { font-size: 18px; }
+.survivor-inheritance p { font-size: 16px; }
+.survivor-inheritance-seal { font: 44px/1 Georgia, serif; color: var(--sheet-gold); }
+@media (max-width: 1100px) {
+  .survivor-ledger { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+  .survivor-ledger > .survivor-progress { padding-right: 0; }
+  .survivor-ledger > .survivor-achievements { grid-column: 1 / -1; padding: 22px 0 0; margin-top: 24px; border-left: 0; border-top: 3px double var(--sheet-rule); }
+  .survivor-achievements ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+}
+@media (max-width: 640px) {
+  .survivor-profile { padding: 32px 24px 24px; margin-top: 18px; }
+  .sheet-ornament { width: 36px; height: 36px; }
+  .survivor-heading { padding: 14px 0 20px; }
+  .survivor-readonly { position: static; display: inline-block; margin-top: 6px; }
+  .survivor-motto { font-size: 17px; }
+  .survivor-motto span { display: block; }
+  .survivor-ledger { grid-template-columns: 1fr; margin-top: 28px; }
+  .survivor-ledger > .survivor-identity { padding: 0; border-right: 0; }
+  .survivor-portrait { max-width: 280px; margin-inline: auto; }
+  .survivor-ledger > .survivor-progress { padding: 24px 0 0; margin-top: 26px; border-top: 3px double var(--sheet-rule); }
+  .survivor-achievements ul { grid-template-columns: 1fr; }
+  .survivor-journal-label { display: none; }
+  .survivor-history-unavailable { padding: 22px 16px 54px; gap: 12px; }
+  .survivor-history-symbol { font-size: 28px; }
+  .survivor-history-unavailable h3 { font-size: 17px; }
+  .survivor-inheritance { padding: 18px 0 0; gap: 12px; }
+  .survivor-inheritance-seal { font-size: 26px; }
 }
 @media (max-width: 560px) {
   .game-shell-character > .game-header nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
   .game-shell-character > .game-header nav button { min-width: 0; min-height: 44px; padding: 10px 3px; font-size: 10px; letter-spacing: .07em; }
-  .survivor-profile { padding-top: 30px; }
-  .survivor-heading { flex-direction: column; gap: 16px; }
-  .survivor-motto span { display: block; }
   .survivor-entry { flex-direction: column; }
-  .survivor-ledger > section { padding: 22px 18px; }
-  .survivor-control { padding: 16px 12px; }
-  .survivor-achievements li { grid-template-columns: 16px 1fr; }
-  .survivor-achievements b { grid-column: 2; padding-top: 0; }
-  .survivor-profile h2 { font-size: 20px; }
-  .survivor-history-unavailable { padding: 18px 14px; gap: 12px; }
-  .survivor-history-symbol { font-size: 28px; }
-  .survivor-stats dd { font-size: 24px; }
+}
+@media (max-width: 360px) {
+  .game-shell-character > .game-header nav button { padding-inline: 1px; font-size: 9px; letter-spacing: .03em; }
 }

@@ -154,6 +154,34 @@ describe('survivor identity and ownership', () => {
 })
 
 describe('authoritative progression and unavailable states', () => {
+  it('keeps the decorative portrait separate from verified NFT artwork', () => {
+    live()
+    render(<Character selectedToken={1425n} onSelectToken={vi.fn()}/>)
+    const portrait = screen.getByRole('figure', {name: 'Decorative portrait placeholder'})
+    expect(within(portrait).getByText(/Portrait unavailable/)).toBeInTheDocument()
+    expect(portrait.querySelector('img')).toBeNull()
+    expect(screen.getByRole('heading', {name: 'CHOG #1425'})).toBeInTheDocument()
+  })
+  it('does not represent unavailable progression as zero-value meters or locked achievements', () => {
+    render(<Character selectedToken={1425n} onSelectToken={vi.fn()}/>)
+    expect(screen.queryByRole('meter')).not.toBeInTheDocument()
+    const marks = screen.getByRole('heading', {name: 'Marks of survival'}).closest('section')!
+    expect(within(marks).getAllByText('Unavailable')).toHaveLength(8)
+    expect(within(marks).queryByText('Not earned')).not.toBeInTheDocument()
+  })
+  it('limits progression meters to actual bounded Trust and Scars readings', () => {
+    live()
+    render(<Character selectedToken={1425n} onSelectToken={vi.fn()}/>)
+    expect(screen.getAllByRole('meter')).toHaveLength(2)
+    expect(screen.getByRole('meter', {name: 'Trust'})).toHaveAttribute('value', '84')
+    expect(screen.getByRole('meter', {name: 'Scars'})).toHaveAttribute('value', '21')
+    for (const meter of screen.getAllByRole('meter')) {
+      expect(meter).toHaveAttribute('min', '0')
+      expect(meter).toHaveAttribute('max', '100')
+    }
+    expect(screen.queryByRole('meter', {name: 'XP'})).not.toBeInTheDocument()
+    expect(screen.queryByRole('meter', {name: 'Stored streak'})).not.toBeInTheDocument()
+  })
   it('never substitutes Adventure fixtures or invents a timeline without a deployment', () => {
     render(<Character selectedToken={1425n} onSelectToken={vi.fn()}/>)
     expect(screen.getByText(/Progression unavailable — no approved game deployment/)).toBeInTheDocument()
