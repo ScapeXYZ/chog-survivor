@@ -1,6 +1,7 @@
 import {useEffect, useMemo, useRef, useState} from 'react'
 import {achievements, demoCharacter, demoEventIndex, events, titles} from './game-data'
-import {signed} from './utils'
+import {shortAddress, signed} from './utils'
+import {useSurvivorIdentity} from './useSurvivorIdentity'
 import wildEnvironment from './assets/ruined-wild-environment-provisional.webp'
 import fogOverlay from './assets/moonlit-fog-overlay-provisional.webp'
 import './adventure.css'
@@ -43,7 +44,8 @@ function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => vo
   </dialog>
 }
 
-export function Adventure({now, selectedToken, onHome}: {now: number; selectedToken?: bigint; onHome: () => void}) {
+export function Adventure({now, selectedToken, onHome, onCharacter}: {now: number; selectedToken?: bigint; onHome: () => void; onCharacter?: () => void}) {
+  const {owner, enabled, checkingOwner, verified, controls, ownershipMessage} = useSurvivorIdentity(selectedToken)
   const day = Math.floor(now / 86400000)
   const eventIndex = useMemo(() => demoEventIndex(selectedToken ?? 0n, BigInt(day)), [selectedToken, day])
   const event = events[eventIndex]
@@ -59,6 +61,19 @@ export function Adventure({now, selectedToken, onHome}: {now: number; selectedTo
       </dl></div>
       <button className="adventure-home" onClick={onHome}><span aria-hidden="true">←</span> Back to Home</button>
     </header>
+
+    <aside className="adventure-survivor" aria-label="Adventure survivor identity">
+      <div role="status" aria-live="polite"><span className="adventure-survivor-label">{verified ? 'VERIFIED NFT IDENTITY · LOCAL DEMO' : 'LOCAL DEMONSTRATION'}</span>
+        <strong>{verified ? `CHOG #${selectedToken}` : selectedToken === undefined ? 'No Chog selected' : `Requested token #${selectedToken} · unverified`}</strong>
+        <p>{ownershipMessage}{selectedToken === undefined && ' Everyone can explore this demo.'}
+          {verified && <span> Verified owner: {shortAddress(owner.data)} · {controls ? 'your wallet' : 'another wallet'}.</span>}</p>
+      </div>
+      <p className="adventure-survivor-disclosure">The NFT carries progression; this encounter is a local demonstration. Choices do not change your Chog or save its story.</p>
+      <div className="adventure-survivor-actions">
+        {onCharacter && <button type="button" onClick={onCharacter}>View survivor profile <span aria-hidden="true">→</span></button>}
+        {selectedToken !== undefined && <button type="button" disabled={!enabled || checkingOwner} onClick={() => void owner.refetch()}>{checkingOwner ? 'Verifying…' : 'Refresh ownership'}</button>}
+      </div>
+    </aside>
 
     <div className="adventure-stage">
       <div className="adventure-world" role="img" aria-label="Moonlit forest with ruined stone gateways, a broken path, drifting mist and warm lanterns">

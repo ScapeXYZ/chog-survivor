@@ -1,25 +1,11 @@
 import {useRef, useState} from 'react'
-import {useAccount, useReadContract} from 'wagmi'
-import {toFunctionSelector, zeroAddress} from 'viem'
-import {approvedGameAddress, CHOG_GENESIS, gameReadAbi, monad, nftAbi} from './contracts'
+import {useReadContract} from 'wagmi'
+import {zeroAddress} from 'viem'
+import {approvedGameAddress, CHOG_GENESIS, gameReadAbi, monad} from './contracts'
 import {achievements, events, titles} from './game-data'
 import {parseTokenId} from './utils'
+import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurvivorIdentity'
 import './character.css'
-
-// An ambiguous ownerOf revert does not establish that an NFT is nonexistent.
-function ownershipFailure(error: unknown): 'nonexistent' | 'reverted' | 'rpc' {
-  const seen = new Set<unknown>()
-  let reverted = false
-  while (error && typeof error === 'object' && !seen.has(error)) {
-    seen.add(error)
-    const item = error as {name?: string; data?: {errorName?: string} | string; raw?: string; cause?: unknown}
-    if ((typeof item.data === 'object' && item.data?.errorName === 'ERC721NonexistentToken') ||
-      (item.raw ?? (typeof item.data === 'string' ? item.data : ''))?.startsWith(toFunctionSelector('ERC721NonexistentToken(uint256)'))) return 'nonexistent'
-    if (item.name === 'ContractFunctionRevertedError') reverted = true
-    error = item.cause
-  }
-  return reverted ? 'reverted' : 'rpc'
-}
 
 const criteria = [
   'Resolve your first encounter.', 'Reinforce the Broken Bridge three times.',
@@ -47,25 +33,11 @@ function SurvivorSeal() {
 }
 
 export function Character({selectedToken, onSelectToken}: {selectedToken?: bigint; onSelectToken: (token: bigint) => void}) {
-  // useChainId reports configured chain state, which may stay at 143 on an unsupported wallet chain.
-  const {address, isConnected, chainId} = useAccount()
+  const {owner, enabled, scopeKey, contextKey, checkingOwner, verified, controls, ownershipMessage} = useSurvivorIdentity(selectedToken)
   const [enteredId, setEnteredId] = useState(selectedToken?.toString() ?? '')
   const token = parseTokenId(enteredId)
-  const connected = isConnected && address !== undefined
-  const onMonad = chainId === monad.id
-  const enabled = connected && onMonad && selectedToken !== undefined
-  // Account/network scope prevents a previous controller's cached result becoming current identity.
-  const scopeKey = `survivor:${address ?? 'disconnected'}:${chainId}`
-  const contextKey = `${scopeKey}:${selectedToken}`
   const currentContext = useRef(contextKey)
   currentContext.current = contextKey
-  const freshness = {staleTime: 0, refetchOnMount: 'always' as const, refetchOnWindowFocus: true, refetchInterval: 30_000}
-  const owner = useReadContract({address: CHOG_GENESIS, abi: nftAbi, functionName: 'ownerOf',
-    args: selectedToken === undefined ? undefined : [selectedToken], chainId: monad.id, scopeKey,
-    query: {...freshness, enabled}})
-  const checkingOwner = enabled && (owner.isFetching || owner.isLoading)
-  const verified = enabled && !checkingOwner && !owner.isError && owner.data !== undefined && owner.data !== zeroAddress
-  const controls = verified && owner.data?.toLowerCase() === address?.toLowerCase()
   const binding = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'CHOG_GENESIS',
     chainId: monad.id, scopeKey, query: {...freshness, enabled: verified && approvedGameAddress !== undefined}})
   const bound = verified && approvedGameAddress !== undefined && !binding.isFetching && !binding.isLoading && !binding.isError && binding.data?.toLowerCase() === CHOG_GENESIS.toLowerCase()
@@ -77,20 +49,6 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
     query: {...freshness, enabled: bound}})
   const state = bound && !character.isFetching && !character.isLoading && !character.isError ? character.data : undefined
   const titleName = bound && !title.isFetching && !title.isLoading && !title.isError && title.data !== undefined ? titles[title.data] : undefined
-
-  let ownershipMessage = 'Enter a Chog Genesis token ID to look up its survivor.'
-  if (!connected) ownershipMessage = 'Wallet disconnected. Connect your wallet to verify the current controller.'
-  else if (chainId === undefined) ownershipMessage = 'Wallet network unavailable. Reconnect your wallet to verify its chain before ownership reads.'
-  else if (!onMonad) ownershipMessage = 'Wrong network. Select Monad (chain ID 143) in your wallet to verify ownership.'
-  else if (checkingOwner) ownershipMessage = 'Checking canonical ownerOf… Identity is not yet verified.'
-  else if (enabled && owner.isError) {
-    const failure = ownershipFailure(owner.error)
-    ownershipMessage = failure === 'nonexistent' ? 'NFT nonexistent: the collection reports that this token ID does not exist. It may have been burned.' :
-      failure === 'reverted' ? 'NFT unavailable: ownerOf reverted. Nonexistence, burn or collection restrictions cannot be distinguished from this response.' :
-      'RPC failure. Current ownership could not be verified. Retry the read.'
-  } else if (verified) ownershipMessage = controls ? 'You control this survivor. Your connected wallet is its current owner.' : 'Another wallet controls this survivor. You can inspect its read-only profile.'
-  else if (enabled && owner.data === zeroAddress) ownershipMessage = 'NFT unavailable: the collection returned a zero owner. No current controller is verified.'
-  else if (enabled) ownershipMessage = 'Ownership verification is pending. No survivor identity is confirmed.'
 
   let progressionMessage = 'Progression unavailable — no approved game deployment is configured. NFT ownership can still be verified on Monad.'
   if (approvedGameAddress !== undefined) {

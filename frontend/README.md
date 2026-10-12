@@ -118,6 +118,34 @@ NFT artwork source is available. The journal has no fabricated decisions.
 See `TASK_11_3.md` for scoped files, responsive validation and screenshot paths.
 Home, Adventure, wallet configuration, ABI, addresses and Solidity remain unchanged.
 
+## Character ↔ Adventure journey — Milestone 11.4
+
+The selected token ID stays in App state across both screens. Use **Adventure**
+in the existing navigation from Character, then **View survivor profile** in
+Adventure to return to the same token. No wallet or Chog holding is required
+to explore the local demo.
+
+Both screens now use `useSurvivorIdentity` and the same canonical `ownerOf`
+query key, scoped by wallet account/chain and token arguments. Ownership is
+rechecked on screen mount, window focus and 30-second polling. Cached identity
+is hidden during loading, refetch or errors. Disconnected/unknown/wrong network,
+unverified requests, current owner, another controller and collection/RPC
+failures remain distinct. A typed but unsubmitted ID does not select an NFT.
+
+Adventure's compact identity strip shows a verified NFT separately from the
+**LOCAL DEMO** encounter and simulated HUD. Requested IDs are explicitly
+unverified; another owner never becomes your controller. A visible ownership
+refresh and profile return require no signing. The same numeric ID can seed
+a device-UTC local simulation; it is not proof of the token's current chain
+encounter or eligibility. Choices do not alter NFT progression or history.
+
+Adventure still uses the existing fixture stats, base-delta previews and
+unchanged popup. It performs no `eventFor`, `preview`, write, signature or
+broadcast. Character's parchment JSX/CSS and conditional game state reads are
+preserved. Source-backed parity tests compare every event/choice/outcome and
+base effect with the frozen Solidity and rulebook. See `TASK_11_4.md` for
+test evidence, screenshots and remaining limits.
+
 ## Product disclosure
 
 Progress belongs to numeric Chog Genesis token IDs, not wallets. It follows a

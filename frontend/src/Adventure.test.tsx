@@ -9,7 +9,7 @@ const wallet = vi.hoisted(() => ({
 }))
 vi.mock('wagmi', async (importOriginal) => ({
   ...(await importOriginal<typeof import('wagmi')>()),
-  useAccount: () => ({address: wallet.address, isConnected: wallet.isConnected}),
+  useAccount: () => ({address: wallet.address, isConnected: wallet.isConnected, chainId: wallet.chainId}),
   useChainId: () => wallet.chainId,
   useConnect: () => ({connect: wallet.connect, connectors: wallet.connectors, isPending: false}),
   useDisconnect: () => ({disconnect: wallet.disconnect}),
@@ -97,7 +97,8 @@ describe('local Adventure preview', () => {
       expect(choice).toHaveFocus(); expect(choice).toHaveAttribute('aria-pressed', 'false')
     }
     expect(hud.textContent).toBe(before)
-    expect(wallet.read).toHaveBeenCalledTimes(initialReadCount)
+    // Hook invocations on rerender are not RPC requests. Choices never read game outcomes.
+    expect(wallet.read.mock.calls.slice(initialReadCount).every(([request]) => request.functionName === 'ownerOf' && !request.query.enabled)).toBe(true)
     expect(wallet.write).not.toHaveBeenCalled(); expect(wallet.sign).not.toHaveBeenCalled(); expect(wallet.send).not.toHaveBeenCalled()
     expect(wallet.connect).not.toHaveBeenCalled()
     expect(gameReadAbi.every((method) => method.stateMutability === 'view')).toBe(true)
