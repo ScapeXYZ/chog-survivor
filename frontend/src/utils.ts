@@ -7,7 +7,8 @@ export type OwnershipState = 'idle' | 'owned' | 'not-owner' | 'unavailable'
 export function parseTokenId(value: string): bigint | undefined {
   if (!/^\d+$/.test(value.trim())) return undefined
   try {
-    return BigInt(value)
+    const token = BigInt(value)
+    return token <= (1n << 256n) - 1n ? token : undefined
   } catch {
     return undefined
   }

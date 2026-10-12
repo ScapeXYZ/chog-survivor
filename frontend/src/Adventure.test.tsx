@@ -102,7 +102,8 @@ describe('local Adventure preview', () => {
     expect(wallet.connect).not.toHaveBeenCalled()
     expect(gameReadAbi.every((method) => method.stateMutability === 'view')).toBe(true)
     fireEvent.click(screen.getByRole('button', {name: /^character$/i}))
-    expect(screen.getByText('184')).toBeInTheDocument(); expect(screen.getByText('62/100')).toBeInTheDocument(); expect(screen.getByText('14/100')).toBeInTheDocument()
+    expect(screen.getByText(/no demo values are substituted/i)).toBeInTheDocument()
+    expect(screen.queryByText('184')).not.toBeInTheDocument(); expect(screen.queryByText('62/100')).not.toBeInTheDocument(); expect(screen.queryByText('14/100')).not.toBeInTheDocument()
   })
 
   it('supports cancellation and restores body scrolling and focus', () => {

@@ -11,6 +11,17 @@ describe('token selection validation', () => {
   })
 })
 
+describe('uint256 boundaries', () => {
+  it('accepts zero and uint256 max, rejects values above max', () => {
+    expect(parseTokenId('0')).toBe(0n)
+    expect(parseTokenId(((1n << 256n) - 1n).toString())).toBe((1n << 256n) - 1n)
+    expect(parseTokenId((1n << 256n).toString())).toBeUndefined()
+  })
+  it.each(['-1', '+1', '1.0', '1e3', '0x10', '1 2', 'abc', ''])('rejects %s', (value) => {
+    expect(parseTokenId(value)).toBeUndefined()
+  })
+})
+
 describe('ownership query states', () => {
   it('reports RPC/nonexistent ownerOf failure as unavailable', () => {
     expect(ownershipState(undefined, undefined, true)).toBe('unavailable')
