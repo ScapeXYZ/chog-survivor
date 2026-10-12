@@ -12,6 +12,7 @@ function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => vo
   const returnRef = useRef<HTMLButtonElement>(null)
   const event = events[preview.eventIndex]
   const deltas = event.baseDeltas[preview.choiceIndex]
+  const category = event.tags[preview.choiceIndex]
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -27,12 +28,10 @@ function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => vo
     }
   }, [])
 
-  return <dialog ref={dialogRef} className="adventure-result" aria-labelledby="preview-title" aria-describedby="preview-disclosure" onCancel={(event) => { event.preventDefault(); onReturn() }}>
-    <div className="adventure-result-stamp" aria-hidden="true">CS</div>
-    <p className="adventure-eyebrow">LOCAL DEMO · OUTCOME {preview.eventIndex * 3 + preview.choiceIndex + 1}</p>
-    <h2 id="preview-title">Your choice leaves a mark.</h2>
-    <p className="adventure-result-encounter">{event.name}</p>
-    <h3>{event.choices[preview.choiceIndex]}</h3>
+  return <dialog ref={dialogRef} className={`adventure-result adventure-result-${category}`} aria-labelledby="preview-title" aria-describedby="preview-disclosure" onCancel={(event) => { event.preventDefault(); onReturn() }}>
+    <div className="adventure-result-heading"><div className="adventure-result-stamp" aria-hidden="true"><i/><i/></div><div><p className="adventure-result-encounter">{event.name}</p><p className="adventure-eyebrow">{category} choice · LOCAL DEMO</p></div></div>
+    <h2 id="preview-title">{event.choices[preview.choiceIndex]}</h2>
+    <p className="adventure-result-lede">Your choice leaves a mark. <span>Outcome {preview.eventIndex * 3 + preview.choiceIndex + 1}</span></p>
     <p className="adventure-result-story">{event.consequences[preview.choiceIndex]}</p>
     <p className="adventure-result-label">Rulebook base deltas · preview only</p>
     <dl className="adventure-result-rewards">
@@ -55,7 +54,7 @@ export function Adventure({now, selectedToken, onHome}: {now: number; selectedTo
   return <section className="adventure-game" aria-labelledby="adventure-title">
     <header className="adventure-hud">
       <div className="adventure-brand"><span className="adventure-emblem" aria-hidden="true">CS</span><div><strong>CHOG SURVIVOR</strong><span className="adventure-demo-badge">LOCAL DEMO</span></div></div>
-      <div className="adventure-stat-group"><span className="adventure-stat-disclosure">SIMULATED STATS · PREVIEWS DO NOT SAVE</span><dl className="adventure-stats" aria-label="Simulated character statistics">
+      <div className="adventure-stat-group"><span className="adventure-stat-disclosure">DEMO STATS — NOT SAVED</span><dl className="adventure-stats" aria-label="Simulated character statistics">
         <div><dt>XP</dt><dd>{demoCharacter.xp}</dd></div><div><dt>Trust</dt><dd>{demoCharacter.trust}<small>/100</small></dd></div><div><dt>Scars</dt><dd>{demoCharacter.scars}<small>/100</small></dd></div><div><dt>Streak</dt><dd>{demoCharacter.streak}<small> days</small></dd></div>
       </dl></div>
       <button className="adventure-home" onClick={onHome}><span aria-hidden="true">←</span> Back to Home</button>
@@ -65,7 +64,9 @@ export function Adventure({now, selectedToken, onHome}: {now: number; selectedTo
       <div className="adventure-world" role="img" aria-label="Moonlit forest with ruined stone gateways, a broken path, drifting mist and warm lanterns">
         <img className="adventure-environment" src={wildEnvironment} alt=""/>
         <div className="adventure-scene-wash"/>
+        <img className="adventure-mist adventure-mist-back" src={fogOverlay} alt=""/>
         <img className="adventure-mist" src={fogOverlay} alt=""/>
+        <div className="adventure-canopy"><i/><i/></div>
         <div className="adventure-stone adventure-stone-left"><i/><i/><i/></div>
         <div className="adventure-stone adventure-stone-right"><i/><i/></div>
         <div className="adventure-lantern adventure-lantern-left"><i/></div>
@@ -73,7 +74,7 @@ export function Adventure({now, selectedToken, onHome}: {now: number; selectedTo
         <div className="adventure-foreground"><i/><i/><i/><i/><i/></div>
         <div className="adventure-world-edge"/>
       </div>
-      <div className="adventure-scene-heading"><p className="adventure-eyebrow">DAILY ENCOUNTER · EVENT {String(eventIndex + 1).padStart(2, '0')} / 06</p><h1 id="adventure-title">{event.name}</h1><p>Every choice leaves a mark.</p></div>
+      <div className="adventure-scene-heading"><div className="adventure-encounter-seal" data-encounter={eventIndex + 1} aria-hidden="true"><i/><i/><i/></div><div><p className="adventure-eyebrow">DAILY ENCOUNTER · EVENT {String(eventIndex + 1).padStart(2, '0')} / 06</p><h1 id="adventure-title">{event.name}</h1><p className="adventure-scene-motto">Every choice leaves a mark.</p></div></div>
       <div className="adventure-trail-tag"><span className="adventure-eyebrow">SIMULATED TRAIL</span><strong>{titles[demoCharacter.titleId]}</strong><span>{selectedToken === undefined ? 'Demo seed: token 0' : `Demo seed: token ${selectedToken}`} · Device UTC day {day}</span></div>
       <span className="adventure-scene-caption">THE RUINED WILD · DEMO SETTING</span>
     </div>
@@ -82,7 +83,7 @@ export function Adventure({now, selectedToken, onHome}: {now: number; selectedTo
       <div className="adventure-story"><div><p className="adventure-eyebrow">YOUR NEXT MOVE</p><h2 id="adventure-decision-title">How will you survive?</h2></div><p>{event.narrative}</p></div>
       <div className="adventure-choices" aria-label="Survival choices">
         {event.choices.map((choice, index) => <button key={choice} className={`adventure-choice adventure-choice-${event.tags[index]}`} aria-haspopup="dialog" aria-pressed={selectedChoice === index} onClick={() => setPreview({eventIndex, choiceIndex: index})}>
-          <span className="adventure-choice-top"><span className="adventure-choice-number">0{index + 1}</span><span>{event.tags[index]}</span></span>
+          <span className="adventure-choice-top"><span className="adventure-choice-number">0{index + 1}</span><span className="adventure-choice-category">{event.tags[index]}</span></span>
           <strong>{choice}</strong><span className="adventure-choice-action">Preview Choice <span aria-hidden="true">→</span></span>
         </button>)}
       </div>

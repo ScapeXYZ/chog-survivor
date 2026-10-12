@@ -87,7 +87,7 @@ describe('local Adventure preview', () => {
     const choices = screen.getAllByRole('button', {name: /preview choice/i})
     for (const choice of choices) {
       choice.focus(); fireEvent.click(choice)
-      const dialog = screen.getByRole('dialog', {name: /your choice leaves a mark/i})
+      const dialog = screen.getByRole('dialog', {name: choice.querySelector('strong')!.textContent!})
       expect(dialog).toHaveAttribute('aria-describedby', 'preview-disclosure')
       expect(choice).toHaveAttribute('aria-pressed', 'true')
       expect(within(dialog).getByText(/Simulation only/)).toBeInTheDocument()
@@ -189,5 +189,33 @@ describe('frozen rulebook coverage', () => {
       const hash = keccak256(encodePacked(['address', 'uint256', 'uint64'], [CHOG_GENESIS, token, day]))
       expect(demoEventIndex(token, day)).toBe(Number(BigInt(hash) % 6n))
     }
+  })
+})
+
+describe('Adventure presentation clarity', () => {
+  it('labels the unchanged HUD fixture as demo stats that are not saved', () => {
+    render(<Adventure now={20000 * 86400000} onHome={vi.fn()}/>)
+    expect(screen.getByText('DEMO STATS — NOT SAVED')).toBeVisible()
+    const stats = within(screen.getByLabelText('Simulated character statistics'))
+    expect(stats.getByText('184')).toBeVisible()
+    expect(stats.getByText('62')).toBeVisible()
+    expect(stats.getByText('14')).toBeVisible()
+  })
+
+  it.each(['cautious', 'compassionate', 'reckless'] as const)('themes the %s result without changing its choice or trade-off', (category) => {
+    let day = 20000
+    while (demoEventIndex(0n, BigInt(day)) !== 3) day++
+    const event = events[3]
+    const index = event.tags.findIndex((tag) => tag === category)
+    render(<Adventure now={day * 86400000} onHome={vi.fn()}/>)
+    fireEvent.click(screen.getByRole('button', {name: new RegExp(event.choices[index])}))
+    const dialog = screen.getByRole('dialog', {name: event.choices[index]})
+    expect(dialog).toHaveClass(`adventure-result-${category}`)
+    expect(within(dialog).getByRole('heading', {level: 2})).toHaveTextContent(event.choices[index])
+    expect(within(dialog).getByText(`${category} choice · LOCAL DEMO`)).toBeVisible()
+    expect(within(dialog).getByText(event.consequences[index])).toBeVisible()
+    expect(within(dialog).getByText(/before history modifiers and clamping/)).toBeVisible()
+    fireEvent.click(within(dialog).getByRole('button', {name: /try another choice/i}))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 })
