@@ -23,7 +23,9 @@ export async function discoverSurvivors(client: DiscoveryClient, account: Addres
     } finally { clearTimeout(timer) }
   }
   if (await read(() => client.getChainId()) !== activeChain.id) throw new Error('RPC network mismatch')
-  const header = await read(() => client.getBlock({blockTag: 'finalized'}))
+  // Anvil reports its genesis block as `finalized`; a local snapshot must use
+  // the latest mined block. Production discovery remains finalized.
+  const header = await read(() => client.getBlock({blockTag: localMode ? 'latest' : 'finalized'}))
   const block = header.number
   if (block === null || !header.hash) throw new Error('Finalized block unavailable')
   const code = await read(() => client.getBytecode({address: CHOG_GENESIS, blockNumber: block}))
@@ -35,7 +37,10 @@ export async function discoverSurvivors(client: DiscoveryClient, account: Addres
     return response.data
   }
   const balance = decodeFunctionResult({abi: discoveryAbi, functionName: 'balanceOf', data: await call(encodeFunctionData({abi: discoveryAbi, functionName: 'balanceOf', args: [account]}), 100_000n)})
-  const candidates = decodeFunctionResult({abi: discoveryAbi, functionName: 'tokensOfOwner', data: await call(encodeFunctionData({abi: discoveryAbi, functionName: 'tokensOfOwner', args: [account]}), 50_000_000n)})
+  // The local fixture is tiny and Anvil's default block gas limit is below the
+  // conservative production discovery budget.
+  const discoveryGas = localMode ? 5_000_000n : 50_000_000n
+  const candidates = decodeFunctionResult({abi: discoveryAbi, functionName: 'tokensOfOwner', data: await call(encodeFunctionData({abi: discoveryAbi, functionName: 'tokensOfOwner', args: [account]}), discoveryGas)})
   const unique = [...new Set(candidates)]
   const tokens: bigint[] = []
   let complete = unique.length === candidates.length && BigInt(unique.length) === balance && unique.length <= discoveryLimit

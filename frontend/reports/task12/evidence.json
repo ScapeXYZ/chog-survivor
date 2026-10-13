@@ -1,0 +1,244 @@
+{
+  "startedAt": "2026-10-13T07:22:30.014Z",
+  "chainId": 31338,
+  "game": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+  "deploymentBlock": "4",
+  "fixture": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+  "transactions": [
+    {
+      "hash": "0x5ffe8089961c9cc0054826777ff5073f57c5aa3529aafe5b3fac50070d93debf",
+      "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "to": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+    },
+    {
+      "hash": "0x19295b4aafffc633fd3ee43903ec33b161d0ff48943f755af5165a671fe8601a",
+      "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "to": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+      "kind": "fixture transfer"
+    },
+    {
+      "hash": "0x0100794e8966d2daa230ea67191b1494ea4a1084dfd69870ca2ae1756e649f0d",
+      "from": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "to": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
+    }
+  ],
+  "checks": [
+    {
+      "name": "isolated chain",
+      "detail": "received 31338"
+    },
+    {
+      "name": "fixture code installed",
+      "detail": ""
+    },
+    {
+      "name": "frozen game code deployed",
+      "detail": ""
+    },
+    {
+      "name": "browser verified token 1001 owner",
+      "detail": ""
+    },
+    {
+      "name": "browser transaction changed token-bound progression",
+      "detail": ""
+    },
+    {
+      "name": "browser sent a real local transaction",
+      "detail": ""
+    },
+    {
+      "name": "daily lock visible after confirmation",
+      "detail": ""
+    },
+    {
+      "name": "confirmed journal entry visible",
+      "detail": ""
+    },
+    {
+      "name": "transfer retained progression",
+      "detail": ""
+    },
+    {
+      "name": "history remained visible after transfer",
+      "detail": ""
+    },
+    {
+      "name": "new owner acted on next local UTC day",
+      "detail": ""
+    },
+    {
+      "name": "journal contains both owner eras",
+      "detail": ""
+    },
+    {
+      "name": "Home 360px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 390px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 430px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 768px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 1024px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 1280px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 1440px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Home 1920px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 360px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 390px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 430px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 768px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 1024px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 1280px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 1440px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Adventure 1920px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 360px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 390px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 430px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 768px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 1024px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 1280px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 1440px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Character 1920px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 360px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 390px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 430px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 768px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 1024px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 1280px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 1440px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "Settings 1920px has no horizontal overflow",
+      "detail": ""
+    },
+    {
+      "name": "no browser console errors",
+      "detail": ""
+    }
+  ],
+  "screenshots": [
+    "home-360.png",
+    "home-390.png",
+    "home-430.png",
+    "home-768.png",
+    "home-1024.png",
+    "home-1280.png",
+    "home-1440.png",
+    "home-1920.png",
+    "adventure-360.png",
+    "adventure-390.png",
+    "adventure-430.png",
+    "adventure-768.png",
+    "adventure-1024.png",
+    "adventure-1280.png",
+    "adventure-1440.png",
+    "adventure-1920.png",
+    "character-360.png",
+    "character-390.png",
+    "character-430.png",
+    "character-768.png",
+    "character-1024.png",
+    "character-1280.png",
+    "character-1440.png",
+    "character-1920.png",
+    "settings-360.png",
+    "settings-390.png",
+    "settings-430.png",
+    "settings-768.png",
+    "settings-1024.png",
+    "settings-1280.png",
+    "settings-1440.png",
+    "settings-1920.png"
+  ],
+  "consoleErrors": [],
+  "completedAt": "2026-10-13T07:23:01.573Z",
+  "status": "passed"
+}

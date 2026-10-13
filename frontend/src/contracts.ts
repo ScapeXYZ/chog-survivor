@@ -44,9 +44,11 @@ export const wagmiConfig = createConfig({
   transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http('http://127.0.0.1:8545')},
 })
 
-const configuredAddress = import.meta.env.VITE_CHOG_SURVIVOR_ADDRESS
+// A production game deployment has not been approved. Local mode is the only
+// environment in which a game address can become active; an environment
+// variable by itself must never authorize Monad writes or game-history reads.
 export const approvedGameAddress: Address | undefined =
-  localMode ? localGameAddress as Address : configuredAddress && isAddress(configuredAddress) ? configuredAddress : undefined
+  localMode ? localGameAddress as Address : undefined
 
 export const nftAbi = [
   {
