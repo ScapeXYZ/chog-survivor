@@ -27,7 +27,14 @@ case "${1:-}" in
     ;;
   deploy)
     forge build --offline >/dev/null
-    forge create --broadcast --rpc-url "$RPC_URL" --unlocked --from "$ACCOUNT_A" src/ChogSurvivor.sol:ChogSurvivor
+    DEPLOYMENT="$(forge create --broadcast --rpc-url "$RPC_URL" --unlocked --from "$ACCOUNT_A" src/ChogSurvivor.sol:ChogSurvivor)"
+    printf '%s\n' "$DEPLOYMENT"
+    TX_HASH="$(printf '%s\n' "$DEPLOYMENT" | sed -n 's/^Transaction hash: //p')"
+    if [[ -n "$TX_HASH" ]]; then
+      RECEIPT="$(cast receipt --rpc-url "$RPC_URL" "$TX_HASH")"
+      BLOCK="$(printf '%s\n' "$RECEIPT" | sed -n 's/^blockNumber *//p' | head -n 1)"
+      [[ -n "$BLOCK" ]] && echo "Deployment block: $BLOCK"
+    fi
     ;;
   verify)
     cast call --rpc-url "$RPC_URL" "$CANONICAL" 'ownerOf(uint256)(address)' 1001

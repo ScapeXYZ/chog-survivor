@@ -69,6 +69,7 @@ export function LocalContractAdventure({selectedToken, onHome, onCharacter}: {se
       setTxState('submitted')
       await client?.waitForTransactionReceipt({hash})
       await Promise.all([identity.owner.refetch(), binding.refetch(), character.refetch(), title.refetch(), encounter.refetch(), preview.refetch()])
+      window.dispatchEvent(new Event('chog-local-history-refresh'))
       setTxState('confirmed')
     } catch (error) {
       const message = error instanceof Error ? error.message.toLowerCase() : ''

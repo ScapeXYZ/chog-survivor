@@ -112,6 +112,11 @@ body:has(.game-shell-character) { min-width: 0; }
 .survivor-history-unavailable::after { content: '◇'; position: absolute; bottom: 12px; left: calc(50% - 12px); font-size: 24px; color: #8b673e; }
 .survivor-history-symbol { font: 48px/1 Georgia, serif; color: var(--sheet-gold); }
 .survivor-history-unavailable p { max-width: 680px; font-size: 17px; }
+.survivor-history-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.survivor-history-list li { display: grid; gap: 3px; padding: 13px 16px; border-left: 4px solid var(--sheet-gold); background: repeating-linear-gradient(transparent 0 30px, #81613a1a 30px 31px); }
+.survivor-history-list time, .survivor-history-list small { color: #745b38; font-size: 12px; }
+.survivor-history-list strong { font-family: Georgia, serif; font-size: 17px; }
+.survivor-history-list span { font-size: 14px; }
 .survivor-inheritance { display: flex; align-items: flex-start; gap: 24px; margin: 26px auto 0; padding: 22px 20px 0; border-top: 3px double var(--sheet-rule); max-width: 960px; }
 .survivor-inheritance h2 { font-size: 18px; }
 .survivor-inheritance p { font-size: 16px; }

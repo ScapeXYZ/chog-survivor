@@ -20,6 +20,7 @@ export const monad = defineChain({
 
 const localRpcUrl = import.meta.env.VITE_LOCAL_RPC_URL
 const localGameAddress = import.meta.env.VITE_LOCAL_CHOG_SURVIVOR_ADDRESS
+const localDeploymentStart = import.meta.env.VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK
 const requestedLocalMode = import.meta.env.VITE_CHOG_ENV === 'local'
 // Local mode is deliberately narrow. Missing or non-local configuration falls
 // back to production's read-only configuration; it never redirects production.
@@ -27,6 +28,7 @@ export const localConfigurationValid = localRpcUrl === 'http://127.0.0.1:8545' &
   localGameAddress !== undefined && isAddress(localGameAddress)
 export const localMode = requestedLocalMode && localConfigurationValid
 export const environmentReady = !requestedLocalMode || localConfigurationValid
+export const localDeploymentStartBlock = localMode && localDeploymentStart !== undefined && /^\d+$/.test(localDeploymentStart) ? BigInt(localDeploymentStart) : undefined
 export const localAnvil = defineChain({
   id: LOCAL_CHAIN_ID, name: 'Local Anvil — TEST ONLY',
   nativeCurrency: {name: 'Local ETH', symbol: 'ETH', decimals: 18},

@@ -3,10 +3,11 @@ import {useReadContract} from 'wagmi'
 import {zeroAddress} from 'viem'
 import {activeChain, approvedGameAddress, CHOG_GENESIS, gameReadAbi, localMode} from './contracts'
 import {achievements, events, titles} from './game-data'
-import {parseTokenId} from './utils'
+import {parseTokenId, signed} from './utils'
 import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurvivorIdentity'
 import './character.css'
 import {YourSurvivors} from './YourSurvivors'
+import {useSurvivalHistory} from './useSurvivalHistory'
 
 const criteria = [
   'Resolve your first encounter.', 'Reinforce the Broken Bridge three times.',
@@ -50,6 +51,7 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
     query: {...freshness, enabled: bound}})
   const state = bound && !character.isFetching && !character.isLoading && !character.isError ? character.data : undefined
   const titleName = bound && !title.isFetching && !title.isLoading && !title.isError && title.data !== undefined ? titles[title.data] : undefined
+  const history = useSurvivalHistory(selectedToken, bound)
 
   let progressionMessage = `Progression unavailable — no approved game deployment is configured. NFT ownership can still be verified on ${localMode ? 'the local test fixture' : 'Monad'}.`
   if (approvedGameAddress !== undefined) {
@@ -141,7 +143,11 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
       </section>
 
       <section className="survivor-history" aria-labelledby="history-title"><div className="survivor-section-heading"><span className="survivor-section-number" aria-hidden="true">IV</span><h2 id="history-title">Survival History</h2><span className="survivor-journal-label">THE SURVIVAL JOURNAL</span></div>
-        <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>{approvedGameAddress === undefined ? 'History unavailable — no approved game deployment is configured.' : 'History unavailable — this profile does not retrieve the game’s action logs.'} Recorded decisions belong to the token ID, across owners.</p><p>No timeline has been loaded. This does not mean the survivor has no history.</p></div></div>
+        {!localMode && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>History unavailable — no approved production game deployment and deployment start block are configured. Recorded decisions belong to the token ID, across owners.</p><p>No timeline has been loaded. This does not mean the survivor has no history.</p></div></div>}
+        {localMode && !bound && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>Verify the local fixture identity and game binding before reading token-bound history.</p></div></div>}
+        {localMode && bound && history.loading && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>Reading the local survival journal…</h3><p>Events are being retrieved from the deployed local game contract.</p></div></div>}
+        {localMode && bound && !history.loading && history.result?.error && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>{history.result.partial ? 'Partial local history' : 'History unavailable'}</h3><p>{history.result.error} {history.result.partial ? 'Shown entries are incomplete; refresh before relying on them.' : 'No history claim is made.'}</p><button className="survivor-retry" onClick={history.refresh}>Retry history</button></div></div>}
+        {localMode && bound && !history.loading && history.result && <>{history.result.records.length === 0 && !history.result.error ? <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>No recorded decisions.</h3><p>This token has no AdventureResolved events in the configured local deployment range.</p></div></div> : <ol className="survivor-history-list">{history.result.records.map(record => record.kind === 'adventure' ? <li key={`${record.transactionHash}:${record.logIndex}`}><time dateTime={new Date(Number(record.timestamp) * 1000).toISOString()}>{new Date(Number(record.timestamp) * 1000).toUTCString()}</time><strong>{events[record.eventId - 1]?.name ?? `Event ${record.eventId}`} · {events[record.eventId - 1]?.choices[record.choiceId - 1] ?? `Choice ${record.choiceId}`}</strong><span>XP {signed(record.xpDelta)} · Trust {signed(record.trustDelta)} · Scars {signed(record.scarsDelta)} · outcome {record.outcomeId}</span><small>Block {record.blockNumber.toString()} · tx {record.transactionHash.slice(0, 10)}…</small></li> : <li key={`${record.transactionHash}:${record.logIndex}`}><time dateTime={new Date(Number(record.timestamp) * 1000).toISOString()}>{new Date(Number(record.timestamp) * 1000).toUTCString()}</time><strong>Achievement earned · {achievements[record.achievementId] ?? `Badge ${record.achievementId}`}</strong><small>Block {record.blockNumber.toString()} · tx {record.transactionHash.slice(0, 10)}…</small></li>)}</ol>}</>}
       </section>
     </div>
 
