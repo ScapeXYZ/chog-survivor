@@ -58,6 +58,13 @@ export const nftAbi = [
   },
 ] as const
 
+// Separate optional metadata surface. Metadata never establishes ownership,
+// authorization, or permission to reuse collection artwork.
+export const nftMetadataAbi = [{
+  type: 'function', name: 'tokenURI', stateMutability: 'view',
+  inputs: [{name: 'tokenId', type: 'uint256'}], outputs: [{name: 'uri', type: 'string'}],
+}] as const
+
 // Exact frozen read surface from src/ChogSurvivor.sol. No transaction function is exposed here.
 export const gameReadAbi = [
   {

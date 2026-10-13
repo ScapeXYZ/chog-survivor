@@ -30,6 +30,12 @@ contract LocalCanonicalTestNFT {
         return ownedIds[owner];
     }
 
+    /// @notice Local metadata fixture only; it contains no Chog artwork or traits.
+    function tokenURI(uint256 tokenId) external view returns (string memory) {
+        require(owners[tokenId] != address(0), "NOT_MINTED");
+        return "data:application/json,%7B%22name%22%3A%22LOCAL%20TEST%20NFT%20%E2%80%94%20NOT%20CHOG%20GENESIS%22%2C%22description%22%3A%22Local-only%20fixture%20metadata.%22%7D";
+    }
+
     function mint(address to, uint256 tokenId) external {
         require(to != address(0), "ZERO_ADDRESS");
         require(owners[tokenId] == address(0), "ALREADY_MINTED");

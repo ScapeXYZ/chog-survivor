@@ -11,6 +11,7 @@ interface ILocalFixture {
     function balanceOf(address owner) external view returns (uint256);
     function tokensOfOwner(address owner) external view returns (uint256[] memory);
     function transferFrom(address from, address to, uint256 tokenId) external;
+    function tokenURI(uint256 tokenId) external view returns (string memory);
 }
 
 /// @notice Isolated parity for the exact Anvil fixture arrangement. vm.etch is
@@ -38,6 +39,10 @@ contract LocalCanonicalFixtureTest is Test {
         assertEq(ids.length, 2);
         assertEq(ids[0], 1001);
         assertEq(ids[1], 1002);
+        assertEq(
+            nft.tokenURI(1001),
+            "data:application/json,%7B%22name%22%3A%22LOCAL%20TEST%20NFT%20%E2%80%94%20NOT%20CHOG%20GENESIS%22%2C%22description%22%3A%22Local-only%20fixture%20metadata.%22%7D"
+        );
     }
 
     function testFrozenGameBindsFixtureAndRejectsNonOwner() public {

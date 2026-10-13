@@ -238,7 +238,7 @@ describe('authoritative progression and unavailable states', () => {
     await waitFor(() => expect(fixture.refresh).toHaveBeenCalledTimes(4))
     expect(fixture.write).not.toHaveBeenCalled(); expect(fixture.sign).not.toHaveBeenCalled(); expect(fixture.send).not.toHaveBeenCalled()
     expect(gameReadAbi.every((entry) => entry.stateMutability === 'view')).toBe(true)
-    expect(fixture.read.mock.calls.every(([request]) => ['ownerOf', 'CHOG_GENESIS', 'characterOf', 'titleOf'].includes(request.functionName))).toBe(true)
+    expect(fixture.read.mock.calls.every(([request]) => ['ownerOf', 'tokenURI', 'CHOG_GENESIS', 'characterOf', 'titleOf'].includes(request.functionName))).toBe(true)
   })
   it('stops a refresh before game reads if fresh ownership fails', async () => {
     live(); fixture.refresh.mockResolvedValueOnce({isError: true})

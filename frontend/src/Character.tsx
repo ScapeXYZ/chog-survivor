@@ -8,6 +8,7 @@ import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurv
 import './character.css'
 import {YourSurvivors} from './YourSurvivors'
 import {useSurvivalHistory} from './useSurvivalHistory'
+import {useNftMetadata} from './useNftMetadata'
 
 const criteria = [
   'Resolve your first encounter.', 'Reinforce the Broken Bridge three times.',
@@ -52,6 +53,7 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
   const state = bound && !character.isFetching && !character.isLoading && !character.isError ? character.data : undefined
   const titleName = bound && !title.isFetching && !title.isLoading && !title.isError && title.data !== undefined ? titles[title.data] : undefined
   const history = useSurvivalHistory(selectedToken, bound)
+  const metadata = useNftMetadata(selectedToken, verified, scopeKey)
 
   let progressionMessage = `Progression unavailable — no approved game deployment is configured. NFT ownership can still be verified on ${localMode ? 'the local test fixture' : 'Monad'}.`
   if (approvedGameAddress !== undefined) {
@@ -94,7 +96,7 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
             <SurvivorSeal/><span className="portrait-caption">A story yet to be revealed</span>
             <span className="portrait-medallion" aria-hidden="true">✧</span>
           </div>
-          <figcaption>Portrait unavailable · verified NFT artwork has not been loaded.</figcaption>
+          <figcaption>{metadata.metadata?.name ? `${metadata.metadata.name} · artwork withheld pending written permission.` : metadata.tokenUri.isLoading || metadata.tokenUri.isFetching ? 'Reading token metadata…' : metadata.error ? `Metadata unavailable · ${metadata.error}` : 'Portrait unavailable · verified NFT artwork has not been loaded.'}</figcaption>
         </figure>
         <h1 id="survivor-profile-title">{verified ? `CHOG #${selectedToken}` : 'A Chog. A story.'}</h1>
         <p className="survivor-collection">CHOG GENESIS · TOKEN-BOUND IDENTITY</p>
