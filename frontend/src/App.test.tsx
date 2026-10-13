@@ -1,5 +1,5 @@
-import {fireEvent, render, screen} from '@testing-library/react'
-import {describe, expect, it, vi} from 'vitest'
+import {cleanup, fireEvent, render, screen} from '@testing-library/react'
+import {afterEach, describe, expect, it, vi} from 'vitest'
 
 vi.mock('wagmi', async (importOriginal) => ({
   ...(await importOriginal<typeof import('wagmi')>()),
@@ -10,6 +10,8 @@ vi.mock('wagmi', async (importOriginal) => ({
 }))
 import {App} from './App'
 
+afterEach(cleanup)
+
 describe('game lobby navigation', () => {
   it('enters adventure and keeps onchain actions disabled', () => {
     const {container} = render(<App />)
@@ -19,5 +21,19 @@ describe('game lobby navigation', () => {
     fireEvent.click(screen.getByRole('button', {name: /enter the wild/i}))
     expect(screen.getByText(/daily encounter/i)).toBeInTheDocument()
     expect(screen.getByRole('button', {name: /act onchain/i})).toBeDisabled()
+  })
+  it('persists functional channel, mute, and volume settings across remounts', () => {
+    localStorage.clear()
+    const view = render(<App />)
+    fireEvent.click(screen.getByRole('button', {name: /^settings$/i}))
+    const switches = screen.getAllByRole('switch')
+    fireEvent.click(switches[0]); fireEvent.click(switches[2])
+    fireEvent.change(screen.getByLabelText('Master volume'), {target: {value: '.35'}})
+    expect(screen.getByText('35%')).toBeInTheDocument()
+    view.unmount(); render(<App />); fireEvent.click(screen.getByRole('button', {name: /^settings$/i}))
+    const restored = screen.getAllByRole('switch')
+    expect(restored[0]).toHaveAttribute('aria-checked', 'false')
+    expect(restored[2]).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByLabelText('Master volume')).toHaveValue('0.35')
   })
 })

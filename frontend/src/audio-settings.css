@@ -1,0 +1,16 @@
+.settings-section-title { margin: 2rem 0 .4rem; color: var(--gold); font-family: Cinzel, Georgia, serif; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; }
+.settings-section-title:first-of-type { margin-top: 1.25rem; }
+.audio-status { min-height: 1.5rem; margin: 1rem 0; color: #d8d0b5; }
+.audio-test { min-width: 10rem; }
+.settings-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; margin: 1rem 0 0; }
+.settings-info div { padding: .85rem; border: 1px solid rgba(197, 164, 96, .25); background: rgba(3, 18, 13, .42); }
+.settings-info dt { color: #9eaa96; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
+.settings-info dd { margin: .35rem 0 0; color: #eee4c5; }
+.volume output { min-width: 3.2rem; text-align: right; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 560px) {
+  .settings-info { grid-template-columns: 1fr; }
+  .volume { grid-template-columns: 1fr auto; }
+  .volume input { grid-column: 1 / -1; width: 100%; }
+  .audio-test { width: 100%; }
+}

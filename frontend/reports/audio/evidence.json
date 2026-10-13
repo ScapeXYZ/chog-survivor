@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "no context before user interaction",
+    "real synthesized samples after interaction",
+    "one context across routes",
+    "mute produces silent samples",
+    "mute persists after browser reload",
+    "unmute restores audible samples",
+    "both channels disabled produce silence",
+    "Settings 360px no overflow",
+    "Settings 390px no overflow",
+    "Settings 430px no overflow",
+    "Settings 768px no overflow",
+    "Settings 1024px no overflow",
+    "Settings 1280px no overflow",
+    "Settings 1440px no overflow",
+    "Settings 1920px no overflow",
+    "no browser errors"
+  ],
+  "errors": [],
+  "status": "passed"
+}

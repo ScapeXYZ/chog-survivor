@@ -7,6 +7,7 @@ import {LocalContractAdventure} from './LocalContractAdventure'
 import wildEnvironment from './assets/ruined-wild-environment-provisional.webp'
 import fogOverlay from './assets/moonlit-fog-overlay-provisional.webp'
 import './adventure.css'
+import {emitGameSound} from './audio'
 
 type Preview = {eventIndex: number; choiceIndex: number}
 
@@ -22,6 +23,7 @@ function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => vo
     const previousFocus = document.activeElement as HTMLElement | null
     const previousOverflow = document.body.style.overflow
     dialog?.showModal()
+    emitGameSound('dialog-open')
     returnRef.current?.focus()
     document.body.style.overflow = 'hidden'
     return () => {
@@ -99,7 +101,7 @@ function DemoAdventure({now, selectedToken, onHome, onCharacter}: {now: number; 
     <section className="adventure-controls" aria-labelledby="adventure-decision-title">
       <div className="adventure-story"><div><p className="adventure-eyebrow">YOUR NEXT MOVE</p><h2 id="adventure-decision-title">How will you survive?</h2></div><p>{event.narrative}</p></div>
       <div className="adventure-choices" aria-label="Survival choices">
-        {event.choices.map((choice, index) => <button key={choice} className={`adventure-choice adventure-choice-${event.tags[index]}`} aria-haspopup="dialog" aria-pressed={selectedChoice === index} onClick={() => setPreview({eventIndex, choiceIndex: index})}>
+        {event.choices.map((choice, index) => <button key={choice} className={`adventure-choice adventure-choice-${event.tags[index]}`} aria-haspopup="dialog" aria-pressed={selectedChoice === index} onClick={() => { emitGameSound('choice'); setPreview({eventIndex, choiceIndex: index}) }}>
           <span className="adventure-choice-top"><span className="adventure-choice-number">0{index + 1}</span><span className="adventure-choice-category">{event.tags[index]}</span></span>
           <strong>{choice}</strong><span className="adventure-choice-action">Preview Choice <span aria-hidden="true">→</span></span>
         </button>)}
