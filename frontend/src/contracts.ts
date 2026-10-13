@@ -140,3 +140,13 @@ export const gameReadAbi = [
     outputs: [{name: '', type: 'uint8'}],
   },
 ] as const
+
+// Deliberately separate from the production read ABI. This is referenced only
+// by LocalContractAdventure after every local-only safety gate succeeds.
+export const gameLocalWriteAbi = [
+  {
+    type: 'function', name: 'act', stateMutability: 'nonpayable',
+    inputs: [{name: 'tokenId', type: 'uint256'}, {name: 'choiceId', type: 'uint8'}],
+    outputs: [],
+  },
+] as const

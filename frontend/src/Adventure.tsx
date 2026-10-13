@@ -2,6 +2,8 @@ import {useEffect, useMemo, useRef, useState} from 'react'
 import {achievements, demoCharacter, demoEventIndex, events, titles} from './game-data'
 import {shortAddress, signed} from './utils'
 import {useSurvivorIdentity} from './useSurvivorIdentity'
+import {localMode} from './contracts'
+import {LocalContractAdventure} from './LocalContractAdventure'
 import wildEnvironment from './assets/ruined-wild-environment-provisional.webp'
 import fogOverlay from './assets/moonlit-fog-overlay-provisional.webp'
 import './adventure.css'
@@ -44,7 +46,7 @@ function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => vo
   </dialog>
 }
 
-export function Adventure({now, selectedToken, onHome, onCharacter}: {now: number; selectedToken?: bigint; onHome: () => void; onCharacter?: () => void}) {
+function DemoAdventure({now, selectedToken, onHome, onCharacter}: {now: number; selectedToken?: bigint; onHome: () => void; onCharacter?: () => void}) {
   const {owner, enabled, checkingOwner, verified, controls, ownershipMessage} = useSurvivorIdentity(selectedToken)
   const day = Math.floor(now / 86400000)
   const eventIndex = useMemo(() => demoEventIndex(selectedToken ?? 0n, BigInt(day)), [selectedToken, day])
@@ -107,4 +109,8 @@ export function Adventure({now, selectedToken, onHome, onCharacter}: {now: numbe
     <details className="adventure-chronicle"><summary>Simulated chronicle · {titles[demoCharacter.titleId]}</summary><p>Demo fixture only. No preview earns achievements or changes your Character screen.</p><ul>{achievements.map((name, index) => <li key={name}>{(demoCharacter.achievementMask & (1 << index)) !== 0 ? 'Demo unlocked' : 'Demo locked'} · {name}</li>)}</ul><p>Unmarked Week: {demoCharacter.unmarkedStreak}/7 qualifying consecutive daily actions (demo).</p></details>
     {preview && <ChoiceResult preview={preview} onReturn={() => setPreview(undefined)}/>}
   </section>
+}
+
+export function Adventure(props: {now: number; selectedToken?: bigint; onHome: () => void; onCharacter?: () => void}) {
+  return localMode ? <LocalContractAdventure selectedToken={props.selectedToken} onHome={props.onHome} onCharacter={props.onCharacter}/> : <DemoAdventure {...props}/>
 }

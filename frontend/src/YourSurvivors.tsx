@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 import {useAccount, usePublicClient} from 'wagmi'
-import {activeChain, environmentReady, localMode} from './contracts'
+import {activeChain, environmentReady} from './contracts'
 import {discoverSurvivors, type DiscoveryResult} from './discoverSurvivors'
 
 type Inventory = {key: string; status: 'loading' | 'error' | 'done'; result?: DiscoveryResult}
@@ -13,7 +13,7 @@ export function YourSurvivors({selectedToken, onSelectToken}: {selectedToken?: b
   current.current = key
   const generation = useRef(0)
   const [inventory, setInventory] = useState<Inventory>()
-  const enabled = environmentReady && isConnected && !!address && chainId === activeChain.id && !!client && !localMode
+  const enabled = environmentReady && isConnected && !!address && chainId === activeChain.id && !!client
   const visible = inventory?.key === key ? inventory : undefined
   useEffect(() => {
     ++generation.current
@@ -44,7 +44,7 @@ export function YourSurvivors({selectedToken, onSelectToken}: {selectedToken?: b
     <h3 id="your-survivors-title">Your Survivors</h3>
     <p className="survivor-small" role="status" aria-live="polite">{
       !isConnected || !address ? 'Connect your wallet to discover its Chogs. No holdings are assumed.' :
-      !environmentReady ? 'Local test configuration is incomplete or unsafe. Discovery is disabled.' : localMode ? 'Local test mode uses manual token lookup. This is not Chog Genesis discovery.' : chainId !== activeChain.id ? 'Discovery requires your wallet on Monad (143). Manual lookup remains below.' :
+      !environmentReady ? 'Local test configuration is incomplete or unsafe. Discovery is disabled.' : chainId !== activeChain.id ? `Discovery requires your wallet on ${activeChain.name} (${activeChain.id}). Manual lookup remains below.` :
       visible?.status === 'loading' ? 'Reading the collection and verifying each candidate’s owner…' :
       visible?.status === 'error' ? 'Discovery unavailable: RPC, gas limit or collection verification failed. Retry or check a token manually.' :
       result ? result.complete ? result.tokens.length === 0 ? `No owned Chogs at finalized block ${result.block}. Refresh to check again.` :

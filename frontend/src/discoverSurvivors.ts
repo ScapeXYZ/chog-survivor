@@ -1,5 +1,5 @@
 import {decodeFunctionResult, encodeFunctionData, keccak256, parseAbi, type Address, type Hex, type PublicClient} from 'viem'
-import {activeChain, CHOG_GENESIS, nftAbi} from './contracts'
+import {activeChain, CHOG_GENESIS, localMode, nftAbi} from './contracts'
 
 // Independently observed collection extension, NOT ERC-721 Enumerable.
 // Completeness is established by unique ownerOf checks AND balanceOf, not by trusting this getter.
@@ -27,7 +27,7 @@ export async function discoverSurvivors(client: DiscoveryClient, account: Addres
   const block = header.number
   if (block === null || !header.hash) throw new Error('Finalized block unavailable')
   const code = await read(() => client.getBytecode({address: CHOG_GENESIS, blockNumber: block}))
-  if (!code || keccak256(code) !== verifiedCollectionCodeHash) throw new Error('Collection code differs from verified discovery evidence')
+  if (!code || (!localMode && keccak256(code) !== verifiedCollectionCodeHash)) throw new Error('Collection code differs from verified discovery evidence')
   // Installed viem readContract does not forward a gas budget; use explicit eth_call.
   async function call(data: Hex, gas: bigint) {
     const response = await read(() => client.call({to: CHOG_GENESIS, data, gas, blockNumber: block}))
