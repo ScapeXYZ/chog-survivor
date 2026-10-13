@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-10-13T07:22:30.014Z",
+  "startedAt": "2026-10-13T07:37:38.245Z",
   "chainId": 31338,
   "game": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
   "deploymentBlock": "4",
@@ -239,6 +239,6 @@
     "settings-1920.png"
   ],
   "consoleErrors": [],
-  "completedAt": "2026-10-13T07:23:01.573Z",
+  "completedAt": "2026-10-13T07:38:10.210Z",
   "status": "passed"
 }
