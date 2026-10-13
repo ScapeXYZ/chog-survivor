@@ -3,6 +3,7 @@ import {createConfig, http} from 'wagmi'
 import {injected} from 'wagmi/connectors'
 
 export const MONAD_CHAIN_ID = 143
+export const LOCAL_CHAIN_ID = 31338
 export const CHOG_GENESIS = '0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763' as const
 
 export const monad = defineChain({
@@ -17,15 +18,33 @@ export const monad = defineChain({
   },
 })
 
+const localRpcUrl = import.meta.env.VITE_LOCAL_RPC_URL
+const localGameAddress = import.meta.env.VITE_LOCAL_CHOG_SURVIVOR_ADDRESS
+const requestedLocalMode = import.meta.env.VITE_CHOG_ENV === 'local'
+// Local mode is deliberately narrow. Missing or non-local configuration falls
+// back to production's read-only configuration; it never redirects production.
+export const localConfigurationValid = localRpcUrl === 'http://127.0.0.1:8545' &&
+  localGameAddress !== undefined && isAddress(localGameAddress)
+export const localMode = requestedLocalMode && localConfigurationValid
+export const environmentReady = !requestedLocalMode || localConfigurationValid
+export const localAnvil = defineChain({
+  id: LOCAL_CHAIN_ID, name: 'Local Anvil — TEST ONLY',
+  nativeCurrency: {name: 'Local ETH', symbol: 'ETH', decimals: 18},
+  rpcUrls: {default: {http: ['http://127.0.0.1:8545']}},
+})
+export const activeChain = localMode ? localAnvil : monad
+export const activeChainId = activeChain.id
+export const activeNetworkName = localMode ? 'Local Anvil (test only)' : 'Monad'
+
 export const wagmiConfig = createConfig({
-  chains: [monad],
+  chains: localMode ? [localAnvil] : [monad],
   connectors: [injected()],
-  transports: {[MONAD_CHAIN_ID]: http()},
+  transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http('http://127.0.0.1:8545')},
 })
 
 const configuredAddress = import.meta.env.VITE_CHOG_SURVIVOR_ADDRESS
 export const approvedGameAddress: Address | undefined =
-  configuredAddress && isAddress(configuredAddress) ? configuredAddress : undefined
+  localMode ? localGameAddress as Address : configuredAddress && isAddress(configuredAddress) ? configuredAddress : undefined
 
 export const nftAbi = [
   {

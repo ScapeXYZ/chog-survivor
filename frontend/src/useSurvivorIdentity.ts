@@ -1,6 +1,6 @@
 import {useAccount, useReadContract} from 'wagmi'
 import {toFunctionSelector, zeroAddress} from 'viem'
-import {CHOG_GENESIS, monad, nftAbi} from './contracts'
+import {activeChain, activeNetworkName, CHOG_GENESIS, environmentReady, localMode, nftAbi} from './contracts'
 
 // An ambiguous ownerOf revert does not establish that an NFT is nonexistent.
 function ownershipFailure(error: unknown): 'nonexistent' | 'reverted' | 'rpc' {
@@ -25,12 +25,12 @@ export const survivorReadFreshness = {staleTime: 0, refetchOnMount: 'always' as 
 export function useSurvivorIdentity(selectedToken?: bigint) {
   const {address, isConnected, chainId} = useAccount()
   const connected = isConnected && address !== undefined
-  const onMonad = chainId === monad.id
-  const enabled = connected && onMonad && selectedToken !== undefined
+  const onMonad = chainId === activeChain.id
+  const enabled = environmentReady && connected && onMonad && selectedToken !== undefined
   const scopeKey = `survivor:${address ?? 'disconnected'}:${chainId}`
   const contextKey = `${scopeKey}:${selectedToken}`
   const owner = useReadContract({address: CHOG_GENESIS, abi: nftAbi, functionName: 'ownerOf',
-    args: selectedToken === undefined ? undefined : [selectedToken], chainId: monad.id, scopeKey,
+    args: selectedToken === undefined ? undefined : [selectedToken], chainId: activeChain.id, scopeKey,
     query: {...survivorReadFreshness, enabled}})
   const checkingOwner = enabled && (owner.isFetching || owner.isLoading)
   const verified = enabled && !checkingOwner && !owner.isError && owner.data !== undefined && owner.data !== zeroAddress
@@ -39,14 +39,15 @@ export function useSurvivorIdentity(selectedToken?: bigint) {
   let ownershipMessage = 'Enter a Chog Genesis token ID to look up its survivor.'
   if (!connected) ownershipMessage = 'Wallet disconnected. Connect your wallet to verify the current controller.'
   else if (chainId === undefined) ownershipMessage = 'Wallet network unavailable. Reconnect your wallet to verify its chain before ownership reads.'
-  else if (!onMonad) ownershipMessage = 'Wrong network. Select Monad (chain ID 143) in your wallet to verify ownership.'
+  else if (!environmentReady) ownershipMessage = 'Local test configuration is incomplete or unsafe. Contract reads are disabled.'
+  else if (!onMonad) ownershipMessage = `Wrong network. Select ${activeNetworkName} (chain ID ${activeChain.id}) in your wallet to verify ownership.`
   else if (checkingOwner) ownershipMessage = 'Checking canonical ownerOf… Identity is not yet verified.'
   else if (enabled && owner.isError) {
     const failure = ownershipFailure(owner.error)
     ownershipMessage = failure === 'nonexistent' ? 'NFT nonexistent: the collection reports that this token ID does not exist. It may have been burned.' :
       failure === 'reverted' ? 'NFT unavailable: ownerOf reverted. Nonexistence, burn or collection restrictions cannot be distinguished from this response.' :
       'RPC failure. Current ownership could not be verified. Retry the read.'
-  } else if (verified) ownershipMessage = controls ? 'You control this survivor. Your connected wallet is its current owner.' : 'Another wallet controls this survivor. You can inspect its read-only profile.'
+  } else if (verified) ownershipMessage = controls ? `${localMode ? 'Local test fixture: ' : ''}You control this survivor. Your connected wallet is its current owner.` : 'Another wallet controls this survivor. You can inspect its read-only profile.'
   else if (enabled && owner.data === zeroAddress) ownershipMessage = 'NFT unavailable: the collection returned a zero owner. No current controller is verified.'
   else if (enabled) ownershipMessage = 'Ownership verification is pending. No survivor identity is confirmed.'
 

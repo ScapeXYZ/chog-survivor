@@ -1,5 +1,5 @@
 import {decodeFunctionResult, encodeFunctionData, keccak256, parseAbi, type Address, type Hex, type PublicClient} from 'viem'
-import {CHOG_GENESIS, monad, nftAbi} from './contracts'
+import {activeChain, CHOG_GENESIS, nftAbi} from './contracts'
 
 // Independently observed collection extension, NOT ERC-721 Enumerable.
 // Completeness is established by unique ownerOf checks AND balanceOf, not by trusting this getter.
@@ -22,7 +22,7 @@ export async function discoverSurvivors(client: DiscoveryClient, account: Addres
       return result
     } finally { clearTimeout(timer) }
   }
-  if (await read(() => client.getChainId()) !== monad.id) throw new Error('RPC network mismatch')
+  if (await read(() => client.getChainId()) !== activeChain.id) throw new Error('RPC network mismatch')
   const header = await read(() => client.getBlock({blockTag: 'finalized'}))
   const block = header.number
   if (block === null || !header.hash) throw new Error('Finalized block unavailable')

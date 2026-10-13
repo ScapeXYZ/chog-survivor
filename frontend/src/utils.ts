@@ -1,5 +1,5 @@
 import {isAddress, type Address} from 'viem'
-import {MONAD_CHAIN_ID} from './contracts'
+import {activeChainId} from './contracts'
 
 export type GameMode = 'local-demo' | 'live-read-only'
 export type OwnershipState = 'idle' | 'owned' | 'not-owner' | 'unavailable'
@@ -25,7 +25,7 @@ export function ownershipState(
 }
 
 export function isWrongNetwork(chainId: number | undefined): boolean {
-  return chainId !== undefined && chainId !== MONAD_CHAIN_ID
+  return chainId !== undefined && chainId !== activeChainId
 }
 
 export function gameMode(address: string | undefined): GameMode {

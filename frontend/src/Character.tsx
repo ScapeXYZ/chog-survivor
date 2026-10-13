@@ -1,7 +1,7 @@
 import {useRef, useState} from 'react'
 import {useReadContract} from 'wagmi'
 import {zeroAddress} from 'viem'
-import {approvedGameAddress, CHOG_GENESIS, gameReadAbi, monad} from './contracts'
+import {activeChain, approvedGameAddress, CHOG_GENESIS, gameReadAbi, localMode} from './contracts'
 import {achievements, events, titles} from './game-data'
 import {parseTokenId} from './utils'
 import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurvivorIdentity'
@@ -40,18 +40,18 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
   const currentContext = useRef(contextKey)
   currentContext.current = contextKey
   const binding = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'CHOG_GENESIS',
-    chainId: monad.id, scopeKey, query: {...freshness, enabled: verified && approvedGameAddress !== undefined}})
+    chainId: activeChain.id, scopeKey, query: {...freshness, enabled: verified && approvedGameAddress !== undefined}})
   const bound = verified && approvedGameAddress !== undefined && !binding.isFetching && !binding.isLoading && !binding.isError && binding.data?.toLowerCase() === CHOG_GENESIS.toLowerCase()
   const character = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'characterOf',
-    args: selectedToken === undefined ? undefined : [selectedToken], chainId: monad.id, scopeKey,
+    args: selectedToken === undefined ? undefined : [selectedToken], chainId: activeChain.id, scopeKey,
     query: {...freshness, enabled: bound}})
   const title = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'titleOf',
-    args: selectedToken === undefined ? undefined : [selectedToken], chainId: monad.id, scopeKey,
+    args: selectedToken === undefined ? undefined : [selectedToken], chainId: activeChain.id, scopeKey,
     query: {...freshness, enabled: bound}})
   const state = bound && !character.isFetching && !character.isLoading && !character.isError ? character.data : undefined
   const titleName = bound && !title.isFetching && !title.isLoading && !title.isError && title.data !== undefined ? titles[title.data] : undefined
 
-  let progressionMessage = 'Progression unavailable — no approved game deployment is configured. NFT ownership can still be verified on Monad.'
+  let progressionMessage = `Progression unavailable — no approved game deployment is configured. NFT ownership can still be verified on ${localMode ? 'the local test fixture' : 'Monad'}.`
   if (approvedGameAddress !== undefined) {
     if (!verified) progressionMessage = 'Progression unavailable until this NFT identity has been verified on Monad.'
     else if (binding.isFetching || binding.isLoading) progressionMessage = 'Checking the game’s canonical collection binding…'
@@ -59,7 +59,7 @@ export function Character({selectedToken, onSelectToken}: {selectedToken?: bigin
     else if (!bound) progressionMessage = 'Game binding unavailable or mismatched. Survivor progression is not trusted.'
     else if (character.isError) progressionMessage = 'Progression read failed. No stats or achievements can be verified; retry the read.'
     else if (!state) progressionMessage = 'Reading recorded survivor state…'
-    else progressionMessage = 'Recorded contract state · read only. Gameplay transactions remain disabled.'
+    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. ' : ''}Recorded contract state · read only. Gameplay transactions remain disabled.`
   }
 
   async function refresh() {
