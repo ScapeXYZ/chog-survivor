@@ -24,16 +24,17 @@ const localDeploymentStart = import.meta.env.VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT
 const requestedLocalMode = import.meta.env.VITE_CHOG_ENV === 'local'
 // Local mode is deliberately narrow. Missing or non-local configuration falls
 // back to production's read-only configuration; it never redirects production.
-export const localConfigurationValid = localRpcUrl === 'http://127.0.0.1:8545' &&
+export const localConfigurationValid = requestedLocalMode && localRpcUrl === 'http://127.0.0.1:8545' &&
   localGameAddress !== undefined && isAddress(localGameAddress)
 export const localMode = requestedLocalMode && localConfigurationValid
 export const environmentReady = !requestedLocalMode || localConfigurationValid
 export const localDeploymentStartBlock = localMode && localDeploymentStart !== undefined && /^\d+$/.test(localDeploymentStart) ? BigInt(localDeploymentStart) : undefined
-export const localAnvil = defineChain({
+// The build-time mode guard lets Vite remove local RPC metadata from public builds.
+export const localAnvil = requestedLocalMode ? defineChain({
   id: LOCAL_CHAIN_ID, name: 'Local Anvil — TEST ONLY',
   nativeCurrency: {name: 'Local ETH', symbol: 'ETH', decimals: 18},
   rpcUrls: {default: {http: ['http://127.0.0.1:8545']}},
-})
+}) : monad
 export const activeChain = localMode ? localAnvil : monad
 export const activeChainId = activeChain.id
 export const activeNetworkName = localMode ? 'Local Anvil (test only)' : 'Monad'
@@ -41,7 +42,7 @@ export const activeNetworkName = localMode ? 'Local Anvil (test only)' : 'Monad'
 export const wagmiConfig = createConfig({
   chains: localMode ? [localAnvil] : [monad],
   connectors: [injected()],
-  transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http('http://127.0.0.1:8545')},
+  transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http()},
 })
 
 // A production game deployment has not been approved. Local mode is the only

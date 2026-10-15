@@ -16,6 +16,8 @@ describe('local contract configuration boundary', () => {
     expect(contracts.localMode).toBe(false)
     expect(contracts.environmentReady).toBe(true)
     expect(contracts.activeChainId).toBe(143)
+    expect(contracts.wagmiConfig.chains.map(chain => chain.id)).toEqual([143])
+    expect(contracts.wagmiConfig.getClient().transport.url).toBe('https://rpc.monad.xyz')
     expect(contracts.approvedGameAddress).toBeUndefined()
     expect(contracts.localDeploymentStartBlock).toBeUndefined()
   })
@@ -24,6 +26,9 @@ describe('local contract configuration boundary', () => {
     const contracts = await configured('local', 'http://127.0.0.1:8545', '0x1111111111111111111111111111111111111111')
     expect(contracts.localMode).toBe(true)
     expect(contracts.activeChainId).toBe(31338)
+    expect(contracts.activeChain.rpcUrls.default.http).toEqual(['http://127.0.0.1:8545'])
+    expect(contracts.wagmiConfig.chains.map(chain => chain.id)).toEqual([31338])
+    expect(contracts.wagmiConfig.getClient().transport.url).toBe('http://127.0.0.1:8545')
     expect(contracts.approvedGameAddress).toBe('0x1111111111111111111111111111111111111111')
   })
 

@@ -40,3 +40,9 @@ reports/
 *.pem
 *.key
 keystore*
+
+# Local-only design references with unresolved redistribution rights.
+# Preserve working copies; keep them out of new release trees.
+/design/chog-identity-reference.png
+/design/chog-landing-reference.pdf
+/design/chog-parchment-reference.png
