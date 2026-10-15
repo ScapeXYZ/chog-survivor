@@ -1,59 +1,34 @@
-# Chog Survivor frontend — local-only foundation
+# Chog Survivor frontend
 
-This is a React + TypeScript + Vite interface for the frozen Chog Survivor
-MVP. It supports read-only canonical-NFT `ownerOf(tokenId)` checks on Monad and
-has no transaction, signature, approval, deployment, or private-key path.
+React 18 + TypeScript + Vite, Wagmi/Viem and TanStack Query. The current default/public build is a clearly labeled **walletless simulation**. Real contract-backed play is supported only on an existing isolated Anvil deployment (chain 31338). No production game deployment or write path is approved.
 
-## Requirements
+Start with the [root README](../README.md), [judge quick-start](../docs/JUDGE_QUICK_START.md), [environment/deployment guide](../docs/DEMO_DEPLOYMENT_GUIDE.md) and [prepared real local evidence](../docs/evidence/task4h-2006/README.md). No demo/repository/video publication is implied.
 
-- Node.js 20+ (Node 22 was used for this local milestone)
-- npm 10+
-- An injected EIP-1193 wallet is optional for Home and the local Adventure demo.
-  Character accepts manual IDs while disconnected, but canonical ownership
-  verification requires a connected wallet on Monad (chain ID 143).
+## Requirements and safe demo commands
 
-## Commands
+Node 22 and npm 10 were verified. Use `npm ci` in a clean checkout with the existing lockfile. A wallet is optional for simulation; genuine ownership reads require an injected wallet on Monad 143 and working RPC.
+
+From `frontend`:
 
 ```sh
-cd frontend
-npm install
-npm run dev
-npm run typecheck
-npm test
-npm run build
+VITE_CHOG_ENV=production VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm run dev -- --host 127.0.0.1
 ```
 
-`npm run dev` prints the local Vite URL. It does not publish or deploy anything.
+Use the same overrides with `npm run build` for static `dist` output. `npm run typecheck` and `npm test` do not submit transactions. The explicit environment overrides are needed because Vite loads developer `.env.local` even during a production build. See `.env.example`; no frontend variable may contain a private credential.
 
-## Environment variables
+`VITE_CHOG_SURVIVOR_ADDRESS` is unused by current code and cannot enable a public game. Valid local mode requires `VITE_CHOG_ENV=local`, exact localhost RPC, verified local game address and deployment block for history. Never put local settings on public hosting. `contracts.ts` is the authority.
 
-Copy `.env.example` to `.env.local` only if needed. Never place private keys,
-seed phrases, or wallet credentials in any frontend environment file.
+## Simulation versus contract-backed state
 
-| Variable | Required | Meaning |
-|---|---|---|
-| `VITE_MONAD_RPC_URL` | No | Read-only Monad RPC override. Defaults to `https://rpc.monad.xyz`. |
-| `VITE_CHOG_SURVIVOR_ADDRESS` | No | An independently reviewed, human-approved Monad deployment address. Leave unset in this milestone. |
+Walletless Adventure offers Survivor's Trial, Timing and Story, completion/retry/Skip and repeatable base-value previews. Demo stats and achievement marks are fixtures: no saved progression, signature, confirmed reaction or new journal entry. Selecting an NFT activates ownership restrictions; an unselected demo is the simplest judge path.
 
-## Local Demo mode versus live read-only mode
+Local Anvil play retains current-owner authorization, one action per NFT per UTC day, block-pinned previews, verified receipt reactions/achievements and token-filtered event history. Transfer changes the controller while keeping the survivor's progression, journal and lock. Current owner and historical acting owner remain distinct.
 
-With no valid `VITE_CHOG_SURVIVOR_ADDRESS`, the global mode is **LOCAL DEMO**.
-Adventure retains its explicitly simulated statistics and base-reward previews.
-Character is a separate read-only Survivor Profile: progression, title,
-achievement status and history are unavailable, with no substituted demo values.
-Canonical Chog Genesis `ownerOf(tokenId)` is a real read-only query when the
-wallet is connected to Monad and RPC access is available.
+Do not run `npm run test:e2e`, real Task 4H execution scripts, fixture installation/deployment or time-changing tools during submission preparation. They can mutate the existing local chain. The mock browser regression `node scripts/mini-game-integration-smoke.mjs` uses intercepted RPC/wallet fixtures instead.
 
-Supplying a syntactically valid `VITE_CHOG_SURVIVOR_ADDRESS` switches the UI to
-**READ-ONLY LIVE**. Reads remain gated until `CHOG_GENESIS()` matches the
-frozen canonical collection. This variable is not a deployment approval and
-must not be populated until a separate approved release manifest exists.
-Character also requires freshly verified NFT existence before game reads.
-It retrieves `characterOf` and `titleOf` through the existing frozen read ABI;
-failed, pending or mismatched reads never become fixture statistics.
+## Historical milestone notes
 
-All action controls are deliberately disabled in both modes. The app does not
-include `act`, wallet writes, transaction signing, approvals, or broadcasting.
+The sections below retain historical implementation notes, not current release approval or test counts. Consult the current guides above where older descriptions differ. Runtime artwork remains provisional per [ASSET_INVENTORY.md](ASSET_INVENTORY.md); fonts and typography remain unchanged.
 
 ## Survivor Profile — Milestone 11.2
 

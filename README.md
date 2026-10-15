@@ -1,96 +1,91 @@
 # Chog Survivor
 
-**The NFT is the survivor. The wallet is its current controller.**
+**“The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.”**
 
-Chog Survivor is a daily, NFT-native survival game built around the Chog Genesis collection on Monad. Each token ID carries its own XP, Trust, Scars, streak, achievements, title, daily lock, and chronological decision history. When the NFT changes wallets, the new owner controls the same survivor rather than receiving a fresh character.
+Each token ID carries its XP, Trust, Scars, streak, achievements, title, daily lock and verified adventure journal. The wallet is only its current controller. Transfer the NFT and the next owner inherits the same survivor, including its history and daily eligibility.
 
-The current release is a fully contract-backed local demonstration. It is **not deployed on Monad**, production gameplay writes are disabled, and the local NFT fixture is **not an authentic Chog Genesis NFT**.
+## Start here, judges
 
-## How the game works
+The publicly hostable build is a **walletless simulation**, not a live blockchain game. No public demo, repository or video URL has been verified or published by this preparation task. See the [judge quick-start](docs/JUDGE_QUICK_START.md) and [submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md).
 
-Every UTC day, the contract deterministically assigns one of six encounters to a token. Each encounter has three choices, producing 18 fixed outcomes in total. A choice changes progression according to the frozen contract rules and may unlock one or more of eight achievements. Titles are calculated from the survivor's recorded state.
+1. Open the eventual demo URL at `/`, or run the demo locally below.
+2. Choose **Enter the Wild**. No wallet, NFT, funds or account is required.
+3. Try any of the three cards: Survivor's Trial, Timing or Story. Complete the interaction or use **Skip** to see the same original choice preview.
+4. Previews show simulated rulebook base effects. **No XP, achievements or journal entries are earned or saved. No wallet confirmation is requested.**
+5. Inspect the [real local-Anvil evidence](docs/evidence/task4h-2006/README.md) for actual confirmed progression, reaction, First Light and transfer continuity. It is separate from the simulation and is not Monad-mainnet evidence.
 
-Only `ownerOf(tokenId)` may act. One action is allowed per token per UTC day. Ownership transfer changes the authorized controller while preserving the token's progression, achievements, daily lock, and event history.
+The intended contract loop is **encounter → meaningful choice → optional interaction → wallet confirmation → verified reaction → permanent NFT journal**. The hosted simulation demonstrates the encounter, interaction and preview; recorded local evidence demonstrates the confirmed part. Completing a mini-game never changes contract rewards, choice IDs or daily eligibility.
 
-The game has no inventory, currency, health system, escrow, staking, marketplace, PvP, AI decision engine, or custody of the NFT. Encounter selection is deterministic and public; this is a non-wager survival game rather than a source of randomness.
+## Run the walletless demo
 
-## Architecture
+Use Node.js 22 (the verified version), npm and the existing lockfile. From a clean checkout containing the full reviewed source set:
 
-- `src/ChogSurvivor.sol` — immutable, non-upgradeable game contract with a fixed Chog Genesis dependency.
-- `src/LocalCanonicalTestNFT.sol` — isolated Anvil-only ownership and metadata fixture.
-- `frontend/` — React, TypeScript, Wagmi, Viem, and Vite client.
-- `script/local-anvil.sh` — guarded localhost fixture installation and deployment workflow.
-- `test/` — unit, fuzz, invariant, reference-model, achievement, fork, and transfer-continuity tests.
-- `docs/` — game specification, security reviews, governance findings, balance analysis, and release gates.
+```sh
+cd frontend
+npm ci
+VITE_CHOG_ENV=production \
+VITE_MONAD_RPC_URL= \
+VITE_LOCAL_RPC_URL= \
+VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= \
+VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= \
+npm run dev -- --host 127.0.0.1
+```
 
-The Solidity source is frozen at SHA-256:
+Open the URL printed by Vite. The explicit overrides prevent an existing `.env.local` from selecting Anvil. Do not assume `--mode production` alone overrides that file. For a production artifact, use the same settings with `npm run build`; output is `frontend/dist`. Hosting instructions and the approval boundary are in the [environment/deployment guide](docs/DEMO_DEPLOYMENT_GUIDE.md).
+
+Use the in-app Home, Adventure, Character and Settings buttons. These are not separate URL routes. A refresh returns to Home. Character intentionally does not substitute simulation values for unavailable real progression/history. If you optionally select an NFT, ownership checks apply; an unowned or unverified token cannot be used for Adventure previews. A fresh walletless session is the simplest judge path.
+
+## What is real, and what is simulated?
+
+| Experience | Data and limitations |
+|---|---|
+| Walletless Adventure | Device-UTC deterministic encounter, fixed demo stats/achievement marks, optional mini-games, repeatable base-delta previews. No saved progression, transaction, confirmed reaction or generated history. |
+| Optional NFT identity reads | Genuine Chog Genesis ownership on Monad chain 143 when an injected wallet and working RPC are available. This does not activate production gameplay. |
+| Existing local contract mode | Real isolated Anvil chain 31338, fixture NFT, frozen contract execution, receipt-derived progression/reactions/achievements and verified event journal. Requires localhost access and a local wallet. Judges cannot access this workstation's Anvil through a hosted site. |
+| Prepared evidence package | Captured CHOG #2006 local receipts, before/after state and screenshots. Historical evidence, not a live public network or a newly executed transaction. |
+
+Only the current `ownerOf(tokenId)` may act, once per NFT per contract UTC day. A transfer does not reset progression or permit another same-day action. The journal retains the historical acting wallet separately from the current owner. See the [CHOG #2006 transfer explanation](docs/evidence/task4h-2006/README.md).
+
+## Existing local Anvil deployment — inspect safely
+
+The existing workspace uses `http://127.0.0.1:8545`, chain **31338**, game **`0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9`**, deployment block **4**. These are this local deployment's public identifiers, not portable public-network settings. The fixture occupies the canonical numeric address **`0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763`** only on the isolated local chain; it is not authentic Chog Genesis.
+
+Do not restart/reset an existing node, rerun fixture installation, advance time or run transaction scripts to view evidence. The [recorded verification](docs/evidence/task4h-2006/verification.json) and screenshots require no running node. For an already verified existing node, the [deployment guide](docs/DEMO_DEPLOYMENT_GUIDE.md) explains local frontend settings. Foundry and an injected local wallet are needed for live local inspection; no action is necessary to read the existing survivor and journal.
+
+`script/local-anvil.sh install/deploy` creates or changes local state. `npm run test:e2e` and `scripts/task4h-real-anvil-e2e.mjs` can submit real local transactions; the older journey also advances isolated time. **They are not safe preparation/verification commands for the current node and were not run for Task 4K.** A new fixture setup or transaction requires its own authorization. Standard public Anvil credentials must never be funded or reused on public chains.
+
+## Architecture and verification
+
+- `src/ChogSurvivor.sol`: frozen non-upgradeable game, six encounters, 18 fixed choices, eight achievements and token-bound state.
+- `frontend/`: React 18, TypeScript, Vite, Wagmi, Viem and TanStack Query; static build with no backend.
+- `frontend/src/LocalContractAdventure.tsx`: ownership/network gates, block-pinned eligibility, guarded confirmation and verified receipt reactions.
+- `frontend/src/survivalHistory.ts` and `SurvivorJournal.tsx`: verified local event history, UTC evidence and historical controller attribution.
+- `test/`: isolated Foundry unit, fuzz, invariant, reference-model and opt-in fork tests.
+
+Task 4J verified **373 frontend tests in each environment**, **39 Foundry tests passed / six optional fork tests skipped**, production build/typecheck and 43 production-artifact Chromium checks. [Task 4K preparation](docs/TASK_4K_PREPARATION.md) records the new verification results and exact commands. Tests use a deterministic configuration baseline plus explicitly local fixtures; a green test does not mean a public contract is deployed.
+
+The frozen contract SHA-256 remains:
 
 ```text
 5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7
 ```
 
-## Run the complete local demo
+## Release status
 
-Requirements: Foundry (`anvil`, `forge`, and `cast`), Node.js 20 or newer, npm, and Playwright Chromium.
+No game deployment is approved on Monad, and production gameplay writes/history remain disabled. Canonical collection source/governance/security gates are separate from static-demo hosting. The game has no NFT custody, staking, inventory, currency, wagering or marketplace.
 
-```bash
-cd frontend
-npm install
-npx playwright install chromium
-cd ..
+Current runtime illustrations are marked provisional in the [asset inventory](frontend/ASSET_INVENTORY.md). Public demo/repository/video release requires explicit review of those exact assets and intended uses. No artwork was replaced or generated. Existing fonts and typography are preserved; the bundled Lilita One license is also included with unchanged license terms at `frontend/public/licenses/LilitaOne-OFL.txt` for distribution. Genuine collection metadata or ownership does not grant artwork permission.
 
-# Terminal 1
-anvil --host 127.0.0.1 --port 8545 --chain-id 31338
+Before publication, review the [safe staging plan and release blockers](docs/TASK_4K_STAGING_PLAN.md). Required recent components are still untracked; a checkout of the current committed revision alone does not contain the complete current demo. No files have been staged or committed by this task.
 
-# Terminal 2
-./script/local-anvil.sh install
-./script/local-anvil.sh deploy
-./script/local-anvil.sh verify
-```
+## Submission materials
 
-The deployment command prints the game address and block. Supply those exact values to the frontend:
+- [Judge quick-start and demo limitations](docs/JUDGE_QUICK_START.md)
+- [Environment and deployment approval guide](docs/DEMO_DEPLOYMENT_GUIDE.md)
+- [Real local transfer evidence](docs/evidence/task4h-2006/README.md)
+- [Three-minute video outline](docs/DEMO_VIDEO_OUTLINE.md)
+- [Submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md)
+- [Judge-access audit](docs/TASK_4J_JUDGE_ACCESS_AUDIT.md)
+- [Game rules](docs/GAME_RULES.md), [backend freeze](docs/BACKEND_FREEZE.md), [security review](docs/SECURITY_REVIEW.md)
 
-```bash
-cd frontend
-VITE_CHOG_ENV=local \
-VITE_LOCAL_RPC_URL=http://127.0.0.1:8545 \
-VITE_LOCAL_CHOG_SURVIVOR_ADDRESS=<LOCAL_GAME_ADDRESS> \
-VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK=<DEPLOYMENT_BLOCK> \
-npm run dev
-```
-
-Anvil's standard public development accounts own fixture tokens 1001, 1002, and 2001. These accounts and tokens exist only for local testing. Never fund or reuse Anvil credentials.
-
-The automated browser journey performs real localhost transactions, verifies the daily lock, transfers token 1001 between two local wallets, advances isolated EVM time, and confirms that progression and history remain token-bound. Run it with the same variables and `npm run test:e2e`.
-
-## Validation evidence
-
-Milestone 12 recorded 38 passing local Foundry tests, 124 passing frontend tests, two browser-signed game actions, a fixture transfer, token-bound history across both owners, 45 browser assertions, and 32 responsive screenshots. Six Monad-fork tests were skipped because no public RPC was supplied. See [Milestone 12](frontend/TASK_12.md) and its [machine-readable evidence](frontend/reports/task12/evidence.json).
-
-```bash
-forge test
-cd frontend
-npm run typecheck
-npm test
-npm run build
-```
-
-## Production status
-
-Production is deliberately fail-closed. The frontend reads real Chog Genesis ownership on Monad chain 143, but no game deployment address is approved and no production action or history path is enabled. An environment variable cannot authorize production gameplay.
-
-Before deployment, the project needs verified canonical-collection source and governance evidence, an accountable security and gameplay approval, deployment/signing authorization, an approved game address and start block, source verification, reliable RPC and log access, monitoring, incident procedures, and explicit acceptance of the immutable contract's limitations. See [Milestone 13A readiness report](frontend/TASK_13A.md) and [submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md).
-
-Authentic Chog artwork is not included. Public metadata availability does not grant reuse rights; the approved placeholder remains until written permission covers the intended likeness, trademarks, media, channels, duration, and modification rights.
-
-## Important documents
-
-- [Game specification](docs/SPEC.md)
-- [Game rules](docs/GAME_RULES.md)
-- [Backend freeze](docs/BACKEND_FREEZE.md)
-- [Security review](docs/SECURITY_REVIEW.md)
-- [Canonical NFT governance review](docs/CANONICAL_NFT_GOVERNANCE_REVIEW.md)
-- [Final release-risk review](docs/FINAL_RELEASE_RISK_REVIEW.md)
-- [Hackathon submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md)
-
-No Monad deployment or hackathon submission is performed by this repository.
+Submission deadline supplied by the owner: **October 23, 2026, 15:00 UTC**. Confirm organizer requirements and acceptance of a simulated public demo plus genuine local evidence. Hosting, repository publication, video upload and submission each remain unperformed and require approval.

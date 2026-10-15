@@ -88,12 +88,21 @@ describe('shared survivor journey', () => {
     const characterRead = latestOwner()
     adventure()
     expect(strip()).toHaveTextContent('CHOG #1425')
-    expect(strip()).toHaveTextContent('VERIFIED NFT IDENTITY · LOCAL DEMO')
-    expect(strip()).toHaveTextContent(owned ? 'You control this survivor' : 'Another wallet controls this survivor')
+    expect(strip()).toHaveTextContent(owned ? 'VERIFIED NFT IDENTITY · LOCAL DEMO' : 'CHOG #1425 HAS A NEW OWNER')
+    expect(strip()).toHaveTextContent(owned ? 'You control this survivor' : 'Your connected wallet does not own this Chog')
     expect(latestOwner()).toMatchObject({scopeKey: characterRead.scopeKey, args: characterRead.args})
-    fireEvent.click(within(strip()).getByRole('button', {name: /View survivor profile/}))
+    fireEvent.click(within(strip()).getByRole('button', {name: owned ? /View survivor profile/ : /View Survivor History/}))
+    if (!owned) expect(screen.getByRole('heading', {name: 'Survival History'})).toHaveFocus()
     expect(screen.getByRole('heading', {name: 'CHOG #1425'})).toBeInTheDocument()
     expect(screen.queryByText('184')).not.toBeInTheDocument()
+  })
+  it('finds wallet Chogs through the existing Character screen', () => {
+    wallet.owners['1425'] = {data: '0x2222222222222222222222222222222222222222'}
+    render(<App/>); lookup(); adventure()
+    fireEvent.click(screen.getByRole('button', {name: /Find My Chogs/}))
+    expect(screen.getByRole('heading', {name: 'Your Survivors'})).toHaveFocus()
+    expect(screen.getByLabelText('Token ID')).toHaveValue('1425')
+    expect(wallet.write).not.toHaveBeenCalled()
   })
   it('gates cached ownership on the connected wallet chain, including network changes', () => {
     wallet.owners['1425'] = {data: wallet.account}
@@ -136,7 +145,7 @@ describe('shared survivor journey', () => {
     expect(latestOwner().scopeKey).not.toBe(scope)
     expect(strip()).not.toHaveTextContent('You control this survivor')
     wallet.owners['1425'] = {data: '0x1234567890123456789012345678901234567890'}; view.rerender(<App/>)
-    expect(strip()).toHaveTextContent('Another wallet controls this survivor')
+    expect(strip()).toHaveTextContent('CHOG #1425 HAS A NEW OWNER')
     expect(latestOwner().query).toMatchObject({staleTime: 0, refetchOnMount: 'always', refetchInterval: 30000, refetchOnWindowFocus: true})
   })
   it('rechecks a newly selected token and shares it without carrying over prior ownership', () => {
@@ -154,8 +163,8 @@ describe('shared survivor journey', () => {
     const view = render(<App/>); lookup(); adventure()
     wallet.owners['1425'] = {data: '0x2222222222222222222222222222222222222222'}; view.rerender(<App/>)
     expect(strip()).toHaveTextContent('CHOG #1425')
-    expect(strip()).toHaveTextContent('Another wallet controls this survivor')
-    fireEvent.click(within(strip()).getByRole('button', {name: /View survivor profile/}))
+    expect(strip()).toHaveTextContent('CHOG #1425 HAS A NEW OWNER')
+    fireEvent.click(within(strip()).getByRole('button', {name: /View Survivor History/}))
     expect(screen.getByText(/Another wallet controls/)).toBeInTheDocument()
   })
   it.each([
@@ -175,6 +184,7 @@ describe('shared survivor journey', () => {
     const hud = screen.getByLabelText('Simulated character statistics').textContent
     for (const choice of screen.getAllByRole('button', {name: /Preview Choice/})) {
       fireEvent.click(choice)
+      fireEvent.click(screen.getByRole('button', {name: 'Skip interaction'}))
       expect(screen.getByRole('dialog')).toHaveTextContent('Simulation only')
       expect(screen.getByRole('dialog')).toHaveTextContent('No progress is saved')
       fireEvent.click(screen.getByRole('button', {name: /Try another choice/i}))
@@ -188,11 +198,12 @@ describe('shared survivor journey', () => {
     const history = screen.getByRole('heading', {name: 'Survival History'}).closest('section')!
     expect(history.querySelector('ol,ul,time')).toBeNull()
   })
-  it('keeps an already-open local result immutable when the selected seed changes', () => {
+  it('dismisses an open preview when the selected token changes', () => {
+    wallet.owners['1425'] = {data: wallet.account}
     const view = render(<Adventure now={20740 * 86400000} selectedToken={1425n} onHome={vi.fn()}/>)
     fireEvent.click(screen.getAllByRole('button', {name: /Preview Choice/})[0])
-    const result = screen.getByRole('dialog').textContent
+    expect(screen.getByRole('dialog')).toBeVisible()
     view.rerender(<Adventure now={20740 * 86400000} selectedToken={1426n} onHome={vi.fn()}/>)
-    expect(screen.getByRole('dialog').textContent).toBe(result)
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 })

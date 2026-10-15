@@ -161,3 +161,23 @@ body:has(.game-shell-character) { min-width: 0; }
 .survivor-profile .your-survivors li button { max-width: 100%; overflow-wrap: anywhere; white-space: normal; background: #9b71331a; color: #3a281b; border: 1px solid #876331; border-radius: 3px; padding: .4rem .6rem; font-family: 'Cinzel', serif; font-size: .85rem; }
 .survivor-profile .your-survivors li button:hover { background: #9b713333; }
 .survivor-profile .your-survivors button:focus-visible { outline: 2px solid #35576a; outline-offset: 3px; }
+
+/* Diary decoration inherits the established Character typography unchanged. */
+.survivor-diary { min-width: 0; }
+.journal-current-owner { padding: 10px 12px; border: 1px solid var(--sheet-rule); background: #f4e3bc66; overflow-wrap: anywhere; }
+.survivor-history-list .journal-entry { position: relative; padding: 18px 20px; border: 1px solid #87663a55; border-left: 4px solid var(--sheet-gold); border-radius: 2px 12px 12px 2px; box-shadow: inset 0 0 22px #87663a0a; gap: 8px; }
+.journal-date { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; color: var(--sheet-muted); border-bottom: 1px solid var(--sheet-rule); padding-bottom: 6px; }
+.journal-reflection { margin: 4px 0; color: #493019; }
+.journal-deltas { display: flex; flex-wrap: wrap; gap: 8px; }
+.survivor-change { padding: 4px 8px; border: 1px solid currentColor; border-radius: 4px; }
+.survivor-change-xp { color: #76530c; background: #e0a94320; }
+.survivor-change-trust { color: #315650; background: #77999c18; }
+.survivor-change-scars { color: #8b3148; background: #cb5c7214; }
+.survivor-change[data-direction='decrease'] { border-style: dashed; }
+.journal-controller { display: block; overflow-wrap: anywhere; }
+.journal-achievements { padding: 8px 10px; margin: 0; border: 3px double var(--sheet-gold); background: #e0a94318; color: #624214; }
+.journal-evidence { border-top: 1px solid var(--sheet-rule); min-width: 0; }
+.journal-evidence summary { cursor: pointer; padding: 12px 0; min-height: 44px; }
+.journal-evidence summary:focus-visible { outline: 3px solid #4c6570; outline-offset: 2px; }
+.journal-evidence code, .journal-evidence dd { overflow-wrap: anywhere; word-break: break-word; }
+@media (max-width: 640px) { .survivor-history-list .journal-entry { padding: 14px 12px; } }

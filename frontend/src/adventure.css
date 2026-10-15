@@ -264,3 +264,18 @@
   .adventure-game *, .adventure-game *::before, .adventure-game *::after,
   .adventure-result[open], .adventure-result * { animation: none; transition: none; }
 }
+
+.adventure-choice:disabled { cursor: not-allowed; opacity: .6; }
+.adventure-survivor strong { overflow-wrap: anywhere; }
+
+/* Confirmed memories reuse existing Adventure text and reward styles. */
+.confirmed-survivor-reaction { border: 2px solid var(--result-accent); border-radius: 12px; padding: 14px 16px; margin-block: 14px; background: #f5ede0; }
+.confirmed-reflection { color: var(--result-ink); }
+.confirmed-achievements { border: 3px double #9b762e; padding: 10px; color: #624214; background: #e0a94322; }
+.adventure-confirmed-rewards .adventure-reward-xp { border-color: #9b762e; background: #e0a94322; }
+.adventure-confirmed-rewards .adventure-reward-trust { border-color: #315650; background: #77999c22; }
+.adventure-confirmed-rewards .adventure-reward-scars { border-color: #8b3148; background: #cb5c7218; }
+
+.confirmed-survivor-reaction { display: flow-root; }
+.confirmed-chog-illustration { float: left; width: 64px; height: 90px; object-fit: contain; margin: 0 12px 6px 0; filter: drop-shadow(0 3px 4px #31565044); }
+.confirmed-achievements { clear: both; }

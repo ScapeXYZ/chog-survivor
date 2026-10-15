@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useRef, useState} from 'react'
+import {useEffect, useMemo, useState} from 'react'
 import {achievements, demoCharacter, demoEventIndex, events, titles} from './game-data'
 import {shortAddress, signed} from './utils'
 import {useSurvivorIdentity} from './useSurvivorIdentity'
@@ -8,34 +8,28 @@ import wildEnvironment from './assets/ruined-wild-environment-provisional.webp'
 import fogOverlay from './assets/moonlit-fog-overlay-provisional.webp'
 import './adventure.css'
 import {emitGameSound} from './audio'
+import {NewOwnerNotice, type AdventureNavigation} from './NewOwnerNotice'
+import {MiniGamePanel} from './MiniGamePanel'
+import {miniGameData} from './mini-game-data'
+import {useAdventureDialog} from './useAdventureDialog'
 
 type Preview = {eventIndex: number; choiceIndex: number}
 
-function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => void}) {
-  const dialogRef = useRef<HTMLDialogElement>(null)
-  const returnRef = useRef<HTMLButtonElement>(null)
+function ChoiceResult({preview, tokenId, onReturn}: {preview: Preview; tokenId?: bigint; onReturn: () => void}) {
+  const [stage, setStage] = useState<'interaction' | 'preview'>('interaction')
+  const dialogRef = useAdventureDialog(stage)
   const event = events[preview.eventIndex]
   const deltas = event.baseDeltas[preview.choiceIndex]
   const category = event.tags[preview.choiceIndex]
 
-  useEffect(() => {
-    const dialog = dialogRef.current
-    const previousFocus = document.activeElement as HTMLElement | null
-    const previousOverflow = document.body.style.overflow
-    dialog?.showModal()
-    emitGameSound('dialog-open')
-    returnRef.current?.focus()
-    document.body.style.overflow = 'hidden'
-    return () => {
-      dialog?.close()
-      document.body.style.overflow = previousOverflow
-      if (previousFocus?.isConnected) previousFocus.focus()
-    }
-  }, [])
-
-  return <dialog ref={dialogRef} className={`adventure-result adventure-result-${category}`} aria-labelledby="preview-title" aria-describedby="preview-disclosure" onCancel={(event) => { event.preventDefault(); onReturn() }}>
+  return <dialog ref={dialogRef} className={`adventure-result adventure-result-${category}${category === 'cautious' && stage === 'interaction' ? ' adventure-result-trial' : ''}`} aria-labelledby="preview-title" aria-describedby="preview-disclosure" onCancel={(event) => { event.preventDefault(); onReturn() }}>
     <div className="adventure-result-heading"><div className="adventure-result-stamp" aria-hidden="true"><i/><i/></div><div><p className="adventure-result-encounter">{event.name}</p><p className="adventure-eyebrow">{category} choice · LOCAL DEMO</p></div></div>
     <h2 id="preview-title">{event.choices[preview.choiceIndex]}</h2>
+    {stage === 'interaction' ? <>
+      <MiniGamePanel tokenId={tokenId} config={miniGameData[event.name].choices[preview.choiceIndex].interaction} onComplete={() => setStage('preview')} onSkip={() => setStage('preview')}/>
+      <p id="preview-disclosure" className="adventure-result-disclosure">Local demonstration only. No progress is saved and no wallet signature is requested.</p>
+      <button className="adventure-return-choice" onClick={onReturn}>CANCEL</button>
+    </> : <>
     <p className="adventure-result-lede">Your choice leaves a mark. <span>Outcome {preview.eventIndex * 3 + preview.choiceIndex + 1}</span></p>
     <p className="adventure-result-story">{event.consequences[preview.choiceIndex]}</p>
     <p className="adventure-result-label">Rulebook base deltas · preview only</p>
@@ -43,17 +37,21 @@ function ChoiceResult({preview, onReturn}: {preview: Preview; onReturn: () => vo
       {(['XP', 'Trust', 'Scars'] as const).map((label, index) => <div key={label} className={`adventure-reward-${label.toLowerCase()}`}><dt>{label}</dt><dd>{signed(deltas[index])}</dd></div>)}
     </dl>
     <p id="preview-disclosure" className="adventure-result-disclosure">Simulation only. These are documented base values, before history modifiers and clamping. No progress is saved, no wallet signature is requested, and nothing is sent onchain.</p>
-    <button ref={returnRef} className="adventure-return-choice" onClick={onReturn}>TRY ANOTHER CHOICE <span aria-hidden="true">↻</span></button>
+    <button className="adventure-return-choice" onClick={onReturn}>TRY ANOTHER CHOICE <span aria-hidden="true">↻</span></button>
+    </>}
     <p className="adventure-result-hint">Escape also returns to Adventure.</p>
   </dialog>
 }
 
-function DemoAdventure({now, selectedToken, onHome, onCharacter}: {now: number; selectedToken?: bigint; onHome: () => void; onCharacter?: () => void}) {
-  const {owner, enabled, checkingOwner, verified, controls, ownershipMessage} = useSurvivorIdentity(selectedToken)
+function DemoAdventure({now, selectedToken, onHome, onCharacter, onFindChogs, onHistory}: {now: number; selectedToken?: bigint; onHome: () => void} & AdventureNavigation) {
+  const {owner, enabled, checkingOwner, verified, controls, ownershipMessage, contextKey} = useSurvivorIdentity(selectedToken)
   const day = Math.floor(now / 86400000)
   const eventIndex = useMemo(() => demoEventIndex(selectedToken ?? 0n, BigInt(day)), [selectedToken, day])
   const event = events[eventIndex]
   const [preview, setPreview] = useState<Preview>()
+  const nonOwner = verified && !controls
+  const mayPreview = selectedToken === undefined || controls
+  useEffect(() => { setPreview(undefined) }, [contextKey, mayPreview])
   // Snapshot the event with the choice so a UTC rollover cannot change an open result.
   const selectedChoice = preview?.eventIndex === eventIndex ? preview.choiceIndex : undefined
 
@@ -67,14 +65,14 @@ function DemoAdventure({now, selectedToken, onHome, onCharacter}: {now: number; 
     </header>
 
     <aside className="adventure-survivor" aria-label="Adventure survivor identity">
-      <div role="status" aria-live="polite"><span className="adventure-survivor-label">{verified ? 'VERIFIED NFT IDENTITY · LOCAL DEMO' : 'LOCAL DEMONSTRATION'}</span>
+      {nonOwner ? <NewOwnerNotice tokenId={selectedToken!} onFindChogs={onFindChogs} onHistory={onHistory ?? onCharacter}/> : <div role="status" aria-live="polite"><span className="adventure-survivor-label">{verified ? 'VERIFIED NFT IDENTITY · LOCAL DEMO' : 'LOCAL DEMONSTRATION'}</span>
         <strong>{verified ? `CHOG #${selectedToken}` : selectedToken === undefined ? 'No Chog selected' : `Requested token #${selectedToken} · unverified`}</strong>
         <p>{ownershipMessage}{selectedToken === undefined && ' Everyone can explore this demo.'}
           {verified && <span> Verified owner: {shortAddress(owner.data)} · {controls ? 'your wallet' : 'another wallet'}.</span>}</p>
-      </div>
+      </div>}
       <p className="adventure-survivor-disclosure">The NFT carries progression; this encounter is a local demonstration. Choices do not change your Chog or save its story.</p>
       <div className="adventure-survivor-actions">
-        {onCharacter && <button type="button" onClick={onCharacter}>View survivor profile <span aria-hidden="true">→</span></button>}
+        {!nonOwner && onCharacter && <button type="button" onClick={onCharacter}>View survivor profile <span aria-hidden="true">→</span></button>}
         {selectedToken !== undefined && <button type="button" disabled={!enabled || checkingOwner} onClick={() => void owner.refetch()}>{checkingOwner ? 'Verifying…' : 'Refresh ownership'}</button>}
       </div>
     </aside>
@@ -101,18 +99,18 @@ function DemoAdventure({now, selectedToken, onHome, onCharacter}: {now: number; 
     <section className="adventure-controls" aria-labelledby="adventure-decision-title">
       <div className="adventure-story"><div><p className="adventure-eyebrow">YOUR NEXT MOVE</p><h2 id="adventure-decision-title">How will you survive?</h2></div><p>{event.narrative}</p></div>
       <div className="adventure-choices" aria-label="Survival choices">
-        {event.choices.map((choice, index) => <button key={choice} className={`adventure-choice adventure-choice-${event.tags[index]}`} aria-haspopup="dialog" aria-pressed={selectedChoice === index} onClick={() => { emitGameSound('choice'); setPreview({eventIndex, choiceIndex: index}) }}>
+        {event.choices.map((choice, index) => <button key={choice} className={`adventure-choice adventure-choice-${event.tags[index]}`} disabled={!mayPreview} aria-haspopup="dialog" aria-pressed={selectedChoice === index} onClick={() => { if (!mayPreview) return; emitGameSound('choice'); setPreview({eventIndex, choiceIndex: index}) }}>
           <span className="adventure-choice-top"><span className="adventure-choice-number">0{index + 1}</span><span className="adventure-choice-category">{event.tags[index]}</span></span>
           <strong>{choice}</strong><span className="adventure-choice-action">Preview Choice <span aria-hidden="true">→</span></span>
         </button>)}
       </div>
-      <div className="adventure-demo-footer"><span>Choose any path to explore its rulebook trade-off. Previews are repeatable; simulated stats stay unchanged.</span><button disabled className="adventure-chain-action">Act onchain · Disabled</button></div>
+      <div className="adventure-demo-footer"><span>{mayPreview ? 'Choose any path to explore its rulebook trade-off. Previews are repeatable; simulated stats stay unchanged.' : 'Adventure choices and previews require verified ownership of this Chog.'}</span><button disabled className="adventure-chain-action">Act onchain · Disabled</button></div>
     </section>
-    <details className="adventure-chronicle"><summary>Simulated chronicle · {titles[demoCharacter.titleId]}</summary><p>Demo fixture only. No preview earns achievements or changes your Character screen.</p><ul>{achievements.map((name, index) => <li key={name}>{(demoCharacter.achievementMask & (1 << index)) !== 0 ? 'Demo unlocked' : 'Demo locked'} · {name}</li>)}</ul><p>Unmarked Week: {demoCharacter.unmarkedStreak}/7 qualifying consecutive daily actions (demo).</p></details>
-    {preview && <ChoiceResult preview={preview} onReturn={() => setPreview(undefined)}/>}
+    {!nonOwner && <details className="adventure-chronicle"><summary>Simulated chronicle · {titles[demoCharacter.titleId]}</summary><p>Demo fixture only. No preview earns achievements or changes your Character screen.</p><ul>{achievements.map((name, index) => <li key={name}>{(demoCharacter.achievementMask & (1 << index)) !== 0 ? 'Demo unlocked' : 'Demo locked'} · {name}</li>)}</ul><p>Unmarked Week: {demoCharacter.unmarkedStreak}/7 qualifying consecutive daily actions (demo).</p></details>}
+    {mayPreview && preview && <ChoiceResult key={`${preview.eventIndex}:${preview.choiceIndex}`} preview={preview} tokenId={verified ? selectedToken : undefined} onReturn={() => setPreview(undefined)}/>}
   </section>
 }
 
-export function Adventure(props: {now: number; selectedToken?: bigint; onHome: () => void; onCharacter?: () => void}) {
-  return localMode ? <LocalContractAdventure selectedToken={props.selectedToken} onHome={props.onHome} onCharacter={props.onCharacter}/> : <DemoAdventure {...props}/>
+export function Adventure(props: {now: number; selectedToken?: bigint; onHome: () => void} & AdventureNavigation) {
+  return localMode ? <LocalContractAdventure {...props}/> : <DemoAdventure {...props}/>
 }

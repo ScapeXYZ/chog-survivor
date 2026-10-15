@@ -1,0 +1,93 @@
+/* Trial-only presentation. Existing Adventure font definitions remain authoritative. */
+.survivor-trial { --terrain-glow: #668d75; min-width: 0; max-width: 100%; }
+.trial-theme-bridge { --terrain-glow: #8eaeac; }
+.trial-theme-storm { --terrain-glow: #8b97b3; }
+.trial-theme-runes { --terrain-glow: #aca56d; }
+.trial-theme-shadow { --terrain-glow: #9c819e; }
+.trial-theme-camp { --terrain-glow: #bf9b6b; }
+.trial-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.trial-survivor { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.trial-survivor > img { width: 52px; height: 68px; object-fit: contain; filter: drop-shadow(0 3px 4px #233b4155); }
+.trial-survivor > div { display: grid; gap: 2px; }
+.trial-survivor span { font-size: 11px; color: #40574b; }
+.trial-survivor strong { font-size: 14px; color: var(--mini-game-ink); }
+.trial-difficulty { display: grid; gap: 3px; font-size: 13px; font-weight: 700; }
+.trial-difficulty select { min-height: 44px; min-width: 0; max-width: 100%; padding: 8px; border: 1px solid #715c38; border-radius: 8px; background: #eedfc5; color: #202126; font: inherit; }
+.trial-difficulty select:focus-visible { outline: 3px solid var(--mini-game-ink); outline-offset: 3px; }
+.survivor-trial .trial-intro { margin: 4px 0; color: var(--mini-game-ink); }
+.survivor-trial .trial-rules { margin: 4px 0 8px; font-size: 13px; }
+.trial-key-help { display: block; color: #40574b; font-size: 11px; }
+.trial-stats { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-block: 6px; border-block: 1px solid #b9a88970; margin-block: 8px; }
+.trial-stats > span { font-size: 11px; }
+.trial-stats strong { margin-left: 4px; font-size: 14px; }
+.trial-map { position: relative; isolation: isolate; overflow: hidden; padding: 8px 18px; border: 1px solid #92754a; border-radius: 45% 8% 35% 6% / 3% 6% 3% 5%; background: linear-gradient(#10221de8, #0d2018ba 60%, #0c1b18ef), url('./assets/ruined-wild-environment-provisional.webp') center/cover; box-shadow: inset 0 0 35px #000b, 0 4px 10px #23372e30; color: #efddb1; }
+.trial-map::before { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 8% 45%, var(--terrain-glow), transparent 45%), repeating-linear-gradient(125deg, transparent 0 35px, #dbce9f05 36px 38px, transparent 39px 48px); opacity: .25; }
+.trial-map::after { content: ''; position: absolute; z-index: -1; width: 30%; inset-block: 10%; left: 35%; border-inline: 1px solid #b8d4d92b; border-radius: 48%; transform: rotate(-18deg); background: linear-gradient(90deg, #284c4d50, #82a3ac18, #234c4e44); }
+.trial-theme-runes .trial-map::after { background: repeating-linear-gradient(0deg, transparent 0 22px, #aca56d33 23px 24px); transform: rotate(18deg); }
+.trial-theme-shadow .trial-map::after { background: radial-gradient(ellipse, #88628c66, transparent); }
+.trial-map-caption { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-block: 0 6px; font-size: 10px; font-weight: 700; letter-spacing: .06em; }
+.trial-map-caption:last-child { margin-block: 6px 0; }
+.trial-map-caption svg { flex-shrink: 0; color: #e0a943; width: 18px; height: 18px; }
+.trial-map-field { position: relative; }
+.trial-paths { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.trial-paths path { fill: none; stroke: #b8b78a55; stroke-width: 1.5; stroke-dasharray: 2 4; vector-effect: non-scaling-stroke; }
+.trial-walked-path { fill: none; stroke: #e0a943; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px #e0a94377); }
+.trial-grid { display: grid; }
+.trial-row { display: grid; grid-template-columns: repeat(3, minmax(44px, 1fr)); height: 64px; align-items: center; }
+.trial-row > div { display: flex; justify-content: center; }
+.mini-game-panel .trial-cell { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 56px; height: 48px; min-height: 44px; padding: 0; border: 1px solid #92937b77; border-radius: 46% 52% 40% 36%; color: #becbb4; background: radial-gradient(ellipse at 40% 20%, #506149, #253b2b 70%); box-shadow: 0 5px 0 #111e16, 0 7px 10px #0007; }
+.trial-cell > span { position: absolute; top: 100%; margin-top: 3px; font-size: 8px; letter-spacing: .05em; line-height: 1; color: #e9d8ae; pointer-events: none; }
+.trial-cell:not(.trial-current):not(.trial-hazard):not(.trial-destination) > span { visibility: hidden; }
+.mini-game-panel .trial-hazard { color: #f6b5a3; border-color: #ac6856; background: radial-gradient(ellipse, #713b33, #362422); border-radius: 30% 45% 35% 50%; }
+.mini-game-panel .trial-shelter { background: radial-gradient(ellipse, #71613e, #333629); border-color: #bfa16d; color: #ecdbaf; }
+.mini-game-panel .trial-destination { color: #f8d782; border-color: #cfac5f; background: radial-gradient(ellipse, #5a6136, #273c2d); box-shadow: 0 4px 0 #17291b, 0 0 16px #e0a94330; }
+.trial-destination svg { width: 32px; height: 32px; filter: drop-shadow(0 0 4px #e0a94355); }
+.mini-game-panel .trial-visited { border-color: #e0a943; }
+.mini-game-panel .trial-reachable { outline: 1px dashed #eadba6; outline-offset: 3px; box-shadow: 0 4px 0 #17291b, 0 0 16px #e0a94322; }
+.mini-game-panel .trial-current { border-color: #f4d182; background: radial-gradient(ellipse, #b59348, #374c30); box-shadow: 0 4px 0 #17291b, 0 0 18px #e0a94366; z-index: 1; }
+.trial-chog { position: absolute; bottom: -1px; width: 64px; height: 78px; max-width: none; object-fit: contain; pointer-events: none; filter: drop-shadow(0 2px 3px #000a); }
+.trial-chog-crossing { animation: trial-step .32s ease-out; }
+.trial-chog-hazard { animation: trial-recoil .3s ease-out; }
+.trial-chog-complete { animation: trial-arrive .55s ease-out; }
+.mini-game-panel .trial-cell:hover:not(:disabled) { background: #4e6542; color: #fff0c6; }
+.mini-game-panel .trial-hazard:hover:not(:disabled) { background: #754038; }
+.mini-game-panel .trial-cell:focus-visible { outline: 3px solid #fff0bf; outline-offset: 3px; }
+.trial-map-complete { border-color: #b69543; box-shadow: inset 0 0 22px #e0a94333, 0 0 0 2px #e0a94333; }
+.survivor-trial .trial-feedback { margin: 8px 0; padding: 6px 10px; border-left: 3px solid var(--mini-game-accent); background: #77999c18; }
+.trial-feedback-failed { border-color: #963f44; }
+.trial-feedback-complete { border-color: #ad8537; background: #e0a94322; font-weight: 700; }
+.trial-controls { margin-bottom: 4px; }
+@keyframes trial-step { from { transform: translateY(-10px) scale(.92); opacity: .7; } to { transform: none; opacity: 1; } }
+@keyframes trial-recoil { 30% { transform: translateX(-5px) rotate(-5deg); } 60% { transform: translateX(4px); } }
+@keyframes trial-arrive { 40% { transform: translateY(-8px) scale(1.06); filter: drop-shadow(0 0 8px #e0a943aa); } }
+/* Only a cautious interaction gets the wider, compact dialog. Previews and other games retain their layout. */
+.adventure-result.adventure-result-trial { width: min(760px, calc(100vw - 24px)); padding: 16px 20px 12px; }
+.adventure-result-trial > .adventure-result-heading { margin-bottom: 0; gap: 10px; justify-content: flex-start; }
+.adventure-result-trial .adventure-result-stamp { display: none; }
+.adventure-result-trial > h2 { margin: 4px 0 8px; text-align: left; }
+.adventure-result-trial > .adventure-result-disclosure { margin: 6px 0; padding-top: 6px; }
+.adventure-result-trial > .adventure-result-hint { margin: 6px 0 0; }
+.adventure-result-trial > .adventure-return-choice { margin-top: 6px; min-height: 44px; padding-block: 8px; }
+.mini-game-panel.mini-game-trial { position: relative; padding: 10px 12px; }
+.mini-game-trial > .adventure-eyebrow { margin: 0; }
+.mini-game-trial > h3 { padding-right: 75px; }
+.mini-game-trial > .mini-game-notice { clear: both; margin: 4px 0 6px; padding-bottom: 6px; font-size: 11px; }
+.mini-game-trial > .mini-game-progress { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.mini-game-trial .trial-skip { float: right; margin-top: -44px; margin-bottom: 0; padding: 0; background: #f5ede0; }
+@media (max-width: 560px) {
+  .adventure-result.adventure-result-trial { width: calc(100vw - 12px); padding: 12px 10px 8px; }
+  .mini-game-panel.mini-game-trial { padding: 8px; }
+  .trial-toolbar { gap: 6px; }
+  .trial-survivor > img { width: 38px; height: 52px; }
+  .trial-survivor { gap: 4px; }
+  .trial-survivor span:last-child { display: none; }
+  .trial-difficulty { max-width: 48%; }
+  .trial-map { padding-inline: 10px; }
+  .trial-row { height: 58px; }
+  .mini-game-panel .trial-cell { width: 48px; height: 44px; }
+  .trial-chog { width: 58px; height: 70px; }
+  .trial-stats { gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trial-chog { animation: none !important; transition: none !important; }
+}

@@ -24,15 +24,17 @@ export async function readSurvivalHistory(client: HistoryClient, address: Addres
       if (!active()) throw new Error('History request superseded')
       const toBlock = fromBlock + chunkSize - 1n > latest ? latest : fromBlock + chunkSize - 1n
       const [adventures, achievements] = await Promise.all([
-        client.getLogs({address, event: adventureResolvedEvent, args: {tokenId}, fromBlock, toBlock}),
-        client.getLogs({address, event: achievementEarnedEvent, args: {tokenId}, fromBlock, toBlock}),
+        client.getLogs({address, event: adventureResolvedEvent, args: {tokenId}, fromBlock, toBlock, strict: true}),
+        client.getLogs({address, event: achievementEarnedEvent, args: {tokenId}, fromBlock, toBlock, strict: true}),
       ])
       for (const log of adventures) {
+        if (log.removed || log.address.toLowerCase() !== address.toLowerCase() || log.args.tokenId !== tokenId) continue
         if (!active()) throw new Error('History request superseded')
         const key = `${log.transactionHash}:${log.logIndex}`; if (seen.has(key) || log.blockNumber === null || log.transactionIndex === null || log.logIndex === null || !log.transactionHash) continue; seen.add(key)
         const a = log.args; records.push({kind: 'adventure', tokenId: a.tokenId!, owner: a.owner!, day: a.day!, eventId: Number(a.eventId), choiceId: Number(a.choiceId), outcomeId: Number(a.outcomeId), xpDelta: Number(a.xpDelta), trustDelta: Number(a.trustDelta), scarsDelta: Number(a.scarsDelta), xpAfter: Number(a.xpAfter), trustAfter: Number(a.trustAfter), scarsAfter: Number(a.scarsAfter), streakAfter: Number(a.streakAfter), unmarkedStreakAfter: Number(a.unmarkedStreakAfter), achievementMaskAfter: a.achievementMaskAfter!, blockNumber: log.blockNumber, transactionIndex: log.transactionIndex, logIndex: log.logIndex, transactionHash: log.transactionHash, timestamp: await timestamp(log.blockNumber)})
       }
       for (const log of achievements) {
+        if (log.removed || log.address.toLowerCase() !== address.toLowerCase() || log.args.tokenId !== tokenId) continue
         if (!active()) throw new Error('History request superseded')
         const key = `${log.transactionHash}:${log.logIndex}`; if (seen.has(key) || log.blockNumber === null || log.transactionIndex === null || log.logIndex === null || !log.transactionHash) continue; seen.add(key)
         const a = log.args; records.push({kind: 'achievement', tokenId: a.tokenId!, achievementId: Number(a.achievementId), day: a.day!, blockNumber: log.blockNumber, transactionIndex: log.transactionIndex, logIndex: log.logIndex, transactionHash: log.transactionHash, timestamp: await timestamp(log.blockNumber)})

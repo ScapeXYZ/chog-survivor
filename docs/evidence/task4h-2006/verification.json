@@ -1,0 +1,190 @@
+{
+  "chainId": 31338,
+  "game": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+  "nft": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+  "tokenId": "2006",
+  "actionReceipt": {
+    "type": "eip1559",
+    "status": "success",
+    "cumulativeGasUsed": "164354",
+    "logs": [
+      {
+        "address": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "topics": [
+          "0xaf069a39e870e16c3dc406931bcefec189d9aa0481ab5803fd1f814d6dd8a4aa",
+          "0x00000000000000000000000000000000000000000000000000000000000007d6",
+          "0x00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "0x0000000000000000000000000000000000000000000000000000000000005105"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000001200000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001200000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001",
+        "blockHash": "0x60dcf784dc38816e9d090bc79b0e65992251581eb71bc3819ed9ba05aa9f960a",
+        "blockNumber": "15",
+        "blockTimestamp": "1792066852",
+        "transactionHash": "0xfcd6afa0d8d95283c407631dcd30685725be229e40826ff62f9346c6c44c1a9f",
+        "transactionIndex": 0,
+        "logIndex": 0,
+        "removed": false
+      },
+      {
+        "address": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "topics": [
+          "0xd28aa2b594509606ab105c97509772cc652473c3a4beec742827e5ad8ed08904",
+          "0x00000000000000000000000000000000000000000000000000000000000007d6",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000000000000000000000005105"
+        ],
+        "data": "0x",
+        "blockHash": "0x60dcf784dc38816e9d090bc79b0e65992251581eb71bc3819ed9ba05aa9f960a",
+        "blockNumber": "15",
+        "blockTimestamp": "1792066852",
+        "transactionHash": "0xfcd6afa0d8d95283c407631dcd30685725be229e40826ff62f9346c6c44c1a9f",
+        "transactionIndex": 0,
+        "logIndex": 1,
+        "removed": false
+      }
+    ],
+    "logsBloom": "0x00000000000000000002000001000200000000000000000100000000000000000100000000000000000000000000080000000000000000000000000020000001000000000000000000000000000000000000000000000000000000000000000000000800020000000000000000000800000000000000000000001000000000000000000808000000000000000000000000000000000000000000000000000000000000000000040000000000000040000000000000000000000000008000000000000000000000010000000000000000000000000000000000000000000020000000000000000000000000000000000001000000000100000000000000000000",
+    "transactionHash": "0xfcd6afa0d8d95283c407631dcd30685725be229e40826ff62f9346c6c44c1a9f",
+    "transactionIndex": 0,
+    "blockHash": "0x60dcf784dc38816e9d090bc79b0e65992251581eb71bc3819ed9ba05aa9f960a",
+    "blockNumber": "15",
+    "gasUsed": "164354",
+    "effectiveGasPrice": "1158855876",
+    "blobGasPrice": "1",
+    "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "to": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+    "contractAddress": null,
+    "blockTimestamp": 1792066852
+  },
+  "resolved": {
+    "tokenId": "2006",
+    "owner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "day": "20741",
+    "eventId": 4,
+    "choiceId": 1,
+    "outcomeId": 10,
+    "xpDelta": 18,
+    "trustDelta": 4,
+    "scarsDelta": 0,
+    "xpAfter": 18,
+    "trustAfter": 4,
+    "scarsAfter": 0,
+    "streakAfter": 1,
+    "unmarkedStreakAfter": 1,
+    "achievementMaskAfter": "1"
+  },
+  "afterAction": {
+    "xp": 18,
+    "trust": 4,
+    "scars": 0,
+    "streak": 1,
+    "unmarkedStreak": 1,
+    "lastActionDay": "20741",
+    "lastOutcomeId": 10,
+    "eventMask": 8,
+    "achievementMask": "1",
+    "hasActed": true
+  },
+  "titleAfterAction": 0,
+  "actionUtc": "2026-10-15T12:20:52.000Z",
+  "checks": [
+    "real Wallet B preview ready; no action yet submitted",
+    "reaction follows real receipt outcome",
+    "first achievement is backed by a receipt event",
+    "fresh real journal shows actual Ancient Gate choice",
+    "journal reflection matches the actual receipt",
+    "journal has exactly one adventure entry",
+    "journal preserves the actual full transaction hash",
+    "journal UTC matches actual receipt block",
+    "journal records actual First Light event",
+    "historical actor is Wallet B",
+    "fresh-session Wallet B daily lock verified",
+    "transfer confirmed within the same actual UTC day",
+    "verified Transfer event is exactly B to A for #2006",
+    "all progression, achievement, title and daily-lock fields survived transfer",
+    "read-only authorization check 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266: AlreadyActed",
+    "read-only authorization check 0x70997970C51812dc3A010C7d01b50e0d17dc79C8: NotTokenOwner",
+    "new owner A sees unchanged journal and historical actor B",
+    "inherited journal retains original UTC evidence",
+    "inherited achievement is still First Light",
+    "Wallet A inherits disabled daily choices",
+    "Wallet B loses all adventure choice controls",
+    "no uncaught browser errors"
+  ],
+  "transactions": [
+    {
+      "hash": "0xfcd6afa0d8d95283c407631dcd30685725be229e40826ff62f9346c6c44c1a9f",
+      "signer": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "target": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "method": "act",
+      "tokenId": "2006"
+    },
+    {
+      "hash": "0x8b3a59458ec349146bcf86c45141c14043561b8ee33779d91daacdf537516933",
+      "signer": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+      "target": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+      "method": "transferFrom",
+      "tokenId": "2006"
+    }
+  ],
+  "additionalAdventureTransactionsSubmitted": 0,
+  "transferReceipt": {
+    "type": "eip1559",
+    "status": "success",
+    "cumulativeGasUsed": "79529",
+    "logs": [
+      {
+        "address": "0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8",
+          "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "0x00000000000000000000000000000000000000000000000000000000000007d6"
+        ],
+        "data": "0x",
+        "blockHash": "0xd03cd9ac25034aa477ee98c3cf36da6ad243f034541935f37ae73cd161cf0b20",
+        "blockNumber": "16",
+        "blockTimestamp": "1792067104",
+        "transactionHash": "0x8b3a59458ec349146bcf86c45141c14043561b8ee33779d91daacdf537516933",
+        "transactionIndex": 0,
+        "logIndex": 0,
+        "removed": false
+      }
+    ],
+    "logsBloom": "0x00000000000000000002000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000800000000000000000100000000000000000000000000000010000000000000000800000000000000000000001000000000000000000000000000000000000008000000040000000000000000000000000000000000000000000000400000000002000000200000000000000000000000002000000000000000000000000000000000000000000000000000000001000000000000000000000000000000",
+    "transactionHash": "0x8b3a59458ec349146bcf86c45141c14043561b8ee33779d91daacdf537516933",
+    "transactionIndex": 0,
+    "blockHash": "0xd03cd9ac25034aa477ee98c3cf36da6ad243f034541935f37ae73cd161cf0b20",
+    "blockNumber": "16",
+    "gasUsed": "79529",
+    "effectiveGasPrice": "1139216464",
+    "blobGasPrice": "1",
+    "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "to": "0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763",
+    "contractAddress": null,
+    "blockTimestamp": 1792067104
+  },
+  "finalOwner": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "afterTransfer": {
+    "xp": 18,
+    "trust": 4,
+    "scars": 0,
+    "streak": 1,
+    "unmarkedStreak": 1,
+    "lastActionDay": "20741",
+    "lastOutcomeId": 10,
+    "eventMask": 8,
+    "achievementMask": "1",
+    "hasActed": true
+  },
+  "status": "passed",
+  "provenance": {
+    "task": "4H",
+    "network": "Isolated local Anvil; not Monad mainnet or testnet",
+    "capturedAtUtc": "2026-10-15T12:20:52.000Z",
+    "preparationTask": "4K",
+    "newTransactionsDuringPreparation": 0,
+    "knownIssue": "Initial session exposed stale daily-lock UI; completed verification used a fresh session. Task 4I subsequently fixed and regression-tested the issue.",
+    "evidenceScope": "Recorded local receipts and checks; not publicly queryable explorer evidence."
+  }
+}

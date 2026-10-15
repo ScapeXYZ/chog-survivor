@@ -23,6 +23,7 @@ import {App} from './App'
 import {Adventure} from './Adventure'
 import {CHOG_GENESIS, gameReadAbi} from './contracts'
 import {demoEventIndex, events} from './game-data'
+import {miniGameData} from './mini-game-data'
 
 // jsdom lacks native dialog methods. Modal isolation and Tab behavior are checked in Chromium.
 beforeAll(() => {
@@ -33,7 +34,7 @@ beforeEach(() => {
   vi.clearAllMocks()
   wallet.address = undefined; wallet.isConnected = false; wallet.connectors = []; wallet.chainId = 143
 })
-afterEach(cleanup)
+afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
 function enter() { fireEvent.click(screen.getByRole('button', {name: /enter the wild/i})) }
 
@@ -80,6 +81,32 @@ describe('approved Home and navigation', () => {
 })
 
 describe('local Adventure preview', () => {
+  it.each([0, 1, 2])('completes the configured interaction for card %s before showing demo rewards', choiceIndex => {
+    vi.stubGlobal('matchMedia', () => ({matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn()}))
+    let day = 20000
+    while (demoEventIndex(0n, BigInt(day)) !== 0) day++
+    render(<Adventure now={day * 86400000} onHome={vi.fn()}/>)
+    const hud = screen.getByLabelText('Simulated character statistics').textContent
+    fireEvent.click(screen.getAllByRole('button', {name: /preview choice/i})[choiceIndex])
+    const dialog = screen.getByRole('dialog')
+    expect(within(dialog).queryByRole('definition')).not.toBeInTheDocument()
+    const config = miniGameData['Broken Bridge'].choices[choiceIndex].interaction
+    if (config.kind === 'puzzle') {
+      fireEvent.change(screen.getByLabelText('Difficulty'), {target: {value: 'medium'}})
+      fireEvent.click(screen.getByRole('button', {name: /^Row 2, path 3/}))
+      expect(within(dialog).getByRole('status')).toHaveTextContent('Hazard!')
+      fireEvent.change(screen.getByLabelText('Difficulty'), {target: {value: 'easy'}})
+      ;[2, 3, 4].forEach(row => fireEvent.click(screen.getByRole('button', {name: new RegExp(`^Row ${row}, path 2`)})))
+    } else if (config.kind === 'timing') fireEvent.click(screen.getByRole('button', {name: 'I am ready'}))
+    else fireEvent.click(screen.getByRole('button', {name: config.responses[1]}))
+    expect(within(dialog).queryByRole('definition')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', {name: 'Continue'}))
+    expect(within(dialog).getAllByRole('definition').map(element => Number(element.textContent))).toEqual([...events[0].baseDeltas[choiceIndex]])
+    expect(screen.getByLabelText('Simulated character statistics')).toHaveTextContent(hud!)
+    expect(wallet.write).not.toHaveBeenCalled(); expect(wallet.sign).not.toHaveBeenCalled()
+    vi.unstubAllGlobals()
+  })
+
   it('previews three choices, restores focus, and never changes stats or invokes writes/signing', () => {
     render(<App/>); enter()
     const initialReadCount = wallet.read.mock.calls.length
@@ -91,6 +118,7 @@ describe('local Adventure preview', () => {
       const dialog = screen.getByRole('dialog', {name: choice.querySelector('strong')!.textContent!})
       expect(dialog).toHaveAttribute('aria-describedby', 'preview-disclosure')
       expect(choice).toHaveAttribute('aria-pressed', 'true')
+      fireEvent.click(within(dialog).getByRole('button', {name: 'Skip interaction'}))
       expect(within(dialog).getByText(/Simulation only/)).toBeInTheDocument()
       const returnButton = within(dialog).getByRole('button', {name: /try another choice/i})
       expect(returnButton).toHaveFocus(); fireEvent.click(returnButton)
@@ -131,6 +159,7 @@ describe('local Adventure preview', () => {
   it('starts with no selected preview after returning Home and reentering Adventure', () => {
     render(<App/>); enter()
     fireEvent.click(screen.getAllByRole('button', {name: /preview choice/i})[1])
+    fireEvent.click(screen.getByRole('button', {name: 'Skip interaction'}))
     fireEvent.click(screen.getByRole('button', {name: /try another choice/i}))
     fireEvent.click(screen.getByRole('button', {name: /back to home/i}))
     enter()
@@ -143,6 +172,7 @@ describe('local Adventure preview', () => {
     while (demoEventIndex(0n, BigInt(day)) === demoEventIndex(0n, BigInt(day + 1))) day++
     const view = render(<Adventure now={day * 86400000} onHome={vi.fn()}/>)
     fireEvent.click(screen.getAllByRole('button', {name: /preview choice/i})[0])
+    fireEvent.click(screen.getByRole('button', {name: 'Skip interaction'}))
     const before = screen.getByRole('dialog').textContent
     view.rerender(<Adventure now={(day + 1) * 86400000} onHome={vi.fn()}/>)
     expect(screen.getByRole('dialog').textContent).toBe(before)
@@ -180,6 +210,7 @@ describe('frozen rulebook coverage', () => {
       fireEvent.click(screen.getByRole('button', {name: new RegExp(labels[index])}))
       const dialog = screen.getByRole('dialog')
       expect(within(dialog).getByRole('heading', {name: labels[index]})).toBeInTheDocument()
+      fireEvent.click(within(dialog).getByRole('button', {name: 'Skip interaction'}))
       const values = within(dialog).getAllByRole('definition').map((element) => Number(element.textContent))
       expect(values).toEqual(deltas[index])
       fireEvent.click(within(dialog).getByRole('button', {name: /try another choice/i}))
@@ -216,6 +247,7 @@ describe('Adventure presentation clarity', () => {
     expect(dialog).toHaveClass(`adventure-result-${category}`)
     expect(within(dialog).getByRole('heading', {level: 2})).toHaveTextContent(event.choices[index])
     expect(within(dialog).getByText(`${category} choice · LOCAL DEMO`)).toBeVisible()
+    fireEvent.click(within(dialog).getByRole('button', {name: 'Skip interaction'}))
     expect(within(dialog).getByText(event.consequences[index])).toBeVisible()
     expect(within(dialog).getByText(/before history modifiers and clamping/)).toBeVisible()
     fireEvent.click(within(dialog).getByRole('button', {name: /try another choice/i}))

@@ -11,6 +11,15 @@ async function configured(environment: string | undefined, rpc: string | undefin
 afterEach(() => { vi.unstubAllEnvs(); vi.resetModules() })
 
 describe('local contract configuration boundary', () => {
+  it('defaults to a deterministic read-only test environment before explicit local opt-in', async () => {
+    const contracts = await import('./contracts')
+    expect(contracts.localMode).toBe(false)
+    expect(contracts.environmentReady).toBe(true)
+    expect(contracts.activeChainId).toBe(143)
+    expect(contracts.approvedGameAddress).toBeUndefined()
+    expect(contracts.localDeploymentStartBlock).toBeUndefined()
+  })
+
   it('enables the fixture only with explicit exact-local configuration', async () => {
     const contracts = await configured('local', 'http://127.0.0.1:8545', '0x1111111111111111111111111111111111111111')
     expect(contracts.localMode).toBe(true)

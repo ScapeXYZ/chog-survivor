@@ -12,6 +12,8 @@ const out = new URL('../reports/task12/', import.meta.url)
 if (!GAME || !START_BLOCK) throw new Error('Set the verified local game address and deployment block before E2E testing.')
 const chain = defineChain({id: CHAIN_ID, name: 'Local Anvil — TEST ONLY', nativeCurrency: {name: 'Local ETH', symbol: 'ETH', decimals: 18}, rpcUrls: {default: {http: [RPC]}}})
 const publicClient = createPublicClient({chain, transport: http(RPC)})
+// PUBLIC TEST-ONLY Anvil mnemonic, not a production secret.
+// Never fund or reuse these derived accounts on public networks.
 const mnemonic = 'test test test test test test test test test test test junk'
 const accounts = [mnemonicToAccount(mnemonic, {addressIndex: 0}), mnemonicToAccount(mnemonic, {addressIndex: 1})]
 const wallets = new Map(accounts.map(account => [account.address.toLowerCase(), createWalletClient({account, chain, transport: http(RPC)})]))
@@ -58,7 +60,7 @@ try {
   check('browser verified token 1001 owner', await page.getByText(accounts[0].address, {exact: true}).isVisible())
   await page.getByRole('button', {name: 'Adventure'}).click(); await page.getByText(/ready for one local contract-backed action/i).waitFor()
   const before = await publicClient.readContract({address: GAME, abi: gameAbi, functionName: 'characterOf', args: [1001n]})
-  await page.locator('.adventure-choice').first().click(); await page.getByText(/authoritative contract preview/i).waitFor(); await page.getByRole('button', {name: /confirm local action/i}).click(); await page.getByText(/confirmed on local anvil/i).waitFor({timeout: 20_000})
+  await page.locator('.adventure-choice').first().click(); await page.getByRole('button', {name: 'Skip interaction'}).click(); await page.getByText(/authoritative contract preview/i).waitFor(); await page.getByRole('button', {name: /confirm local action/i}).click(); await page.getByText(/confirmed on local anvil/i).waitFor({timeout: 20_000})
   const after = await publicClient.readContract({address: GAME, abi: gameAbi, functionName: 'characterOf', args: [1001n]})
   check('browser transaction changed token-bound progression', after[0] !== before[0] || after[1] !== before[1] || after[2] !== before[2]); check('browser sent a real local transaction', evidence.transactions.length === 1)
   await page.getByRole('button', {name: /return to adventure/i}).click(); await page.getByText(/already acted for the current local-chain utc day/i).waitFor(); check('daily lock visible after confirmation', true)
@@ -69,7 +71,7 @@ try {
   const transferred = await publicClient.readContract({address: GAME, abi: gameAbi, functionName: 'characterOf', args: [1001n]})
   check('transfer retained progression', transferred[0] === after[0] && transferred[1] === after[1] && transferred[2] === after[2]); check('history remained visible after transfer', await page.locator('.survivor-history-list li').count() >= 1)
   await publicClient.request({method: 'evm_increaseTime', params: [86400]}); await publicClient.request({method: 'evm_mine', params: []})
-  await page.getByRole('button', {name: 'Adventure'}).click(); await page.getByText(/ready for one local contract-backed action/i).waitFor({timeout: 20_000}); await page.locator('.adventure-choice').nth(1).click(); await page.getByRole('button', {name: /confirm local action/i}).click(); await page.getByText(/confirmed on local anvil/i).waitFor({timeout: 20_000})
+  await page.getByRole('button', {name: 'Adventure'}).click(); await page.getByText(/ready for one local contract-backed action/i).waitFor({timeout: 20_000}); await page.locator('.adventure-choice').nth(1).click(); await page.getByRole('button', {name: 'Skip interaction'}).click(); await page.getByRole('button', {name: /confirm local action/i}).click(); await page.getByText(/confirmed on local anvil/i).waitFor({timeout: 20_000})
   check('new owner acted on next local UTC day', evidence.transactions.filter(tx => tx.to.toLowerCase() === GAME.toLowerCase()).length === 2)
   await page.getByRole('button', {name: /return to adventure/i}).click(); await page.getByRole('button', {name: 'Character'}).click(); await page.locator('.survivor-history-list li').nth(1).waitFor(); check('journal contains both owner eras', await page.locator('.survivor-history-list li').count() >= 2)
   const screens = ['Home', 'Adventure', 'Character', 'Settings'], widths = [360, 390, 430, 768, 1024, 1280, 1440, 1920]
