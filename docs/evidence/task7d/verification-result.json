@@ -1,0 +1,52 @@
+{
+  "status": "PUBLIC_SOURCE_VERIFIED_EXACT_MATCH",
+  "checkedAt": "2026-10-16T22:38:24.855234+00:00",
+  "url": "https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code",
+  "chainId": 143,
+  "publicGETWithoutAuthentication": true,
+  "temporarySubmissionResult": false,
+  "pageSHA256": "e448341e73999d8d68efbeff0a20733e72eeff1daf84f8f029e457cf971f6e66",
+  "publicPageMarkers": [
+    "Source Code Verified",
+    "Exact Match",
+    "Contract Name ChogSurvivor",
+    "Compiler Version v0.8.28+commit.7893614a",
+    "Optimization Enabled Yes with 200 runs",
+    "cancun EvmVersion",
+    "License MIT"
+  ],
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "publishedSourceExact": true,
+  "publishedABIMatchesAll12ArtifactEntries": true,
+  "constructorArguments": [],
+  "compiler": "0.8.28+commit.7893614a",
+  "publishedCompilerSettings": {
+    "remappings": [
+      "forge-std/=lib/forge-std/src/"
+    ],
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "evmVersion": "cancun",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "abi"
+        ]
+      }
+    }
+  },
+  "semanticSettingsMatchPreparedInput": true,
+  "outputSelectionDifference": "Explorer outputSelection requests ABI/bytecode; local input additionally requests metadata. Output selection does not change the deployed bytes; code-generating settings and source match.",
+  "independentAudit": false,
+  "walletProviderClearance": false,
+  "sourceSubmittedByThisTask": false,
+  "ownerReportedSuccessfulSubmission": true,
+  "startingCommit": "8e5e537f90fd9b0701b79947ae922f2be5cd5b81"
+}

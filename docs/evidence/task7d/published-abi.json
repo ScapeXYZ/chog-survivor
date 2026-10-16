@@ -1,0 +1,511 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint64",
+        "name": "day",
+        "type": "uint64"
+      }
+    ],
+    "name": "AlreadyActed",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "choiceId",
+        "type": "uint8"
+      }
+    ],
+    "name": "InvalidChoice",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
+    "name": "NotTokenOwner",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "achievementId",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "day",
+        "type": "uint64"
+      }
+    ],
+    "name": "AchievementEarned",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint64",
+        "name": "day",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "eventId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "choiceId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "outcomeId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "int32",
+        "name": "xpDelta",
+        "type": "int32"
+      },
+      {
+        "indexed": false,
+        "internalType": "int16",
+        "name": "trustDelta",
+        "type": "int16"
+      },
+      {
+        "indexed": false,
+        "internalType": "int16",
+        "name": "scarsDelta",
+        "type": "int16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "xpAfter",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "trustAfter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "scarsAfter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "streakAfter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "unmarkedStreakAfter",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "achievementMaskAfter",
+        "type": "uint256"
+      }
+    ],
+    "name": "AdventureResolved",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "CHOG_GENESIS",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "choiceId",
+        "type": "uint8"
+      }
+    ],
+    "name": "act",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint64",
+            "name": "day",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint8",
+            "name": "eventId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "choiceId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "outcomeId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "int32",
+            "name": "xpDelta",
+            "type": "int32"
+          },
+          {
+            "internalType": "int16",
+            "name": "trustDelta",
+            "type": "int16"
+          },
+          {
+            "internalType": "int16",
+            "name": "scarsDelta",
+            "type": "int16"
+          },
+          {
+            "internalType": "uint32",
+            "name": "xpAfter",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "trustAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "scarsAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "streakAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "unmarkedStreakAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newlyEarnedAchievementMask",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "achievementMaskAfter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "titleId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "canAct",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ChogSurvivor.Preview",
+        "name": "result",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "characterOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint32",
+            "name": "xp",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "trust",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "scars",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "streak",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "unmarkedStreak",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint64",
+            "name": "lastActionDay",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint8",
+            "name": "lastOutcomeId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "eventMask",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "achievementMask",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasActed",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ChogSurvivor.CharacterView",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint64",
+        "name": "day",
+        "type": "uint64"
+      }
+    ],
+    "name": "eventFor",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint8",
+        "name": "choiceId",
+        "type": "uint8"
+      }
+    ],
+    "name": "preview",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint64",
+            "name": "day",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint8",
+            "name": "eventId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "choiceId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "outcomeId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "int32",
+            "name": "xpDelta",
+            "type": "int32"
+          },
+          {
+            "internalType": "int16",
+            "name": "trustDelta",
+            "type": "int16"
+          },
+          {
+            "internalType": "int16",
+            "name": "scarsDelta",
+            "type": "int16"
+          },
+          {
+            "internalType": "uint32",
+            "name": "xpAfter",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "trustAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "scarsAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "streakAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "unmarkedStreakAfter",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newlyEarnedAchievementMask",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "achievementMaskAfter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "titleId",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "canAct",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ChogSurvivor.Preview",
+        "name": "result",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "titleOf",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

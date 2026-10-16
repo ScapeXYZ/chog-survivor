@@ -1,8 +1,10 @@
 # Chogathon 2026 submission draft
 
-## Verified Monad mainnet deployment — Task 7A
+## Verified Monad mainnet deployment and source
 
-Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+[Published verified source](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code) · Solidity **0.8.28+commit.7893614a**, optimizer **200**, **Cancun**. Independently confirmed on the public Code page in [Task 7D](TASK_7D_SOURCE_VERIFICATION_RESULT.md); source verification does not imply an audit or frontend release approval.
 
 The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
 
@@ -64,4 +66,4 @@ Follow the [three-minute outline](DEMO_VIDEO_OUTLINE.md). Start with the pitch a
 - [ ] Check mobile/desktop, keyboard/touch, reduced motion, audio preferences, Skip and rejected/RPC-failure behavior.
 - [ ] Replace every bracketed field and submit before the confirmed deadline.
 
-Do not reset/restart Anvil, advance time, mint, act or transfer again as part of preparation. No new contract or mainnet deployment is included. Collection governance/source/security, artwork rights and explicit deployment authorization remain separate gates for any future production game.
+Do not reset/restart Anvil, advance time, mint, act or transfer again as part of preparation. No new contract or mainnet deployment is included. Source verification is complete for the deployed game. Collection governance/custody, security-risk acceptance, artwork rights and explicit frontend publication/activation remain separate release gates.

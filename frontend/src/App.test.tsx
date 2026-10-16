@@ -38,7 +38,7 @@ describe('game lobby navigation', () => {
     expect(wallet.connect).not.toHaveBeenCalled()
     expect(screen.getByRole('heading', {name: 'Game contract information'})).toBeVisible()
     expect(screen.getByRole('link', {name: /MonadScan deployment record/})).toHaveAttribute('href', 'https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code')
-    expect(screen.getByText(/Explorer source verification is pending; deployment is unaudited/)).toBeVisible()
+    expect(screen.getByText(/Source verified on MonadScan \(Exact Match\); deployment remains unaudited/)).toBeVisible()
   })
   it('connects only from an explicit wallet button without requesting a chain switch', () => {
     const connector = {id: 'injected'}

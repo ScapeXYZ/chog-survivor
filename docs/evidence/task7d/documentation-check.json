@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "path": "README.md",
+      "canonicalAddressAndTransactionLinks": true,
+      "publicExactMatchSourceDisclosure": true,
+      "relativeLinksExist": true
+    },
+    {
+      "path": "docs/DEMO_DEPLOYMENT_GUIDE.md",
+      "canonicalAddressAndTransactionLinks": true,
+      "publicExactMatchSourceDisclosure": true,
+      "relativeLinksExist": true
+    },
+    {
+      "path": "docs/JUDGE_QUICK_START.md",
+      "canonicalAddressAndTransactionLinks": true,
+      "publicExactMatchSourceDisclosure": true,
+      "relativeLinksExist": true
+    },
+    {
+      "path": "docs/HACKATHON_SUBMISSION_DRAFT.md",
+      "canonicalAddressAndTransactionLinks": true,
+      "publicExactMatchSourceDisclosure": true,
+      "relativeLinksExist": true
+    }
+  ],
+  "hostingStillForcesSimulation": true,
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7"
+}

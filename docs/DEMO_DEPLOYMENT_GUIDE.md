@@ -1,8 +1,10 @@
 # Demo environment and deployment guide
 
-## Verified Monad mainnet deployment — Task 7A
+## Verified Monad mainnet deployment and source
 
-Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+[Published verified source](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code) · Solidity **0.8.28+commit.7893614a**, optimizer **200**, **Cancun**. Independently confirmed on the public Code page in [Task 7D](TASK_7D_SOURCE_VERIFICATION_RESULT.md); source verification does not imply an audit or frontend release approval.
 
 The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
 
@@ -91,4 +93,4 @@ VITE_CHOG_ENV=mainnet VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SU
 
 This is a local build, not permission to interact or publish. Simulation remains available without a wallet; compatible injected EVM wallets are explicitly selected via EIP-6963. Real actions require current NFT ownership on chain 143, matching runtime/NFT binding, fresh day/preview/simulation/gas checks and explicit wallet confirmation. Never transfer or approve the NFT to play. Mainnet gas is real MON. Reject unexpected wallet warnings or transaction fields.
 
-Keep the checked-in Vercel build command in production simulation until a separate approval identifies the exact mainnet artifact, destination and risk disposition. Explorer source publishing is also a separate approval gate; use the locally reproduced standard JSON in the Task 7A evidence packet only after authorization.
+Keep the checked-in Vercel build command in production simulation until a separate approval identifies the exact mainnet artifact, destination and risk disposition. The owner has completed explorer source publication, independently confirmed in Task 7D. The Task 7A Standard JSON remains the matching historical input; no resubmission or redeployment is needed. Frontend publication/activation remains separately gated.

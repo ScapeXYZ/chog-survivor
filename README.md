@@ -1,8 +1,10 @@
 # Chog Survivor
 
-## Verified Monad mainnet deployment — Task 7A
+## Verified Monad mainnet deployment and source
 
-Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+[Published verified source](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code) · Solidity **0.8.28+commit.7893614a**, optimizer **200**, **Cancun**. Independently confirmed on the public Code page in [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md); source verification does not imply an audit or frontend release approval.
 
 Genuine mainnet NFT collection: **[Chog Genesis · 0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763](https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763)** on Monad **143**. This collection is distinct from the game contract above and from local Anvil fixtures.
 
@@ -80,11 +82,11 @@ The frozen contract SHA-256 remains:
 
 ## Release status
 
-No game deployment is approved on Monad, and production gameplay writes/history remain disabled. Canonical collection source/governance/security gates are separate from static-demo hosting. The game has no NFT custody, staking, inventory, currency, wagering or marketplace.
+The owner-deployed Monad game and its published source are verified above. The public website remains simulation-only; mainnet gameplay activation is not approved. Collection governance/custody and wallet-policy gates remain separate from source verification. The game has no NFT custody, staking, inventory, currency, wagering or marketplace.
 
 Current runtime illustrations are marked provisional in the [asset inventory](frontend/ASSET_INVENTORY.md). Public demo/repository/video release requires explicit review of those exact assets and intended uses. No artwork was replaced or generated. Existing fonts and typography are preserved; the bundled Lilita One license is also included with unchanged license terms at `frontend/public/licenses/LilitaOne-OFL.txt` for distribution. Genuine collection metadata or ownership does not grant artwork permission.
 
-The demo source and Task 4W audit/tests are committed through `ac0029f`. Task 5A disclosure/documentation changes are a local review candidate and have not been pushed or deployed. See the [Task 5A release report](docs/TASK_5A_RELEASE_READINESS.md) for current checks and remaining blockers.
+Tasks 5A–7C were organized into local commits through `8e5e537`; no release push or frontend publication was performed. See [Task 7C](docs/TASK_7C_SOURCE_VERIFICATION_AND_GIT.md) for commit scope/exclusions and [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md) for the current source-verification result and remaining blockers.
 
 ## Submission materials
 

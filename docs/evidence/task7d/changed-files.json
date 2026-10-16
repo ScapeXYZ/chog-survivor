@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "startingCommit": "8e5e537f90fd9b0701b79947ae922f2be5cd5b81",
+  "modified": [
+    {
+      "path": "README.md",
+      "sha256": "9d701171059cfcbb107ea1a810f4c811c2aec8376b0bb26b4cf5945f273811da"
+    },
+    {
+      "path": "docs/DEMO_DEPLOYMENT_GUIDE.md",
+      "sha256": "c8a4e8e52ed2fdd5383a4c54c2d5fbf204a6c77a5175fda1f188e91f577c50cc"
+    },
+    {
+      "path": "docs/HACKATHON_SUBMISSION_DRAFT.md",
+      "sha256": "6eb937d9872bb4da10fd622dabdb88a822b29ff538f98883de24694354281239"
+    },
+    {
+      "path": "docs/JUDGE_QUICK_START.md",
+      "sha256": "98a43177f2ea2721eb863a4ab50af81f10462a0e06b1144fe369ebb2c217af6f"
+    },
+    {
+      "path": "frontend/src/App.test.tsx",
+      "sha256": "714c5c8df55ed53e39e787facf31dc81a5a7c7108e54e95a06f3175fd0312b2f"
+    },
+    {
+      "path": "frontend/src/GameContractInfo.tsx",
+      "sha256": "580c463cb5e072b39cbd33bc0db87af1280e0fbee29953d5a188c67c838f3791"
+    }
+  ],
+  "new": [
+    {
+      "path": "docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md",
+      "sha256": "df2dc33d3af3115e4956501ead75291f1768ae59c7c935fdc92613d1f82c3ad9"
+    },
+    {
+      "path": "docs/evidence/task7d/README.md",
+      "sha256": "f5d608956feb46e60f6ec059360eeb31e5aba347a0d10eda1baf6013e5e954f3"
+    },
+    {
+      "path": "docs/evidence/task7d/documentation-check.json",
+      "sha256": "2161246754fc6b40c85d817ce9f0eb4c4d62deaf0b546a06e330146a61fd3c00"
+    },
+    {
+      "path": "docs/evidence/task7d/frontend-regression.log",
+      "sha256": "4ac3b7f89bd53bd43915a916aad048948348e619786ef37c162e2153806adbf3"
+    },
+    {
+      "path": "docs/evidence/task7d/published-abi.json",
+      "sha256": "a624ce3b8c23e96c2fd20598d7a1204813910c25712f9c8004814cee909ff656"
+    },
+    {
+      "path": "docs/evidence/task7d/published-editor-data.json",
+      "sha256": "3c4399c283720965da4010c64caebbb5a13d755ed3e6dc15a624c1a75df3129c"
+    },
+    {
+      "path": "docs/evidence/task7d/typecheck.log",
+      "sha256": "0e027df3acb2a52952cdad4a974faf167482467fee04d9cb6cbf7d0e90acc8f7"
+    },
+    {
+      "path": "docs/evidence/task7d/verification-result.json",
+      "sha256": "76539f79091cad8b8c5be2d1e375bafc7e77140fd90c271ccdec95a313d55f4b"
+    }
+  ],
+  "inventoryExcludes": [
+    "changed-files.json (self)",
+    "packet-files.sha256 (separate final checksum list)"
+  ],
+  "priorFilesDeleted": false,
+  "allOtherTrackedContentsPreserved": true,
+  "previousCommitsPreserved": true,
+  "rawHTMLAndDiagnosticLogIgnoredAndPreserved": true,
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "frozenSolidityArtifactManifestFontsArtworkHostingAndGameplayUnchanged": true,
+  "sourceAndStatusDisplayOnly": true
+}
