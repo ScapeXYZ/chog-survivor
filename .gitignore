@@ -46,3 +46,30 @@ keystore*
 /design/chog-identity-reference.png
 /design/chog-landing-reference.pdf
 /design/chog-parchment-reference.png
+
+# Private Task 5B film workspace: retain locally; publication/asset rights unresolved.
+/demo-video/
+
+# Task review captures that are local diagnostics, not canonical release evidence.
+/docs/evidence/**/*.html
+/docs/evidence/**/*-page.txt
+/docs/evidence/**/*-portal.txt
+/docs/evidence/**/*portal-bundle.txt
+/docs/evidence/**/delegator-explorer.txt
+/docs/evidence/**/eip7702.txt
+/docs/evidence/**/metamask-smart-account-guidance.txt
+/docs/evidence/**/forge-*-help.txt
+/docs/evidence/**/*failed*
+/docs/evidence/**/*error.log
+/docs/evidence/**/*error.txt
+/docs/evidence/**/*sandbox*
+/docs/evidence/**/*diagnostic*
+/docs/evidence/**/*stderr.log
+/docs/evidence/**/start-tree.json
+/docs/evidence/**/*.patch
+/docs/evidence/task7a/production-build-inherited-env.log
+/docs/evidence/task7a/production-build-stale-output.log
+/docs/evidence/task7a/rpc-transcript-invalid-choice.json
+/docs/evidence/task7c/hosted-bundle.js
+/docs/evidence/task7c/initial-file-inventory.json
+/docs/evidence/task7c/git-start.txt
