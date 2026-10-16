@@ -2,7 +2,7 @@ import {useEffect, useMemo, useState} from 'react'
 import {achievements, demoCharacter, demoEventIndex, events, titles} from './game-data'
 import {shortAddress, signed} from './utils'
 import {useSurvivorIdentity} from './useSurvivorIdentity'
-import {localMode} from './contracts'
+import {localMode, mainnetMode} from './contracts'
 import {LocalContractAdventure} from './LocalContractAdventure'
 import wildEnvironment from './assets/ruined-wild-environment-provisional.webp'
 import fogOverlay from './assets/moonlit-fog-overlay-provisional.webp'
@@ -112,5 +112,7 @@ function DemoAdventure({now, selectedToken, onHome, onCharacter, onFindChogs, on
 }
 
 export function Adventure(props: {now: number; selectedToken?: bigint; onHome: () => void} & AdventureNavigation) {
-  return localMode ? <LocalContractAdventure {...props}/> : <DemoAdventure {...props}/>
+  const [live, setLive] = useState(false)
+  if (localMode) return <LocalContractAdventure {...props}/>
+  return <>{mainnetMode && <button onClick={() => setLive(value => !value)}>{live ? 'Browse walletless simulation' : 'Play Monad mainnet · real MON gas'}</button>}{mainnetMode && live ? <LocalContractAdventure {...props}/> : <DemoAdventure {...props}/>}</>
 }

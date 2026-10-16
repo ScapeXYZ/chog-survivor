@@ -1,6 +1,7 @@
 import {defineChain, isAddress, type Address} from 'viem'
 import {createConfig, http} from 'wagmi'
 import {injected} from 'wagmi/connectors'
+import {mainnetDeployment, validMainnetDeployment} from './mainnetDeployment'
 
 export const MONAD_CHAIN_ID = 143
 export const LOCAL_CHAIN_ID = 31338
@@ -42,14 +43,18 @@ export const activeNetworkName = localMode ? 'Local Anvil (test only)' : 'Monad'
 export const wagmiConfig = createConfig({
   chains: localMode ? [localAnvil] : [monad],
   connectors: [injected()],
+  multiInjectedProviderDiscovery: true,
   transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http()},
 })
 
-// A production game deployment has not been approved. Local mode is the only
-// environment in which a game address can become active; an environment
-// variable by itself must never authorize Monad writes or game-history reads.
-export const approvedGameAddress: Address | undefined =
-  localMode ? localGameAddress as Address : undefined
+export const mainnetMode = import.meta.env.VITE_CHOG_ENV === 'mainnet' &&
+  validMainnetDeployment(mainnetDeployment)
+export const contractMode = localMode || mainnetMode
+export const deploymentStartBlock = localMode ? localDeploymentStartBlock : mainnetMode ? mainnetDeployment!.deploymentBlock : undefined
+
+// An approved source manifest AND explicit mainnet mode are both required.
+export const approvedGameAddress: Address | undefined = localMode ? localGameAddress as Address :
+  mainnetMode ? mainnetDeployment!.address : undefined
 
 export const nftAbi = [
   {

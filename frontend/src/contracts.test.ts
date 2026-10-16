@@ -45,3 +45,19 @@ describe('local contract configuration boundary', () => {
     expect(contracts.approvedGameAddress).toBeUndefined()
   })
 })
+
+ it('uses only the verified manifest with explicit mainnet opt-in; environment addresses cannot override it', async () => {
+   vi.stubEnv('VITE_CHOG_SURVIVOR_ADDRESS', '0x1111111111111111111111111111111111111111')
+   const contracts = await configured('mainnet', undefined, undefined)
+   expect(contracts.mainnetMode).toBe(true)
+   expect(contracts.contractMode).toBe(true)
+   expect(contracts.approvedGameAddress).toBe('0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390')
+   expect(contracts.deploymentStartBlock).toBe(113947533n)
+ })
+ it('retains simulation in production even with a populated manifest and environment address', async () => {
+   vi.stubEnv('VITE_CHOG_SURVIVOR_ADDRESS', '0x1111111111111111111111111111111111111111')
+   const contracts = await configured('production', undefined, undefined)
+   expect(contracts.mainnetMode).toBe(false)
+   expect(contracts.contractMode).toBe(false)
+   expect(contracts.approvedGameAddress).toBeUndefined()
+ })

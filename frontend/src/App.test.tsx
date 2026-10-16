@@ -1,7 +1,7 @@
 import {cleanup, fireEvent, render, screen} from '@testing-library/react'
 import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
 
-const wallet = vi.hoisted(() => ({connect: vi.fn(), connectors: [] as {id: string}[]}))
+const wallet = vi.hoisted(() => ({connect: vi.fn(), connectors: [] as {id: string; name?: string}[]}))
 
 vi.mock('wagmi', async (importOriginal) => ({
   ...(await importOriginal<typeof import('wagmi')>()),
@@ -28,12 +28,17 @@ describe('game lobby navigation', () => {
   it('never connects on load, navigation, or walletless adventure with a wallet available', () => {
     wallet.connectors = [{id: 'injected'}]
     render(<App />)
+    expect(screen.getByText(/Public demo is a simulation\. Wallet connection is optional/)).toBeVisible()
+    expect(screen.getByText(/Production game transactions are disabled/)).toBeVisible()
     expect(wallet.connect).not.toHaveBeenCalled()
     fireEvent.click(screen.getByRole('button', {name: /enter the wild/i}))
     expect(screen.getByText('DEMO STATS — NOT SAVED')).toBeVisible()
     fireEvent.click(screen.getByRole('button', {name: /^character$/i}))
     fireEvent.click(screen.getByRole('button', {name: /^settings$/i}))
     expect(wallet.connect).not.toHaveBeenCalled()
+    expect(screen.getByRole('heading', {name: 'Game contract information'})).toBeVisible()
+    expect(screen.getByRole('link', {name: /MonadScan deployment record/})).toHaveAttribute('href', 'https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code')
+    expect(screen.getByText(/Explorer source verification is pending; deployment is unaudited/)).toBeVisible()
   })
   it('connects only from an explicit wallet button without requesting a chain switch', () => {
     const connector = {id: 'injected'}
@@ -45,6 +50,21 @@ describe('game lobby navigation', () => {
       fireEvent.click(button)
       expect(wallet.connect).toHaveBeenCalledExactlyOnceWith({connector})
     }
+  })
+  it('selects the intended wallet and cancels without connection', () => {
+    const metamask = {id: 'io.metamask', name: 'MetaMask'}
+    const rabby = {id: 'io.rabby', name: 'Rabby'}
+    wallet.connectors = [metamask, rabby]
+    render(<App />)
+    fireEvent.click(screen.getAllByRole('button', {name: /connect wallet/i})[0])
+    expect(screen.getByRole('dialog')).toBeVisible()
+    expect(wallet.connect).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', {name: 'Cancel'}))
+    expect(wallet.connect).not.toHaveBeenCalled()
+    fireEvent.click(screen.getAllByRole('button', {name: /connect wallet/i})[1])
+    fireEvent.click(screen.getByRole('button', {name: 'Rabby'}))
+    expect(wallet.connect).toHaveBeenCalledExactlyOnceWith({connector: rabby})
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
   it('persists functional channel, mute, and volume settings across remounts', () => {
     localStorage.clear()

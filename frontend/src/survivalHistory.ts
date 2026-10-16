@@ -6,21 +6,26 @@ export type HistoryClient = Pick<PublicClient, 'getBlock' | 'getLogs'>
 export type AdventureHistory = {kind: 'adventure'; tokenId: bigint; owner: Address; day: bigint; eventId: number; choiceId: number; outcomeId: number; xpDelta: number; trustDelta: number; scarsDelta: number; xpAfter: number; trustAfter: number; scarsAfter: number; streakAfter: number; unmarkedStreakAfter: number; achievementMaskAfter: bigint; blockNumber: bigint; transactionIndex: number; logIndex: number; transactionHash: Hex; timestamp: bigint}
 export type AchievementHistory = {kind: 'achievement'; tokenId: bigint; achievementId: number; day: bigint; blockNumber: bigint; transactionIndex: number; logIndex: number; transactionHash: Hex; timestamp: bigint}
 export type HistoryRecord = AdventureHistory | AchievementHistory
-export type HistoryResult = {records: HistoryRecord[]; complete: boolean; partial: boolean; error?: string; latestBlock: bigint}
-const chunkSize = 500n
+export type HistoryResult = {records: HistoryRecord[]; complete: boolean; partial: boolean; error?: string; latestBlock: bigint; nextBlock?: bigint}
 
 // Token ID is topic[1] for both frozen events, so each request is token-bound
 // at the node instead of relying on a wallet address or client-side filtering.
-export async function readSurvivalHistory(client: HistoryClient, address: Address, tokenId: bigint, startBlock: bigint, active: () => boolean): Promise<HistoryResult> {
-  const first = await client.getBlock({blockTag: 'latest'})
+export async function readSurvivalHistory(client: HistoryClient, address: Address, tokenId: bigint, startBlock: bigint, active: () => boolean, options?: {finalized: boolean; maxChunks: number; endBlock?: bigint}): Promise<HistoryResult> {
+  // The public Monad RPC rejects log ranges above 100 blocks.
+  const chunkSize = options?.finalized ? 100n : 500n
+  const first = await client.getBlock(options?.endBlock === undefined ? {blockTag: options?.finalized ? 'finalized' : 'latest'} : {blockNumber: options.endBlock})
   const latest = first.number
   if (latest === null || latest < startBlock) return {records: [], complete: true, partial: false, latestBlock: latest ?? 0n}
   const records: HistoryRecord[] = []
+  // Newest bounded page first. Older pages retain this finalized boundary.
+  const pageStart = options && latest - BigInt(options.maxChunks) * chunkSize + 1n > startBlock ? latest - BigInt(options.maxChunks) * chunkSize + 1n : startBlock
   const seen = new Set<string>()
   const timestamps = new Map<bigint, bigint>()
   async function timestamp(blockNumber: bigint) { if (!timestamps.has(blockNumber)) timestamps.set(blockNumber, (await client.getBlock({blockNumber})).timestamp); return timestamps.get(blockNumber)! }
   try {
-    for (let fromBlock = startBlock; fromBlock <= latest; fromBlock += chunkSize) {
+    let chunks = 0
+    for (let fromBlock = pageStart; fromBlock <= latest; fromBlock += chunkSize) {
+      if (options && chunks++ >= options.maxChunks) throw new Error('History range exceeds the public RPC budget. An indexer or paginated archive is required; shown history is incomplete.')
       if (!active()) throw new Error('History request superseded')
       const toBlock = fromBlock + chunkSize - 1n > latest ? latest : fromBlock + chunkSize - 1n
       const [adventures, achievements] = await Promise.all([
@@ -43,9 +48,9 @@ export async function readSurvivalHistory(client: HistoryClient, address: Addres
   } catch (error) {
     return {records: records.sort(order), complete: false, partial: records.length > 0, error: error instanceof Error ? error.message : 'History RPC failure', latestBlock: latest}
   }
-  const last = await client.getBlock({blockTag: 'latest'})
+  const last = await client.getBlock(options?.finalized ? {blockNumber: latest} : {blockTag: 'latest'})
   if (last.hash !== first.hash || last.number !== latest) return {records: records.sort(order), complete: false, partial: records.length > 0, error: 'Local chain changed while history was read; refresh.', latestBlock: latest}
-  return {records: records.sort(order), complete: true, partial: false, latestBlock: latest}
+  return {records: records.sort(order), complete: pageStart === startBlock, partial: pageStart !== startBlock, latestBlock: latest, ...(pageStart > startBlock ? {nextBlock: pageStart - 1n} : {})}
 }
 
 function order(a: HistoryRecord, b: HistoryRecord) { return Number(a.blockNumber - b.blockNumber) || a.transactionIndex - b.transactionIndex || a.logIndex - b.logIndex }

@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import {useReadContract} from 'wagmi'
 import {zeroAddress} from 'viem'
-import {activeChain, approvedGameAddress, CHOG_GENESIS, gameReadAbi, localMode} from './contracts'
+import {activeChain, approvedGameAddress, CHOG_GENESIS, gameReadAbi, localMode, contractMode, mainnetMode} from './contracts'
 import {achievements, events, titles} from './game-data'
 import {parseTokenId} from './utils'
 import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurvivorIdentity'
@@ -63,7 +63,7 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
   const history = useSurvivalHistory(selectedToken, bound)
   const metadata = useNftMetadata(selectedToken, verified, scopeKey)
 
-  let progressionMessage = `Progression unavailable — no approved game deployment is configured. NFT ownership can still be verified on ${localMode ? 'the local test fixture' : 'Monad'}.`
+  let progressionMessage = `Progression unavailable — contract-backed gameplay is not enabled in this build. NFT ownership can still be verified on ${localMode ? 'the local test fixture' : 'Monad'}.`
   if (approvedGameAddress !== undefined) {
     if (!verified) progressionMessage = 'Progression unavailable until this NFT identity has been verified on Monad.'
     else if (binding.isFetching || binding.isLoading) progressionMessage = 'Checking the game’s canonical collection binding…'
@@ -71,7 +71,7 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
     else if (!bound) progressionMessage = 'Game binding unavailable or mismatched. Survivor progression is not trusted.'
     else if (character.isError) progressionMessage = 'Progression read failed. No stats or achievements can be verified; retry the read.'
     else if (!state) progressionMessage = 'Reading recorded survivor state…'
-    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. Recorded local contract state.' : 'Recorded contract state · read only. Gameplay transactions remain disabled.'}`
+    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. Recorded local contract state.' : 'Recorded contract state · Monad mainnet. Actions require explicit wallet confirmation.'}`
   }
 
   async function refresh() {
@@ -153,14 +153,15 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
       </section>
 
       <section className="survivor-history" aria-labelledby="history-title"><div className="survivor-section-heading"><span className="survivor-section-number" aria-hidden="true">IV</span><h2 id="history-title">Survival History</h2><span className="survivor-journal-label">THE SURVIVAL JOURNAL</span></div>
-        {!localMode && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>History unavailable — no approved production game deployment and deployment start block are configured. Recorded decisions belong to the token ID, across owners.</p><p>No timeline has been loaded. This does not mean the survivor has no history.</p></div></div>}
-        {localMode && !bound && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>Verify the local fixture identity and game binding before reading token-bound history.</p></div></div>}
-        {localMode && bound && history.loading && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>Reading the local survival journal…</h3><p>Events are being retrieved from the deployed local game contract.</p></div></div>}
-        {localMode && bound && !history.loading && history.result?.error && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>{history.result.partial ? 'Partial local history' : 'History unavailable'}</h3><p>{history.result.error} {history.result.partial ? 'Shown entries are incomplete; refresh before relying on them.' : 'No history claim is made.'}</p><button className="survivor-retry" onClick={history.refresh}>Retry history</button></div></div>}
-        {localMode && bound && !history.loading && history.result && <>{history.result.records.length === 0 && !history.result.error ? <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>No recorded decisions.</h3><p>This token has no AdventureResolved events in the configured local deployment range.</p></div></div> : <SurvivorJournal tokenId={selectedToken!} currentOwner={owner.data!} records={history.result.records}/>}</>}
+        {!contractMode && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>History unavailable — contract-backed gameplay is not enabled in this build. Recorded decisions belong to the token ID, across owners.</p><p>No timeline has been loaded. This does not mean the survivor has no history.</p></div></div>}
+        {contractMode && !bound && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>Verify NFT ownership and game binding before reading token-bound history.</p></div></div>}
+        {contractMode && bound && history.loading && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>Reading the survival journal…</h3><p>Events are being retrieved from the verified game contract.</p></div></div>}
+        {contractMode && bound && !history.loading && history.result?.error && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>{history.result.partial ? (mainnetMode ? 'Partial mainnet history' : 'Partial local history') : 'History unavailable'}</h3><p>{history.result.error} {history.result.partial ? 'Shown entries are incomplete; refresh before relying on them.' : 'No history claim is made.'}</p><button className="survivor-retry" onClick={history.refresh}>Retry history</button></div></div>}
+        {contractMode && bound && !history.loading && history.result?.nextBlock !== undefined && !history.result.error && <p>History is incomplete. <button className="survivor-retry" onClick={history.loadOlder}>Load older history</button></p>}
+        {contractMode && bound && !history.loading && history.result && <>{history.result.records.length === 0 && !history.result.error ? <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>No recorded decisions.</h3><p>No AdventureResolved events were found in the loaded range. Older pages may still contain decisions.</p></div></div> : <SurvivorJournal tokenId={selectedToken!} currentOwner={owner.data!} records={history.result.records}/>}</>}
       </section>
     </div>
 
-    <aside className="survivor-inheritance"><span className="survivor-inheritance-seal" aria-hidden="true">✦</span><div><h2>A new owner. The same survivor.</h2><p>When ownership changes, the new owner controls the same Chog’s progression, achievements and history. The wallet is the controller; the NFT is the survivor.</p><p className="survivor-small">Progress belongs to the numeric token ID, including if that ID is ever reissued. This interface does not prove collection immutability, governance safety or token-ID non-reuse. Adventure is contract-backed only in the clearly labeled isolated local environment.</p></div></aside>
+    <aside className="survivor-inheritance"><span className="survivor-inheritance-seal" aria-hidden="true">✦</span><div><h2>A new owner. The same survivor.</h2><p>When ownership changes, the new owner controls the same Chog’s progression, achievements and history. The wallet is the controller; the NFT is the survivor.</p><p className="survivor-small">Progress belongs to the numeric token ID, including if that ID is ever reissued. This interface does not prove collection immutability, governance safety or token-ID non-reuse. Contract-backed play requires an explicitly enabled, verified deployment; simulation never changes this state.</p></div></aside>
   </section>
 }

@@ -8,7 +8,8 @@ const frontend=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
 const allowFonts=process.argv.includes('--allow-fonts')
 const require=createRequire(path.join(frontend,'package.json'))
 const {chromium}=require('playwright')
-const external=[]; const root=path.join(frontend,'dist'),checks=[],errors=[],missing=[]
+const artifactArg=process.argv.indexOf('--artifact-dir')
+const external=[]; const root=artifactArg<0?path.join(frontend,'dist'):path.resolve(process.argv[artifactArg+1]),checks=[],errors=[],missing=[]
 const server=http.createServer(async(req,res)=>{
  try{const target=path.resolve(root,'.'+decodeURIComponent(req.url.split('?')[0]==='/'?'/index.html':req.url.split('?')[0]));if(!target.startsWith(root+'/'))throw Error('invalid');const data=await fs.readFile(target);res.setHeader('Content-Type',({'.html':'text/html','.js':'application/javascript','.css':'text/css','.ttf':'font/ttf','.webp':'image/webp'})[path.extname(target)]||'application/octet-stream');res.end(data)}catch{res.statusCode=404;res.end('Not found')}
 })
@@ -25,12 +26,13 @@ try{
  await context.route('**/*',route=>{if(route.request().url().startsWith('http://127.0.0.1:5190/'))return route.continue();external.push(route.request().url());return allowFonts&&/^https:\/\/(fonts.googleapis.com|fonts.gstatic.com)\//.test(route.request().url())?route.continue():route.abort()})
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url())})
  await page.goto('http://127.0.0.1:5190/');await page.getByRole('heading',{name:/SURVIVE/}).waitFor()
- check('production artifact explicitly labels demo',await page.getByText(/LOCAL DEMO · No approved game deployment/).isVisible())
+ check('production artifact explicitly labels demo',await page.getByText(/LOCAL DEMO · Mainnet gameplay is not enabled/).isVisible())
  for(const width of [320,375,768,1440]){
   await page.setViewportSize({width,height:900})
   for(const name of ['Adventure','Character','Settings','Home']){
    await page.getByRole('navigation').getByRole('button',{name:new RegExp(`^${name}$`,'i')}).click()
    check(`${width}px ${name}: no page overflow`,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
+   await page.evaluate(() => Promise.all([...document.images].map(i => i.decode().catch(() => {}))))
    check(`${width}px ${name}: images load`,await page.evaluate(()=>[...document.images].every(i=>i.complete&&i.naturalWidth>0)))
   }
  }

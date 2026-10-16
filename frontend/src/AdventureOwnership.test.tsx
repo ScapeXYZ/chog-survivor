@@ -1,7 +1,7 @@
 import {cleanup, fireEvent, render, screen, waitFor} from '@testing-library/react'
 import {afterEach, beforeAll, beforeEach, describe, expect, it, vi} from 'vitest'
 const mock = vi.hoisted(() => ({local: false, owner: '0x1111111111111111111111111111111111111111', address: '0x1111111111111111111111111111111111111111', fetching: false, read: vi.fn(), write: vi.fn()}))
-vi.mock('./contracts', async (original) => ({...await original<typeof import('./contracts')>(), get localMode() {return mock.local}, activeChain: {id: 31338}, environmentReady: true, approvedGameAddress: '0x3333333333333333333333333333333333333333'}))
+vi.mock('./contracts', async (original) => ({...await original<typeof import('./contracts')>(), get localMode() {return mock.local}, get contractMode() {return mock.local}, activeChain: {id: 31338}, environmentReady: true, approvedGameAddress: '0x3333333333333333333333333333333333333333'}))
 const client = {
   getBlock: async () => ({timestamp: 86400000n, number: 10n}), getChainId: async () => 31338,
   readContract: async (request: {functionName: string}) => request.functionName === 'ownerOf' ? mock.owner : request.functionName === 'CHOG_GENESIS' ? CHOG_GENESIS : request.functionName === 'eventFor' ? 1 : {day: 1000n, eventId: 1, choiceId: 1, outcomeId: 1, xpDelta: 12, trustDelta: 5, scarsDelta: 0, xpAfter: 12, trustAfter: 5, scarsAfter: 0, streakAfter: 1, unmarkedStreakAfter: 1, newlyEarnedAchievementMask: 1n, achievementMaskAfter: 1n, titleId: 0, canAct: true},

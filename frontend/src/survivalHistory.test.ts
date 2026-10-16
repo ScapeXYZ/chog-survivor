@@ -47,3 +47,16 @@ describe('token-bound survival history', () => {
     expect(result.complete).toBe(false); expect(result.error).toMatch(/changed/)
   })
 })
+
+
+it('loads the newest bounded page and exposes an older finalized cursor', async () => {
+  const rpc = client([[], []], false, 2000n)
+  rpc.getBlock.mockImplementation(async request => ({number: request.blockNumber ?? 2000n, hash: '0xaaa', timestamp: 1_700_000_000n}))
+  const result = await readSurvivalHistory(rpc as never, game, token, 4n, () => true, {finalized: true, maxChunks: 1})
+  expect(result.complete).toBe(false)
+  expect(result.nextBlock).toBe(1900n)
+  expect(rpc.getLogs).toHaveBeenCalledWith(expect.objectContaining({fromBlock: 1901n, toBlock: 2000n}))
+  const older = client([[], []], false, 2000n)
+  await readSurvivalHistory(older as never, game, token, 4n, () => true, {finalized: true, maxChunks: 1, endBlock: 1900n})
+  expect(older.getLogs).toHaveBeenCalledWith(expect.objectContaining({fromBlock: 1801n, toBlock: 1900n}))
+})

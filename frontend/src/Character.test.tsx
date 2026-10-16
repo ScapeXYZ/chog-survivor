@@ -185,7 +185,7 @@ describe('authoritative progression and unavailable states', () => {
   })
   it('never substitutes Adventure fixtures or invents a timeline without a deployment', () => {
     render(<Character selectedToken={1425n} onSelectToken={vi.fn()}/>)
-    expect(screen.getByText(/Progression unavailable — no approved game deployment/)).toBeInTheDocument()
+    expect(screen.getByText(/Progression unavailable — contract-backed gameplay is not enabled/)).toBeInTheDocument()
     expect(screen.queryByText('184')).not.toBeInTheDocument()
     expect(screen.queryByText('62/100')).not.toBeInTheDocument()
     const history = screen.getByRole('heading', {name: 'Survival History'}).closest('section')!
