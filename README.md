@@ -1,14 +1,22 @@
 # Chog Survivor
 
+## Verified Monad mainnet deployment — Task 7A
+
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+Genuine mainnet NFT collection: **[Chog Genesis · 0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763](https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763)** on Monad **143**. This collection is distinct from the game contract above and from local Anvil fixtures.
+
+The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](docs/TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
+
 **“The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.”**
 
 Each token ID carries its XP, Trust, Scars, streak, achievements, title, daily lock and verified adventure journal. The wallet is only its current controller. Transfer the NFT and the next owner inherits the same survivor, including its history and daily eligibility.
 
 ## Start here, judges
 
-The publicly hostable build is a **walletless simulation**, not a live blockchain game. No public demo, repository or video URL has been verified or published by this preparation task. See the [judge quick-start](docs/JUDGE_QUICK_START.md) and [submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md).
+The [public demo](https://chog-survivor.vercel.app/) is a **walletless simulation**, not a live blockchain game. The [GitHub repository](https://github.com/ScapeXYZ/chog-survivor) is public. Both were independently accessible during Task 5A; no final video URL has been supplied. See the [judge quick-start](docs/JUDGE_QUICK_START.md) and [submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md).
 
-1. Open the eventual demo URL at `/`, or run the demo locally below.
+1. Open https://chog-survivor.vercel.app/, or run the demo locally below.
 2. Choose **Enter the Wild**. No wallet, NFT, funds or account is required.
 3. Try any of the three cards: Survivor's Trial, Timing or Story. Complete the interaction or use **Skip** to see the same original choice preview.
 4. Previews show simulated rulebook base effects. **No XP, achievements or journal entries are earned or saved. No wallet confirmation is requested.**
@@ -62,7 +70,7 @@ Do not restart/reset an existing node, rerun fixture installation, advance time 
 - `frontend/src/survivalHistory.ts` and `SurvivorJournal.tsx`: verified local event history, UTC evidence and historical controller attribution.
 - `test/`: isolated Foundry unit, fuzz, invariant, reference-model and opt-in fork tests.
 
-Task 4J verified **373 frontend tests in each environment**, **39 Foundry tests passed / six optional fork tests skipped**, production build/typecheck and 43 production-artifact Chromium checks. [Task 4K preparation](docs/TASK_4K_PREPARATION.md) records the new verification results and exact commands. Tests use a deterministic configuration baseline plus explicitly local fixtures; a green test does not mean a public contract is deployed.
+Task 5A verified **375 frontend tests in each environment**, **39 isolated Foundry tests** plus **six mainnet-fork tests**, production/local builds, **515 interaction-browser checks** and separate public-site checks. The fork uses read-only RPC and simulates writes in Foundry memory; it does not broadcast or alter Anvil. See the [release report](docs/TASK_5A_RELEASE_READINESS.md) for exact coverage and limitations. Tests use a deterministic configuration baseline plus explicitly local fixtures; a green test does not mean a public game contract is deployed.
 
 The frozen contract SHA-256 remains:
 
@@ -76,7 +84,7 @@ No game deployment is approved on Monad, and production gameplay writes/history 
 
 Current runtime illustrations are marked provisional in the [asset inventory](frontend/ASSET_INVENTORY.md). Public demo/repository/video release requires explicit review of those exact assets and intended uses. No artwork was replaced or generated. Existing fonts and typography are preserved; the bundled Lilita One license is also included with unchanged license terms at `frontend/public/licenses/LilitaOne-OFL.txt` for distribution. Genuine collection metadata or ownership does not grant artwork permission.
 
-Before publication, review the [safe staging plan and release blockers](docs/TASK_4K_STAGING_PLAN.md). Required recent components are still untracked; a checkout of the current committed revision alone does not contain the complete current demo. No files have been staged or committed by this task.
+The demo source and Task 4W audit/tests are committed through `ac0029f`. Task 5A disclosure/documentation changes are a local review candidate and have not been pushed or deployed. See the [Task 5A release report](docs/TASK_5A_RELEASE_READINESS.md) for current checks and remaining blockers.
 
 ## Submission materials
 
@@ -88,4 +96,4 @@ Before publication, review the [safe staging plan and release blockers](docs/TAS
 - [Judge-access audit](docs/TASK_4J_JUDGE_ACCESS_AUDIT.md)
 - [Game rules](docs/GAME_RULES.md), [backend freeze](docs/BACKEND_FREEZE.md), [security review](docs/SECURITY_REVIEW.md)
 
-Submission deadline supplied by the owner: **October 23, 2026, 15:00 UTC**. Confirm organizer requirements and acceptance of a simulated public demo plus genuine local evidence. Hosting, repository publication, video upload and submission each remain unperformed and require approval.
+Submission deadline supplied by the owner: **October 23, 2026, 15:00 UTC**. Confirm organizer requirements and acceptance of a simulated public demo plus genuine local evidence. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; public mainnet frontend activation remains separately gated.

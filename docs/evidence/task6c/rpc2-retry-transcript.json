@@ -1,0 +1,6 @@
+[
+  {
+    "method": "eth_chainId",
+    "error": "HTTP request failed."
+  }
+]

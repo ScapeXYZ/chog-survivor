@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "offlineOnly": true,
+  "providers": 2,
+  "signedTransactionHashReconstructed": true,
+  "senderRecoveredFromPublicSignature": true,
+  "preparedCandidateUnchanged": true,
+  "frozenRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "noSigningOrBroadcast": true
+}

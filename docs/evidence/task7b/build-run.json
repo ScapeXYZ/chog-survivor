@@ -1,0 +1,15 @@
+{
+  "root": "/tmp/chog-task7b-candidates-Y76dq9",
+  "candidates": [
+    {
+      "mode": "production",
+      "directory": "/tmp/chog-task7b-candidates-Y76dq9/production",
+      "inventorySHA256": "334f02bde015d08d95c66ed52b57bdf9f02a7afaf20d04e82ecb14c93aeb79bd"
+    },
+    {
+      "mode": "mainnet",
+      "directory": "/tmp/chog-task7b-candidates-Y76dq9/mainnet",
+      "inventorySHA256": "184f1a17225a00f9dd7cfc598d65e6cf9de57e0649684e26c80b03b2a03bf416"
+    }
+  ]
+}

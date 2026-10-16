@@ -1,0 +1,38 @@
+{
+  "note": "Read-only estimate, no broadcast; sender is sampled NFT owner, not approved deployer.",
+  "creation_bytecode_sha256": "8718449c213d66745bbdc7dc0c635fdc8349b7757106f36e9db02c8d3e2e974a",
+  "calls": [
+    {
+      "method": "eth_gasPrice",
+      "params": [],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": "0x17bfac7c00",
+        "id": 1
+      }
+    },
+    {
+      "method": "eth_getBalance",
+      "params": [
+        "0x601634f3d0746b550e68439286c1ad022a5f2b88",
+        "latest"
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": "0x40f035d4966d197",
+        "id": 1
+      }
+    },
+    {
+      "method": "eth_estimateGas",
+      "params": [
+        "creation artifact; see compiled hash"
+      ],
+      "response": {
+        "jsonrpc": "2.0",
+        "result": "0x170d69",
+        "id": 1
+      }
+    }
+  ]
+}

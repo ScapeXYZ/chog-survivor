@@ -1,0 +1,82 @@
+{
+  "scope": "Only local tool policy/UI/tests/docs changed; historical reports/evidence retained. No ignored credentials or wallet profiles inspected.",
+  "historical6FPacketFilesUnchanged": [
+    "docs/TASK_6F_METAMASK_SIGNING_GUIDE.md",
+    "docs/evidence/task6f/README.md",
+    "docs/evidence/task6f/browser-tests-approved.log",
+    "docs/evidence/task6f/browser-tests-final.log",
+    "docs/evidence/task6f/browser-tests-verified.log",
+    "docs/evidence/task6f/browser-tests.log",
+    "docs/evidence/task6f/live-readonly-preflight.json",
+    "docs/evidence/task6f/owner-metamask-observation.json",
+    "docs/evidence/task6f/policy-tests-direct.log",
+    "docs/evidence/task6f/policy-tests-final.log",
+    "docs/evidence/task6f/policy-tests.log",
+    "docs/evidence/task6f/source-preservation.json",
+    "tools/mainnet-deployment/authorization.json"
+  ],
+  "intentionalSuperseded6FToolHashes": [
+    "tools/mainnet-deployment/README.md",
+    "tools/mainnet-deployment/app.mjs",
+    "tools/mainnet-deployment/browser-test.mjs",
+    "tools/mainnet-deployment/index.html",
+    "tools/mainnet-deployment/model.mjs",
+    "tools/mainnet-deployment/model.test.mjs",
+    "tools/mainnet-deployment/server.mjs",
+    "tools/mainnet-deployment/style.css"
+  ],
+  "independentAuthorizationUnchanged": true,
+  "candidateUnchanged": true,
+  "securityReview": [
+    "Reviewed the only wallet-write boundary: exact pinned eth_sendTransaction request follows selected-path consent, repeated read-only checks and persistence; no automatic write.",
+    "Server remains loopback-only with fixed read-only RPC method and host allowlists, no broadcast/config mutation endpoint, local origin guards and CSP.",
+    "Only synthetic test providers received transaction requests. No genuine wallet, signing secret or provider-submission tools used.",
+    "Review-path and consent changes invalidate async context; final missing/revoked owner decision cannot fall back to the earlier record."
+  ],
+  "patternScan": [
+    {
+      "path": "tools/mainnet-deployment/README.md",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/app.mjs",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/authorization.json",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/browser-test.mjs",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/index.html",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/model.mjs",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/model.test.mjs",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/owner-risk-acceptance.json",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/preflight.test.mjs",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/server.mjs",
+      "sensitiveLiteralPatternHits": 0
+    },
+    {
+      "path": "tools/mainnet-deployment/style.css",
+      "sensitiveLiteralPatternHits": 0
+    }
+  ]
+}

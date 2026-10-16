@@ -1,0 +1,732 @@
+{
+  "baseGitRevision": "ac0029fb294fa3754a959ee48cc25e842ed98d6f",
+  "dirtyWorkingTree": true,
+  "scope": "Review source, scripts, tests, forge-std compiler inputs, frontend lock/config and exact game/collection artifacts. No ignored credentials included.",
+  "files": [
+    {
+      "path": "foundry.toml",
+      "bytes": 289,
+      "sha256": "3bc024dfc0a3c3565148c933a37b4190f58e0c5f7222e18d0e129b4653897ecc"
+    },
+    {
+      "path": "frontend/index.html",
+      "bytes": 512,
+      "sha256": "a339d16ce363bb2b33df737ea96ccaa6eb156557cfc2dc72e4acd6e057cadb51"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "bytes": 319018,
+      "sha256": "44ebede365332ad22db9874142a228bcc080923d0578eac060bbd9d3aa7fca10"
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 1123,
+      "sha256": "eba8fd3b5827b8c8c64e5c75fbcc742c0dea7956fbeab9644cc0c2255e4823a2"
+    },
+    {
+      "path": "frontend/scripts/adventure-smoke.mjs",
+      "bytes": 10616,
+      "sha256": "f49fafa0c29a2f5b698acd5dfd700f6e38427811c7a98d55cfa6306908987c4b"
+    },
+    {
+      "path": "frontend/scripts/audio-smoke.mjs",
+      "bytes": 4418,
+      "sha256": "77dcd3c861881a24d8f231bcbc67edfd0b64f90cc6f60e850bdfd32f3d04f7b6"
+    },
+    {
+      "path": "frontend/scripts/character-smoke.mjs",
+      "bytes": 13296,
+      "sha256": "da55ef3475dcd1720cdc4435ee8bbdedad8dc999b7f6ddc383e9d9c0b869fd2c"
+    },
+    {
+      "path": "frontend/scripts/dependency-security-check.mjs",
+      "bytes": 3396,
+      "sha256": "f572b852decaa57d7fd1859707e3709ad1d7843677033d48dc74c88efccc97c6"
+    },
+    {
+      "path": "frontend/scripts/final-demo-browser.mjs",
+      "bytes": 7210,
+      "sha256": "fff24785273dc1cc1731ce9da3bfc7259b2a4ee26f3d5f1a84e8bc186f63134b"
+    },
+    {
+      "path": "frontend/scripts/game-data.parity.test.mjs",
+      "bytes": 3023,
+      "sha256": "c80f0cdaa878e4be47946f0a1a192ed687ffb95d729a62801389e8fa79059e02"
+    },
+    {
+      "path": "frontend/scripts/mainnet-enabled-browser.mjs",
+      "bytes": 11738,
+      "sha256": "718b4796a96485e8f5a3dee8787f66655f6112cefb376a5980c46a3735cffa07"
+    },
+    {
+      "path": "frontend/scripts/mainnet-readiness.mjs",
+      "bytes": 2608,
+      "sha256": "842e755f3d5163eb61c9f85d02ebe8cc620080d4b4e7bf44eff92f8e967c301c"
+    },
+    {
+      "path": "frontend/scripts/mainnet-release-preflight.mjs",
+      "bytes": 3804,
+      "sha256": "15e463c348dcf02b375db8cf1facd54021b23c52dd48b3d5a15bddbf623b7f8b"
+    },
+    {
+      "path": "frontend/scripts/mini-game-integration-smoke.mjs",
+      "bytes": 32692,
+      "sha256": "dd93273ffe7e95295cf8ce852f497b8098079979d1c2023dcd6254438fb475a2"
+    },
+    {
+      "path": "frontend/scripts/public-demo-preflight.mjs",
+      "bytes": 5239,
+      "sha256": "648807102301b9dea66b1e7bc2bdb841663683079f1d54ee46d6d0cc589fc8ab"
+    },
+    {
+      "path": "frontend/scripts/release-artifact.mjs",
+      "bytes": 2066,
+      "sha256": "bd907341fd90197cd4c2d11f1a0df8f1897370a7d09eed882a991d6c07e34bbf"
+    },
+    {
+      "path": "frontend/scripts/task12-e2e.mjs",
+      "bytes": 10537,
+      "sha256": "9b41c08b5fde57168643492ef4fce1f7b250864237703bf04436ea623b5aa651"
+    },
+    {
+      "path": "frontend/scripts/task4h-real-anvil-e2e.mjs",
+      "bytes": 15167,
+      "sha256": "0e543c82101b17c57e51d4a33f6d47d2bb0733a73f68690344d898731b7ad508"
+    },
+    {
+      "path": "frontend/scripts/task6c-provenance.mjs",
+      "bytes": 5025,
+      "sha256": "5a30413e77a9df1935d9e79b7111cfe0841484c5a6ad02d55de265450f043627"
+    },
+    {
+      "path": "frontend/scripts/task6c-readonly.mjs",
+      "bytes": 6049,
+      "sha256": "292587c8e918c84bb93e8925f302a80591aec37eca277cf26863968b88715553"
+    },
+    {
+      "path": "frontend/scripts/verify-mainnet-deployment.mjs",
+      "bytes": 2650,
+      "sha256": "4adb7a17e12943be6cb0ae16a35b84603d8713d93c9791a9fb84171b1fbd352e"
+    },
+    {
+      "path": "frontend/scripts/wallet-access-smoke.mjs",
+      "bytes": 8225,
+      "sha256": "bf0149976e9f91ab2d3d9833b41c00f67a5e3046e5459105de9eb0b4b2aa6dbe"
+    },
+    {
+      "path": "frontend/scripts/wallet-warning-evidence.mjs",
+      "bytes": 986,
+      "sha256": "26e9f7f9e8a26cf95fb979e02d4a1b3a034051775789fcac61f21eadec6c0600"
+    },
+    {
+      "path": "frontend/src/Adventure.test.tsx",
+      "bytes": 15477,
+      "sha256": "8e738f0e2e276e6e9d9e8a338182a4641c70b225fd3083a3f5d4cd77051b1a95"
+    },
+    {
+      "path": "frontend/src/Adventure.tsx",
+      "bytes": 11005,
+      "sha256": "203dafac0398589a998ff5a5257eb493fe623e570969b201a1e5769c8c1ff31b"
+    },
+    {
+      "path": "frontend/src/AdventureOwnership.test.tsx",
+      "bytes": 5214,
+      "sha256": "8e7c70bc260a61870dab55af518d49dae451b55b992d58245b7880114b8bedae"
+    },
+    {
+      "path": "frontend/src/App.test.tsx",
+      "bytes": 4654,
+      "sha256": "e2073233c6ac85a47dc3600a9ba291c72d3c9367e5557c7e94deac40bccc3a61"
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "bytes": 13930,
+      "sha256": "3e335d19d54a76ffde0120dc1e2a78481107ca8986a1f0f3a19fd68788ed2c26"
+    },
+    {
+      "path": "frontend/src/Character.test.tsx",
+      "bytes": 16831,
+      "sha256": "eea62cc127abe8872e5666298167ac005c83ce7e7d9feb2adc71d14bb1fced9a"
+    },
+    {
+      "path": "frontend/src/Character.tsx",
+      "bytes": 17718,
+      "sha256": "625b72fac2e76906e991edab496185090fecc86f4b6899a730e7e43c9f2483f2"
+    },
+    {
+      "path": "frontend/src/ConfirmedSurvivorReaction.tsx",
+      "bytes": 1259,
+      "sha256": "ef05028a325d8bcc76e84b4a05b427e7d5056a8d7f89f01a561873db69f8646c"
+    },
+    {
+      "path": "frontend/src/GameContractInfo.tsx",
+      "bytes": 1976,
+      "sha256": "179c8a8109caab8d9cf89189ebb91533d5f8c886c7210bdf7fc30578022bfd39"
+    },
+    {
+      "path": "frontend/src/LocalContractAdventure.test.tsx",
+      "bytes": 25705,
+      "sha256": "ef641f7c51417d797c28d97bc2747e14c520950da4f6cb5f5de57816327e2a88"
+    },
+    {
+      "path": "frontend/src/LocalContractAdventure.tsx",
+      "bytes": 26905,
+      "sha256": "ca78e2554ae4ee2237ae30a62ca0c029a2f8908a4e3186ceec3da0a8e7df97f9"
+    },
+    {
+      "path": "frontend/src/MainnetContractAdventure.test.tsx",
+      "bytes": 11802,
+      "sha256": "a5d463dd29741f195a2f0e992b226f94166e73ae18351ff54057f92a27b6f2f1"
+    },
+    {
+      "path": "frontend/src/MiniGamePanel.test.tsx",
+      "bytes": 9007,
+      "sha256": "989b333236c04ab7bfe56ae86f5e2b010e35b251e54d73a09cc796aafe99f377"
+    },
+    {
+      "path": "frontend/src/MiniGamePanel.tsx",
+      "bytes": 6684,
+      "sha256": "c927e34627c3905195f4ddc932dfb7458bc4546d996616ce4ff0f9e518d74191"
+    },
+    {
+      "path": "frontend/src/NewOwnerNotice.tsx",
+      "bytes": 1105,
+      "sha256": "3ffff6a4daa4e648d7ac80bb8d71122ae7b0181907883256eb8eaf29ccbd5802"
+    },
+    {
+      "path": "frontend/src/SurvivorJournal.test.tsx",
+      "bytes": 5025,
+      "sha256": "6b3170cd7d796596b9e2fcf4bafcb2cff3ac33c7841dd838c5bf66438ef7cf94"
+    },
+    {
+      "path": "frontend/src/SurvivorJournal.tsx",
+      "bytes": 4678,
+      "sha256": "fa818de23e630547e54f73e2e9d51bcb421b67291747c0be92280570a672c96f"
+    },
+    {
+      "path": "frontend/src/SurvivorJourney.test.tsx",
+      "bytes": 12747,
+      "sha256": "00f78cf23805bcc162bbc725b67eda2a80c81013339f3726eaea2b258f352bee"
+    },
+    {
+      "path": "frontend/src/SurvivorTrial.test.tsx",
+      "bytes": 9624,
+      "sha256": "01590f08ca99eef517eb212c95fadc5da129c65257eb30bacc5c32ff572b09d6"
+    },
+    {
+      "path": "frontend/src/SurvivorTrial.tsx",
+      "bytes": 8352,
+      "sha256": "3a37b94db02edb98e1da393d0985cd47cd11141ceb90ad91a63ba8517a8bdf11"
+    },
+    {
+      "path": "frontend/src/YourSurvivors.test.tsx",
+      "bytes": 13714,
+      "sha256": "5cb4eb61fc8d6d99d0ed4570e9f0d730810b0462dfb1d861a89415509abeb7bc"
+    },
+    {
+      "path": "frontend/src/YourSurvivors.tsx",
+      "bytes": 4187,
+      "sha256": "dc4990681fcef1203773a9c0486d2fdd4d220114662a209bfbd2ddb3042e15ea"
+    },
+    {
+      "path": "frontend/src/adventure.css",
+      "bytes": 25311,
+      "sha256": "a93c6b79d13a43cc8468f1b4b38724d50a3d2824492744785aa49ea78657ecd4"
+    },
+    {
+      "path": "frontend/src/adventureSession.ts",
+      "bytes": 1684,
+      "sha256": "8465680b9d09ad7aa3bc914d4cef51127a861d2ebf1cdb1d5b4d840885426c47"
+    },
+    {
+      "path": "frontend/src/assets/fonts/LilitaOne-Regular.ttf",
+      "bytes": 28092,
+      "sha256": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59"
+    },
+    {
+      "path": "frontend/src/assets/fonts/OFL.txt",
+      "bytes": 4392,
+      "sha256": "255d5debbb80eb2ea762644311f266a279e8778f00156655a516e2b7781a63e1"
+    },
+    {
+      "path": "frontend/src/assets/moonlit-fog-overlay-provisional.png",
+      "bytes": 1309913,
+      "sha256": "11dc8a9450a1a6155d46b90cd214d04a5a9c4e97c56442902f6e10d795645490"
+    },
+    {
+      "path": "frontend/src/assets/moonlit-fog-overlay-provisional.webp",
+      "bytes": 228108,
+      "sha256": "c5f90681c66899c851683478173f3d36bab007002b1d1ece06a21ce30a445d82"
+    },
+    {
+      "path": "frontend/src/assets/ruined-wild-environment-provisional.png",
+      "bytes": 2509315,
+      "sha256": "88adc89e2a8b0afef4e3370dd6380fad7037a495d73cf898bf01379a5ca15b95"
+    },
+    {
+      "path": "frontend/src/assets/ruined-wild-environment-provisional.webp",
+      "bytes": 256592,
+      "sha256": "0945a6b8824501d44af463e520c72ca98bd55b5cd6df55c1a89b01ce20894ef0"
+    },
+    {
+      "path": "frontend/src/assets/survivor-creature-provisional.png",
+      "bytes": 2692779,
+      "sha256": "42645b06d30a1b2d6e01f5a0599191db0e282f4c221ac1bc5f6d99ca3833edc8"
+    },
+    {
+      "path": "frontend/src/assets/survivor-creature-provisional.webp",
+      "bytes": 396764,
+      "sha256": "91436fa23f343cf36e3c82867d275657f5dc88a4df1dcac8f3e9b0a4d83b93c4"
+    },
+    {
+      "path": "frontend/src/assets/survivor-creature-refined-provisional.png",
+      "bytes": 2535094,
+      "sha256": "18563139a30022ffaea49fe0a6f99a66fe599354657c5a6e5af9f9433a0aac8e"
+    },
+    {
+      "path": "frontend/src/assets/survivor-creature-refined-provisional.webp",
+      "bytes": 360132,
+      "sha256": "51865d1166bcb1bd003f969b8199bdcbc35a41eae1692a902731933dd8949db0"
+    },
+    {
+      "path": "frontend/src/audio-settings.css",
+      "bytes": 1043,
+      "sha256": "013f84380ad0b27d775a223e20f64013a0900224742e29276731bf9f0772cacb"
+    },
+    {
+      "path": "frontend/src/audio.test.ts",
+      "bytes": 5677,
+      "sha256": "7423ee5c2d1789776b81b8f30ef3e1f96a0cca0ed8f507a05ff3fa8eb38dd82e"
+    },
+    {
+      "path": "frontend/src/audio.ts",
+      "bytes": 7814,
+      "sha256": "f03d968af2b3aad4e36f3ebae1049ac0744e4567bb42fa652afa608ad48921de"
+    },
+    {
+      "path": "frontend/src/character.css",
+      "bytes": 16736,
+      "sha256": "14f26897bc0a80ec47ed9d37042e80504e8dba5180d1bff37d49b7e96a008f41"
+    },
+    {
+      "path": "frontend/src/contracts.test.ts",
+      "bytes": 2826,
+      "sha256": "491e17a66bb334ceae9cda51dda7ce670655a99f0e3f42dcf0faaa0f80a32d44"
+    },
+    {
+      "path": "frontend/src/contracts.ts",
+      "bytes": 6314,
+      "sha256": "8b9cb44e2540a28c149dc81830b934271e5f46a234a64c651fe7848337cb5421"
+    },
+    {
+      "path": "frontend/src/crownChallenge.test.ts",
+      "bytes": 13090,
+      "sha256": "900e4ddd3774e96861969bc90361282599fcefb8a5d530134146696c73e2acb4"
+    },
+    {
+      "path": "frontend/src/crownChallenge.ts",
+      "bytes": 8679,
+      "sha256": "69687a248bf56ff602f3cbceaea4224eca8b26fd7eac30b8fb5420011c3d2e3d"
+    },
+    {
+      "path": "frontend/src/discoverSurvivors.ts",
+      "bytes": 4186,
+      "sha256": "fba6cab9d7a96cb4ca3b163f4913642f9c828260cefadb03d71106ad597807fa"
+    },
+    {
+      "path": "frontend/src/game-data.ts",
+      "bytes": 4176,
+      "sha256": "37011457f9f628e9578e9c7bc2eb0b771f93c99efde0a7cc998c06210c58d40d"
+    },
+    {
+      "path": "frontend/src/landing.css",
+      "bytes": 4988,
+      "sha256": "e53a5749c2e76a7f236972d224715178d2f0115a59d3a9c24c87690f6f7b1703"
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "bytes": 565,
+      "sha256": "e23829f927a25a2047490e1dd26291d004bfa5ade6a4c78d926a4abf3d0a629a"
+    },
+    {
+      "path": "frontend/src/mainnetDeployment.test.ts",
+      "bytes": 857,
+      "sha256": "6577cd8de248d9d9a463347fcf1c6f6ec6de30062afe4c0c5dfbf61fd6635b09"
+    },
+    {
+      "path": "frontend/src/mainnetDeployment.ts",
+      "bytes": 1149,
+      "sha256": "d787b0cbe25422b8c989b39fb46931b629e8c474c4d4c521524f16923fdfb024"
+    },
+    {
+      "path": "frontend/src/mini-game-data.test.ts",
+      "bytes": 3637,
+      "sha256": "3862dc35258788b4257ec83882a7dffcf75663e4d68d225112e4e1a9b19526f2"
+    },
+    {
+      "path": "frontend/src/mini-game-data.ts",
+      "bytes": 6353,
+      "sha256": "964930cef2b4b934e06661369e400ba9628daee5e44f99dcfbdc3c9270e676ad"
+    },
+    {
+      "path": "frontend/src/mini-game.css",
+      "bytes": 2379,
+      "sha256": "7c4ce5dba002af7d282e9ef0d58ab59b9d489cb5666dd03942dbccff32828e87"
+    },
+    {
+      "path": "frontend/src/nftMetadata.test.ts",
+      "bytes": 1658,
+      "sha256": "d40da42578fa795464e4bf1231823304ef11e68d0c7de1b6c0f09717a0a6bf00"
+    },
+    {
+      "path": "frontend/src/nftMetadata.ts",
+      "bytes": 2546,
+      "sha256": "d73f9f9bb4fa61af665ad891092adbfc03a5ecefd4373515d51d1dcf944e898f"
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "bytes": 13128,
+      "sha256": "80c8f2848242016e36010685016d988eaac4552f407fb2185ec8f1ba80fd24ee"
+    },
+    {
+      "path": "frontend/src/survivalHistory.test.ts",
+      "bytes": 4131,
+      "sha256": "1c181c3fb217bb4dad6cb601405cfa033a0d99199300f8ec098b226cdd69f0df"
+    },
+    {
+      "path": "frontend/src/survivalHistory.ts",
+      "bytes": 6548,
+      "sha256": "d408efa1819aab17bab7b1b92bd5c6c2e5b1dc879ad9e58416f2ec8fed101367"
+    },
+    {
+      "path": "frontend/src/survivor-trial.css",
+      "bytes": 8949,
+      "sha256": "dee3a78c3fbf7ab7c625d36d4d73dcb9b75596f7195db29bfbc83cfe85d54d60"
+    },
+    {
+      "path": "frontend/src/survivorReflection.test.ts",
+      "bytes": 1772,
+      "sha256": "f4ca76395185facda9adcd0d980aa957371ba96c30290bb0c4451b6019300bcd"
+    },
+    {
+      "path": "frontend/src/survivorReflection.ts",
+      "bytes": 2131,
+      "sha256": "8824bbb17f5e3471faa78278093e22cb44fea82010d1b3fe2aa349ad88e889b2"
+    },
+    {
+      "path": "frontend/src/survivorTrial.test.ts",
+      "bytes": 4872,
+      "sha256": "74ad7b2ae78e0af3db95c1be318011c1b55d2f028fef7d1bf6b01ed436f83d30"
+    },
+    {
+      "path": "frontend/src/survivorTrial.ts",
+      "bytes": 3779,
+      "sha256": "8d086970c30e8e393df6e4e672fc7ed7e57b31eb243a89d2182580c250fb270b"
+    },
+    {
+      "path": "frontend/src/test-setup.ts",
+      "bytes": 42,
+      "sha256": "977afde26bba6a51325908cd7713cbfdc87d18f06b78b237c8f364c44864b7de"
+    },
+    {
+      "path": "frontend/src/useAdventureAvailability.test.tsx",
+      "bytes": 8218,
+      "sha256": "edc8bfb91668d1e5fc16737d99614025dcd8592b28099c8e6548209abddd7ad8"
+    },
+    {
+      "path": "frontend/src/useAdventureAvailability.ts",
+      "bytes": 5339,
+      "sha256": "d041d546cb216e7dc676942d7710d954b5907d5e28f98d38af180ba4be3d7156"
+    },
+    {
+      "path": "frontend/src/useAdventureDialog.ts",
+      "bytes": 1232,
+      "sha256": "2ce71b925c2cf8ec9bc58766341c9ae6801014494968c3798ca522607ba20b27"
+    },
+    {
+      "path": "frontend/src/useNftMetadata.ts",
+      "bytes": 1294,
+      "sha256": "499d688e910d347c0655fc464790e7dd8a807e3297bc7953925eba5494403f26"
+    },
+    {
+      "path": "frontend/src/useSurvivalHistory.test.tsx",
+      "bytes": 3312,
+      "sha256": "92ccab45a2d59cee676a289d76c1ee65718123589dabf7a3306edd9f23b162c9"
+    },
+    {
+      "path": "frontend/src/useSurvivalHistory.ts",
+      "bytes": 2681,
+      "sha256": "84fc77a1305d66d17953af23eec10c18f8199d51044e2f366d4a96d5f53c627a"
+    },
+    {
+      "path": "frontend/src/useSurvivorIdentity.ts",
+      "bytes": 4165,
+      "sha256": "647086a46280fddb554a99df14333f69da9c9b20a8aed356d63f51dec3201678"
+    },
+    {
+      "path": "frontend/src/utils.test.ts",
+      "bytes": 2033,
+      "sha256": "554b4510f43a4a9fc5bb6fb9c797cd732d021693b8283a364932443a0e14f2d1"
+    },
+    {
+      "path": "frontend/src/utils.ts",
+      "bytes": 1416,
+      "sha256": "3e3341130611e9c0804b22b12ad3df36d785f58a1cda748d9d3ccb0035fcfa54"
+    },
+    {
+      "path": "frontend/src/vite-env.d.ts",
+      "bytes": 209,
+      "sha256": "6e449a7ac63029dc160d83741d531982288a169820453390158325fe2de9c7bd"
+    },
+    {
+      "path": "frontend/vercel.json",
+      "bytes": 724,
+      "sha256": "c188224868261b0c19df4c125c2b42253fc59afe5db5e3012648fa00c19169b5"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "bytes": 601,
+      "sha256": "8a65b8ac12ce5f321f5d9d344760b409984ce831f2c52e670f2befde5e7eddae"
+    },
+    {
+      "path": "lib/forge-std/src/Base.sol",
+      "bytes": 2248,
+      "sha256": "76b05dda37981797d3d403f29fc6cad79b46e2fc11da47d649ff13acb69158b2"
+    },
+    {
+      "path": "lib/forge-std/src/Config.sol",
+      "bytes": 2659,
+      "sha256": "850649e2ede6e0e1384ba00eba1335a7af7e97643c731a4587335c0f51f67041"
+    },
+    {
+      "path": "lib/forge-std/src/LibVariable.sol",
+      "bytes": 17987,
+      "sha256": "0b789ace36e54d1746d08b9b161f5ab4c2fa55c8d30808421349ae33f703c797"
+    },
+    {
+      "path": "lib/forge-std/src/Script.sol",
+      "bytes": 1110,
+      "sha256": "172a6201241215bdc1f552197f9950e4d2ab7f56dd1e1b992dc51dc71d4e17a1"
+    },
+    {
+      "path": "lib/forge-std/src/StdAssertions.sol",
+      "bytes": 58829,
+      "sha256": "203de35565c3d68b6599f84e88068f79c23b53a80d18c46056e85d4c5f48613c"
+    },
+    {
+      "path": "lib/forge-std/src/StdChains.sol",
+      "bytes": 16053,
+      "sha256": "981b7ce12f4bc3193c7914c68f51be74d1d03c33732db894f5d36ad8025ab4f5"
+    },
+    {
+      "path": "lib/forge-std/src/StdCheats.sol",
+      "bytes": 39150,
+      "sha256": "988843996b3e8ebab594c659fba9502bab437220f84e7ded9a9e3f6e730d358e"
+    },
+    {
+      "path": "lib/forge-std/src/StdConfig.sol",
+      "bytes": 30800,
+      "sha256": "9a35d96aac1abda2c5356a031ac5ea71cbece6bd8bc3dcf4bed98518cd2d1b61"
+    },
+    {
+      "path": "lib/forge-std/src/StdConstants.sol",
+      "bytes": 1882,
+      "sha256": "17dfd996881264de1e6af6697a3dc7a56ae8ff0717e4cb4f1685bd7fb3a45147"
+    },
+    {
+      "path": "lib/forge-std/src/StdError.sol",
+      "bytes": 1915,
+      "sha256": "c1f7271f11a44628810ef6beb2da0c43add131ff9cfcac4d7acd633c269ccf7d"
+    },
+    {
+      "path": "lib/forge-std/src/StdInvariant.sol",
+      "bytes": 7264,
+      "sha256": "7d3a62087c7d06766e99f8e4f4e50997b0ff8730fb304986f2c4cd895a67fbbd"
+    },
+    {
+      "path": "lib/forge-std/src/StdJson.sol",
+      "bytes": 14798,
+      "sha256": "433c8ca2b3ae87e2f8a5b5902dc55446528ffd6b8e1af8a333f2eff4403e5620"
+    },
+    {
+      "path": "lib/forge-std/src/StdMath.sol",
+      "bytes": 2938,
+      "sha256": "7224cea66fc06c7a9d303084cccb14eaedffe4b21b3f9695d06dc590d2894d7d"
+    },
+    {
+      "path": "lib/forge-std/src/StdSecp256k1.sol",
+      "bytes": 6154,
+      "sha256": "3bab3dab8484edfec81f69d001f55817231b5c276aec067ac0ddc7ba57500bd1"
+    },
+    {
+      "path": "lib/forge-std/src/StdStorage.sol",
+      "bytes": 26342,
+      "sha256": "cd3e30147de813618446c9eed8c07b8c14ee6989c3b5ad608f72af3b17adedf9"
+    },
+    {
+      "path": "lib/forge-std/src/StdStyle.sol",
+      "bytes": 17505,
+      "sha256": "903ea6f4e4aa31e416b5043abecc09ced41dc78c9ce9dabb5c745337ee13139d"
+    },
+    {
+      "path": "lib/forge-std/src/StdToml.sol",
+      "bytes": 14097,
+      "sha256": "682e9c74bd02de5df7be595d27fa44eeaf0a5d96ad5c2db507065386d35eb433"
+    },
+    {
+      "path": "lib/forge-std/src/StdUtils.sol",
+      "bytes": 11980,
+      "sha256": "52d713d886305184e7ed3b3a2e5941ea1440f071d9c9a4d6fea618135e1d3f67"
+    },
+    {
+      "path": "lib/forge-std/src/Test.sol",
+      "bytes": 1313,
+      "sha256": "6ac6a04a9723f3b51a86fcd0c4cf02e8011f112df052a8eea8e986d85b0bb3d7"
+    },
+    {
+      "path": "lib/forge-std/src/Vm.sol",
+      "bytes": 162622,
+      "sha256": "cd0cd6ce532f99e9d6e21a97a3f188804537ceb91540226b5e7e922b2e3b4923"
+    },
+    {
+      "path": "lib/forge-std/src/console.sol",
+      "bytes": 71039,
+      "sha256": "894dc6e40fe62d887df6243112d8c775df2db60babc3024ee04a5564b90af64d"
+    },
+    {
+      "path": "lib/forge-std/src/console2.sol",
+      "bytes": 131,
+      "sha256": "62d8ccbd118fec4f99c5e847322d6ca0d7fbe6a0a16e5a26b0590869fcd69357"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC1155.sol",
+      "bytes": 7626,
+      "sha256": "d10916158da2bbecc56364cda787da303b57313d478c150b1c79ac05d3b2936c"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC165.sol",
+      "bytes": 559,
+      "sha256": "d9bea769cd3aa52c5dfbfe7b447a63b00ab22baaa4f9d2af789f44553078a27b"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC20.sol",
+      "bytes": 2089,
+      "sha256": "cb4bf7f4c0bc513e2c82f251a84e67d2e950cef12e570f40a0d4880b2e25fc9f"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC4626.sol",
+      "bytes": 11982,
+      "sha256": "5b9da91e1215dc84a606c06f636b34582aec6cdf35ae828dce3852f727d9278e"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC6909.sol",
+      "bytes": 3503,
+      "sha256": "44ef6ba5ab803241ed5992f35606820322e2df5947da488870c78f2181d97840"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC721.sol",
+      "bytes": 9063,
+      "sha256": "2e6e000940bf5278cf64f170ac839682667368a5aee7222b312e255ec8eda275"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC7540.sol",
+      "bytes": 6712,
+      "sha256": "5b9e0d90816f47628b2023351c84e9b8d8667f685c98234742be99dc8eaf2fb6"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IERC7575.sol",
+      "bytes": 12605,
+      "sha256": "15163bc29d96c6b905b53da06e243fbd2ae6b7c8984b8306ff4c9b0716ec055b"
+    },
+    {
+      "path": "lib/forge-std/src/interfaces/IMulticall3.sol",
+      "bytes": 2141,
+      "sha256": "890a5b361034daa6006b3ba2275e743cd6197c4d81e3df5732cdce731d3c0868"
+    },
+    {
+      "path": "lib/forge-std/src/safeconsole.sol",
+      "bytes": 408927,
+      "sha256": "fd74d8ed377e1470217cd6dce7699dcbc4e79b3893f17ae2a298c0e7e4418181"
+    },
+    {
+      "path": "script/PrepareMonadMainnet.s.sol",
+      "bytes": 780,
+      "sha256": "7646a42363bd0f7e2893557bcf62f2085efc3c0de12653a94ab42083591aa45a"
+    },
+    {
+      "path": "script/local-anvil.sh",
+      "bytes": 2300,
+      "sha256": "d8416b21a899fa277165c74edde6acd4e70565cb15d9b535c3d376e344b622d7"
+    },
+    {
+      "path": "script/mainnet-dry-run.sh",
+      "bytes": 857,
+      "sha256": "44ff4279c5cbc584444a9ee3bfb90dd989de52f0a387b7e334a5a1054d861096"
+    },
+    {
+      "path": "src/ChogSurvivor.sol",
+      "bytes": 11878,
+      "sha256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7"
+    },
+    {
+      "path": "src/LocalCanonicalTestNFT.sol",
+      "bytes": 2913,
+      "sha256": "2a61b5bc430b607edcad4ee119de83d8228ef1ec3bc658557f44b144029af3a3"
+    },
+    {
+      "path": "test/BalanceAnalysis.t.sol",
+      "bytes": 7442,
+      "sha256": "0a776bce90b4bb06c880d76f36cbf2f9996d3a5bdad6f5e1bd810847614ef4e3"
+    },
+    {
+      "path": "test/ChogSurvivor.t.sol",
+      "bytes": 11348,
+      "sha256": "d81c644f4f002994cab0a3388778bbe686b8c5a2ba5832208120407e73ae058a"
+    },
+    {
+      "path": "test/ChogSurvivorAchievements.t.sol",
+      "bytes": 22606,
+      "sha256": "36fdea4b1bd9e19f766b7ced1c054fcf2d6d2b76705395bf98460ee0cb0a3e5b"
+    },
+    {
+      "path": "test/ChogSurvivorInvariant.t.sol",
+      "bytes": 2360,
+      "sha256": "9965f19c927eedfeee01a8aec54320d5a9121d891d033c19753d8d84257ad310"
+    },
+    {
+      "path": "test/LocalCanonicalFixture.t.sol",
+      "bytes": 3165,
+      "sha256": "8fc1967a589a22656cad9b9bd41e605d62eff237a682c2c49cbe8a11c893b0aa"
+    },
+    {
+      "path": "test/MonadForkIntegration.t.sol",
+      "bytes": 5639,
+      "sha256": "442f6675f315c9bb224b0e4eb601890423349133e1c681f6e55ed63cb5143779"
+    },
+    {
+      "path": "test/ReferenceModel.t.sol",
+      "bytes": 22204,
+      "sha256": "d4c500f4b3ffa08a1834219c40a61760d1d999aa88833860e4341074227832b2"
+    },
+    {
+      "path": "test/Task6CGas.t.sol",
+      "bytes": 1948,
+      "sha256": "62ebe810a163cb03d8527dfdbb680cb5d4ae7ed5343efaf4826ff485d8bf94c2"
+    },
+    {
+      "path": "out/ChogSurvivor.sol/ChogSurvivor.json",
+      "bytes": 65898,
+      "sha256": "adf4c5c23213818fdcafb7ea55ca3e50a277156bccf7abe4a90a83cc8d0545f0"
+    },
+    {
+      "path": "docs/evidence/task6c/collection-standard-input.json",
+      "bytes": 181807,
+      "sha256": "703ccceafeb7ba9a6904a7e2c39d2bb7c58e1146bae38cc0aacc2261d865539a"
+    },
+    {
+      "path": "docs/evidence/task6c/collection-compiler-output.json",
+      "bytes": 1093031,
+      "sha256": "aae78df03c0572e4fb6ce9c6d9d417ba1fff28ae9175a8267a0914af7ecb6769"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+ M README.md
+ M docs/DEMO_DEPLOYMENT_GUIDE.md
+ M docs/DEMO_VIDEO_OUTLINE.md
+ M docs/HACKATHON_SUBMISSION_DRAFT.md
+ M docs/JUDGE_QUICK_START.md
+ M frontend/.env.example
+ M frontend/index.html
+ M frontend/scripts/public-demo-preflight.mjs
+ M frontend/src/Adventure.tsx
+ M frontend/src/AdventureOwnership.test.tsx
+ M frontend/src/App.test.tsx
+ M frontend/src/App.tsx
+ M frontend/src/Character.test.tsx
+ M frontend/src/Character.tsx
+ M frontend/src/LocalContractAdventure.test.tsx
+ M frontend/src/LocalContractAdventure.tsx
+ M frontend/src/contracts.test.ts
+ M frontend/src/contracts.ts
+ M frontend/src/survivalHistory.test.ts
+ M frontend/src/survivalHistory.ts
+ M frontend/src/useSurvivalHistory.test.tsx
+ M frontend/src/useSurvivalHistory.ts
+ M frontend/vercel.json
+?? demo-video/
+?? docs/TASK_5A_MAINNET_ELIGIBILITY.md
+?? docs/TASK_5A_RELEASE_READINESS.md
+?? docs/TASK_5A_VIDEO_STORYBOARD.md
+?? docs/TASK_6A_MAINNET_DEPLOYMENT_RUNBOOK.md
+?? docs/TASK_6A_MAINNET_LAUNCH_READINESS.md
+?? docs/TASK_6B_DEPLOYMENT_APPROVAL.md
+?? docs/TASK_6B_MAINNET_RELEASE_CHECKLIST.md
+?? docs/TASK_6C_DEPLOYMENT_GATE_REVIEW.md
+?? docs/TASK_6D_EXTERNAL_REVIEW_HANDOFF.md
+?? docs/TASK_6D_FINAL_SECURITY_REVIEW.md
+?? docs/TASK_6E_DEPLOYMENT_DECISION.md
+?? docs/TASK_6F_METAMASK_SIGNING_GUIDE.md
+?? docs/TASK_7A_POST_DEPLOYMENT_VERIFICATION.md
+?? docs/UNAUDITED_MAINNET_DEPLOYMENT_RISK_ACCEPTANCE.md
+?? docs/evidence/task5a/
+?? docs/evidence/task6a/
+?? docs/evidence/task6b/
+?? docs/evidence/task6c/
+?? docs/evidence/task6d/
+?? docs/evidence/task6e/
+?? docs/evidence/task6f/
+?? docs/evidence/task7a/
+?? docs/evidence/task7b/
+?? docs/evidence/unaudited-deployment/
+?? frontend/scripts/final-demo-browser.mjs
+?? frontend/scripts/mainnet-enabled-browser.mjs
+?? frontend/scripts/mainnet-readiness.mjs
+?? frontend/scripts/mainnet-release-preflight.mjs
+?? frontend/scripts/release-artifact.mjs
+?? frontend/scripts/task6c-provenance.mjs
+?? frontend/scripts/task6c-readonly.mjs
+?? frontend/scripts/task7a-verify-captured.mjs
+?? frontend/scripts/task7a-verify-deployment.mjs
+?? frontend/scripts/verify-mainnet-deployment.mjs
+?? frontend/scripts/wallet-warning-evidence.mjs
+?? frontend/src/GameContractInfo.tsx
+?? frontend/src/MainnetContractAdventure.test.tsx
+?? frontend/src/mainnetDeployment.test.ts
+?? frontend/src/mainnetDeployment.ts
+?? script/PrepareMonadMainnet.s.sol
+?? script/mainnet-dry-run.sh
+?? test/Task6CGas.t.sol
+?? tools/
+
+ac0029f test: document wallet security audit and verify optional wallet access
+72f5b5c chore: prepare Chog Survivor Vercel demo
+b3f96e0 test: add dependency security verification
+d0384af fix: remediate dependency security vulnerabilities

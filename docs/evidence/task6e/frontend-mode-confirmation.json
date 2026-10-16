@@ -1,0 +1,9 @@
+{
+  "checkedInMainnetManifest": null,
+  "checkedInDeploymentReceipt": null,
+  "manifestRequiredAlongsideMainnetMode": true,
+  "vercelBuildCommand": "VITE_CHOG_ENV=production VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm run build",
+  "currentWorkingTreePublicMode": "simulation",
+  "hostedRevisionAndSettings": "Not independently inspected in Task 6E",
+  "method": "Source/configuration confirmation plus unchanged Task 6D manifest; no test/build rerun"
+}

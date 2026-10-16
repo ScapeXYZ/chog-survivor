@@ -1,6 +1,8 @@
 # Three-minute demo video outline
 
-Status: outline only; no video has been produced, uploaded or published by Task 4K. Keep the final cut at or below three minutes. Use exact existing fonts and visuals. Artwork/screenshots still require release approval.
+Current detailed production plan: [Task 5A storyboard and recording instructions](TASK_5A_VIDEO_STORYBOARD.md). Its requested timing supersedes this earlier outline.
+
+Status: historical Task 4K outline only; no video has been produced, uploaded or published by Task 4K. Keep the final cut at or below three minutes. Use exact existing fonts and visuals. Artwork/screenshots still require release approval.
 
 | Time | Picture | Suggested narration / disclosure |
 |---|---|---|

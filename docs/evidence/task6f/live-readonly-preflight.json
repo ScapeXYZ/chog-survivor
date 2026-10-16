@@ -1,0 +1,16 @@
+{
+  "chainId": 143,
+  "checkedAt": 1792166025267,
+  "blockNumber": "113938346",
+  "blockHash": "0xa10f8b88a9976d7e54f77b42bc561ceeebf21e480806e4667d91f4cc12a43b63",
+  "balanceWei": "400000000000000000",
+  "senderCode": "0x",
+  "latestNonce": "0",
+  "pendingNonce": "0",
+  "collectionRuntimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+  "expectedAddressCode": "0x",
+  "estimateGas": "1510761",
+  "baseFeePerGas": "100000000000",
+  "creationRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "independentMatches": true
+}

@@ -1,0 +1,17 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: locked: hostile Host rejected
+    at check (file:///home/temitope/chog-survivor/tools/mainnet-deployment/browser-test.mjs:8:35)
+    at file:///home/temitope/chog-survivor/tools/mainnet-deployment/browser-test.mjs:19:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.2

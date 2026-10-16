@@ -1,0 +1,13 @@
+{
+  "chainId": 143,
+  "address": "0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390",
+  "deploymentBlock": "113947533",
+  "runtimeCodeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "transactionHash": "0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956",
+  "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+  "deploymentBlockHash": "0xf5aa81d55ddfc3f368ba694b44a07d46725f2882f69c9a3f6975c30b51d467ef",
+  "onChainVerification": "two independent RPC providers; exact full bytes at deployment and finalized snapshot",
+  "explorerSourceVerification": "PREPARED_NOT_SUBMITTED",
+  "independentAudit": false,
+  "frontendPublication": "NOT_AUTHORIZED"
+}

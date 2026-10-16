@@ -1,0 +1,43 @@
+{
+  "capturedAt": "2026-10-16T15:39:12.162Z",
+  "offlineOnly": true,
+  "noSuitesRepeated": true,
+  "sourceBaselineFilesMatched": 30,
+  "sourceHash": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "gameCreationHash": "0x683228f50a7350cedddb7c6f8df777d05cec0756c725ace1e4b8a50d84adab29",
+  "gameExpectedRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "gameArtifactFileSHA256": "adf4c5c23213818fdcafb7ea55ca3e50a277156bccf7abe4a90a83cc8d0545f0",
+  "gameCreationBytes": 6772,
+  "gameRuntimeBytes": 6688,
+  "gameCompiler": "0.8.28+commit.7893614a",
+  "gameOptimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "gameEVM": "cancun",
+  "collectionSourceHashesVerified": 22,
+  "collectionCreationPrefixAndConstructorVerified": true,
+  "collectionAddressDerivationVerified": true,
+  "collectionRuntimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+  "collectionConstructor": {
+    "maxSupply": "1969",
+    "reserveMax": "256",
+    "admins": [
+      "0x84113421A8a564b594ee9Ae78c875310332d7023"
+    ]
+  },
+  "recommendedLimits": {
+    "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+    "chainId": 143,
+    "gasLimit": "1600000",
+    "maxFeePerGasWei": "125000000000",
+    "maxCostWei": "200000000000000000",
+    "minimumReserveWei": "100000000000000000",
+    "minimumStartingBalanceWei": "300000000000000000",
+    "approved": false
+  },
+  "limitations": [
+    "Consistency reproduction uses retained compiler output; an independent reviewer should rebuild the source input with the pinned compiler.",
+    "Historical RPC snapshots are not fresh balance/fee/role attestations."
+  ]
+}

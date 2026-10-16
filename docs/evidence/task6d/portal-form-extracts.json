@@ -1,0 +1,138 @@
+{
+  "metamask-portal-bundle": [
+    {
+      "term": "support portal",
+      "text": "dren:[q.jsxs(\"p\",{className:\"content\",children:[\"Welcome to MetaMask x Blockaid support portal.\",q.jsx(\"br\",{}),\"If you found a miss-classified transaction, please click\",\" \",q.jsx(\"span\",{className:\"instruction continue\",children:\"Continue\"}),\" and fill the form.\",q.jsx(\"br\",{}),\"If you got here by accident, please click\",\" \",q.jsx(\"span\",{className:\"instruction\",children:\"Cancel\"}),\" to go back to the previous page.\"]}),q.jsxs(\"div\",{className:\"reporter\",children:[q.jsx(\"p\",{className:\"content"
+    },
+    {
+      "term": "type:\"email\"",
+      "text": " blank for an anonymous report.\"}),q.jsx(\"input\",{className:`${e?\"\":\"invalid\"}`,type:\"email\",name:\"email\",id:\"email\",value:r,onChange:s,onBlur:u,placeholder:\"Your email address\"}),q.jsxs(\"p\",{className:\"privacy\",children:['Providing your contact information, such as your email address, is voluntary and not required to submit your report. If you do provide your contact information, MetaMask may use this information to provide you with updates about your report. By clicking \"Continue\" you agree to"
+    },
+    {
+      "term": "name:\"email\"",
+      "text": " anonymous report.\"}),q.jsx(\"input\",{className:`${e?\"\":\"invalid\"}`,type:\"email\",name:\"email\",id:\"email\",value:r,onChange:s,onBlur:u,placeholder:\"Your email address\"}),q.jsxs(\"p\",{className:\"privacy\",children:['Providing your contact information, such as your email address, is voluntary and not required to submit your report. If you do provide your contact information, MetaMask may use this information to provide you with updates about your report. By clicking \"Continue\" you agree to receive such"
+    },
+    {
+      "term": "formData",
+      "text": "ethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t}:{state:\"loading\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:t}}function Vm(e,t){return{state:\"submitting\",formMethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function Gt(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formE"
+    },
+    {
+      "term": "formData",
+      "text": "data:t}:{state:\"loading\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:t}}function Vm(e,t){return{state:\"submitting\",formMethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function Gt(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}function Hm(e,t){try{let n=e.sessionStorage.getItem"
+    },
+    {
+      "term": "formData",
+      "text": "ting\",formMethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function Gt(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}function Hm(e,t){try{let n=e.sessionStorage.getItem(qd);if(n){let r=JSON.parse(n);for(let[l,o]of Object.entries(r||{}))o&&Array.isArray(o)&&t.set(l,new Set(o||[]))}}catch{}}function Wm(e,t){if(t.size>0){let n={};for("
+    },
+    {
+      "term": "formData",
+      "text": "ethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function Gt(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}function Hm(e,t){try{let n=e.sessionStorage.getItem(qd);if(n){let r=JSON.parse(n);for(let[l,o]of Object.entries(r||{}))o&&Array.isArray(o)&&t.set(l,new Set(o||[]))}}catch{}}function Wm(e,t){if(t.size>0){let n={};for(let[r,l]of "
+    },
+    {
+      "term": "formData",
+      "text": "t(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}function Hm(e,t){try{let n=e.sessionStorage.getItem(qd);if(n){let r=JSON.parse(n);for(let[l,o]of Object.entries(r||{}))o&&Array.isArray(o)&&t.set(l,new Set(o||[]))}}catch{}}function Wm(e,t){if(t.size>0){let n={};for(let[r,l]of t)n[r]=[...l];try{e.sessionStorage.setItem(qd,JSON.stringify(n))}catch(r){vr(!1,\"Failed to save applied view transitions in sessionStorage (\"+r+\""
+    }
+  ],
+  "blockaid-portal-bundle": [
+    {
+      "term": "defaultValues:{",
+      "text": "1})=>{const r=Zs(),[o,s]=g.useState(\"\");g.useEffect(()=>{pl(6)},[]);const i=w$({defaultValues:{chain:\"\",wallet:\"\",address:\"\",domain:\"\",transactionHash:\"\",email:\"\",additional:\"\"},onSubmit:async l=>{if(!vUe(o)){Tf.error(\"Invalid captcha code\");return}if((n||!l.address)&&!l.domain){Tf.error(\"Could not move to the next step\",{description:n?\"Domain is required\":\"Address or domain is required\"});return}const c={entities:{chain:l.chain,wallet:l.wallet,address:l.address,domain:l.domain,...t?{transaction"
+    },
+    {
+      "term": "type:\"email\"",
+      "text": "f the resolution)\"}),\":\"]}),C.jsx(sr,{id:l.name,name:l.name,value:l.state.value,type:\"email\",placeholder:\"name@email.com\",onChange:({target:c})=>l.handleChange(c.value)})]})}),C.jsx(i.Field,{name:\"additional\",children:l=>C.jsxs(\"div\",{className:\"flex flex-col gap-1 justify-start\",children:[C.jsx(kn,{htmlFor:l.name,className:\"w-max\",children:\"Anything you want to add:\"}),C.jsx(Xp,{id:l.name,name:l.name,value:l.state.value,placeholder:\"...\",onChange:({target:c})=>l.handleChange(c.value)})]})}),C.j"
+    },
+    {
+      "term": "name:\"email\"",
+      "text": "er:\"0x...\",onChange:({target:c})=>l.handleChange(c.value)})]})}),C.jsx(i.Field,{name:\"email\",children:l=>C.jsxs(\"div\",{className:\"flex flex-col gap-1 justify-start\",children:[C.jsxs(kn,{htmlFor:l.name,className:\"text-left break-words text-wrap\",children:[\"Email\",\" \",C.jsx(\"span\",{className:\"font-light text-gray\",children:\"(to receive updates on the progress of the resolution)\"}),\":\"]}),C.jsx(sr,{id:l.name,name:l.name,value:l.state.value,type:\"email\",placeholder:\"name@email.com\",onChange:({target"
+    },
+    {
+      "term": "label:\"",
+      "text": "tegrity:\"integrity\",is:\"is\",keyparams:\"keyParams\",keytype:\"keyType\",kind:\"kind\",label:\"label\",lang:\"lang\",list:\"list\",loop:\"loop\",low:\"low\",manifest:\"manifest\",marginheight:\"marginHeight\",marginwidth:\"marginWidth\",max:\"max\",maxlength:\"maxLength\",media:\"media\",mediagroup:\"mediaGroup\",method:\"method\",min:\"min\",minlength:\"minLength\",multiple:\"multiple\",muted:\"muted\",name:\"name\",nonce:\"nonce\",novalidate:\"noValidate\",open:\"open\",optimum:\"optimum\",pattern:\"pattern\",placeholder:\"placeholder\",playsinlin"
+    },
+    {
+      "term": "label:",
+      "text": "tegrity:\"integrity\",is:\"is\",keyparams:\"keyParams\",keytype:\"keyType\",kind:\"kind\",label:\"label\",lang:\"lang\",list:\"list\",loop:\"loop\",low:\"low\",manifest:\"manifest\",marginheight:\"marginHeight\",marginwidth:\"marginWidth\",max:\"max\",maxlength:\"maxLength\",media:\"media\",mediagroup:\"mediaGroup\",method:\"method\",min:\"min\",minlength:\"minLength\",multiple:\"multiple\",muted:\"muted\",name:\"name\",nonce:\"nonce\",novalidate:\"noValidate\",open:\"open\",optimum:\"optimum\",pattern:\"pattern\",placeholder:\"placeholder\",playsinlin"
+    },
+    {
+      "term": "transactionHash",
+      "text": "entities:{chain:l.chain,wallet:l.wallet,address:l.address,domain:l.domain,...t?{transactionHash:l.transactionHash}:{}},additionalDetails:{email:l.email,additional:`${e===\"verify\"&&\"This is a verification request\"} ${l.additional}`}};r(\"/summary\",{state:{data:c,source:e}})}}),a=C.jsx(i.Field,{name:\"address\",onChange:l=>{if(!l)return\"Required\";if(!/^0x[0-9A-Fa-f]{40}$/.test(l))return\"Invalid EVM address format. Must be 0x followed by 40 hexadecimal characters.\"},children:l=>C.jsxs(\"div\",{className"
+    },
+    {
+      "term": "transactionHash",
+      "text": "chain,wallet:l.wallet,address:l.address,domain:l.domain,...t?{transactionHash:l.transactionHash}:{}},additionalDetails:{email:l.email,additional:`${e===\"verify\"&&\"This is a verification request\"} ${l.additional}`}};r(\"/summary\",{state:{data:c,source:e}})}}),a=C.jsx(i.Field,{name:\"address\",onChange:l=>{if(!l)return\"Required\";if(!/^0x[0-9A-Fa-f]{40}$/.test(l))return\"Invalid EVM address format. Must be 0x followed by 40 hexadecimal characters.\"},children:l=>C.jsxs(\"div\",{className:\"flex flex-col ga"
+    },
+    {
+      "term": "transactionHash",
+      "text": "hange:({target:c})=>l.handleChange(c.value)})]})}),n&&a,t&&C.jsx(i.Field,{name:\"transactionHash\",children:l=>C.jsxs(\"div\",{className:\"flex flex-col gap-1 justify-start\",children:[C.jsx(kn,{htmlFor:l.name,className:\"w-max\",children:\"Transaction hash:\"}),C.jsx(sr,{id:l.name,name:l.name,value:l.state.value,placeholder:\"0x...\",onChange:({target:c})=>l.handleChange(c.value)})]})}),C.jsx(i.Field,{name:\"email\",children:l=>C.jsxs(\"div\",{className:\"flex flex-col gap-1 justify-start\",children:[C.jsxs(kn,{"
+    },
+    {
+      "term": "transactionHash",
+      "text": "rl\"]:o.entities.domain,reporter:o.additionalDetails.email,reproduce:(o.entities.transactionHash?`Tx hashes: ${o.entities.transactionHash}\n`:\"\")+`chain: ${o.entities.chain}\ndetails: ${o.additionalDetails.additional}`})});if(r(!1),!c.ok){Tf.error(\"An error occurred while sending report \",{description:\"Please try again\"});return}t(\"/submittionSuccessfully\")};return C.jsx(\"div\",{className:\"flex justify-center p-2 w-full\",children:C.jsxs(\"div\",{className:\"flex flex-col gap-4 justify-start w-full lg:w"
+    },
+    {
+      "term": "transactionHash",
+      "text": "nalDetails.email,reproduce:(o.entities.transactionHash?`Tx hashes: ${o.entities.transactionHash}\n`:\"\")+`chain: ${o.entities.chain}\ndetails: ${o.additionalDetails.additional}`})});if(r(!1),!c.ok){Tf.error(\"An error occurred while sending report \",{description:\"Please try again\"});return}t(\"/submittionSuccessfully\")};return C.jsx(\"div\",{className:\"flex justify-center p-2 w-full\",children:C.jsxs(\"div\",{className:\"flex flex-col gap-4 justify-start w-full lg:w-1/2 lg:mt-10\",children:[C.jsxs(\"div\",{cl"
+    },
+    {
+      "term": "formData",
+      "text": "ethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t}:{state:\"loading\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:t}}function TS(e,t){return{state:\"submitting\",formMethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function rs(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formE"
+    },
+    {
+      "term": "formData",
+      "text": "data:t}:{state:\"loading\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:t}}function TS(e,t){return{state:\"submitting\",formMethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function rs(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}/**\n * React Router v6.16.0\n *\n * Copyright (c) Rem"
+    },
+    {
+      "term": "formData",
+      "text": "ting\",formMethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function rs(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}/**\n * React Router v6.16.0\n *\n * Copyright (c) Remix Software Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.md file in the root directory of this source tree.\n *\n * @license M"
+    },
+    {
+      "term": "formData",
+      "text": "ethod:e.formMethod,formAction:e.formAction,formEncType:e.formEncType,formData:e.formData,json:e.json,text:e.text,data:t?t.data:void 0}}function rs(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}/**\n * React Router v6.16.0\n *\n * Copyright (c) Remix Software Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.md file in the root directory of this source tree.\n *\n * @license MIT\n */funct"
+    },
+    {
+      "term": "formData",
+      "text": "s(e){return{state:\"idle\",formMethod:void 0,formAction:void 0,formEncType:void 0,formData:void 0,json:void 0,text:void 0,data:e}}/**\n * React Router v6.16.0\n *\n * Copyright (c) Remix Software Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.md file in the root directory of this source tree.\n *\n * @license MIT\n */function ll(){return ll=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.pr"
+    },
+    {
+      "term": "source:\"",
+      "text": "bout\",datatype:\"datatype\",inlist:\"inlist\",prefix:\"prefix\",property:\"property\",resource:\"resource\",typeof:\"typeof\",vocab:\"vocab\",autocapitalize:\"autoCapitalize\",autocorrect:\"autoCorrect\",autosave:\"autoSave\",color:\"color\",itemprop:\"itemProp\",itemscope:\"itemScope\",itemtype:\"itemType\",itemid:\"itemID\",itemref:\"itemRef\",results:\"results\",security:\"security\",unselectable:\"unselectable\"},iUe=/^[a-zA-Z][a-zA-Z:_\\.\\-\\d]*$/,rd={};function gw(e){return rd.hasOwnProperty(e)||(rd[e]=iUe.test(e)),rd[e]}const a"
+    },
+    {
+      "term": "source:\"",
+      "text": "onst e=ka(),t=Zs(),[n,r]=g.useState(!1),{data:o,source:s}=e.state??{data:void 0,source:\"scam\"},i=async()=>{if(n)return;const a=s===\"scam\"?\"Malicious\":\"Benign\",l=o.entities.address?\"/api/submitAddressForm\":\"/api/submitDappForm\";r(!0);const c=await fetch(l,{method:\"POST\",body:JSON.stringify({address:o.entities.address,wallet:o.entities.wallet,classification:a,[o.entities.address?\"domain\":\"url\"]:o.entities.domain,reporter:o.additionalDetails.email,reproduce:(o.entities.transactionHash?`Tx hashes: $"
+    },
+    {
+      "term": "source:\"",
+      "text": "We=KS([{path:\"/\",element:C.jsx(Bk,{}),children:[{path:\"/scam\",element:C.jsx(od,{source:\"scam\",shouldHaveTransactionHash:!0})},{path:\"/mistake\",element:C.jsx(od,{source:\"mistake\",optionalAddress:!0})},{path:\"/verifiedProject\",element:C.jsx(od,{source:\"verify\",optionalAddress:!0})}]},{path:\"/tx\",element:C.jsx(lWe,{})},{path:\"/submittionSuccessfully\",element:C.jsx(SUe,{})},{path:\"/summary\",element:C.jsx(OUe,{})},{path:\"/error\",element:C.jsx(xUe,{})}]);function dWe(){return C.jsxs(C.Fragment,{childr"
+    },
+    {
+      "term": "source:\"",
+      "text": "ource:\"scam\",shouldHaveTransactionHash:!0})},{path:\"/mistake\",element:C.jsx(od,{source:\"mistake\",optionalAddress:!0})},{path:\"/verifiedProject\",element:C.jsx(od,{source:\"verify\",optionalAddress:!0})}]},{path:\"/tx\",element:C.jsx(lWe,{})},{path:\"/submittionSuccessfully\",element:C.jsx(SUe,{})},{path:\"/summary\",element:C.jsx(OUe,{})},{path:\"/error\",element:C.jsx(xUe,{})}]);function dWe(){return C.jsxs(C.Fragment,{children:[C.jsx(j2,{}),C.jsx(VS,{router:uWe}),C.jsx(F2,{closeButton:!0})]})}kd.createRo"
+    },
+    {
+      "term": "source:\"",
+      "text": "urce:\"mistake\",optionalAddress:!0})},{path:\"/verifiedProject\",element:C.jsx(od,{source:\"verify\",optionalAddress:!0})}]},{path:\"/tx\",element:C.jsx(lWe,{})},{path:\"/submittionSuccessfully\",element:C.jsx(SUe,{})},{path:\"/summary\",element:C.jsx(OUe,{})},{path:\"/error\",element:C.jsx(xUe,{})}]);function dWe(){return C.jsxs(C.Fragment,{children:[C.jsx(j2,{}),C.jsx(VS,{router:uWe}),C.jsx(F2,{closeButton:!0})]})}kd.createRoot(document.getElementById(\"root\")).render(C.jsx(N.StrictMode,{children:C.jsx(dWe,"
+    },
+    {
+      "term": "/mistake",
+      "text": "}),C.jsx(zu,{title:\"Mistake\",description:\"Report a false positive result\",path:\"/mistake\"}),C.jsx(zu,{title:\"Developer\",description:\"Verify a project to prevent false malicious flags\",path:\"/verifiedProject\"})]}),C.jsx(\"div\",{className:\"w-full\",children:C.jsx(GS,{})})]})})}function l$(e){var t,n,r=\"\";if(typeof e==\"string\"||typeof e==\"number\")r+=e;else if(typeof e==\"object\")if(Array.isArray(e))for(t=0;t<e.length;t++)e[t]&&(n=l$(e[t]))&&(r&&(r+=\" \"),r+=n);else for(t in e)e[t]&&(r&&(r+=\" \"),r+=t);r"
+    },
+    {
+      "term": "/mistake",
+      "text": ":\"/scam\",element:C.jsx(od,{source:\"scam\",shouldHaveTransactionHash:!0})},{path:\"/mistake\",element:C.jsx(od,{source:\"mistake\",optionalAddress:!0})},{path:\"/verifiedProject\",element:C.jsx(od,{source:\"verify\",optionalAddress:!0})}]},{path:\"/tx\",element:C.jsx(lWe,{})},{path:\"/submittionSuccessfully\",element:C.jsx(SUe,{})},{path:\"/summary\",element:C.jsx(OUe,{})},{path:\"/error\",element:C.jsx(xUe,{})}]);function dWe(){return C.jsxs(C.Fragment,{children:[C.jsx(j2,{}),C.jsx(VS,{router:uWe}),C.jsx(F2,{clo"
+    },
+    {
+      "term": "Additional",
+      "text": "value)})]})}),!n&&a]}),C.jsx(\"span\",{className:\"font-bold text-start\",children:\"Additional Details (optional)\"}),C.jsxs(\"div\",{className:\"flex flex-col gap-2 p-3 bg-white rounded-md\",children:[C.jsx(i.Field,{name:\"chain\",children:l=>C.jsxs(\"div\",{className:\"flex flex-col gap-1 justify-start\",children:[C.jsx(kn,{htmlFor:l.name,className:\"w-max\",children:\"Chain:\"}),C.jsx(sr,{id:l.name,name:l.name,value:l.state.value,placeholder:\"Ethereum\",onChange:({target:c})=>l.handleChange(c.value)})]})}),C.jsx"
+    },
+    {
+      "term": "Additional",
+      "text": ",children:[C.jsx(kn,{htmlFor:a.name,className:\"font-light text-start\",children:\"Additional Details\"}),C.jsx(Xp,{id:a.name,required:!1,name:\"Additional Details\",className:\"h-40\",value:a.state.value,onChange:l=>a.handleChange(l.target.value)})]})}),C.jsxs(\"div\",{className:\"flex gap-2 justify-end\",children:[C.jsx(eo,{className:\"font-light\",onClick:()=>s(-1),children:\"Back\"}),C.jsx(i.Subscribe,{selector:a=>[a.canSubmit,a.isSubmitting],children:([a,l])=>C.jsx(eo,{className:\"font-light text-white bg-r"
+    },
+    {
+      "term": "Additional",
+      "text": "xt-start\",children:\"Additional Details\"}),C.jsx(Xp,{id:a.name,required:!1,name:\"Additional Details\",className:\"h-40\",value:a.state.value,onChange:l=>a.handleChange(l.target.value)})]})}),C.jsxs(\"div\",{className:\"flex gap-2 justify-end\",children:[C.jsx(eo,{className:\"font-light\",onClick:()=>s(-1),children:\"Back\"}),C.jsx(i.Subscribe,{selector:a=>[a.canSubmit,a.isSubmitting],children:([a,l])=>C.jsx(eo,{className:\"font-light text-white bg-red\",type:\"submit\",disabled:!a,children:l?\"...\":\"Submit\"})})]"
+    }
+  ]
+}

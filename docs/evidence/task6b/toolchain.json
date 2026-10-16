@@ -1,0 +1,7 @@
+{
+  "release": "https://github.com/foundry-rs/foundry/releases/tag/v1.8.5",
+  "publishedAt": "2026-10-05T18:46:58Z",
+  "archive": "https://github.com/foundry-rs/foundry/releases/download/v1.8.5/foundry_v1.8.5_linux_amd64.tar.gz",
+  "sha256": "6c66ffcc55fa4249197721baa3098bc208014ea1d8aa04b2ed50ac6bccffb226",
+  "review": "Official release notes and API digest checked; not an independent binary audit or Sigstore attestation verification. Only forge/cast extracted in /tmp; existing PATH/tooling untouched."
+}

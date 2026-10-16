@@ -1,0 +1,111 @@
+{
+  "createdAt": "2026-10-16T16:57:54.042Z",
+  "published": false,
+  "publicActivationAuthorized": false,
+  "candidates": [
+    {
+      "mode": "production",
+      "directory": "/tmp/chog-task7b-candidates-Y76dq9/production",
+      "files": [
+        {
+          "path": "assets/LilitaOne-Regular-DWEPn4H6.ttf",
+          "bytes": 28092,
+          "sha256": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59"
+        },
+        {
+          "path": "assets/ccip-DqAGoOu1.js",
+          "bytes": 3042,
+          "sha256": "6e301e0d23a2954beeefbf8594270e89f7ee0f59455d632d90ce384caeeb2c97"
+        },
+        {
+          "path": "assets/index-C9o6GoDU.css",
+          "bytes": 65948,
+          "sha256": "49f9c992a0a2278fe428f5bac532cf49e0263c44dfadaedb97b0851760252c12"
+        },
+        {
+          "path": "assets/index-DAPDLfZe.js",
+          "bytes": 564075,
+          "sha256": "25656bcbaf9faf4f24eb0fb8549497be1a7f0d9af6f5f9747bb7bc327d8bf130"
+        },
+        {
+          "path": "assets/moonlit-fog-overlay-provisional-CyWn4A_i.webp",
+          "bytes": 228108,
+          "sha256": "c5f90681c66899c851683478173f3d36bab007002b1d1ece06a21ce30a445d82"
+        },
+        {
+          "path": "assets/ruined-wild-environment-provisional-CgAxwMof.webp",
+          "bytes": 256592,
+          "sha256": "0945a6b8824501d44af463e520c72ca98bd55b5cd6df55c1a89b01ce20894ef0"
+        },
+        {
+          "path": "assets/survivor-creature-refined-provisional-DEcpCW_U.webp",
+          "bytes": 360132,
+          "sha256": "51865d1166bcb1bd003f969b8199bdcbc35a41eae1692a902731933dd8949db0"
+        },
+        {
+          "path": "index.html",
+          "bytes": 610,
+          "sha256": "9e3e846766dba50f16334f1d70d5b2ad1d113e516a7bb0893658f7295bdeaadb"
+        },
+        {
+          "path": "licenses/LilitaOne-OFL.txt",
+          "bytes": 4390,
+          "sha256": "9c14147639ea90cfa41b0645c77b4fa642494d11696e2a9f5cd2d9b5843c1a6e"
+        }
+      ],
+      "inventorySHA256": "334f02bde015d08d95c66ed52b57bdf9f02a7afaf20d04e82ecb14c93aeb79bd"
+    },
+    {
+      "mode": "mainnet",
+      "directory": "/tmp/chog-task7b-candidates-Y76dq9/mainnet",
+      "files": [
+        {
+          "path": "assets/LilitaOne-Regular-DWEPn4H6.ttf",
+          "bytes": 28092,
+          "sha256": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59"
+        },
+        {
+          "path": "assets/ccip-CcLi8f1S.js",
+          "bytes": 3042,
+          "sha256": "a66b1bad125735c0151bcb3dcc973c592f48ca6978ac55b39ddea787596547af"
+        },
+        {
+          "path": "assets/index-C9o6GoDU.css",
+          "bytes": 65948,
+          "sha256": "49f9c992a0a2278fe428f5bac532cf49e0263c44dfadaedb97b0851760252c12"
+        },
+        {
+          "path": "assets/index-VuHCVdxp.js",
+          "bytes": 609066,
+          "sha256": "f6c22a28f73e6591e7522339f77c333bec311f7ba890405ba1c2507b9af228ea"
+        },
+        {
+          "path": "assets/moonlit-fog-overlay-provisional-CyWn4A_i.webp",
+          "bytes": 228108,
+          "sha256": "c5f90681c66899c851683478173f3d36bab007002b1d1ece06a21ce30a445d82"
+        },
+        {
+          "path": "assets/ruined-wild-environment-provisional-CgAxwMof.webp",
+          "bytes": 256592,
+          "sha256": "0945a6b8824501d44af463e520c72ca98bd55b5cd6df55c1a89b01ce20894ef0"
+        },
+        {
+          "path": "assets/survivor-creature-refined-provisional-DEcpCW_U.webp",
+          "bytes": 360132,
+          "sha256": "51865d1166bcb1bd003f969b8199bdcbc35a41eae1692a902731933dd8949db0"
+        },
+        {
+          "path": "index.html",
+          "bytes": 610,
+          "sha256": "758db0760abfd32be68d2fc645194b4255fe71082599f3a3a080e6c996c95f79"
+        },
+        {
+          "path": "licenses/LilitaOne-OFL.txt",
+          "bytes": 4390,
+          "sha256": "9c14147639ea90cfa41b0645c77b4fa642494d11696e2a9f5cd2d9b5843c1a6e"
+        }
+      ],
+      "inventorySHA256": "184f1a17225a00f9dd7cfc598d65e6cf9de57e0649684e26c80b03b2a03bf416"
+    }
+  ]
+}

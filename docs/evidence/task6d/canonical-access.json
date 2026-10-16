@@ -1,0 +1,56 @@
+[
+  {
+    "name": "metamask-alert-guidance",
+    "url": "https://support.metamask.io/configure/wallet/security-alerts",
+    "capturedAt": "2026-10-16T15:25:06.041130+00:00",
+    "status": 200,
+    "finalURL": "https://support.metamask.io/configure/wallet/security-alerts",
+    "bytes": 75812,
+    "sha256": "0e909c96412c2473498f09733f64b2e43ebb5aaa81be4b58b3cad936b3a0c043"
+  },
+  {
+    "name": "metamask-url-guidance",
+    "url": "https://support.metamask.io/stay-safe/safety-in-web3/deceptive-site-ahead-when-trying-to-connect-to-a-site/",
+    "capturedAt": "2026-10-16T15:25:08.178549+00:00",
+    "status": 200,
+    "finalURL": "https://support.metamask.io/stay-safe/safety-in-web3/deceptive-site-ahead-when-trying-to-connect-to-a-site/",
+    "bytes": 52215,
+    "sha256": "467ed59a3eab12562a394901b3998719c695f934a7bfa09782431f5959d0c7a1"
+  },
+  {
+    "name": "metamask-blockaid-portal",
+    "url": "https://blockaid-false-positive-portal.metamask.io/",
+    "capturedAt": "2026-10-16T15:25:10.359970+00:00",
+    "status": 200,
+    "finalURL": "https://blockaid-false-positive-portal.metamask.io/",
+    "bytes": 472,
+    "sha256": "69f7655c1c0745412fb759d17197706165ea0b6f62b3a7b8307c25dbc1ee0fbf"
+  },
+  {
+    "name": "blockaid-report-portal",
+    "url": "https://report.blockaid.io/",
+    "capturedAt": "2026-10-16T15:25:10.976135+00:00",
+    "status": 200,
+    "finalURL": "https://report.blockaid.io/",
+    "bytes": 1044,
+    "sha256": "2f4fa83dd56e9e5883f5d7b93ac5aa573b303160bfe58b9f7d7aecaf95713629"
+  },
+  {
+    "name": "blockaid-official-contact",
+    "url": "https://blockaid.io/contact",
+    "capturedAt": "2026-10-16T15:25:12.207399+00:00",
+    "status": 200,
+    "finalURL": "https://blockaid.io/contact",
+    "bytes": 75823,
+    "sha256": "7d8fdf920d17fe2eb6e44f7673a956c7ff17595cc3f04bd989370f23ae8357e3"
+  },
+  {
+    "name": "chog-linktree",
+    "url": "https://linktr.ee/chognft",
+    "capturedAt": "2026-10-16T15:25:13.042880+00:00",
+    "status": 200,
+    "finalURL": "https://linktr.ee/chognft",
+    "bytes": 236357,
+    "sha256": "3fd24141091925a01b24710c2ed92988dad288e2919e2918aec53eea91e7164c"
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "creationMatches": true,
+  "addressMatches": true,
+  "constructor": {
+    "name": "Chog Genesis",
+    "symbol": "CHOG",
+    "maxSupply": "1969",
+    "reserveMax": "256",
+    "treasury": "0x84113421A8a564b594ee9Ae78c875310332d7023",
+    "teamMain": "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7",
+    "royaltyBps": "500",
+    "placeholderURI": "ipfs://bafkreia4e52quxbmdmhmnd6tmlv4xdmzvoquqs77xtbupwipxae7b37p4i",
+    "admins": [
+      "0x84113421A8a564b594ee9Ae78c875310332d7023"
+    ],
+    "caps": [
+      0,
+      1404,
+      350,
+      250,
+      1713,
+      1713
+    ],
+    "maxPerWallet": [
+      170,
+      2,
+      1,
+      3,
+      1,
+      5
+    ],
+    "prices": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "5000000000000000000000"
+    ]
+  },
+  "runtimeReproduction": {
+    "runtimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+    "immutableGroups": [
+      {
+        "id": "7286",
+        "value": "1969"
+      },
+      {
+        "id": "7288",
+        "value": "256"
+      }
+    ],
+    "fullRuntimeMatches": true
+  },
+  "state": {
+    "ADMIN_ROLE": "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775",
+    "DEFAULT_ADMIN_ROLE": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "maxSupply": "1969",
+    "reserveMax": "256",
+    "stageMinted": "1713",
+    "reserveMinted": "256",
+    "treasury": "0x84113421A8a564b594ee9Ae78c875310332d7023",
+    "teamMain": "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7",
+    "revealed": true,
+    "baseURI": "ipfs://bafybeid4ybujnscdipkno7ps5utqelp5ry5ryreqhay3zhgk3a6x4jruqu/",
+    "placeholderURI": "ipfs://bafkreia4e52quxbmdmhmnd6tmlv4xdmzvoquqs77xtbupwipxae7b37p4i",
+    "provenanceHash": "0xc99d84870c0826588a33be59a5a9390eaae145f9e93a3d9cfd9b080413654119",
+    "startingIndex": "1461",
+    "currentStage": 255
+  },
+  "roles": {
+    "0x0000000000000000000000000000000000000000000000000000000000000000": {
+      "admin": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "accounts": {
+        "0x79bbec62f13bf1756e2f29f465240814ec1876f4": true,
+        "0x84113421A8a564b594ee9Ae78c875310332d7023": false,
+        "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7": false
+      }
+    },
+    "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": {
+      "admin": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "accounts": {
+        "0x79bbec62f13bf1756e2f29f465240814ec1876f4": true,
+        "0x84113421A8a564b594ee9Ae78c875310332d7023": true,
+        "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7": false
+      }
+    }
+  },
+  "roleHistory": {
+    "https://rpc.monad.xyz": {
+      "error": "RPC Request failed.",
+      "complete": false
+    },
+    "https://rpc2.monad.xyz": {
+      "error": "RPC Request failed.",
+      "complete": false
+    }
+  },
+  "executableOpcodeOffsets": {
+    "244": [
+      17197
+    ]
+  }
+}

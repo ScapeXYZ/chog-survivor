@@ -1,0 +1,39 @@
+{
+  "capturedAt": "2026-10-16T14:53:26.652Z",
+  "chainId": 143,
+  "rpc": "https://rpc.monad.xyz",
+  "block": {
+    "number": "113926371",
+    "hash": "0x4fcba96c4f05227902a6bbebbdf19f263750c5343259e2a84332f6cf357ce2e4"
+  },
+  "collection": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+  "collectionRuntimeCodeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+  "creationHash": "0x683228f50a7350cedddb7c6f8df777d05cec0756c725ace1e4b8a50d84adab29",
+  "expectedGameRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "reads": {
+    "name": "Chog Genesis",
+    "symbol": "CHOG",
+    "ownerOf": "0x601634F3d0746b550e68439286c1ad022a5f2B88",
+    "supportsInterface": true
+  },
+  "deployer": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+  "gasPrice": "102000000000",
+  "estimateSender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+  "estimateSenderApproved": true,
+  "deploymentGasEstimate": "1510761",
+  "estimatedFeeWei": "154097622000000000",
+  "balanceWei": "400000000000000000",
+  "accountCode": "0x",
+  "reserveWei": "100000000000000000",
+  "balanceCoversEstimateAndReserve": true,
+  "latestNonce": 0,
+  "pendingNonce": 0,
+  "expectedCreateAddress": "0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390",
+  "nonceReady": true,
+  "warningPublicList": {
+    "url": "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json",
+    "sha256": "61ce63940df3ff93aba9597d6f388f0004b997c9a42f3a4422ba70dd016e94d4",
+    "matches": [],
+    "limitation": "Exact/parent blacklist only; no fuzzy/proprietary verdict or provider clearance"
+  }
+}

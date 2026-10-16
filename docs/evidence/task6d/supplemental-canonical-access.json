@@ -1,0 +1,47 @@
+[
+  {
+    "name": "metamask-smart-account-guidance",
+    "url": "https://support.metamask.io/configure/accounts/what-is-a-smart-account",
+    "capturedAt": "2026-10-16T15:26:24.473340+00:00",
+    "status": 200,
+    "finalURL": "https://support.metamask.io/configure/accounts/what-is-a-smart-account",
+    "bytes": 67059,
+    "sha256": "cfb9e8d7f22dca1d6b8f9f91a8ff2471c4625202e9791f5101116e14b8b13bbd"
+  },
+  {
+    "name": "eip7702",
+    "url": "https://eips.ethereum.org/EIPS/eip-7702",
+    "capturedAt": "2026-10-16T15:26:28.718288+00:00",
+    "status": 200,
+    "finalURL": "https://eips.ethereum.org/EIPS/eip-7702",
+    "bytes": 58093,
+    "sha256": "a63b7d68b0da3dc668dc99459c66b824a5ef4447a5ae4b1687faafe284f64a61"
+  },
+  {
+    "name": "delegator-explorer",
+    "url": "https://monadscan.com/address/0x63c0c19a282a1b52b07dd5a65b58948a07dae32b#code",
+    "capturedAt": "2026-10-16T15:26:29.769275+00:00",
+    "status": 200,
+    "finalURL": "https://monadscan.com/address/0x63c0c19a282a1b52b07dd5a65b58948a07dae32b#code",
+    "bytes": 858550,
+    "sha256": "9f09992cb1c73326dbf6cb6aec693fc9e20d89387e92a5ac4dd2900e75aea4ad"
+  },
+  {
+    "name": "metamask-portal-bundle",
+    "url": "https://blockaid-false-positive-portal.metamask.io/assets/index-882d6782.js",
+    "capturedAt": "2026-10-16T15:26:33.207156+00:00",
+    "status": 200,
+    "finalURL": "https://blockaid-false-positive-portal.metamask.io/assets/index-882d6782.js",
+    "bytes": 210927,
+    "sha256": "3bec552bacf3b10479d3629729ea278d2fc814438397bff436a945888a1faadd"
+  },
+  {
+    "name": "blockaid-portal-bundle",
+    "url": "https://report.blockaid.io/assets/index-45971c88.js",
+    "capturedAt": "2026-10-16T15:26:34.378756+00:00",
+    "status": 200,
+    "finalURL": "https://report.blockaid.io/assets/index-45971c88.js",
+    "bytes": 581241,
+    "sha256": "80f8aaab7ff9a2cc23aaa93fe952bcfe5336bd55b8eb235e948f50f2946c2e15"
+  }
+]

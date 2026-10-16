@@ -1,0 +1,18 @@
+{
+  "snapshot": {
+    "number": "113935700",
+    "hash": "0xe53d84173c2473086473faad45777e99284c10ba56a926efc7a2b9aadae8fe4b",
+    "timestamp": "1792165222",
+    "baseFeePerGas": "100000000000"
+  },
+  "preparationChecks": {
+    "nonceReady": true,
+    "senderHasNoCode": true,
+    "destinationUnused": true,
+    "balanceCoversCapAndReserve": true,
+    "estimateFits": true,
+    "basePlusProposedTipFits": true,
+    "independentMatches": true
+  },
+  "error": null
+}

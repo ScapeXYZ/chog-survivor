@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-10-16T01:00:51.329Z",
+  "url": "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json",
+  "sha256": "1e26c6354cf3008f17a4704903eea744ecb7af7a0c720e29efc043b89f750a90",
+  "domain": "chog-survivor.vercel.app",
+  "blacklistEntries": 106619,
+  "exactOrParentBlacklistMatches": [],
+  "limitation": "Not a full fuzzy-detector evaluation, proprietary Blockaid verdict, or official clearance."
+}

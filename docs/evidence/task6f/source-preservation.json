@@ -1,0 +1,10 @@
+{
+  "capturedAt": "2026-10-16T15:57:05.764662+00:00",
+  "task6DManifestFilesMatched": 145,
+  "task6APriorEvidenceThrough6CFilesMatched": 82,
+  "task6DAnd6EPacketChecksumsMatch": true,
+  "candidateSHA256": "f7707ac8ae138a75b1b26777684f6235f91edf17c2980a1c585f39c3cce2643a",
+  "currentAuthorization": "NOT_AUTHORIZED",
+  "unchangedSuitesRepeated": false,
+  "newValidation": "New local-tool policy tests, synthetic browser tests and one actual read-only preflight only"
+}

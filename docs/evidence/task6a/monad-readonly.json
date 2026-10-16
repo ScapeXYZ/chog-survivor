@@ -1,0 +1,41 @@
+{
+  "capturedAt": "2026-10-16T00:55:32.481Z",
+  "rpc": "https://rpc.monad.xyz",
+  "chainId": 143,
+  "block": {
+    "number": "113760895",
+    "hash": "0x86d5ef82881d2f6c8a74d41c4dce70bf6925ecdffa8d483030d5dd23c3ad6384",
+    "timestamp": "1792112131"
+  },
+  "address": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+  "reads": {
+    "name": {
+      "result": "Chog Genesis"
+    },
+    "symbol": {
+      "result": "CHOG"
+    },
+    "totalSupply": {
+      "result": "1969"
+    },
+    "erc721": {
+      "result": true
+    },
+    "owner1425": {
+      "result": "0x601634F3d0746b550e68439286c1ad022a5f2B88"
+    },
+    "nonexistent": {
+      "error": "The contract function \"ownerOf\" reverted with the following signature:\n0x7e273289"
+    },
+    "implementation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "admin": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "beacon": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "runtimeBytes": 17264,
+  "runtimeKeccak256": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+  "gasPrice": "102000000000",
+  "creationBytecodeKeccak256": "0x683228f50a7350cedddb7c6f8df777d05cec0756c725ace1e4b8a50d84adab29",
+  "deploymentEstimateSender": "0x601634F3d0746b550e68439286c1ad022a5f2B88",
+  "deploymentGasEstimate": "1510761",
+  "estimatedFeeWei": "154097622000000000"
+}

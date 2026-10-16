@@ -1,0 +1,19 @@
+{
+  "files": 229,
+  "textFiles": 212,
+  "binaryFiles": 17,
+  "potentialFindings": [
+    {
+      "path": "docs/evidence/task6c/monadscan-page.txt",
+      "line": 10318,
+      "kind": "credential-assignment",
+      "redacted": true
+    },
+    {
+      "path": "docs/evidence/task6c/monadscan-page.txt",
+      "line": 10396,
+      "kind": "credential-assignment",
+      "redacted": true
+    }
+  ]
+}

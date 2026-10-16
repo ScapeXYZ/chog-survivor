@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-16T15:25:04.243Z",
+  "provider": "https://rpc.monad.xyz",
+  "chainId": 143,
+  "block": {
+    "number": "113932652",
+    "hash": "0x3b11574b5e3471bb9c8c18a7bf74ab0f881deb9a55d89cb1933fc5696301a3dc",
+    "timestamp": "1792164301"
+  },
+  "collection": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+  "collectionRuntimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+  "creationBlockHashVerified": "0xc40741e3fecb786fdc07f1e71ff3998f469b9b5dc1d78f45b529b7f750411715",
+  "knownAccounts": {
+    "0x79bbec62f13bf1756e2f29f465240814ec1876f4": {
+      "code": "0x",
+      "roles": {
+        "0x0000000000000000000000000000000000000000000000000000000000000000": true,
+        "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": true
+      },
+      "custody": "UNKNOWN: code does not identify people, hardware custody or key-sharing policy"
+    },
+    "0x84113421A8a564b594ee9Ae78c875310332d7023": {
+      "code": "0xef010063c0c19a282a1b52b07dd5a65b58948a07dae32b",
+      "roles": {
+        "0x0000000000000000000000000000000000000000000000000000000000000000": false,
+        "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": true
+      },
+      "custody": "UNKNOWN: code does not identify people, hardware custody or key-sharing policy"
+    },
+    "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7": {
+      "code": "0xef010063c0c19a282a1b52b07dd5a65b58948a07dae32b",
+      "roles": {
+        "0x0000000000000000000000000000000000000000000000000000000000000000": false,
+        "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": false
+      },
+      "custody": "UNKNOWN: code does not identify people, hardware custody or key-sharing policy"
+    }
+  },
+  "roleAdmins": {
+    "0x0000000000000000000000000000000000000000000000000000000000000000": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "state": {
+    "treasury": "0x84113421A8a564b594ee9Ae78c875310332d7023",
+    "teamMain": "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7",
+    "revealed": true,
+    "baseURI": "ipfs://bafybeid4ybujnscdipkno7ps5utqelp5ry5ryreqhay3zhgk3a6x4jruqu/",
+    "provenanceHash": "0xc99d84870c0826588a33be59a5a9390eaae145f9e93a3d9cfd9b080413654119",
+    "startingIndex": "1461",
+    "maxSupply": "1969",
+    "reserveMax": "256",
+    "stageMinted": "1713",
+    "reserveMinted": "256",
+    "currentStage": 255
+  },
+  "sample": {
+    "tokenId": "1425",
+    "ownerOf": "0x601634F3d0746b550e68439286c1ad022a5f2B88",
+    "getApproved": "0x0000000000000000000000000000000000000000",
+    "royaltyInfo": [
+      "0x84113421A8a564b594ee9Ae78c875310332d7023",
+      "500"
+    ]
+  },
+  "deployer": {
+    "address": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+    "balanceWei": "400000000000000000",
+    "code": "0x",
+    "latestNonce": 0,
+    "pendingNonce": 0,
+    "gasPrice": "102000000000"
+  },
+  "limitations": [
+    "Known accounts only; complete current role membership needs indexed RoleGranted/RoleRevoked history.",
+    "Empty account code does not attest custody, key holders or a hardware wallet.",
+    "Sample getApproved does not enumerate operator approvals or other tokens."
+  ]
+}

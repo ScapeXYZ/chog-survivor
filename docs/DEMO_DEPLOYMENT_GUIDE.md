@@ -1,6 +1,12 @@
 # Demo environment and deployment guide
 
-This is a preparation guide. **Nothing has been deployed or published.** Public artifact, destination, environment and release approval are required before even a preview deployment. Contract deployment/mainnet use is outside this plan.
+## Verified Monad mainnet deployment — Task 7A
+
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
+
+The existing public static demo is **https://chog-survivor.vercel.app/** and the repository is public. Task 5A verified access independently; hosted project settings and the exact source SHA behind the deployed bundle remain unverified. This guide governs a **future** release: approve its exact artifact, destination and environment before any deployment. The owner-deployed contract is verified above; frontend publication and further mainnet transactions require separate approval.
 
 ## Public walletless build
 
@@ -14,7 +20,7 @@ Vite replaces `VITE_*` settings at build time; changing hosting environment vari
 | `VITE_LOCAL_CHOG_SURVIVOR_ADDRESS` | Empty/unset | Previously verified local game address |
 | `VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK` | Empty/unset | Verified local deployment block; necessary for journal reads |
 
-Every `VITE_*` value is public browser data. Do not put keys or private RPC/API credentials in these settings. `VITE_CHOG_SURVIVOR_ADDRESS` does **not** activate a production deployment in current code. Canonical address, chain support and authorization remain unchanged.
+Every `VITE_*` value is public browser data. Do not put keys or private RPC/API credentials in these settings. `VITE_CHOG_SURVIVOR_ADDRESS` does **not** activate a production deployment in current code. The verified source manifest pins the real game address; explicit mainnet build mode is additionally required and publication remains gated.
 
 From `frontend` in a complete clean checkout, install the existing lockfile with `npm ci`, then:
 
@@ -31,7 +37,7 @@ Output: `frontend/dist`. It includes the existing local font and the same licens
 
 For a local static preview of this artifact, run `npm exec vite preview -- --host 127.0.0.1` from `frontend`. This serves files locally; it is not a public deployment. No wallet or Anvil is required. Do not upload the whole workspace or `.env.local`; only the approved static output is website content.
 
-## Deployment proposal — execute only after approval
+## Future deployment — execute only after approval
 
 1. Resolve the artwork/release blockers in the [staging plan](TASK_4K_STAGING_PLAN.md), review all required source files, verify evidence/license notices, and approve the exact release revision/artifact. No commit/push is authorized by this guide.
 2. Choose **one** provider/destination and approve account access, visibility and environment. Creating a connected Git hosting project can deploy immediately; do not do it as a harmless preliminary step.
@@ -60,6 +66,8 @@ Do not start/reset Anvil, install fixtures, deploy, mint, transfer, advance time
 
 ## Verification without live-chain mutation
 
+Current results, safe commands and release decisions: [Task 5A](TASK_5A_RELEASE_READINESS.md). Read-only mainnet/fork compatibility: [eligibility report](TASK_5A_MAINNET_ELIGIBILITY.md).
+
 From `frontend`:
 
 ```sh
@@ -72,3 +80,15 @@ node scripts/mini-game-integration-smoke.mjs
 The browser smoke uses intercepted wallet/RPC fixtures and temporary local Vite servers. Its “confirmed” actions are mocked, not new Anvil evidence. It requires installed Playwright Chromium and local socket/browser permissions. Unit tests intentionally isolate developer env values while local suites opt in explicitly. `git diff --check` checks tracked diffs; also inspect new untracked documents for whitespace and secrets.
 
 Do **not** substitute `npm run test:e2e` or the real Task 4H script: those can mutate the live local chain. No dependency installation or transaction is part of Task 4K verification.
+
+## Task 7A local mainnet build — do not publish
+
+From `frontend`, prepare the verified mainnet candidate into a separate temporary directory:
+
+```sh
+VITE_CHOG_ENV=mainnet VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm run build -- --outDir /tmp/chog-task7a-mainnet
+```
+
+This is a local build, not permission to interact or publish. Simulation remains available without a wallet; compatible injected EVM wallets are explicitly selected via EIP-6963. Real actions require current NFT ownership on chain 143, matching runtime/NFT binding, fresh day/preview/simulation/gas checks and explicit wallet confirmation. Never transfer or approve the NFT to play. Mainnet gas is real MON. Reject unexpected wallet warnings or transaction fields.
+
+Keep the checked-in Vercel build command in production simulation until a separate approval identifies the exact mainnet artifact, destination and risk disposition. Explorer source publishing is also a separate approval gate; use the locally reproduced standard JSON in the Task 7A evidence packet only after authorization.

@@ -1,0 +1,132 @@
+vite v6.4.4 building for production...
+
+(!) outDir /tmp/chog-6b-enabled-7dvZlE is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+transforming...
+node_modules/@base-org/account/node_modules/ox/_esm/core/Address.js (6:21): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@base-org/account/node_modules/ox/_esm/core/Address.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@base-org/account/node_modules/ox/_esm/core/Base64.js (6:27): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@base-org/account/node_modules/ox/_esm/core/Base64.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@coinbase/wallet-sdk/node_modules/ox/_esm/core/Address.js (6:21): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@coinbase/wallet-sdk/node_modules/ox/_esm/core/Address.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@coinbase/wallet-sdk/node_modules/ox/_esm/core/Base64.js (6:27): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@coinbase/wallet-sdk/node_modules/ox/_esm/core/Base64.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@wagmi/connectors/node_modules/ox/_esm/core/Base64.js (6:27): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@wagmi/connectors/node_modules/ox/_esm/core/Base64.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@walletconnect/utils/node_modules/ox/_esm/core/Base64.js (6:27): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@walletconnect/utils/node_modules/ox/_esm/core/Base64.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@base-org/account/node_modules/ox/_esm/core/internal/cursor.js (2:21): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@base-org/account/node_modules/ox/_esm/core/internal/cursor.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@coinbase/wallet-sdk/node_modules/ox/_esm/core/internal/cursor.js (2:21): A comment
+
+"/*#__PURE__*/"
+
+in "node_modules/@coinbase/wallet-sdk/node_modules/ox/_esm/core/internal/cursor.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@wagmi/connectors/node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/@wagmi/connectors/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/@wagmi/connectors/node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/@wagmi/connectors/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 4396 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../tmp/chog-6b-enabled-7dvZlE/index.html                                                    0.61 kB │ gzip:   0.38 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/LilitaOne-Regular-DWEPn4H6.ttf                        28.09 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/moonlit-fog-overlay-provisional-CyWn4A_i.webp        228.11 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/ruined-wild-environment-provisional-CgAxwMof.webp    256.59 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/survivor-creature-refined-provisional-DEcpCW_U.webp  360.13 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/index-C9o6GoDU.css                                    65.95 kB │ gzip:  15.78 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/ccip-B7gQoeP6.js                                       3.04 kB │ gzip:   1.39 kB
+../../../../tmp/chog-6b-enabled-7dvZlE/assets/index-D8FOGW_Q.js                                    608.21 kB │ gzip: 186.68 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 11.50s
+PASS 1440: enabled build defaults to simulation
+PASS 1440: simulation never requests writes
+PASS 1440: real mode clearly labeled
+PASS 1440: verified manifest explorer link
+PASS 1440: settings fit viewport
+PASS 1440: walletless navigation never connects
+PASS 1440: discovers two EVM wallets without legacy injection
+PASS 1440: cancel never connects
+PASS 1440: preview does not write
+PASS 1440: explicit confirmation only, bounded gas and pinned chain
+PASS 1440: gas estimate requested
+PASS 1440: runtime mismatch blocks wallet
+PASS 375: enabled build defaults to simulation
+PASS 375: simulation never requests writes
+PASS 375: real mode clearly labeled
+PASS 375: verified manifest explorer link
+PASS 375: settings fit viewport
+PASS 375: walletless navigation never connects
+PASS 375: discovers two EVM wallets without legacy injection
+PASS 375: cancel never connects
+PASS 375: preview does not write
+PASS 375: explicit confirmation only, bounded gas and pinned chain
+PASS 375: gas estimate requested
+PASS 375: runtime mismatch blocks wallet
+PASS no uncaught browser errors
+{
+  "checks": 25,
+  "names": [
+    "1440: enabled build defaults to simulation",
+    "1440: simulation never requests writes",
+    "1440: real mode clearly labeled",
+    "1440: verified manifest explorer link",
+    "1440: settings fit viewport",
+    "1440: walletless navigation never connects",
+    "1440: discovers two EVM wallets without legacy injection",
+    "1440: cancel never connects",
+    "1440: preview does not write",
+    "1440: explicit confirmation only, bounded gas and pinned chain",
+    "1440: gas estimate requested",
+    "1440: runtime mismatch blocks wallet",
+    "375: enabled build defaults to simulation",
+    "375: simulation never requests writes",
+    "375: real mode clearly labeled",
+    "375: verified manifest explorer link",
+    "375: settings fit viewport",
+    "375: walletless navigation never connects",
+    "375: discovers two EVM wallets without legacy injection",
+    "375: cancel never connects",
+    "375: preview does not write",
+    "375: explicit confirmation only, bounded gas and pinned chain",
+    "375: gas estimate requested",
+    "375: runtime mismatch blocks wallet",
+    "no uncaught browser errors"
+  ],
+  "fixtureOnly": true,
+  "bundle": "/tmp/chog-6b-enabled-7dvZlE"
+}

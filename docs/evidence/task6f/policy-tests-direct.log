@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: pins exact artifact, construction data and unsigned payload; rejects altered transaction fields
+ok 1 - pins exact artifact, construction data and unsigned payload; rejects altered transaction fields
+  ---
+  duration_ms: 19.513517
+  type: 'test'
+  ...
+# Subtest: EIP-1193 creation request reconstructs the exact signing payload and fees
+ok 2 - EIP-1193 creation request reconstructs the exact signing payload and fees
+  ---
+  duration_ms: 2.413756
+  type: 'test'
+  ...
+# Subtest: authorization defaults closed, binds exact digest/references and expires
+ok 3 - authorization defaults closed, binds exact digest/references and expires
+  ---
+  duration_ms: 1.069841
+  type: 'test'
+  ...
+# Subtest: read-only preflight rejects wrong network/nonces/code/runtime/balance/gas/fees/freshness
+ok 4 - read-only preflight rejects wrong network/nonces/code/runtime/balance/gas/fees/freshness
+  ---
+  duration_ms: 0.560581
+  type: 'test'
+  ...
+# Subtest: no authorization or independent confirmation means zero wallet calls
+ok 5 - no authorization or independent confirmation means zero wallet calls
+  ---
+  duration_ms: 19.234829
+  type: 'test'
+  ...
+# Subtest: wrong wallet account/chain blocks writes
+ok 6 - wrong wallet account/chain blocks writes
+  ---
+  duration_ms: 8.203418
+  type: 'test'
+  ...
+# Subtest: fresh failures, changed quote or async wallet context prevent a write
+ok 7 - fresh failures, changed quote or async wallet context prevent a write
+  ---
+  duration_ms: 10.44264
+  type: 'test'
+  ...
+# Subtest: only explicit fully checked call can reach synthetic wallet; persisted marker blocks retry
+ok 8 - only explicit fully checked call can reach synthetic wallet; persisted marker blocks retry
+  ---
+  duration_ms: 5.267694
+  type: 'test'
+  ...
+# Subtest: storage failure and late authorization expiry prevent wallet write
+ok 9 - storage failure and late authorization expiry prevent wallet write
+  ---
+  duration_ms: 6.565994
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 96.000937

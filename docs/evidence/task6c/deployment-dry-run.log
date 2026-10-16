@@ -1,0 +1,32 @@
+src/ChogSurvivor.sol: OK
+forge Version: 1.8.5
+Compiling 18 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.37s
+Compiler run successful!
+Script ran successfully.
+
+== Return ==
+game: contract ChogSurvivor 0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 143
+
+Estimated max fee per gas: 202.5 gwei
+Estimated base fee per gas: 100 gwei
+Estimated max priority fee per gas: 2.5 gwei
+
+Estimated total gas used for script: 1510761
+
+Estimated amount required: 0.3059291025 MON
+
+==========================
+
+SIMULATION COMPLETE. To broadcast these transactions, add --broadcast and wallet configuration(s) to the previous command. See forge script --help for more.
+
+Transactions saved to: /home/temitope/chog-survivor/broadcast/PrepareMonadMainnet.s.sol/143/dry-run/run-latest.json
+
+Sensitive values saved to: /tmp/chog-task6c-cache/PrepareMonadMainnet.s.sol/143/dry-run/run-latest.json
+

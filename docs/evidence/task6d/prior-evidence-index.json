@@ -1,0 +1,827 @@
+{
+  "files": [
+    {
+      "path": "docs/evidence/task6a/monad-readonly.json",
+      "bytes": 1406,
+      "sha256": "23803c4f683846ae693f55e8304126116b8cc07a908b0d296db4d4a7433a1581",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "rpc",
+        "chainId",
+        "block",
+        "address",
+        "reads",
+        "runtimeBytes",
+        "runtimeKeccak256",
+        "gasPrice",
+        "creationBytecodeKeccak256",
+        "deploymentEstimateSender",
+        "deploymentGasEstimate",
+        "estimatedFeeWei"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6a/warning-public-list.json",
+      "bytes": 442,
+      "sha256": "63856ea5946f903da25804d23fae10196f48153a943f94f28a4d0a577cd72df1",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "url",
+        "sha256",
+        "domain",
+        "blacklistEntries",
+        "exactOrParentBlacklistMatches",
+        "limitation"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/README.md",
+      "bytes": 1559,
+      "sha256": "ebc5c6c1e7311fa4caf73dcbd2b036371d1ed73a65f2dee14ee40b3293f2eb73"
+    },
+    {
+      "path": "docs/evidence/task6b/approved-deployer-readonly.json",
+      "bytes": 1612,
+      "sha256": "bfdd5d80fbb690a38fa41768b281a0847e1d03db5efd54f79188fb15cdfdf6c3",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "chainId",
+        "rpc",
+        "block",
+        "collection",
+        "collectionRuntimeCodeHash",
+        "creationHash",
+        "expectedGameRuntimeHash",
+        "reads",
+        "deployer",
+        "gasPrice",
+        "estimateSender",
+        "estimateSenderApproved",
+        "deploymentGasEstimate",
+        "estimatedFeeWei",
+        "balanceWei",
+        "accountCode",
+        "reserveWei",
+        "balanceCoversEstimateAndReserve",
+        "latestNonce",
+        "pendingNonce",
+        "expectedCreateAddress",
+        "nonceReady",
+        "warningPublicList"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/build-current.log",
+      "bytes": 4096,
+      "sha256": "e66d8e86800aaef95c3985904c5cb903d871c937581f741b5cfc2a062fe33f66",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6b/build.json",
+      "bytes": 689,
+      "sha256": "72a7acfd150d25be79aba52d51ca2d97fadd008b8496ed9e3a6bdb9c0791cf81",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "runtimeCodeHash",
+        "sourceHash",
+        "creationHash",
+        "compiler",
+        "settings",
+        "creationBytes",
+        "runtimeBytes"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/frontend-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "empty": true,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6b/frontend-tests.log",
+      "bytes": 259,
+      "sha256": "83421707c6a8de5dc831a2cd87d1a6bdc9cc28b465eb16fc15526e83424f5e4f",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6b/mainnet-readonly.json",
+      "bytes": 1295,
+      "sha256": "c63e2632d516e14140bd85041e6febaf27719ed09de16f107fea7854cee12b8a",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "chainId",
+        "rpc",
+        "block",
+        "collection",
+        "collectionRuntimeCodeHash",
+        "creationHash",
+        "expectedGameRuntimeHash",
+        "reads",
+        "deployer",
+        "gasPrice",
+        "estimateSender",
+        "estimateSenderApproved",
+        "deploymentGasEstimate",
+        "estimatedFeeWei",
+        "warningPublicList"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/monad-fork.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "empty": true,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6b/monad-tests.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "empty": true,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-approved.log",
+      "bytes": 5615,
+      "sha256": "174ecfe16b523219e1302161eca25008e32b5bb894d6e126605b3c8c2fde98bd",
+      "empty": false,
+      "resultLines": [
+        "AssertionError [ERR_ASSERTION]: 1440: walletless navigation never connects"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-complete.log",
+      "bytes": 5560,
+      "sha256": "7e2f6d4ad3934a32a3f31e3d9c03f496aacc97134bf114c8315e0859008e61c4",
+      "empty": false,
+      "resultLines": [
+        "locator.waitFor: Timeout 30000ms exceeded.",
+        "  name: 'TimeoutError'"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-diagnostic.log",
+      "bytes": 8784,
+      "sha256": "b8b1a8f6b7ed0353afecb88c7576a5f4ec07c90f78105d68ebd39e1021e5e896",
+      "empty": false,
+      "resultLines": [
+        "locator.waitFor: Timeout 15000ms exceeded.",
+        "  name: 'TimeoutError'"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-final-pass.log",
+      "bytes": 5510,
+      "sha256": "a46dd30a14d5ab0e5cc1ecb24b2c7f159a3d779b7159e1840eba8534d24ca4f5",
+      "empty": false,
+      "resultLines": [
+        "locator.waitFor: Timeout 30000ms exceeded.",
+        "  name: 'TimeoutError'"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-final.log",
+      "bytes": 5745,
+      "sha256": "f67da3dc0f848d1d7d523df5b447a014756e3dedb33b3a58a2a179449ed8ade6",
+      "empty": false,
+      "resultLines": [
+        "Error: listen EPERM: operation not permitted 127.0.0.1:5194",
+        "    at emitErrorNT (node:net:1977:8)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-pass.log",
+      "bytes": 5744,
+      "sha256": "8d11d9e4ac467dbdaf1c886d04f131ce6b9bae3be02225027acf00a4a7496c8d",
+      "empty": false,
+      "resultLines": [
+        "Error: listen EPERM: operation not permitted 127.0.0.1:5194",
+        "    at emitErrorNT (node:net:1977:8)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-result.log",
+      "bytes": 5942,
+      "sha256": "15daf76059d532fdc562da45823ea0a22dfc3de42ce7daf5c3dcbca6fa816979",
+      "empty": false,
+      "resultLines": [
+        "locator.waitFor: Timeout 15000ms exceeded.",
+        "  name: 'TimeoutError'"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-success.log",
+      "bytes": 7424,
+      "sha256": "a7100c6aa45e88b09ea82c0fb2c87e83bcd956c4d43ac25959561f3e20038cd0",
+      "empty": false,
+      "resultLines": [
+        "  \"checks\": 25,"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser-validated.log",
+      "bytes": 5942,
+      "sha256": "9a09f71f858b841d3fa406ae2ce328ad314e220099b5b3ea6da7b8bc1a5fe45a",
+      "empty": false,
+      "resultLines": [
+        "locator.waitFor: Timeout 15000ms exceeded.",
+        "  name: 'TimeoutError'"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-enabled-browser.log",
+      "bytes": 6395,
+      "sha256": "58ee72ab67f190a65affaa7b6da60086609edb2c98f4a98357ce1c43a855af0c",
+      "empty": false,
+      "resultLines": [
+        "Error: listen EPERM: operation not permitted 127.0.0.1:5194",
+        "    at emitErrorNT (node:net:1977:8)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-focused-tests.log",
+      "bytes": 379,
+      "sha256": "71b9bbc610bd9a3070994e1bf4a7d086ec17aa1899f23fe6ae7c02178f56861f",
+      "empty": false,
+      "resultLines": [
+        " Test Files  3 passed (3)",
+        "      Tests  13 passed (13)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-frontend-build.log",
+      "bytes": 4795,
+      "sha256": "41bbaf721b45a0cd810e0db13525a93aa902d4f8367a0e29fa85f43a98f18f1e",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6b/resumed-frontend-tests.log",
+      "bytes": 302,
+      "sha256": "962a44811900f264ab59a8f2ce019de0bcb1cd44cf634232d94de9a8c71ca5fe",
+      "empty": false,
+      "resultLines": [
+        " Test Files  24 passed (24)",
+        "      Tests  386 passed (386)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6b/toolchain.json",
+      "bytes": 511,
+      "sha256": "3736a00a1bf12a9f554f37d749d091a52817d6f496cd2c43b55f5eb2d88e1a80",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "release",
+        "publishedAt",
+        "archive",
+        "sha256",
+        "review"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/ChogMint.sol",
+      "bytes": 21602,
+      "sha256": "0adafb3ca411b9296611307d74cdfe448e0a576c4192fe692312146ccf6620d3"
+    },
+    {
+      "path": "docs/evidence/task6c/README.md",
+      "bytes": 4306,
+      "sha256": "b9353824c4c254263329a943c4d1787a66ff87e686aab8a9d264639991c536f9"
+    },
+    {
+      "path": "docs/evidence/task6c/artifact-parity.json",
+      "bytes": 263,
+      "sha256": "cee73c7bc74ac204b8f36f0ecb857aa06c5aa2455eb4e3c20bcad2c4a597ff78",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "frozenSourceSHA256",
+        "gameCreationParity",
+        "gameRuntimeTemplateParity",
+        "isolatedCompiler",
+        "collectionCompileErrors"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/blockaid-portal.txt",
+      "bytes": 472,
+      "sha256": "69f7655c1c0745412fb759d17197706165ea0b6f62b3a7b8307c25dbc1ee0fbf"
+    },
+    {
+      "path": "docs/evidence/task6c/changed-file-security-inventory.json",
+      "bytes": 46599,
+      "sha256": "9a87362e8b9abfd0a31eae2796e8a5ca6c3cf6e2e51f0140b6fa6af2729825f8",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "baseRevision",
+        "scope",
+        "files",
+        "potentialFindings",
+        "limitation",
+        "triage"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/chog-build.txt",
+      "bytes": 82969,
+      "sha256": "7832c9bcf36b7fd27cb665fe861903b6aa4bfc9b7ce2b6452dbcda1193856c55"
+    },
+    {
+      "path": "docs/evidence/task6c/chog-site.txt",
+      "bytes": 85621,
+      "sha256": "72db9ee51e93291ca1423f441ea3b77bc652675916b136b18835dd01df163352"
+    },
+    {
+      "path": "docs/evidence/task6c/collection-abi.json",
+      "bytes": 36411,
+      "sha256": "cfa4b80a1adb0c5c039c7134a42e4f29c59e041ab7989b543aaf0132ca3475e6",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        124
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/collection-compiler-output.json",
+      "bytes": 1093031,
+      "sha256": "aae78df03c0572e4fb6ce9c6d9d417ba1fff28ae9175a8267a0914af7ecb6769",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "contracts",
+        "errors",
+        "sources"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/collection-editor.json",
+      "bytes": 181654,
+      "sha256": "903f47aaa336f981a3d5a01b39c8a6ebea6fa6a17591a8c105ae1db21655ba78",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "language",
+        "sources"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/collection-provenance.json",
+      "bytes": 50647,
+      "sha256": "e615d818f6e7574d930b26b4e621ad79d08ab27a9902cf4340868f678e4bb537",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "tx",
+        "receipt",
+        "snapshot",
+        "creationMatches",
+        "addressMatches",
+        "constructor",
+        "runtimeReproduction",
+        "state",
+        "roles",
+        "roleHistory",
+        "executableOpcodeOffsets",
+        "metadataBytes",
+        "limitations"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/collection-provenance.log",
+      "bytes": 2919,
+      "sha256": "fc2af9f39659bb48bdc77277ef8f33548564e523568908ab80f89381a10e0698",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6c/collection-standard-input.json",
+      "bytes": 181807,
+      "sha256": "703ccceafeb7ba9a6904a7e2c39d2bb7c58e1146bae38cc0aacc2261d865539a",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "language",
+        "sources",
+        "settings"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/deployment-dry-run.log",
+      "bytes": 929,
+      "sha256": "68aa85ffbea67b6b16f6af1230e08d424bba17028b22d4be8365b759d275d3d8",
+      "empty": false,
+      "resultLines": [
+        "SIMULATION COMPLETE. To broadcast these transactions, add --broadcast and wallet configuration(s) to the previous command. See forge script --help for more."
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/enabled-browser.log",
+      "bytes": 7425,
+      "sha256": "9d31d5e89a231275c7fcf1c93d2bf71a09fbf2269907dcb24648d30c32a3443b",
+      "empty": false,
+      "resultLines": [
+        "  \"checks\": 25,"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/focused-security-tests.log",
+      "bytes": 412,
+      "sha256": "3c7530a0fe18f5131cd169f924d3acef90562194312cc2ba9d4afcdf6cbb6c3a",
+      "empty": false,
+      "resultLines": [
+        " Test Files  4 passed (4)",
+        "      Tests  23 passed (23)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/forge-script-help.txt",
+      "bytes": 29739,
+      "sha256": "ea62a934725180c63672053b703d6dc28efee02c3910014f336eeabc72931802"
+    },
+    {
+      "path": "docs/evidence/task6c/forge-test-help.txt",
+      "bytes": 35178,
+      "sha256": "3fa7dc71aee61780e01e41c935b204f9b4090b3b08d57aa5f9809c996dcc492c"
+    },
+    {
+      "path": "docs/evidence/task6c/foundry-release.json",
+      "bytes": 84173,
+      "sha256": "4e6658216ace3161bcb5845ca20adecf8f38470017706a325ef41601684fc80b",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "url",
+        "assets_url",
+        "upload_url",
+        "html_url",
+        "id",
+        "author",
+        "node_id",
+        "tag_name",
+        "target_commitish",
+        "name",
+        "draft",
+        "immutable",
+        "prerelease",
+        "created_at",
+        "updated_at",
+        "published_at",
+        "assets",
+        "tarball_url",
+        "zipball_url",
+        "body",
+        "mentions_count"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/frontend-build.log",
+      "bytes": 4795,
+      "sha256": "2e07c58f35e38bd5730593e426124f000e1789dff8842a55566d32ac9c41741e",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6c/frontend-tests.log",
+      "bytes": 302,
+      "sha256": "e6f7cdfd79aa9ff5f9904245245c5bea28f463f67354237e3ba3620827e00011",
+      "empty": false,
+      "resultLines": [
+        " Test Files  24 passed (24)",
+        "      Tests  386 passed (386)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/frozen-source.sha256",
+      "bytes": 87,
+      "sha256": "6190da5783afd8db3929da0cbb3deec5076bc82dd12996c1688336c1cafa8637"
+    },
+    {
+      "path": "docs/evidence/task6c/game-artifact.json",
+      "bytes": 689,
+      "sha256": "72a7acfd150d25be79aba52d51ca2d97fadd008b8496ed9e3a6bdb9c0791cf81",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "runtimeCodeHash",
+        "sourceHash",
+        "creationHash",
+        "compiler",
+        "settings",
+        "creationBytes",
+        "runtimeBytes"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/gas-suite-opt-in.log",
+      "bytes": 409,
+      "sha256": "f8359ef5d0a10dd8a2e7b0d3999458890ff28a058c1442bb946dc3860b93c544",
+      "empty": false,
+      "resultLines": [
+        "Suite result: ok. 0 passed; 0 failed; 1 skipped; finished in 605.90\u00b5s (0.00ns CPU time)",
+        "Ran 1 test suite in 6.37ms (605.90\u00b5s CPU time): 0 tests passed, 0 failed, 1 skipped (1 total tests)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/independent-crosscheck-summary.json",
+      "bytes": 437,
+      "sha256": "bd9d10d8baa75a39c931a9389cb2d64c9ee35c89e2b7957b285fbbd64fc6cf42",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "provider",
+        "capturedAt",
+        "chainId",
+        "sameBlockHash",
+        "sameCollectionRuntime",
+        "sameBalance",
+        "latestNonce",
+        "pendingNonce",
+        "gasPrice"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/log-range-probe.json",
+      "bytes": 98,
+      "sha256": "d40fa95944a3b31983d93f3fe86f082bcda48e206ae93866a3b5042ab5ee45c6",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "jsonrpc",
+        "id",
+        "error"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/monad-fork.log",
+      "bytes": 684,
+      "sha256": "b355d2900b1d7754c8fb1ba57253d799aeb8d10f43e64f3cb4f5e5f861a8a671",
+      "empty": false,
+      "resultLines": [
+        "Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 9.97s (24.93s CPU time)",
+        "Ran 1 test suite in 9.98s (9.97s CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/monad-tests.log",
+      "bytes": 12397,
+      "sha256": "514191b5915f9ca4f72892a91febe61a3050fd0d562f5d986ddd65408a029edc",
+      "empty": false,
+      "resultLines": [
+        "Suite result: ok. 0 passed; 0 failed; 6 skipped; finished in 664.59\u00b5s (248.71\u00b5s CPU time)",
+        "Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 1.23ms (663.96\u00b5s CPU time)",
+        "Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 57.66ms (57.38ms CPU time)",
+        "Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 637.10ms (21.89ms CPU time)",
+        "Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 637.14ms (1.02s CPU time)",
+        "Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 636.55ms (719.79ms CPU time)",
+        "Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 55.39s (55.38s CPU time)",
+        "Ran 7 test suites in 55.81s (57.36s CPU time): 39 tests passed, 0 failed, 6 skipped (45 total tests)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/monadscan-creation.txt",
+      "bytes": 67,
+      "sha256": "15a829feaac786f421a396f1e60977a508a6e29434bd7b62a75a743710cdb150"
+    },
+    {
+      "path": "docs/evidence/task6c/monadscan-page.txt",
+      "bytes": 1004936,
+      "sha256": "ac65208c233a635b608fbeee92954e34b36f31e4ac2e0950f2f61c48f9cfd774"
+    },
+    {
+      "path": "docs/evidence/task6c/monadscan-source.txt",
+      "bytes": 67,
+      "sha256": "15a829feaac786f421a396f1e60977a508a6e29434bd7b62a75a743710cdb150"
+    },
+    {
+      "path": "docs/evidence/task6c/monadvision-page.txt",
+      "bytes": 129232,
+      "sha256": "12312bf47beb473fda7f7d66339cdfb106f98d7a289a71a008ea29e1e7681e71"
+    },
+    {
+      "path": "docs/evidence/task6c/network-reference.html",
+      "bytes": 385421,
+      "sha256": "a8ddd26a8384f8d5abf35ad9f0c8ccb6aafdf88a7c7a959002448dd70e686fe8"
+    },
+    {
+      "path": "docs/evidence/task6c/original-foundry-version.txt",
+      "bytes": 155,
+      "sha256": "6150c0079c833add8401c30c2383daf90feccd88b864355d83c8a6ea7c475d57"
+    },
+    {
+      "path": "docs/evidence/task6c/representative-gas.log",
+      "bytes": 3295,
+      "sha256": "820940ea458b394df9d4dfb661138fbef46f979f5e52239e62bc79e13d7641e6",
+      "empty": false,
+      "resultLines": [
+        "Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 8.35s (6.72s CPU time)",
+        "Ran 1 test suite in 8.35s (8.35s CPU time): 4 tests passed, 0 failed, 0 skipped (4 total tests)"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc-refresh-sandbox-failed.json",
+      "bytes": 732,
+      "sha256": "1f9bd7bbcfbe15edbd914ce8dcea92e9a1964990ac5f995300015df60730be2c",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "sourceHash",
+        "creationHash",
+        "expectedRuntimeHash",
+        "reports"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc-refresh.json",
+      "bytes": 40139,
+      "sha256": "790b227d79253edd6d8fc2bbe05b2e227396448b8833aa57eae22214b479e7ec",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "sourceHash",
+        "creationHash",
+        "expectedRuntimeHash",
+        "reports"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc-run-approved.log",
+      "bytes": 2725,
+      "sha256": "37186fd85ece4a7928c070f10b9a7ed7021417b4d06b7b6415a8da77affe2396",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6c/rpc-run.log",
+      "bytes": 378,
+      "sha256": "9a180be918105a52ff80e0fa406844c70f11b1a8a782a3b0a9a3459c57af9ccd",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6c/rpc1-independent-error.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/task6c/rpc1-independent-response.json",
+      "bytes": 27,
+      "sha256": "4a62d6f224cc0d36086eb8516b3a30e670aacb9d845489fa7481e41783652362",
+      "parsedJSON": false
+    },
+    {
+      "path": "docs/evidence/task6c/rpc1-sandbox-failed.json",
+      "bytes": 77,
+      "sha256": "3733b6d28359f111df2de8848094669e62a70bfc884d191fff0d7a44c2ae9be6",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        1
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc1-transcript.json",
+      "bytes": 83722,
+      "sha256": "b97f26aba8040917574de43d214f5ee458d07b5a01602196474f2277ff386436",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        22
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-connectivity.txt",
+      "bytes": 40,
+      "sha256": "f2c8cfffaa48ef7411ca193dc71aba6aa88743516c723630eb7e5b6b2dc5b8ca"
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-crosscheck-error.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-crosscheck-request.json",
+      "bytes": 754,
+      "sha256": "6ac76743352408801a9eaa51e203fe3cac1f63ca756f48eab9f0d8984ed95139",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        7
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-crosscheck-response.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "parsedJSON": false
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-independent.json",
+      "bytes": 15022,
+      "sha256": "5b2bb50496afc7ba628be171b0677b9596752c9dab00aeb7875bacf80d888cc7",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "url",
+        "reads"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-retry-refresh.json",
+      "bytes": 533,
+      "sha256": "8575ae934a2d5ff57047b63a07ef7355b58ec5e96b59fe60371bbb9b4e5f6274",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "sourceHash",
+        "creationHash",
+        "expectedRuntimeHash",
+        "reports"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-retry-transcript.json",
+      "bytes": 77,
+      "sha256": "3733b6d28359f111df2de8848094669e62a70bfc884d191fff0d7a44c2ae9be6",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        1
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-retry.log",
+      "bytes": 191,
+      "sha256": "d367736f40a9ed143d0d15de50aae214d55f4599a32f6ea93c5e36b7deb82d31",
+      "empty": false,
+      "resultLines": []
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-sandbox-failed.json",
+      "bytes": 77,
+      "sha256": "3733b6d28359f111df2de8848094669e62a70bfc884d191fff0d7a44c2ae9be6",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        1
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc2-transcript.json",
+      "bytes": 77,
+      "sha256": "3733b6d28359f111df2de8848094669e62a70bfc884d191fff0d7a44c2ae9be6",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        1
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/rpc3-independent.json",
+      "bytes": 41248,
+      "sha256": "259eabc1f24a040e73e9f686295363f24a2edac3e2f4c73d67a75018e83b1899",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "capturedAt",
+        "provider",
+        "reads"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/security-scan-summary.json",
+      "bytes": 395,
+      "sha256": "de67585e43a5954d40d1fe36e1d6fb74eedb660bf9ee4204b4072f4d9920841b",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "files",
+        "textFiles",
+        "binaryFiles",
+        "potentialFindings"
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/source-access.json",
+      "bytes": 1163,
+      "sha256": "7e94522a2834cdb081881b6a556244b026ccb6f5e08668d3b46d63a860176c1b",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "array",
+        7
+      ]
+    },
+    {
+      "path": "docs/evidence/task6c/toolchain.json",
+      "bytes": 459,
+      "sha256": "d57beb50f91e475b95443cc87f350e372edad0d3ab43af0431e7ba7b3724f222",
+      "parsedJSON": true,
+      "topLevelFields": [
+        "tag",
+        "publishedAt",
+        "archiveURL",
+        "officialDigest",
+        "actualSHA256",
+        "limitation"
+      ]
+    }
+  ],
+  "count": 82,
+  "scope": "All supporting files under Task 6A/6B/6C evidence; failed/empty captures remain distinct from passing results"
+}

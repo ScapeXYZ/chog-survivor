@@ -1,0 +1,44 @@
+[
+  {
+    "name": "monadscan-source",
+    "url": "https://api.etherscan.io/v2/api?chainid=143&module=contract&action=getsourcecode&address=0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763",
+    "status": 200,
+    "bytes": 67
+  },
+  {
+    "name": "monadscan-creation",
+    "url": "https://api.etherscan.io/v2/api?chainid=143&module=contract&action=getcontractcreation&contractaddresses=0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763",
+    "status": 200,
+    "bytes": 67
+  },
+  {
+    "name": "monadscan-page",
+    "url": "https://monadscan.com/address/0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763#code",
+    "status": 200,
+    "bytes": 1004936
+  },
+  {
+    "name": "monadvision-page",
+    "url": "https://monadvision.com/address/0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763",
+    "status": 200,
+    "bytes": 129232
+  },
+  {
+    "name": "chog-site",
+    "url": "https://www.chog.xyz",
+    "status": 200,
+    "bytes": 85621
+  },
+  {
+    "name": "chog-build",
+    "url": "https://build.chog.xyz",
+    "status": 200,
+    "bytes": 82969
+  },
+  {
+    "name": "blockaid-portal",
+    "url": "https://blockaid-false-positive-portal.metamask.io/",
+    "status": 200,
+    "bytes": 472
+  }
+]

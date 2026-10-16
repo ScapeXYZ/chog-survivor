@@ -1,0 +1,226 @@
+{
+  "headUnchanged": "ac0029fb294fa3754a959ee48cc25e842ed98d6f",
+  "localCommitCreated": false,
+  "reasonNoCommit": "Four edits depend on extensive previously uncommitted work; staging whole files would mix earlier tasks. No index/history mutation attempted.",
+  "baselineFiles": 554,
+  "modifiedExisting": [
+    {
+      "path": "frontend/scripts/mainnet-enabled-browser.mjs",
+      "sha256": "01cba5e4d2765e6eca830e4497ee4285639c4b0ccfaaa8be714b16e2eb57f9db"
+    },
+    {
+      "path": "frontend/src/GameContractInfo.tsx",
+      "sha256": "179ed8eb90c8ae6f0ee0c14472588b54959b84391d5533d2df8772f373b93542"
+    },
+    {
+      "path": "frontend/src/LocalContractAdventure.tsx",
+      "sha256": "48602a7363c76d7863044adeff1159d214ebb0e1438d652ae79b9c16584e4cd5"
+    },
+    {
+      "path": "frontend/src/MainnetContractAdventure.test.tsx",
+      "sha256": "9367d226cd9737856562af3612fd4ea754bd47190b0875500544720a60a3debd"
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "docs/TASK_7B_MAINNET_RELEASE_PREPARATION.md",
+      "bytes": 16556,
+      "sha256": "fae52c8df06a6ae74b4c88089e02a1d1bf90a86bad1c67aaf738177fce69faa6"
+    },
+    {
+      "path": "docs/evidence/task7b/README.md",
+      "bytes": 2602,
+      "sha256": "f5611c100364e3e6d0502554f02ff5f08b8b7edfac34e392ead177348baf8117"
+    },
+    {
+      "path": "docs/evidence/task7b/build-candidates.json",
+      "bytes": 4005,
+      "sha256": "009c7860495460fc5b310ee129a0b2015b8461c11fc2ceda3502c6f3dcab1730"
+    },
+    {
+      "path": "docs/evidence/task7b/build-run.json",
+      "bytes": 469,
+      "sha256": "5c77f6aee9b4c542afd68e80e079f82efdde025204a1fd8bc0b367061acab5f5"
+    },
+    {
+      "path": "docs/evidence/task7b/frontend-tests.log",
+      "bytes": 287,
+      "sha256": "39a9b22655eabbd34a619a6dc0859db0179893ed8127bbf6bed57e73a01b119e"
+    },
+    {
+      "path": "docs/evidence/task7b/git-start.txt",
+      "bytes": 2644,
+      "sha256": "ee34d3ed3c1261b68b509412da473faeaa9b4247f6d9d90e5eb7401f5b1dc66b"
+    },
+    {
+      "path": "docs/evidence/task7b/integration-audit.json",
+      "bytes": 1337,
+      "sha256": "27cf2d103cb3820da52bd732425e64489dc547becfaa6716bec460aff98d3f5b"
+    },
+    {
+      "path": "docs/evidence/task7b/mainnet-browser.log",
+      "bytes": 3399,
+      "sha256": "792f56dfb0f48d97ad5b0a66a06d4617d423974bd45cecbda3087deed5181942"
+    },
+    {
+      "path": "docs/evidence/task7b/mainnet-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/task7b/mainnet-readonly-browser.json",
+      "bytes": 22486,
+      "sha256": "5249e557f2a5f9cc4fea19853ce851e86949dfd03538845fb3bb58f097bb8157"
+    },
+    {
+      "path": "docs/evidence/task7b/mainnet-readonly-browser.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/task7b/mainnet-readonly-observer-probe-failed.log",
+      "bytes": 494,
+      "sha256": "05e757991d9522a5e224e97626438af895badfccc6c5e54a8e0d1a8f69d3f615"
+    },
+    {
+      "path": "docs/evidence/task7b/mainnet-readonly-observer-selection-failed.log",
+      "bytes": 471,
+      "sha256": "956acb484bc4c052c17de5fa35b971feab5fead4471b6a0ed65ec77f517fa207"
+    },
+    {
+      "path": "docs/evidence/task7b/production-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/task7b/simulation-browser.json",
+      "bytes": 2212,
+      "sha256": "9a1cd6b7bd72ae1993a022858661f2fff19cb67e273d90d8c05113304b611a65"
+    },
+    {
+      "path": "docs/evidence/task7b/simulation-browser.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/task7b/start-tree.json",
+      "bytes": 97048,
+      "sha256": "8455cb0ee77f254f00a1c978cc87003fa56b8f7a63b338c5a0e044844a2bb118"
+    },
+    {
+      "path": "docs/evidence/task7b/task7b-existing-files.patch",
+      "bytes": 13232,
+      "sha256": "5a86c989ff5f5e2256fdbf60d7555df60579c24ed6bb2aa8efc61c1ede8d2650"
+    },
+    {
+      "path": "frontend/scripts/task7b-audit-integration.mjs",
+      "bytes": 3773,
+      "sha256": "2a20a0f8838476774622ca4401f46f702d3d4824acc2dd72c3353a36933c2bb9"
+    },
+    {
+      "path": "frontend/scripts/task7b-build-candidates.mjs",
+      "bytes": 1768,
+      "sha256": "a9c8b1c23994488057666daec4b17358e49d944c7991b582a19bebef517fa3f6"
+    },
+    {
+      "path": "frontend/scripts/task7b-mainnet-readonly-browser.mjs",
+      "bytes": 9123,
+      "sha256": "9713ce0b3c21d1c95d667e55a513d6d282a81ad0e782de1c75e02e547111e7d3"
+    },
+    {
+      "path": "frontend/src/MainnetRiskNotice.tsx",
+      "bytes": 368,
+      "sha256": "a49165a68b36c3ef815e98795f44a55b0f1d261221b8ad66377e04e00bcda25c"
+    }
+  ],
+  "scopeExclusions": [
+    "change-inventory.json (this file)",
+    "packet-files.sha256 (separate final checksum list)"
+  ],
+  "deletedFiles": [],
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "allOtherPriorWorkUnchanged": true,
+  "priorTask7APacketUnchangedEntries": [
+    "README.md",
+    "docs/DEMO_DEPLOYMENT_GUIDE.md",
+    "docs/HACKATHON_SUBMISSION_DRAFT.md",
+    "docs/JUDGE_QUICK_START.md",
+    "docs/TASK_7A_POST_DEPLOYMENT_VERIFICATION.md",
+    "docs/evidence/task7a/README.md",
+    "docs/evidence/task7a/SOURCE_VERIFICATION_PREPARATION.md",
+    "docs/evidence/task7a/deployment-manifest.json",
+    "docs/evidence/task7a/frontend-tests.log",
+    "docs/evidence/task7a/mainnet-browser.log",
+    "docs/evidence/task7a/mainnet-build.log",
+    "docs/evidence/task7a/offline-capture-check.json",
+    "docs/evidence/task7a/preservation-and-artifacts.json",
+    "docs/evidence/task7a/production-browser-inherited-env-failed.log",
+    "docs/evidence/task7a/production-browser-stale-output-failed.log",
+    "docs/evidence/task7a/production-browser.json",
+    "docs/evidence/task7a/production-browser.stderr.log",
+    "docs/evidence/task7a/production-build-inherited-env.log",
+    "docs/evidence/task7a/production-build-stale-output.log",
+    "docs/evidence/task7a/production-build.log",
+    "docs/evidence/task7a/rpc-transcript-invalid-choice.json",
+    "docs/evidence/task7a/rpc-transcript-sandbox-failed.json",
+    "docs/evidence/task7a/rpc-transcript.json",
+    "docs/evidence/task7a/source-preparation-check.json",
+    "docs/evidence/task7a/source-verification-input.json",
+    "docs/evidence/task7a/source-verification-output.json",
+    "docs/evidence/task7a/verification-run.log",
+    "docs/evidence/task7a/verification.json",
+    "frontend/.env.example",
+    "frontend/scripts/public-demo-preflight.mjs",
+    "frontend/scripts/task7a-verify-captured.mjs",
+    "frontend/scripts/task7a-verify-deployment.mjs",
+    "frontend/src/App.test.tsx",
+    "frontend/src/App.tsx",
+    "frontend/src/Character.test.tsx",
+    "frontend/src/Character.tsx",
+    "frontend/src/contracts.test.ts",
+    "frontend/src/mainnetDeployment.test.ts",
+    "frontend/src/mainnetDeployment.ts"
+  ],
+  "intentionalHistoricalToolHashChanges": [
+    "frontend/scripts/mainnet-enabled-browser.mjs",
+    "frontend/src/GameContractInfo.tsx"
+  ],
+  "buildOutputsStillMatchInventories": true,
+  "secretReview": {
+    "scope": "Only public modified/new code; ignored secrets/profile files not read. Method allowlists and sole wallet-write guard reviewed; scan is not an independent audit.",
+    "files": [
+      {
+        "path": "frontend/scripts/mainnet-enabled-browser.mjs",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/src/GameContractInfo.tsx",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/src/LocalContractAdventure.tsx",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/src/MainnetContractAdventure.test.tsx",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/scripts/task7b-build-candidates.mjs",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/scripts/task7b-audit-integration.mjs",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/scripts/task7b-mainnet-readonly-browser.mjs",
+        "credentialLiteralPatternHits": 0
+      },
+      {
+        "path": "frontend/src/MainnetRiskNotice.tsx",
+        "credentialLiteralPatternHits": 0
+      }
+    ]
+  }
+}

@@ -1,12 +1,18 @@
 # Judge quick-start
 
+## Verified Monad mainnet deployment — Task 7A
+
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
+
 **The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.**
 
-Public demo URL: **pending deployment approval**. Repository and video URLs: **pending publication approval**. This guide does not claim that any of them are live.
+Public demo: **https://chog-survivor.vercel.app/**. Public repository: **https://github.com/ScapeXYZ/chog-survivor**. Independently accessible during Task 5A; no final video URL is available. The public frontend is a simulation; live game transactions are disabled.
 
 ## Play in one minute — no wallet needed
 
-1. Open the eventual public URL at `/`, or follow the [README walletless setup](../README.md#run-the-walletless-demo). Choose **Enter the Wild**.
+1. Open https://chog-survivor.vercel.app/, or follow the [README walletless setup](../README.md#run-the-walletless-demo). Choose **Enter the Wild**.
 2. Leave the NFT unselected. The three choice cards each offer a short themed interaction: **Survivor's Trial**, **Timing**, or **Story**. The exact encounter changes with device UTC day and the demo seed.
 3. Try an interaction or use the always-visible **Skip**. Survivor's Trial offers Easy, Medium and Hard. Timing has a static alternative for reduced motion. Either Story response completes the same original choice.
 4. Inspect the **simulation-only** rulebook preview, then try another choice. Mini-game difficulty/performance does not alter the contract choice, rewards or daily rules.
@@ -38,12 +44,12 @@ In the [recorded CHOG #2006 lifecycle](evidence/task4h-2006/README.md), Wallet B
 
 Connecting an injected wallet on Monad **143** can read genuine Chog Genesis ownership/discovery when RPC is available. It does not enable production game actions. A selected NFT with unverified or different ownership disables previews; judges need not use this optional path. If you select a token and cannot preview, refresh the page to return to the unselected walletless demo.
 
-Only local mode on an existing Anvil **31338** supports the actual contract loop. `127.0.0.1` refers to the visitor's machine, not a remotely hosted game server. Never import public Anvil test credentials into a funded wallet or send funds for this demo.
+The existing hosted release does not enable the actual contract loop. The new local mainnet build is separately gated; existing local Anvil **31338** evidence remains valid historical fixture evidence. `127.0.0.1` refers to the visitor's machine, not a remotely hosted game server. Never import public Anvil test credentials into a funded wallet or send funds for this demo.
 
 ## Evidence and limitations
 
 - [Receipts, token state and transfer explanation](evidence/task4h-2006/README.md)
 - [Three-minute video outline](DEMO_VIDEO_OUTLINE.md) — final video not yet produced/published by this task.
-- [Deployment guide](DEMO_DEPLOYMENT_GUIDE.md) — no approved public contract deployment exists.
+- [Deployment guide](DEMO_DEPLOYMENT_GUIDE.md) — real mainnet deployment is verified above; frontend publication remains gated.
 
-Local receipts are not Monad explorer transactions. Current artwork release approval is unresolved. Optional external fonts, RPC and metadata have availability limits. Verify the final public links and organizer requirements before submission.
+Local receipts are not Monad explorer transactions. Artwork release permission and the reported MetaMask/Blockaid warning remain unresolved; do not bypass wallet warnings. Wallet connection is optional. Optional external fonts, RPC and metadata have availability limits. Verify the final public links and organizer requirements before submission.

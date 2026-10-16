@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-16T15:12:39.853Z",
+  "sourceHash": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "creationHash": "0x683228f50a7350cedddb7c6f8df777d05cec0756c725ace1e4b8a50d84adab29",
+  "expectedRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "reports": [
+    {
+      "url": "https://rpc2.monad.xyz",
+      "capturedAt": "2026-10-16T15:12:37.716Z",
+      "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+      "error": "HTTP request failed."
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "basis": "Task 6C source/security inventory; docs-only follow-up does not justify repeating passed suites",
+  "checks": [
+    {
+      "path": "frontend/scripts/final-demo-browser.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/mainnet-enabled-browser.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/mainnet-readiness.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/mainnet-release-preflight.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/public-demo-preflight.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/release-artifact.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/task6c-provenance.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/task6c-readonly.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/verify-mainnet-deployment.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/scripts/wallet-warning-evidence.mjs",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/Adventure.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/AdventureOwnership.test.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/App.test.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/Character.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/GameContractInfo.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/LocalContractAdventure.test.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/LocalContractAdventure.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/MainnetContractAdventure.test.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/contracts.test.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/contracts.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/mainnetDeployment.test.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/mainnetDeployment.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/survivalHistory.test.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/survivalHistory.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/useSurvivalHistory.test.tsx",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/src/useSurvivalHistory.ts",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "frontend/vercel.json",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "script/PrepareMonadMainnet.s.sol",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "script/mainnet-dry-run.sh",
+      "exists": true,
+      "matchesTask6C": true
+    },
+    {
+      "path": "test/Task6CGas.t.sol",
+      "exists": true,
+      "matchesTask6C": true
+    }
+  ]
+}

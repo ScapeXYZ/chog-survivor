@@ -1,13 +1,19 @@
 # Chogathon 2026 submission draft
 
-Prepared for the owner-supplied deadline: **October 23, 2026, 15:00 UTC**. Confirm organizer rules and acceptance of a simulated public demo plus real local-chain evidence. Bracketed fields remain pending; this is not proof that any URL, video, repository or submission is public.
+## Verified Monad mainnet deployment — Task 7A
+
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Unaudited deployment; explorer source submission is prepared but not submitted.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
+
+Prepared for the owner-supplied deadline: **October 23, 2026, 15:00 UTC**. Confirm organizer rules and acceptance of a simulated public demo plus real local-chain evidence. The public demo and repository were independently accessible during Task 5A. Bracketed video/team fields and organizer eligibility remain pending; no submission is claimed.
 
 ## Submission fields
 
 **Project:** Chog Survivor
 **Tagline:** Every choice leaves a mark—and the Chog carries every one.
-**Demo:** `[PUBLIC HTTPS WALLETLESS DEMO URL — PENDING DEPLOYMENT APPROVAL]`
-**Repository:** `[PUBLIC/JUDGE-ACCESSIBLE GITHUB URL — PENDING PUBLICATION APPROVAL]`
+**Demo:** https://chog-survivor.vercel.app/
+**Repository:** https://github.com/ScapeXYZ/chog-survivor
 **Video:** `[PUBLIC VIDEO URL, MAXIMUM THREE MINUTES — PENDING CREATION/PUBLICATION]`
 **Team/contact:** `[NAMES, EMAIL, DISCORD AND X HANDLES]`
 
@@ -21,11 +27,11 @@ There are six encounters and 18 fixed choices. Cautious choices use Survivor's T
 
 ## Judge access and honest scope
 
-The proposed public static demo requires **no wallet, funds, NFT or account**. Enter the Wild, try any of the three choice cards, complete or Skip, then inspect the simulated rulebook preview. Demo HUD/achievement marks are fixtures; no progress, reaction or journal entry is minted or saved by simulated play. The Character screen does not substitute demo state for unavailable verified records.
+The existing public static demo requires **no wallet, funds, NFT or account**. Enter the Wild, try any of the three choice cards, complete or Skip, then inspect the simulated rulebook preview. Demo HUD/achievement marks are fixtures; no progress, reaction or journal entry is minted or saved by simulated play. The Character screen does not substitute demo state for unavailable verified records.
 
 The separate [CHOG #2006 evidence package](evidence/task4h-2006/README.md) records **genuine local-Anvil** confirmation and transfer continuity: B acted, received 18 XP / 4 Trust / 0 Scars / First Light, then transferred to A. A inherited the same survivor and same-day lock. The journal retained B as the historical actor. This is a fixture on chain 31338, **not authentic Chog Genesis, not Monad mainnet and not a public testnet deployment**.
 
-The game is not deployed on Monad. Optional production NFT ownership reads are genuine read-only chain-143 queries, distinct from simulated Adventure. There is no approved remote game deployment and no production write path. Judges cannot reach this workstation's localhost Anvil through a hosted frontend.
+The game is deployed on Monad at the address above. The currently hosted simulation remains separate from this deployment and offers no public gameplay write path. Optional production NFT ownership reads are genuine read-only chain-143 queries. Judges cannot reach this workstation's localhost Anvil through a hosted frontend.
 
 [Judge quick-start](JUDGE_QUICK_START.md) · [README/setup](../README.md) · [deployment/environment guide](DEMO_DEPLOYMENT_GUIDE.md)
 
@@ -37,7 +43,7 @@ The frozen contract is non-upgradeable and has no NFT custody, staking, wagering
 
 ## Stack and verification
 
-Solidity 0.8.28 / Foundry, React 18 / TypeScript / Vite, Wagmi / Viem / TanStack Query, Playwright Chromium; no backend service. Existing validation and new preparation results are recorded in [Task 4K](TASK_4K_PREPARATION.md).
+Solidity 0.8.28 / Foundry, React 18 / TypeScript / Vite, Wagmi / Viem / TanStack Query, Playwright Chromium; no backend service. Current validation and GO/NO-GO decisions are in [Task 5A](TASK_5A_RELEASE_READINESS.md); the historical checks below retain their original provenance.
 
 - Task 4J: 373 frontend tests passed in each environment; production build and TypeScript passed; 43 production-artifact Chromium checks passed.
 - Task 4J isolated Foundry: 39 passed, zero failed; six optional Monad-fork tests skipped without RPC.
@@ -51,8 +57,8 @@ Follow the [three-minute outline](DEMO_VIDEO_OUTLINE.md). Start with the pitch a
 
 - [ ] Confirm organizer eligibility, deadline and demo/evidence acceptance.
 - [ ] Resolve public-release approval for provisional runtime illustrations/screenshots and any branding; preserve exact typography and license notices.
-- [ ] Review complete source set, secrets, dependencies and [safe staging plan](TASK_4K_STAGING_PLAN.md); required recent files remain untracked until reviewed.
-- [ ] Obtain exact frontend deployment and repository/video/evidence publication approval; no approval is implied here.
+- [ ] Review the [Task 5A release report](TASK_5A_RELEASE_READINESS.md) and local disclosure/docs candidate before approving another release. The core demo and Task 4W audit/tests are already committed.
+- [ ] Obtain approval for any new frontend release and video/evidence publication. Existing public links do not imply approval for a new deployment.
 - [ ] Verify public links from a private window on a separate network with no account wall.
 - [ ] Retain simulation and local-fixture disclosures in screenshots/video.
 - [ ] Check mobile/desktop, keyboard/touch, reduced motion, audio preferences, Skip and rejected/RPC-failure behavior.

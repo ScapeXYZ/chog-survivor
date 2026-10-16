@@ -1,0 +1,200 @@
+{
+  "reviewManifestFiles": 145,
+  "unchanged": 135,
+  "intentionalChanges": [
+    "frontend/scripts/mainnet-enabled-browser.mjs",
+    "frontend/scripts/public-demo-preflight.mjs",
+    "frontend/src/App.test.tsx",
+    "frontend/src/App.tsx",
+    "frontend/src/Character.test.tsx",
+    "frontend/src/Character.tsx",
+    "frontend/src/GameContractInfo.tsx",
+    "frontend/src/contracts.test.ts",
+    "frontend/src/mainnetDeployment.test.ts",
+    "frontend/src/mainnetDeployment.ts"
+  ],
+  "additionalChangedConfiguration": [
+    "frontend/.env.example (comments only; not in original review manifest)"
+  ],
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "artifactSHA256": "adf4c5c23213818fdcafb7ea55ca3e50a277156bccf7abe4a90a83cc8d0545f0",
+  "frozenSourceAndArtifactUnchanged": true,
+  "allManifestArtworkFontsAndLicensesUnchanged": true,
+  "priorEvidencePackets": [
+    {
+      "packet": "docs/evidence/task6d/packet-files.sha256",
+      "files": 28,
+      "allMatch": true
+    },
+    {
+      "packet": "docs/evidence/task6e/packet-files.sha256",
+      "files": 17,
+      "allMatch": true
+    },
+    {
+      "packet": "docs/evidence/unaudited-deployment/packet-files.sha256",
+      "files": 20,
+      "allMatch": true
+    }
+  ],
+  "publicHostingConfigurationUnchanged": true,
+  "secretScanScope": "Only explicit changed/new code; no ignored environment files, wallet profiles or credential stores read. No key literal detected; not an independent audit.",
+  "secretScan": [
+    {
+      "path": "frontend/.env.example",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/scripts/mainnet-enabled-browser.mjs",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/scripts/public-demo-preflight.mjs",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/App.test.tsx",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/Character.test.tsx",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/Character.tsx",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/GameContractInfo.tsx",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/contracts.test.ts",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/mainnetDeployment.test.ts",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/src/mainnetDeployment.ts",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/scripts/task7a-verify-deployment.mjs",
+      "secretLiteralPatternHits": 0
+    },
+    {
+      "path": "frontend/scripts/task7a-verify-captured.mjs",
+      "secretLiteralPatternHits": 0
+    }
+  ],
+  "buildArtifacts": [
+    {
+      "directory": "/tmp/chog-task7a-production-reviewed",
+      "files": [
+        {
+          "path": "assets/LilitaOne-Regular-DWEPn4H6.ttf",
+          "bytes": 28092,
+          "sha256": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59"
+        },
+        {
+          "path": "assets/ccip-DKSMvPFn.js",
+          "bytes": 3042,
+          "sha256": "15ab3c576ca62ceb33160c8144711d1fd541108bad63f3ce50f6a94850fd4f75"
+        },
+        {
+          "path": "assets/index-C9o6GoDU.css",
+          "bytes": 65948,
+          "sha256": "49f9c992a0a2278fe428f5bac532cf49e0263c44dfadaedb97b0851760252c12"
+        },
+        {
+          "path": "assets/index-CKfydSEg.js",
+          "bytes": 563716,
+          "sha256": "d9236960e6eec9ed03d0c88fd30e4a540558c58ec6685d18eb8f654401252520"
+        },
+        {
+          "path": "assets/moonlit-fog-overlay-provisional-CyWn4A_i.webp",
+          "bytes": 228108,
+          "sha256": "c5f90681c66899c851683478173f3d36bab007002b1d1ece06a21ce30a445d82"
+        },
+        {
+          "path": "assets/ruined-wild-environment-provisional-CgAxwMof.webp",
+          "bytes": 256592,
+          "sha256": "0945a6b8824501d44af463e520c72ca98bd55b5cd6df55c1a89b01ce20894ef0"
+        },
+        {
+          "path": "assets/survivor-creature-refined-provisional-DEcpCW_U.webp",
+          "bytes": 360132,
+          "sha256": "51865d1166bcb1bd003f969b8199bdcbc35a41eae1692a902731933dd8949db0"
+        },
+        {
+          "path": "index.html",
+          "bytes": 610,
+          "sha256": "e87d34c3877384b2027da1454c9066fc315549a80a441b0dd6f835e63a14ec82"
+        },
+        {
+          "path": "licenses/LilitaOne-OFL.txt",
+          "bytes": 4390,
+          "sha256": "9c14147639ea90cfa41b0645c77b4fa642494d11696e2a9f5cd2d9b5843c1a6e"
+        }
+      ],
+      "inventorySHA256": "21100dd775ef686500a60cfdc917a84da0ba3457506f4f332502bc9172584dba"
+    },
+    {
+      "directory": "/tmp/chog-task7a-mainnet",
+      "files": [
+        {
+          "path": "assets/LilitaOne-Regular-DWEPn4H6.ttf",
+          "bytes": 28092,
+          "sha256": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59"
+        },
+        {
+          "path": "assets/ccip-BGSaT29S.js",
+          "bytes": 3042,
+          "sha256": "369d121bde6fc238d22a56fab546c0909ff1b1bdcc35942ee016a9105757a172"
+        },
+        {
+          "path": "assets/index-C9o6GoDU.css",
+          "bytes": 65948,
+          "sha256": "49f9c992a0a2278fe428f5bac532cf49e0263c44dfadaedb97b0851760252c12"
+        },
+        {
+          "path": "assets/index-I0iVpTzr.js",
+          "bytes": 608651,
+          "sha256": "d12663766a55d7e2a933e6ad65c4fd7a45a276cfd0beeda318c87082a8d5793c"
+        },
+        {
+          "path": "assets/moonlit-fog-overlay-provisional-CyWn4A_i.webp",
+          "bytes": 228108,
+          "sha256": "c5f90681c66899c851683478173f3d36bab007002b1d1ece06a21ce30a445d82"
+        },
+        {
+          "path": "assets/ruined-wild-environment-provisional-CgAxwMof.webp",
+          "bytes": 256592,
+          "sha256": "0945a6b8824501d44af463e520c72ca98bd55b5cd6df55c1a89b01ce20894ef0"
+        },
+        {
+          "path": "assets/survivor-creature-refined-provisional-DEcpCW_U.webp",
+          "bytes": 360132,
+          "sha256": "51865d1166bcb1bd003f969b8199bdcbc35a41eae1692a902731933dd8949db0"
+        },
+        {
+          "path": "index.html",
+          "bytes": 610,
+          "sha256": "5cc737b4c090e6b645cc2cfbf79d1695fc62cfa57b639161ea3ef3c7e5e566cb"
+        },
+        {
+          "path": "licenses/LilitaOne-OFL.txt",
+          "bytes": 4390,
+          "sha256": "9c14147639ea90cfa41b0645c77b4fa642494d11696e2a9f5cd2d9b5843c1a6e"
+        }
+      ],
+      "inventorySHA256": "80cfa9657763253dbee6053a90fdaba4995fd274899bcec4e473bdb933345188"
+    }
+  ]
+}

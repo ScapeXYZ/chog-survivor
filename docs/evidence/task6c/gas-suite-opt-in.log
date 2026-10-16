@@ -1,0 +1,9 @@
+Compiling 6 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.37s
+Compiler run successful!
+
+Ran 1 test for test/Task6CGas.t.sol:Task6CGasTest
+[SKIP: skipped: Opt-in Monad gas fork: MONAD_RPC_URL unset] setUp() (gas: 0)
+Suite result: ok. 0 passed; 0 failed; 1 skipped; finished in 605.90µs (0.00ns CPU time)
+
+Ran 1 test suite in 6.37ms (605.90µs CPU time): 0 tests passed, 0 failed, 1 skipped (1 total tests)

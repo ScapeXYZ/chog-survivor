@@ -1,0 +1,12 @@
+No files changed, compilation skipped
+
+Ran 6 tests for test/MonadForkIntegration.t.sol:MonadForkIntegrationTest
+[PASS] testDirectlyVerifiedNonexistentTokenCannotPreviewOrAct() (gas: 144597)
+[PASS] testForkIdentityAndCanonicalERC721() (gas: 61180)
+[PASS] testOneActionPerUtcDay() (gas: 469241)
+[PASS] testRealNonOwnerIsRejected() (gas: 73364)
+[PASS] testRealOwnerAuthorizationAndPreviewParity() (gas: 338783)
+[PASS] testSimulatedRealTransferPreservesTokenKeyedHistoryAndChangesAuthority() (gas: 598170)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 9.97s (24.93s CPU time)
+
+Ran 1 test suite in 9.98s (9.97s CPU time): 6 tests passed, 0 failed, 0 skipped (6 total tests)

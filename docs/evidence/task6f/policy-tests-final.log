@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: pins exact artifact, construction data and unsigned payload; rejects altered transaction fields
+ok 1 - pins exact artifact, construction data and unsigned payload; rejects altered transaction fields
+  ---
+  duration_ms: 22.864249
+  type: 'test'
+  ...
+# Subtest: EIP-1193 creation request reconstructs the exact signing payload and fees
+ok 2 - EIP-1193 creation request reconstructs the exact signing payload and fees
+  ---
+  duration_ms: 2.51032
+  type: 'test'
+  ...
+# Subtest: authorization defaults closed, binds exact digest/references and expires
+ok 3 - authorization defaults closed, binds exact digest/references and expires
+  ---
+  duration_ms: 0.864672
+  type: 'test'
+  ...
+# Subtest: read-only preflight rejects wrong network/nonces/code/runtime/balance/gas/fees/freshness
+ok 4 - read-only preflight rejects wrong network/nonces/code/runtime/balance/gas/fees/freshness
+  ---
+  duration_ms: 0.464988
+  type: 'test'
+  ...
+# Subtest: no authorization or independent confirmation means zero wallet calls
+ok 5 - no authorization or independent confirmation means zero wallet calls
+  ---
+  duration_ms: 6.442679
+  type: 'test'
+  ...
+# Subtest: wrong wallet account/chain blocks writes
+ok 6 - wrong wallet account/chain blocks writes
+  ---
+  duration_ms: 3.378289
+  type: 'test'
+  ...
+# Subtest: fresh failures, changed quote or async wallet context prevent a write
+ok 7 - fresh failures, changed quote or async wallet context prevent a write
+  ---
+  duration_ms: 7.836082
+  type: 'test'
+  ...
+# Subtest: only explicit fully checked call can reach synthetic wallet; persisted marker blocks retry
+ok 8 - only explicit fully checked call can reach synthetic wallet; persisted marker blocks retry
+  ---
+  duration_ms: 4.188374
+  type: 'test'
+  ...
+# Subtest: storage failure and late authorization expiry prevent wallet write
+ok 9 - storage failure and late authorization expiry prevent wallet write
+  ---
+  duration_ms: 3.883915
+  type: 'test'
+  ...
+# Subtest: authorization revocation during preflight blocks the final wallet request
+ok 10 - authorization revocation during preflight blocks the final wallet request
+  ---
+  duration_ms: 2.515216
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 75.660023

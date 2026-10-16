@@ -1,0 +1,13 @@
+
+> chog-survivor-frontend@0.1.0 test
+> vitest run --maxWorkers=2 src/App.test.tsx src/mainnetDeployment.test.ts src/MainnetContractAdventure.test.tsx
+
+
+ RUN  v4.1.11 /home/temitope/chog-survivor/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  13 passed (13)
+   Start at  15:59:47
+   Duration  4.59s (transform 887ms, setup 231ms, import 3.86s, tests 2.67s, environment 1.43s)
+

@@ -1,0 +1,12 @@
+[
+  {
+    "manifest": "docs/evidence/task6d/review-artifact-manifest.json",
+    "count": 145,
+    "mismatches": []
+  },
+  {
+    "manifest": "docs/evidence/task6d/prior-evidence-index.json",
+    "count": 82,
+    "mismatches": []
+  }
+]

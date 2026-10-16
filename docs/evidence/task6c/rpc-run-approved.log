@@ -1,0 +1,87 @@
+[
+  {
+    "url": "https://rpc.monad.xyz",
+    "capturedAt": "2026-10-16T15:10:05.375Z",
+    "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+    "chainId": 143,
+    "block": {
+      "number": "113929685",
+      "hash": "0x522022e6225f091f2dd005b0bb928daa174dbbc1429a4b8381c822f80c59561a",
+      "timestamp": "1792163405",
+      "baseFeePerGas": "100000000000"
+    },
+    "collectionRuntimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+    "balanceWei": "400000000000000000",
+    "senderCode": "0x",
+    "latestNonce": 0,
+    "pendingNonce": 0,
+    "expectedCreateAddress": "0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390",
+    "expectedAddressCode": "0x",
+    "gasPrice": "102000000000",
+    "priorityFee": "2000000000",
+    "creationEstimate": "1510761",
+    "creationCallRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+    "runtimeMatches": true,
+    "probes": {
+      "name": {
+        "value": "Chog Genesis"
+      },
+      "symbol": {
+        "value": "CHOG"
+      },
+      "owner": {
+        "error": "The contract function \"owner\" reverted."
+      },
+      "paused": {
+        "error": "The contract function \"paused\" reverted."
+      },
+      "totalSupply": {
+        "value": "1969"
+      },
+      "ownerOf": {
+        "value": "0x601634F3d0746b550e68439286c1ad022a5f2B88"
+      },
+      "supportsInterface": {
+        "value": true
+      }
+    },
+    "slots": {
+      "implementation": {
+        "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "admin": {
+        "slot": "0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103",
+        "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "beacon": {
+        "slot": "0xa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50",
+        "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "opcodeOffsets": {
+      "244": [
+        17197,
+        17251
+      ]
+    },
+    "selectorHints": {
+      "owner()": false,
+      "transferOwnership(address)": false,
+      "renounceOwnership()": false,
+      "pause()": false,
+      "unpause()": false,
+      "burn(uint256)": false,
+      "setBaseURI(string)": true,
+      "setApprovalForAll(address,bool)": true,
+      "transferFrom(address,address,uint256)": true,
+      "upgradeToAndCall(address,bytes)": false
+    }
+  },
+  {
+    "url": "https://rpc2.monad.xyz",
+    "capturedAt": "2026-10-16T15:10:11.214Z",
+    "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+    "error": "HTTP request failed."
+  }
+]

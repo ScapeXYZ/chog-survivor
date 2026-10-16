@@ -1,0 +1,13 @@
+
+> chog-survivor-frontend@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /home/temitope/chog-survivor/frontend
+
+
+ Test Files  24 passed (24)
+      Tests  391 passed (391)
+   Start at  17:46:40
+   Duration  27.63s (transform 5.77s, setup 5.73s, import 49.34s, tests 77.91s, environment 34.94s)
+

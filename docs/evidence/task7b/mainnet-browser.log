@@ -1,0 +1,75 @@
+PASS 1440: enabled build defaults to simulation
+PASS 1440: simulation never requests writes
+PASS 1440: real mode clearly labeled
+PASS 1440: verified manifest explorer link
+PASS 1440: settings fit viewport
+PASS 1440: walletless navigation never connects
+PASS 1440: discovers two EVM wallets without legacy injection
+PASS 1440: cancel never connects
+PASS 1440: empty history is explicit and uses real manifest floor
+PASS 1440: immutable and warning risks visible before action
+PASS 1440: wrong-network event blocks choices without switching or writing
+PASS 1440: preview does not write
+PASS 1440: explicit confirmation only, bounded gas and pinned chain
+PASS 1440: gas estimate requested
+PASS 1440: runtime mismatch blocks wallet
+PASS 1440: changed NFT ownership blocks action
+PASS 375: enabled build defaults to simulation
+PASS 375: simulation never requests writes
+PASS 375: real mode clearly labeled
+PASS 375: verified manifest explorer link
+PASS 375: settings fit viewport
+PASS 375: walletless navigation never connects
+PASS 375: discovers two EVM wallets without legacy injection
+PASS 375: cancel never connects
+PASS 375: empty history is explicit and uses real manifest floor
+PASS 375: immutable and warning risks visible before action
+PASS 375: wrong-network event blocks choices without switching or writing
+PASS 375: preview does not write
+PASS 375: explicit confirmation only, bounded gas and pinned chain
+PASS 375: gas estimate requested
+PASS 375: runtime mismatch blocks wallet
+PASS 375: changed NFT ownership blocks action
+PASS no uncaught browser errors
+{
+  "checks": 33,
+  "names": [
+    "1440: enabled build defaults to simulation",
+    "1440: simulation never requests writes",
+    "1440: real mode clearly labeled",
+    "1440: verified manifest explorer link",
+    "1440: settings fit viewport",
+    "1440: walletless navigation never connects",
+    "1440: discovers two EVM wallets without legacy injection",
+    "1440: cancel never connects",
+    "1440: empty history is explicit and uses real manifest floor",
+    "1440: immutable and warning risks visible before action",
+    "1440: wrong-network event blocks choices without switching or writing",
+    "1440: preview does not write",
+    "1440: explicit confirmation only, bounded gas and pinned chain",
+    "1440: gas estimate requested",
+    "1440: runtime mismatch blocks wallet",
+    "1440: changed NFT ownership blocks action",
+    "375: enabled build defaults to simulation",
+    "375: simulation never requests writes",
+    "375: real mode clearly labeled",
+    "375: verified manifest explorer link",
+    "375: settings fit viewport",
+    "375: walletless navigation never connects",
+    "375: discovers two EVM wallets without legacy injection",
+    "375: cancel never connects",
+    "375: empty history is explicit and uses real manifest floor",
+    "375: immutable and warning risks visible before action",
+    "375: wrong-network event blocks choices without switching or writing",
+    "375: preview does not write",
+    "375: explicit confirmation only, bounded gas and pinned chain",
+    "375: gas estimate requested",
+    "375: runtime mismatch blocks wallet",
+    "375: changed NFT ownership blocks action",
+    "no uncaught browser errors"
+  ],
+  "fixtureOnly": true,
+  "verifiedManifest": true,
+  "game": "0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390",
+  "bundle": "/tmp/chog-task7b-candidates-Y76dq9/mainnet"
+}

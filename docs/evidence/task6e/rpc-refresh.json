@@ -1,0 +1,101 @@
+{
+  "startedAt": "2026-10-16T15:40:19.294Z",
+  "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+  "primary": "https://rpc.monad.xyz",
+  "secondary": "https://rpc3.monad.xyz",
+  "snapshot": {
+    "number": "113935700",
+    "hash": "0xe53d84173c2473086473faad45777e99284c10ba56a926efc7a2b9aadae8fe4b",
+    "timestamp": "1792165222",
+    "baseFeePerGas": "100000000000"
+  },
+  "collection": {
+    "address": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+    "runtimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+    "state": {
+      "maxSupply": "1969",
+      "reserveMax": "256",
+      "stageMinted": "1713",
+      "reserveMinted": "256",
+      "treasury": "0x84113421A8a564b594ee9Ae78c875310332d7023",
+      "teamMain": "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7",
+      "revealed": true,
+      "baseURI": "ipfs://bafybeid4ybujnscdipkno7ps5utqelp5ry5ryreqhay3zhgk3a6x4jruqu/",
+      "provenanceHash": "0xc99d84870c0826588a33be59a5a9390eaae145f9e93a3d9cfd9b080413654119",
+      "startingIndex": "1461",
+      "currentStage": 255
+    },
+    "knownAccounts": {
+      "0x79bbec62f13bf1756e2f29f465240814ec1876f4": {
+        "code": "0x",
+        "roles": {
+          "0x0000000000000000000000000000000000000000000000000000000000000000": true,
+          "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": true
+        }
+      },
+      "0x84113421A8a564b594ee9Ae78c875310332d7023": {
+        "code": "0xef010063c0c19a282a1b52b07dd5a65b58948a07dae32b",
+        "roles": {
+          "0x0000000000000000000000000000000000000000000000000000000000000000": false,
+          "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": true
+        },
+        "delegationTarget": "0x63c0c19a282a1b52b07dd5a65b58948a07dae32b"
+      },
+      "0x285074ee7A7AE5e0a2188949FE6bD71DE25492b7": {
+        "code": "0xef010063c0c19a282a1b52b07dd5a65b58948a07dae32b",
+        "roles": {
+          "0x0000000000000000000000000000000000000000000000000000000000000000": false,
+          "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": false
+        },
+        "delegationTarget": "0x63c0c19a282a1b52b07dd5a65b58948a07dae32b"
+      }
+    },
+    "roleAdmins": {
+      "0x0000000000000000000000000000000000000000000000000000000000000000": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "0xa49807205ce4d355092ef5a8a18f56e8913cf4a201fbe287825b095693c21775": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "delegationTargets": {
+      "0x63c0c19a282a1b52b07dd5a65b58948a07dae32b": {
+        "codeHash": "0xd4dee59ae6be4a997964e8f19ae6905f0a233c6ae88d9bc5d945bc60738376c1",
+        "activePermissions": "UNKNOWN: code capture does not enumerate signed off-chain delegations or custody"
+      }
+    }
+  },
+  "senderCode": "0x",
+  "balanceWei": "400000000000000000",
+  "latestNonce": "0",
+  "pendingNonce": "0",
+  "expectedCreateAddress": "0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390",
+  "expectedAddressCode": "0x",
+  "gasPriceWei": "102000000000",
+  "prioritySuggestionWei": "2000000000",
+  "creationEstimate": "1510761",
+  "boundedEstimate": "1510761",
+  "boundedCreationRuntimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "independent": {
+    "chainId": "0x8f",
+    "blockHash": "0xe53d84173c2473086473faad45777e99284c10ba56a926efc7a2b9aadae8fe4b",
+    "blockHashMatches": true,
+    "collectionRuntimeHash": "0x91aa1fd28371674abeb31670fd694cacaca57ac29cae579452c5150eb5dbab46",
+    "collectionCodeMatches": true,
+    "senderCode": "0x",
+    "senderCodeMatches": true,
+    "balanceWei": "400000000000000000",
+    "balanceMatches": true,
+    "latestNonce": "0",
+    "pendingNonce": "0",
+    "gasPriceWei": "102000000000",
+    "creationEstimate": "1510761",
+    "matches": true
+  },
+  "preparationChecks": {
+    "nonceReady": true,
+    "senderHasNoCode": true,
+    "destinationUnused": true,
+    "balanceCoversCapAndReserve": true,
+    "estimateFits": true,
+    "basePlusProposedTipFits": true,
+    "independentMatches": true
+  },
+  "finishedAt": "2026-10-16T15:41:24.900Z"
+}

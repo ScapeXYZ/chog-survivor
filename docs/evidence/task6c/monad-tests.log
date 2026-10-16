@@ -1,0 +1,165 @@
+Compiling 28 files with Solc 0.8.28
+Solc 0.8.28 finished in 3.13s
+Compiler run successful with warnings:
+Warning (2018): Function state mutability can be restricted to pure
+   --> test/BalanceAnalysis.t.sol:174:5:
+    |
+174 |     function testStandaloneBalanceAnalysis() public {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 6 tests for test/MonadForkIntegration.t.sol:MonadForkIntegrationTest
+[SKIP: MONAD_RPC_URL is not set; Monad fork suite not run] testDirectlyVerifiedNonexistentTokenCannotPreviewOrAct() (gas: 0)
+[SKIP: MONAD_RPC_URL is not set; Monad fork suite not run] testForkIdentityAndCanonicalERC721() (gas: 0)
+[SKIP: MONAD_RPC_URL is not set; Monad fork suite not run] testOneActionPerUtcDay() (gas: 0)
+[SKIP: MONAD_RPC_URL is not set; Monad fork suite not run] testRealNonOwnerIsRejected() (gas: 0)
+[SKIP: MONAD_RPC_URL is not set; Monad fork suite not run] testRealOwnerAuthorizationAndPreviewParity() (gas: 0)
+[SKIP: MONAD_RPC_URL is not set; Monad fork suite not run] testSimulatedRealTransferPreservesTokenKeyedHistoryAndChangesAuthority() (gas: 0)
+Suite result: ok. 0 passed; 0 failed; 6 skipped; finished in 664.59µs (248.71µs CPU time)
+
+Ran 3 tests for test/LocalCanonicalFixture.t.sol:LocalCanonicalFixtureTest
+[PASS] testFixtureOwnershipBalanceAndDiscovery() (gas: 97614)
+[PASS] testFrozenGameBindsFixtureAndRejectsNonOwner() (gas: 83346)
+[PASS] testTransferChangesControllerButKeepsTokenStateAndDailyLock() (gas: 720794)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 1.23ms (663.96µs CPU time)
+
+Ran 1 test for test/BalanceAnalysis.t.sol:BalanceAnalysisTest
+[PASS] testStandaloneBalanceAnalysis() (gas: 6976184)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 57.66ms (57.38ms CPU time)
+
+Ran 14 tests for test/ChogSurvivorAchievements.t.sol:ChogSurvivorAchievementsTest
+[PASS] testApprovalsOperatorsTransfersAndContractWalletAuthorization() (gas: 1678536)
+[PASS] testBridgeBuilderThresholdAndNoDuplicate() (gas: 806172)
+[PASS] testGatekeeperMixedThresholdAndNoDuplicate() (gas: 541877)
+[PASS] testHarnessFirstLightAndNoDuplicate() (gas: 542719)
+[PASS] testKindredSpiritThresholdTransferAndNoDuplicate() (gas: 647538)
+[PASS] testMultipleAchievementsEmitAscendingThenCannotReplayAfterTransfer() (gas: 477026)
+[PASS] testPathfinderAllSixEventsTransferAndNoDuplicate() (gas: 1917801)
+[PASS] testPositiveScarRequestAtCapResetsUnmarkedWeek() (gas: 428088)
+[PASS] testPositiveScarRequestBelowCapResetsUnmarkedWeekAndSkippedDayRestartsIt() (gas: 806480)
+[PASS] testSevenSunsThresholdSkipAndNoDuplicate() (gas: 769363)
+[PASS] testStormforgedThresholdAndNoDuplicate() (gas: 675634)
+[PASS] testUnmarkedWeekPersistsAfterLaterRiskyAction() (gas: 687758)
+[PASS] testUnmarkedWeekSevenRiskFreeActionsAndNoDuplicate() (gas: 1624316)
+[PASS] testZeroAndNegativeScarRequestsQualifyAtCap() (gas: 634404)
+Suite result: ok. 14 passed; 0 failed; 0 skipped; finished in 637.10ms (21.89ms CPU time)
+
+Ran 10 tests for test/ChogSurvivor.t.sol:ChogSurvivorTest
+[PASS] testAllBaseOutcomesAndPreviewMatchesAction() (gas: 7415607)
+[PASS] testAuthorizationTransferAndSameDayStatus() (gas: 549217)
+[PASS] testCanonicalAddressAndDayZeroFirstAction() (gas: 246547)
+[PASS] testDeterministicBalanceSimulation() (gas: 155480507)
+Logs:
+  cautious XP: 7809
+  cautious Trust: 100
+  cautious Scars: 19
+  cautious Title: 3
+  reckless XP: 11607
+  reckless Trust: 0
+  reckless Scars: 100
+  reckless Title: 1
+  compassionate XP: 7586
+  compassionate Trust: 100
+  compassionate Scars: 100
+  compassionate Title: 1
+
+[PASS] testEventFormulaAndBoundary() (gas: 367614)
+[PASS] testExactResolutionLogAndFailedCallDoesNotMutate() (gas: 436573)
+[PASS] testFuzzBoundsAndOneActionPerDay(uint256,uint8,uint64) (runs: 256, μ: 328826, ~: 329892)
+[PASS] testFuzzPreviewEqualsAction(uint256,uint8,uint64) (runs: 256, μ: 329290, ~: 330552)
+[PASS] testInvalidAndNonexistentFailWithoutState() (gas: 150756)
+[PASS] testTransferBeforeActionBurnAndSmartWalletOwnership() (gas: 983167)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 637.14ms (1.02s CPU time)
+
+Ran 10 tests for test/ReferenceModel.t.sol:ReferenceModelTest
+[PASS] testEventCountUint32SaturatesThroughAct() (gas: 336076)
+[PASS] testExplicitTrustAndScarBoundaries() (gas: 260314)
+[PASS] testFuzzSeededInterleavedReferenceSequences(uint256) (runs: 256, μ: 3928972, ~: 3928360)
+[PASS] testOutcomeCountUint32SaturatesThroughAct() (gas: 332086)
+[PASS] testReferenceModelRepeatOutcomeAfterSkippedDays() (gas: 841677)
+[PASS] testReferenceModelSimultaneousAchievementLogs() (gas: 436038)
+[PASS] testReferenceModelThirtyDaySequence() (gas: 6066937)
+[PASS] testSeededInterleavedReferenceSequences() (gas: 23534863)
+[PASS] testStreakAndExtremeDayBoundaries() (gas: 156998)
+[PASS] testXpCapEffectiveDeltaAndTitlePrecedence() (gas: 208104)
+Suite result: ok. 10 passed; 0 failed; 0 skipped; finished in 636.55ms (719.79ms CPU time)
+
+Ran 1 test for test/ChogSurvivorInvariant.t.sol:ChogSurvivorInvariantTest
+[PASS] invariant_allStoredBoundsAndMasksHold() (runs: 256, calls: 128000, reverts: 0)
+
+╭---------------+----------+--------+---------+----------╮
+| Contract      | Selector | Calls  | Reverts | Discards |
++========================================================+
+| ActionHandler | act      | 128000 | 0       | 0        |
+╰---------------+----------+--------+---------+----------╯
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 55.39s (55.38s CPU time)
+
+╭--------------------------------------------+-----------------+--------+--------+--------+---------╮
+| src/ChogSurvivor.sol:ChogSurvivor Contract |                 |        |        |        |         |
++===================================================================================================+
+| Deployment Cost                            | Deployment Size |        |        |        |         |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                          0 |            6772 |        |        |        |         |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                            |                 |        |        |        |         |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                              | Min             | Avg    | Median | Max    | # Calls |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| CHOG_GENESIS                               |             268 |    268 |    268 |    268 |       2 |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| act                                        |           40831 | 126206 | 124945 | 222290 |  135756 |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| characterOf                                |            1686 |   9191 |   9686 |  17686 |  137255 |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| eventFor                                   |             696 |    696 |    696 |    696 |    1441 |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| preview                                    |             777 |  24324 |  21409 |  69385 |    5606 |
+|--------------------------------------------+-----------------+--------+--------+--------+---------|
+| titleOf                                    |            1349 |   1423 |   1431 |   1499 |      10 |
+╰--------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/ChogSurvivor.t.sol:SmartWallet Contract |                 |        |        |        |         |
++=====================================================================================================+
+| Deployment Cost                              | Deployment Size |        |        |        |         |
+|----------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                       328663 |            1302 |        |        |        |         |
+|----------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                              |                 |        |        |        |         |
+|----------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                | Min             | Avg    | Median | Max    | # Calls |
+|----------------------------------------------+-----------------+--------+--------+--------+---------|
+| act                                          |          217094 | 217094 | 217094 | 217094 |       1 |
+╰----------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭----------------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/ChogSurvivorAchievements.t.sol:AchievementWallet Contract |                 |        |        |        |         |
++=======================================================================================================================+
+| Deployment Cost                                                | Deployment Size |        |        |        |         |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                         328663 |            1302 |        |        |        |         |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                                |                 |        |        |        |         |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                                  | Min             | Avg    | Median | Max    | # Calls |
+|----------------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| act                                                            |          217332 | 217332 | 217332 | 217332 |       1 |
+╰----------------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+╭---------------------------------------------------------+-----------------+--------+--------+--------+---------╮
+| test/ChogSurvivorInvariant.t.sol:ActionHandler Contract |                 |        |        |        |         |
++================================================================================================================+
+| Deployment Cost                                         | Deployment Size |        |        |        |         |
+|---------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                 1336259 |            5912 |        |        |        |         |
+|---------------------------------------------------------+-----------------+--------+--------+--------+---------|
+|                                                         |                 |        |        |        |         |
+|---------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| Function Name                                           | Min             | Avg    | Median | Max    | # Calls |
+|---------------------------------------------------------+-----------------+--------+--------+--------+---------|
+| act                                                     |          152322 | 172923 | 170888 | 277247 |  128501 |
+╰---------------------------------------------------------+-----------------+--------+--------+--------+---------╯
+
+
+Ran 7 test suites in 55.81s (57.36s CPU time): 39 tests passed, 0 failed, 6 skipped (45 total tests)

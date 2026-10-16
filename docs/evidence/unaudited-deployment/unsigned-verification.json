@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "offlineOnly": true,
+  "unsignedRlpFields": 9,
+  "chainId": 143,
+  "nonce": 0,
+  "value": "0",
+  "gas": "1600000",
+  "maxFeePerGas": "125000000000",
+  "maxPriorityFeePerGas": "2000000000",
+  "creationHash": "0x683228f50a7350cedddb7c6f8df777d05cec0756c725ace1e4b8a50d84adab29",
+  "signingPayloadKeccak256": "0xd1a256ad5ca962d06e9cb55243436faec4b58e77fd61b21309b6fc88012389e9",
+  "signed": false
+}

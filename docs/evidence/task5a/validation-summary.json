@@ -1,0 +1,130 @@
+{
+  "checked_date_local": "2026-10-16 Africa/Lagos",
+  "source_head": "ac0029fb294fa3754a959ee48cc25e842ed98d6f",
+  "github": {
+    "full_name": "ScapeXYZ/chog-survivor",
+    "private": false,
+    "visibility": "public",
+    "default_branch": "main",
+    "pushed_at": "2026-10-15T22:28:25Z"
+  },
+  "live": {
+    "url": "https://chog-survivor.vercel.app/",
+    "http_status": 200,
+    "entry_asset": "index-D82iYTir.js",
+    "javascript_sha256": "92ce2d2d45e6b5cc2aaf3edcb1b3cd5b95878da7c6370df2e5c415e084c3bf77",
+    "exact_hosting_git_revision": "unverified"
+  },
+  "metamask_public_list": {
+    "source": "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/main/src/config.json",
+    "sha256": "5b59f997aaa1e0c2c7502d5a8567e79ae0973945a5c72db3d0f79f2f69c9f889",
+    "blacklist_entries": 106618,
+    "exact_or_parent_matches": [],
+    "scope": "Not full fuzzy detection or Blockaid proprietary verdict"
+  },
+  "browser": {
+    "local": {
+      "origin": "http://127.0.0.1:5193",
+      "passed": 38,
+      "errors": [],
+      "blocked": [],
+      "assets": [
+        "http://127.0.0.1:5193/assets/index-CxBzsNX-.js"
+      ],
+      "recording": false
+    },
+    "live": {
+      "origin": "https://chog-survivor.vercel.app",
+      "passed": 38,
+      "errors": [],
+      "blocked": [],
+      "assets": [
+        "https://chog-survivor.vercel.app/assets/index-D82iYTir.js"
+      ],
+      "recording": false
+    },
+    "recording_workflow": {
+      "origin": "http://127.0.0.1:5193",
+      "passed": 38,
+      "errors": [],
+      "blocked": [],
+      "assets": [
+        "http://127.0.0.1:5193/assets/index-CxBzsNX-.js"
+      ],
+      "recording": true
+    }
+  },
+  "artifact": {
+    "checks": {
+      "no_loopback_mentions": true,
+      "no_private_network_URLs": true,
+      "no_env_or_source_maps": true,
+      "no_standard_Anvil_mnemonic": true,
+      "no_credential_URLs": true,
+      "no_private_key_PEM": true,
+      "explicit_simulation_disclosure": true,
+      "explicit_disabled_transactions": true,
+      "public_simulation_title": true,
+      "no_local_game_address": true
+    },
+    "files": {
+      "index.html": "9a5ea825b0fc676d66f9f5e1c9d1d6925d63a313b34d8479eb94ca699e69794b",
+      "assets/moonlit-fog-overlay-provisional-CyWn4A_i.webp": "c5f90681c66899c851683478173f3d36bab007002b1d1ece06a21ce30a445d82",
+      "assets/ruined-wild-environment-provisional-CgAxwMof.webp": "0945a6b8824501d44af463e520c72ca98bd55b5cd6df55c1a89b01ce20894ef0",
+      "assets/index-CxBzsNX-.js": "694104cf4bb7e3efae4d54a3be334558fbbe8981efcfdc31ea30a1da380a162e",
+      "assets/survivor-creature-refined-provisional-DEcpCW_U.webp": "51865d1166bcb1bd003f969b8199bdcbc35a41eae1692a902731933dd8949db0",
+      "assets/ccip-Kle7OOUl.js": "99626c4dcaa6bdad13571b1b46dcb0b6b3439626fd176bbd06db84d85af31569",
+      "assets/LilitaOne-Regular-DWEPn4H6.ttf": "f5b641c45c69d772ee4eda687bc9fda411d5cad6b0b45371491da4580cbc8d59",
+      "assets/index-C9o6GoDU.css": "49f9c992a0a2278fe428f5bac532cf49e0263c44dfadaedb97b0851760252c12",
+      "licenses/LilitaOne-OFL.txt": "9c14147639ea90cfa41b0645c77b4fa642494d11696e2a9f5cd2d9b5843c1a6e"
+    }
+  },
+  "secret_scan": {
+    "tracked_text_files": 154,
+    "findings": []
+  },
+  "npm_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "recordings": [
+    {
+      "path": "/tmp/chog-5a-recording/page@967a4264377ecc60a47a9d31858b6afc.webm",
+      "sha256": "e64d397a8ac44cf0d5f1d6e5ee3bce8cf8d3736cb01ec160d2edecb2b28c2878",
+      "metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 374,
+            "height": 812
+          }
+        ],
+        "format": {
+          "duration": "18.080000"
+        }
+      },
+      "scope": "private raw walletless simulation; no audio; not final edit"
+    },
+    {
+      "path": "/tmp/chog-5a-recording/page@8b7f9f655c716fa36609b7fac4e28a0a.webm",
+      "sha256": "1fe164417c2c7a3fda2b3901e54887fa6af5c01dfd1fcdb91b5d92b801108eb7",
+      "metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1440,
+            "height": 1000
+          }
+        ],
+        "format": {
+          "duration": "21.800000"
+        }
+      },
+      "scope": "private raw walletless simulation; no audio; not final edit"
+    }
+  ]
+}
