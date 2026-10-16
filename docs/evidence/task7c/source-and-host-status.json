@@ -1,0 +1,62 @@
+{
+  "capturedAt": "2026-10-16T17:10:42.014364+00:00",
+  "explorer": {
+    "url": "https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code",
+    "status": "SOURCE_UNVERIFIED_IN_CURRENT_EXPLORER_UI",
+    "evidence": "Contract code pane prompts: Are you the contract creator? Verify and Publish your contract source code today! No Contract Source Code Verified marker. Generic cross-chain Similar Match button is not a verification result.",
+    "htmlSHA256": "99f89014f5c68fe960bff6c5111e9e158d0ae0f53467fbaa26429601d9cd4b34",
+    "sourceSubmitted": false
+  },
+  "compiler": "0.8.28+commit.7893614a",
+  "settings": {
+    "remappings": [
+      "forge-std/=lib/forge-std/src/"
+    ],
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "evmVersion": "cancun",
+    "libraries": {},
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "metadata",
+          "evm.bytecode",
+          "evm.deployedBytecode"
+        ]
+      }
+    }
+  },
+  "constructorArguments": [],
+  "existingCompiledCreationAndRuntimeTemplateExact": true,
+  "recompiled": false,
+  "sourceInputSHA256": "f84ee244cc2d86d5c72af5187e7fcdac5cb0204ffd32b3b7b3a47f3fbc186849",
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "hosting": {
+    "url": "https://chog-survivor.vercel.app",
+    "status": "SIMULATION_ONLY_CONFIRMED_BY_LIVE_BROWSER",
+    "checkedAt": "2026-10-16T17:12:58.047Z",
+    "scripts": [
+      {
+        "url": "https://chog-survivor.vercel.app/assets/index-D82iYTir.js",
+        "bytes": 559778,
+        "sha256": "92ce2d2d45e6b5cc2aaf3edcb1b3cd5b95878da7c6370df2e5c415e084c3bf77"
+      }
+    ],
+    "checks": [
+      "hosted Adventure is a simulation",
+      "no hosted mainnet action toggle",
+      "hosted Settings disables production writes",
+      "no wallet injected or connected",
+      "no page errors"
+    ],
+    "walletUsed": false,
+    "changesMade": false,
+    "curlBundleCapture": "Initial download incomplete; retry SSL timed out. Partial local raw capture not used as verification evidence. Live browser fetched complete JavaScript successfully."
+  }
+}

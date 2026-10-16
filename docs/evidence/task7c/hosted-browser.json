@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-16T17:12:58.047Z",
+  "origin": "https://chog-survivor.vercel.app",
+  "checks": 5,
+  "names": [
+    "hosted Adventure is a simulation",
+    "no hosted mainnet action toggle",
+    "hosted Settings disables production writes",
+    "no wallet injected or connected",
+    "no page errors"
+  ],
+  "scripts": [
+    {
+      "url": "https://chog-survivor.vercel.app/assets/index-D82iYTir.js",
+      "bytes": 559778,
+      "sha256": "92ce2d2d45e6b5cc2aaf3edcb1b3cd5b95878da7c6370df2e5c415e084c3bf77"
+    }
+  ],
+  "blocked": [
+    {
+      "url": "https://fonts.googleapis.com",
+      "method": "GET"
+    }
+  ],
+  "errors": [],
+  "websiteModified": false,
+  "walletUsed": false,
+  "allNonGETAndExternalRPCBlocked": true
+}

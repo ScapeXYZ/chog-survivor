@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "offlineOnly": true,
+  "reusesTask7AProof": true,
+  "chainId": 143,
+  "game": "0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390",
+  "nft": "0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+  "runtimeHash": "0x1d4eef400bc1459016dff9de08fa360deeb148a34be40053e3d260aa2047a475",
+  "abiChecks": [
+    {
+      "name": "CHOG_GENESIS",
+      "selector": "0xa8f23ae4",
+      "inputsMatch": true,
+      "returns": "Exact tuple/type layout"
+    },
+    {
+      "name": "characterOf",
+      "selector": "0x2acde78d",
+      "inputsMatch": true,
+      "returns": "Exact tuple/type layout"
+    },
+    {
+      "name": "eventFor",
+      "selector": "0x0fa5df05",
+      "inputsMatch": true,
+      "returns": "Exact tuple/type layout"
+    },
+    {
+      "name": "preview",
+      "selector": "0x74c754c7",
+      "inputsMatch": true,
+      "returns": "Exact tuple/type layout"
+    },
+    {
+      "name": "titleOf",
+      "selector": "0xdaf7c166",
+      "inputsMatch": true,
+      "returns": "Exact tuple/type layout"
+    },
+    {
+      "name": "act",
+      "selector": "0xa1af3fa7",
+      "inputsMatch": true,
+      "returns": "Encoding-only ABI intentionally omits unused return; confirmed events establish results"
+    }
+  ],
+  "publicHostingForcesSimulation": true,
+  "sourceVerificationPackageUnchanged": true,
+  "sourceSubmitted": false
+}
