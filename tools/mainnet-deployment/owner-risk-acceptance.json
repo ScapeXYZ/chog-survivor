@@ -1,0 +1,14 @@
+{
+  "status": "OWNER_ACCEPTED_UNAUDITED_PREPARATION",
+  "sender": "0x320eDAe253259053d53feD8eEe6D9C0274A91E85",
+  "candidateSHA256": "f7707ac8ae138a75b1b26777684f6235f91edf17c2980a1c585f39c3cce2643a",
+  "signingPayloadKeccak256": "0xd1a256ad5ca962d06e9cb55243436faec4b58e77fd61b21309b6fc88012389e9",
+  "independentAudit": false,
+  "decisionSource": "Owner instruction in this session: proceed toward mainnet without independent security review.",
+  "scope": "Preparation only. Exact transaction and risk confirmations still required through explicit owner interaction. No signature or broadcast authorized in this task.",
+  "remainingRisks": [
+    "Incomplete Chog Genesis governance/custody attestations",
+    "No official MetaMask/Blockaid warning-policy clearance",
+    "Immutable, non-pausable deployed contract"
+  ]
+}

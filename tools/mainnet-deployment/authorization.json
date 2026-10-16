@@ -1,0 +1,12 @@
+{
+  "status": "NOT_AUTHORIZED",
+  "candidateSHA256": "f7707ac8ae138a75b1b26777684f6235f91edf17c2980a1c585f39c3cce2643a",
+  "signingPayloadKeccak256": "0xd1a256ad5ca962d06e9cb55243436faec4b58e77fd61b21309b6fc88012389e9",
+  "expiresAt": null,
+  "references": {
+    "independentSecurity": null,
+    "governanceCustody": null,
+    "warningPolicy": null,
+    "transactionApproval": null
+  }
+}
