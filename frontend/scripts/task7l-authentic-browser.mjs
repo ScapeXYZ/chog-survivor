@@ -16,7 +16,7 @@ const relayArg=process.argv.indexOf('--rpc-transport'),rpcTransport=relayArg<0?'
 const live=process.argv.includes('--live'),arg=process.argv.indexOf('--artifact-dir'),ev=process.argv.indexOf('--evidence-dir');assert.ok(live||arg>=0,'Pass --artifact-dir or --live')
 const root=arg>=0?path.resolve(process.argv[arg+1]):undefined,evidence=ev>=0?pathToFileURL(path.resolve(process.argv[ev+1])+'/'):new URL('../../docs/evidence/task7l/',import.meta.url),rpc='https://rpc.monad.xyz',game='0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390',token=1425n,run=promisify(execFile)
 await fs.mkdir(new URL('screenshots/',evidence),{recursive:true})
-const build=await approvedArtifact(),nftAbi=parseAbi(['function ownerOf(uint256) view returns (address)','function tokenURI(uint256) view returns (string)'])
+const build=await approvedArtifact(),nftAbi=parseAbi(['function ownerOf(uint256) view returns (address)','function tokenURI(uint256) view returns (string)','function tokensOfOwner(address) view returns (uint256[])','function balanceOf(address) view returns (uint256)'])
 const methods=new Set(['eth_chainId','eth_blockNumber','eth_getBlockByNumber','eth_getCode','eth_call','eth_getLogs','eth_estimateGas','eth_getBalance','eth_getTransactionCount','eth_maxPriorityFeePerGas','eth_gasPrice'])
 const selectors=new Set([...build.artifact.abi,...nftAbi].filter(x=>x.type==='function'&&['view','pure'].includes(x.stateMutability)).map(toFunctionSelector))
 const transcript=[],walletCalls=[],checks=[],errors=[],diagnostics=[],reviewTimings=[];let rejectRPC=false,logs=0,refreshRace=false
@@ -25,6 +25,7 @@ async function read({method,params=[]}){
  assert.ok(methods.has(method),'Forbidden RPC method '+method)
  if(['eth_call','eth_estimateGas'].includes(method)){const tx=params[0];assert.ok([game,collection].some(x=>x.toLowerCase()===tx.to.toLowerCase()));if(!selectors.has(tx.data.slice(0,10))||method==='eth_estimateGas'){assert.ok(expectGameplay&&tx.to.toLowerCase()===game.toLowerCase(),'Only approved read-only gameplay simulation');const decoded=decodeFunctionData({abi:build.artifact.abi,data:tx.data});assert.equal(decoded.functionName,'act');assert.equal(decoded.args[0],token);assert.ok([1,2,3].includes(Number(decoded.args[1])));assert.equal(BigInt(tx.value??0),0n)}}
  if(method==='eth_getLogs'){assert.equal(params[0].address.toLowerCase(),game.toLowerCase());assert.ok(BigInt(params[0].toBlock)-BigInt(params[0].fromBlock)<100n);if(++logs>40)throw Error('Browser history observation budget exhausted')}
+ if(process.argv.includes('--discovery-failure')&&method==='eth_call'&&params[0].data.startsWith(toFunctionSelector('tokensOfOwner(address)')))throw Error('Intentional discovery outage; manual ownerOf remains live')
  if(rejectRPC)throw Error('Intentional test of RPC unavailability')
  if(refreshRace&&((method==='eth_getBlockByNumber'&&params[0]==='finalized')||(method==='eth_call'&&params[0].data.startsWith('0x6352211e'))))await new Promise(r=>setTimeout(r,12000));const started=Date.now();if(method==='eth_estimateGas'&&process.argv.includes('--delay-estimate'))await new Promise(r=>setTimeout(r,35000));let stdout;try{if(rpcTransport==='fetch'){const response=await fetch(rpc,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params}),signal:AbortSignal.timeout(20000)});if(!response.ok)throw Error(`RPC HTTP ${response.status}`);stdout=await response.text()}else ({stdout}=await run('curl',['--silent','--show-error','--fail-with-body','--connect-timeout','5','--max-time','20','-H','Content-Type: application/json','--data-binary',JSON.stringify({jsonrpc:'2.0',id:1,method,params}),rpc],{maxBuffer:2000000}))}catch(error){transcript.push({method,elapsedMs:Date.now()-started,error:error.message});throw error}
  if(method==='eth_estimateGas'&&process.argv.includes('--refresh-during-estimate')){refreshRace=true;await activePage.evaluate(()=>dispatchEvent(new Event('focus')));await new Promise(r=>setTimeout(r,150))};const reply=JSON.parse(stdout);transcript.push({method,elapsedMs:Date.now()-started,ok:!reply.error,error:reply.error});if(reply.error)throw Error(JSON.stringify(reply.error));return reply.result
@@ -50,7 +51,18 @@ try{browser=await chromium.launch({headless:true});for(const width of (process.a
  }
  check(`${width}: no automatic wallet connection`,!connected)
  await page.locator('.game-header .wallet').click();await page.getByRole('button',{name:'PUBLIC ADDRESS OBSERVER — NO SIGNER',exact:true}).click();await page.locator('.game-header .wallet').filter({hasText:/Disconnect/}).waitFor()
- await page.getByRole('button',{name:/^character$/i}).click();await page.getByLabel('Token ID').fill(token.toString());await page.getByRole('button',{name:'Check token',exact:true}).click()
+ if(expectGameplay){
+  await page.getByRole('button',{name:/^adventure$/i}).click()
+  const picker=page.getByLabel('Choose your survivor')
+  if(process.argv.includes('--discovery-failure')){await picker.getByRole('status').filter({hasText:/^Discovery unavailable:/}).waitFor({timeout:20000});check(`${width}: failed discovery claims no owned NFT`,await picker.getByRole('button',{name:/^CHOG #/}).count()===0)}
+  else {await picker.getByRole('button',{name:/^CHOG #/}).first().waitFor({timeout:20000});check(`${width}: automatic discovery verifies selectable owned NFTs`,await picker.getByRole('button',{name:/^CHOG #/,pressed:true}).count()===1)}
+  await page.screenshot({path:new URL(`screenshots/${width}-automatic-discovery.png`,evidence).pathname})
+  const owned=picker.getByRole('button',{name:`CHOG #${token}`,exact:true})
+  if(await owned.count())await owned.click()
+  else {await picker.locator('summary').click();await picker.getByLabel('Survivor token ID',{exact:true}).fill(token.toString());await picker.getByRole('button',{name:'Select survivor',exact:true}).click()}
+  await page.getByRole('button',{name:/^character$/i}).click()
+ }else {await page.getByRole('button',{name:/^character$/i}).click();await page.getByLabel('Token ID',{exact:true}).fill(token.toString());await page.getByRole('button',{name:'Check token',exact:true}).click()}
+
  await page.getByText(actualState.xp.toLocaleString(),{exact:true}).first().waitFor()
  check(`${width}: actual owner displayed`,await page.getByText(observedOwner,{exact:true}).isVisible())
  for(const [label,value]of [['Trust',actualState.trust],['Scars',actualState.scars]])check(`${width}: ${label} matches chain`,await page.getByRole('meter',{name:label}).getAttribute('value')===String(value))

@@ -2,6 +2,7 @@ import {useLayoutEffect, useRef, type KeyboardEvent} from 'react'
 import {createPortal} from 'react-dom'
 import type {Connector} from 'wagmi'
 import './wallet-chooser.css'
+import {mainnetTransactionsEnabled} from './contracts'
 
 type Props = {connectors: readonly Connector[]; pending: boolean; onSelect: (connector: Connector) => void; onClose: () => void}
 
@@ -38,7 +39,7 @@ export function WalletChooser({connectors, pending, onSelect, onClose}: Props) {
     onCancel={(event) => { event.preventDefault(); onClose() }} onKeyDown={keyboard}
     onClick={(event) => { if (event.target !== event.currentTarget) return; const box = event.currentTarget.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) onClose() }}>
     <header className="wallet-dialog-header"><div><p className="wallet-dialog-kicker">CHOOSE YOUR COMPANION</p><h2 id="wallet-chooser-title">Connect a wallet</h2></div><button ref={closeButton} type="button" className="wallet-dialog-close" aria-label="Close wallet selection" onClick={onClose}>×</button></header>
-    <p id="wallet-chooser-description">Choose a discovered EVM wallet. Use Monad mainnet (chain 143) for genuine Chog ownership. Browsing needs no wallet. On-chain gameplay is not yet enabled.</p>
+    <p id="wallet-chooser-description">Choose a discovered EVM wallet. Use Monad mainnet (chain 143) for genuine Chog ownership. Browsing needs no wallet. {mainnetTransactionsEnabled ? 'Choose your Chog and review a daily mainnet action after connecting.' : 'On-chain gameplay is not yet enabled.'}</p>
     <div className="wallet-dialog-list">{connectors.map(connector => <button type="button" className="wallet-dialog-option" aria-label={connector.name || connector.id} key={connector.uid || connector.id} disabled={pending} onClick={() => onSelect(connector)}><span className="wallet-dialog-seal" aria-hidden="true">{(connector.name || connector.id).slice(0, 1).toUpperCase()}</span><span className="wallet-dialog-name">{connector.name || connector.id}</span><span className="wallet-dialog-arrow" aria-hidden="true">→</span></button>)}</div>
     {!connectors.length && <p className="wallet-dialog-note">No compatible wallet discovered. You can keep browsing the game.</p>}
     <p className="wallet-dialog-note">Connection shares your public address. It does not request a transaction, NFT approval, private key or recovery phrase. Only use a wallet extension you trust.</p>

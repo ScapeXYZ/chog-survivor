@@ -199,3 +199,26 @@ describe('read-only collection discovery', () => {
     expect(fixture.readContract.mock.calls.every(([r]) => ['balanceOf', 'tokensOfOwner', 'ownerOf'].includes(r.functionName))).toBe(true)
   })
 })
+
+describe('automatic live survivor onboarding', () => {
+  it('discovers on connection and selects only an ownerOf-verified survivor', async () => {
+    const select=vi.fn();render(<YourSurvivors automatic onSelectToken={select}/>);await finish()
+    expect(screen.getByRole('button',{name:'CHOG #1425'})).toBeInTheDocument()
+    expect(select).toHaveBeenCalledWith(1425n)
+    expect(fixture.readContract).toHaveBeenCalledWith(expect.objectContaining({functionName:'ownerOf'}))
+    for(const action of [fixture.write,fixture.send,fixture.sign])expect(action).not.toHaveBeenCalled()
+  })
+  it('never automatically selects a transferred token', async () => {
+    fixture.owner='0x2222222222222222222222222222222222222222';const select=vi.fn()
+    render(<YourSurvivors automatic onSelectToken={select}/>);await finish()
+    expect(select).not.toHaveBeenCalled();expect(screen.queryByRole('button',{name:'CHOG #1425'})).not.toBeInTheDocument()
+  })
+  it('preserves a manually selected token while discovery finishes', async () => {
+    const select=vi.fn();render(<YourSurvivors automatic selectedToken={55n} onSelectToken={select}/>);await finish();expect(select).not.toHaveBeenCalled()
+  })
+  it('bounds automatic discovery and directs users to manual lookup', async () => {
+    vi.useFakeTimers();fixture.getChainId.mockReturnValue(new Promise(()=>{}))
+    render(<YourSurvivors automatic onSelectToken={vi.fn()}/>);await act(async()=>{await vi.advanceTimersByTimeAsync(12000)})
+    expect(screen.getByText(/Discovery unavailable.*manually/)).toBeInTheDocument()
+  })
+})

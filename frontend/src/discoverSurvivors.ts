@@ -44,15 +44,16 @@ export async function discoverSurvivors(client: DiscoveryClient, account: Addres
   const unique = [...new Set(candidates)]
   const tokens: bigint[] = []
   let complete = unique.length === candidates.length && BigInt(unique.length) === balance && unique.length <= discoveryLimit
-  for (const token of unique.slice(0, discoveryLimit)) {
-    try {
-      const owner = decodeFunctionResult({abi: nftAbi, functionName: 'ownerOf', data: await call(encodeFunctionData({abi: nftAbi, functionName: 'ownerOf', args: [token]}), 1_000_000n)})
-      if (owner.toLowerCase() === account.toLowerCase()) tokens.push(token)
-      else complete = false
-    } catch {
-      if (!active()) throw new Error('Discovery superseded')
-      complete = false
-    }
+  // Four concurrent bounded owner reads keep larger inventories responsive.
+  const bounded = unique.slice(0, discoveryLimit)
+  for (let offset = 0; offset < bounded.length; offset += 4) {
+    const checked = await Promise.all(bounded.slice(offset, offset + 4).map(async token => {
+      try {
+        const owner = decodeFunctionResult({abi: nftAbi, functionName: 'ownerOf', data: await call(encodeFunctionData({abi: nftAbi, functionName: 'ownerOf', args: [token]}), 1_000_000n)})
+        return owner.toLowerCase() === account.toLowerCase() ? token : undefined
+      } catch {if (!active()) throw new Error('Discovery superseded');return undefined}
+    }))
+    for (const token of checked) {if (token !== undefined) tokens.push(token);else complete = false}
   }
   const confirmedHeader = await read(() => client.getBlock({blockNumber: block}))
   if (confirmedHeader.hash !== header.hash) throw new Error('Discovery block changed')

@@ -85,7 +85,7 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
     <header className="survivor-heading"><div><p className="survivor-eyebrow">SURVIVOR PROFILE</p>
       <p className="survivor-sheet-heading">The Chog is the survivor.</p>
       <p className="survivor-motto">The wallet controls the survivor. <span>The Chog carries its story.</span></p></div>
-      <span className="survivor-readonly">READ ONLY</span></header>
+      <span className="survivor-readonly">{mainnetTransactionsEnabled ? 'MAINNET SURVIVOR' : 'READ ONLY'}</span></header>
 
     <div className="survivor-ledger">
       <section className="survivor-identity" aria-labelledby="survivor-profile-title">
@@ -99,13 +99,13 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
         </figure>
         <h1 id="survivor-profile-title">{verified ? `CHOG #${selectedToken}` : 'A Chog. A story.'}</h1>
         <p className="survivor-collection">CHOG GENESIS · TOKEN-BOUND IDENTITY</p>
-        <YourSurvivors selectedToken={selectedToken} onSelectToken={token => { setEnteredId(token.toString()); onSelectToken(token) }}/>
-        <div className="survivor-section-heading"><h2 id="identity-title">Find your survivor</h2></div>
+        {!mainnetTransactionsEnabled && <YourSurvivors selectedToken={selectedToken} onSelectToken={token => { setEnteredId(token.toString()); onSelectToken(token) }}/>}
+        {!mainnetTransactionsEnabled && <><div className="survivor-section-heading"><h2 id="identity-title">Find your survivor</h2></div>
         <p className="survivor-small">Enter a token ID from Chog Genesis for manual verification, including when discovery is unavailable or partial.</p>
         <form onSubmit={(event) => { event.preventDefault(); if (token !== undefined) { if (token === selectedToken) void refresh(); else onSelectToken(token) } }}>
           <label htmlFor="token-id">Token ID</label><div className="survivor-entry"><input id="token-id" inputMode="numeric" autoComplete="off" value={enteredId} onChange={(event) => setEnteredId(event.target.value)} aria-invalid={enteredId.length > 0 && token === undefined} aria-describedby="survivor-input-help"/><button type="submit" disabled={token === undefined}>Check token</button></div>
           <p id="survivor-input-help" className={enteredId.length > 0 && token === undefined ? 'survivor-error' : 'survivor-small'}>{enteredId.length > 0 && token === undefined ? 'Use a whole-number token ID from 0 to 2²⁵⁶ − 1.' : 'Your entry becomes a survivor identity only after the collection confirms its owner.'}</p>
-        </form>
+        </form></>}
         <div className={`survivor-control ${controls ? 'survivor-control-owned' : ''}`} role="status" aria-live="polite">
           <p className="survivor-eyebrow">{verified ? 'VERIFIED NFT IDENTITY' : 'IDENTITY UNVERIFIED'}</p>
           {selectedToken !== undefined && !verified && <p className="survivor-requested">Requested ID: {selectedToken.toString()}</p>}
@@ -133,7 +133,7 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
         <p className="survivor-small">{state ? `Unmarked run: ${state.unmarkedStreak}/7 qualifying consecutive actions.` : 'Stats and achievement status are unavailable. No fabricated values are substituted.'}</p>
         <p className="survivor-small">The stored streak updates on an action. A missed UTC day breaks continuation on the next action.</p>
         <section className="survivor-daily" aria-labelledby="daily-title"><h2 id="daily-title">One Chog. One daily decision.</h2><p>Each NFT can resolve one encounter per UTC day. A transfer carries that daily lock to the new owner.</p>
-          <dl><dt>Last recorded action</dt><dd>{state ? state.hasActed ? `UTC day ${state.lastActionDay.toString()} · ${outcome ?? `Outcome ${state.lastOutcomeId}`}` : 'No action recorded in this game contract.' : 'Unavailable'}</dd><dt>Daily availability</dt><dd>Unverified — a current chain-day eligibility check is unavailable here. Gameplay remains disabled.</dd></dl>
+          <dl><dt>Last recorded action</dt><dd>{state ? state.hasActed ? `UTC day ${state.lastActionDay.toString()} · ${outcome ?? `Outcome ${state.lastOutcomeId}`}` : 'No action recorded in this game contract.' : 'Unavailable'}</dd><dt>Daily availability</dt><dd>{mainnetTransactionsEnabled ? 'Open Adventure to check today’s encounter and make your decision.' : 'Unverified — a current chain-day eligibility check is unavailable here. Gameplay remains disabled.'}</dd></dl>
           <p className="survivor-small">UTC resets at 00:00. Browser time is not used to claim live eligibility or an authoritative countdown.</p>
         </section>
       </section>

@@ -20,7 +20,7 @@ Website: **https://chog-survivor.vercel.app/** · [GitHub](https://github.com/Sc
 ## Holder flow — owner-authorized mainnet gameplay
 
 1. Explicitly select a compatible installed EVM wallet through the discovery modal and choose Monad chain 143. Do not share secrets or bypass wallet warnings.
-2. In Character, enter the token ID and Check token. OwnerOf must match the selected wallet; ownership is never inferred from connection or metadata. Actual progression, titles, achievement bits and bounded finalized journal load from the verified contract.
+2. Your Chogs are discovered automatically after connection on Monad. Choose a verified survivor card, or open Enter a Chog Genesis token ID if discovery is unavailable. OwnerOf must match the selected wallet before gameplay; ownership is never inferred from connection or metadata. Character shows real progression, titles, achievement bits and bounded finalized journal.
 3. In Adventure, only the verified current owner sees the contract-derived choices. The contract permits one action per token per UTC day; a transfer preserves progression and the daily lock.
 4. An eligible owner can review `act(tokenId, choiceId)`, the exact game address, zero MON value, projected effects and gas/cost limits. Review can be cancelled. No NFT transfer or approval is requested.
 5. Explicit confirmation requests the owner's wallet approval. The request is bounded to 400,000 gas, 125 gwei total maxFeePerGas, 0.05 MON maximum estimated cost and at least 0.1 MON reserve. Each request is freshly simulated and ownership/network/nonce rechecked.

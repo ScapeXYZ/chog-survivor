@@ -131,7 +131,8 @@ export function MainnetGameplayPanel({selectedToken}: {selectedToken?: bigint}) 
   const originatingResult = result && result.tokenId === selectedToken ? result : undefined
   return <section className="mainnet-gameplay" aria-labelledby="gameplay-heading">
     <h2 id="gameplay-heading">{mainnetTransactionsEnabled ? 'One Chog. One daily decision.' : 'On-chain gameplay not yet enabled'}</h2>
-    <MainnetRiskNotice/><p>Gas is paid in MON; no game payment, NFT approval or custody.</p>
+    <p>One decision per Chog per UTC day. You pay MON gas only. No NFT approval.</p>
+    <details><summary>Gameplay risks</summary><MainnetRiskNotice/></details>
     {metadata.metadata?.name && <p>Collection metadata name: {metadata.metadata.name}</p>}
     <p role="status">{message || (!identity.controls ? identity.ownershipMessage : availability.error ? 'RPC unavailable. Retry ownership and eligibility reads.' : availability.loading ? 'Reading chain-day eligibility…' : availability.snapshot?.preview?.canAct === false ? 'Daily action already completed. Wait for the next UTC day; transferring the NFT does not reset the lock.' : canReview ? 'Action available. Choose a decision to review.' : 'Action unavailable. Verify the token and mainnet contract state.')}</p>
     <div className="adventure-choices">{ownsVerified && event?.choices.map((choice, index) => <button className={`adventure-choice adventure-choice-${event.tags[index]}`} key={choice} disabled={!canReview} onClick={() => void review(index + 1)}><strong>{choice}</strong><span>Review real contract action</span></button>)}</div>
