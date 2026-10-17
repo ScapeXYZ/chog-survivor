@@ -1,5 +1,7 @@
 # CHOG SURVIVOR — final Chogathon submission package
 
+**Historical submission package:** the fields and preparation decision below describe the submitted simulation-era package. They do not describe the current runtime. The Tasks 7S/7T gameplay release is owner-authorized with incomplete holder-wallet acceptance acknowledged. Task 7T resolves the unsigned-review blocker and validates the gameplay release. See the [current release guide](TASK_7T_MAINNET_ACTION_REVIEW_FIX.md). The linked video remains historical footage.
+
 **Decision: NOT READY to submit yet.** Submission text and core public links are prepared and verified. The owner has supplied the demo-video link. Remaining: owner-supplied team/contact information and registration confirmation, authorship/rights attestation, and banner publication approval. No further holder-testing milestone is required by this package. Public mainnet transactions remain disabled.
 
 Prepared 17 October 2026 (Africa/Lagos), updated in Task 7I with the owner-supplied YouTube link. No media upload, organizer submission or mainnet activation performed. Documentation release results are recorded in Task 7I. Existing local work and private media preserved.

@@ -5,6 +5,7 @@ import http from 'node:http'
 import path from 'node:path'
 import {pathToFileURL} from 'node:url'
 import {chromium} from 'playwright'
+const expectGameplay=process.argv.includes('--expect-gameplay')
 const live=process.argv.includes('--live'),arg=process.argv.indexOf('--artifact-dir');assert.ok(live||arg>=0,'Pass --artifact-dir or --live')
 const evidenceArg=process.argv.indexOf('--evidence-dir')
 const root=live?undefined:path.resolve(process.argv[arg+1]),evidence=evidenceArg<0?new URL('../../docs/evidence/task7j/',import.meta.url):pathToFileURL(path.resolve(process.argv[evidenceArg+1])+'/')
@@ -35,7 +36,7 @@ try{browser=await chromium.launch({headless:true});for(const width of [1440,375,
  check(`${width}: opening/cancelling never requests accounts`,!walletCalls.includes('eth_requestAccounts'))
  if(width===320){await page.locator('.game-header .wallet').click();await page.getByRole('button',{name:'MetaMask',exact:true}).click();await page.getByRole('alert').filter({hasText:/Wallet connection failed/}).waitFor();check('explicit synthetic selection reports rejection',walletCalls.includes('eth_requestAccounts'))}
  else{await page.locator('.game-header .wallet').click();await page.mouse.click(2,2);check(`${width}: backdrop dismisses`,await page.getByRole('dialog').count()===0)}
- check(`${width}: public gameplay still disabled`,await page.getByText('Production transactions disabled',{exact:true}).isVisible())
+ check(`${width}: expected production gameplay status`,await page.getByText(expectGameplay?'Real MON gas · current NFT owner required':'Production transactions disabled',{exact:true}).isVisible())
  await context.close()
  }
  check('no signing or wallet writes',walletCalls.every(x=>['eth_accounts','eth_chainId','eth_requestAccounts','wallet_getPermissions','wallet_requestPermissions'].includes(x)))

@@ -281,3 +281,15 @@
 .confirmed-achievements { clear: both; }
 /* Missing data is a state, never a fabricated numeric value. */
 .adventure-stats .read-unavailable{font-size:clamp(11px,2.6vw,15px);overflow-wrap:anywhere}.adventure-choice:disabled{cursor:not-allowed}.adventure-scene-heading{min-width:0}
+
+.mainnet-gameplay { padding: 22px; border: 1px solid #a88a4c; background: #182831; color: #e5d8b4; }
+.mainnet-gameplay p,.mainnet-review p { line-height: 1.6; }
+.mainnet-review dd,.mainnet-pending a,.mainnet-pending p { overflow-wrap: anywhere; margin-inline-start: 0; }
+.mainnet-review dt { margin-top: 12px; color: #f6ce77; }
+.mainnet-review input[type=checkbox] { margin-right: 9px; }
+.mainnet-pending { padding: 16px; border: 1px solid #a88a4c; margin-block: 16px; }
+.mainnet-pending input { max-width: 100%; box-sizing: border-box; }
+.adventure-result.mainnet-review { background: #14242c; color: #ecdfbf; border: 2px solid #a88a4c; border-radius: 12px; --result-ink: #f6ce77; box-shadow: 0 24px 80px #000a; }
+.mainnet-review .adventure-return-choice { background: #e3b85d; color: #172127; border-color: #a88a4c; box-shadow: none; }
+.mainnet-review .adventure-return-choice:last-child { background: #14242c; color: #ecdfbf; }
+.mainnet-review .adventure-return-choice:disabled { opacity: .65; }

@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 import {zeroAddress} from 'viem'
-import {approvedGameAddress, CHOG_GENESIS, localMode, contractMode} from './contracts'
+import {approvedGameAddress, CHOG_GENESIS, localMode, contractMode, mainnetTransactionsEnabled} from './contracts'
 import {achievements, events} from './game-data'
 import {parseTokenId} from './utils'
 import {useSurvivorProgress} from './useSurvivorProgress'
@@ -62,7 +62,7 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
     else if (!bound) progressionMessage = 'Game binding unavailable or mismatched. Survivor progression is not trusted.'
     else if (character.isError) progressionMessage = 'Progression read failed. No stats or achievements can be verified; retry the read.'
     else if (!state) progressionMessage = 'Reading recorded survivor state…'
-    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. Recorded local contract state.' : 'Recorded contract state · Monad mainnet. On-chain gameplay not yet enabled.'}`
+    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. Recorded local contract state.' : mainnetTransactionsEnabled ? 'Recorded contract state · Monad mainnet. Review daily actions in Adventure.' : 'Recorded contract state · Monad mainnet. On-chain gameplay not yet enabled.'}`
   }
 
   async function refresh() {
@@ -153,6 +153,6 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
       </section>
     </div>
 
-    <aside className="survivor-inheritance"><span className="survivor-inheritance-seal" aria-hidden="true">✦</span><div><h2>A new owner. The same survivor.</h2><p>When ownership changes, the new owner controls the same Chog’s progression, achievements and history. The wallet is the controller; the NFT is the survivor.</p><p className="survivor-small">Progress belongs to the numeric token ID, including if that ID is ever reissued. This interface does not prove collection immutability, governance safety or token-ID non-reuse. Only verified contract reads are shown. On-chain gameplay is not yet enabled.</p></div></aside>
+    <aside className="survivor-inheritance"><span className="survivor-inheritance-seal" aria-hidden="true">✦</span><div><h2>A new owner. The same survivor.</h2><p>When ownership changes, the new owner controls the same Chog’s progression, achievements and history. The wallet is the controller; the NFT is the survivor.</p><p className="survivor-small">Progress belongs to the numeric token ID, including if that ID is ever reissued. This interface does not prove collection immutability, governance safety or token-ID non-reuse. Only verified contract reads are shown. {mainnetTransactionsEnabled ? 'Daily action review is available in Adventure.' : 'On-chain gameplay is not yet enabled.'}</p></div></aside>
   </section>
 }

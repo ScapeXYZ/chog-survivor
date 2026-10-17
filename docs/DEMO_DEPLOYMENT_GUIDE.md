@@ -6,49 +6,33 @@ Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/ad
 
 [Published verified source](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code) · Solidity **0.8.28+commit.7893614a**, optimizer **200**, **Cancun**. Independently confirmed on the public Code page in [Task 7D](TASK_7D_SOURCE_VERIFICATION_RESULT.md); source verification does not imply an audit or frontend release approval.
 
-The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
+## Tasks 7S/7T — owner-authorized gameplay release
 
-The existing public static demo is **https://chog-survivor.vercel.app/** and the repository is public. Task 7E verified the production-simulation Vercel release through commit `2db718d`; Task 7H rechecked unauthenticated website access and its simulation-only browser behavior. This guide governs a **future** release: approve its exact artifact, destination and environment before any deployment. The owner-deployed contract is verified above; frontend publication and further mainnet transactions require separate approval.
+The owner authorizes genuine mainnet gameplay, GitHub main publication and its Vercel deployment. Actual installed-wallet acceptance with a verified holder remains incomplete and is acknowledged. This does not authorize an agent to sign or broadcast gameplay transactions. The historical submission video remains a simulation/local-evidence recording.
 
-## Public walletless build
+Mainnet uses the verified manifest/ABI and source release flag `mainnetGameplayReleaseAuthorized` in `frontend/src/mainnetRelease.ts`. The source release flag is true in this release. Task 7S was stopped; Task 7T fixes its unsigned-review failure and passes three consecutive production-bundle checks before resuming publication. The review opens before any wallet request; unavailable preflight displays an error and blocks confirmation. A valid manifest and mainnet configuration are still required; every action checks ownership, chain, runtime/binding, nonce, current daily eligibility, simulation, gas and reserve. `VITE_CHOG_ENV=mainnet`, URL parameters, local storage and environment-supplied contract addresses cannot authorize an arbitrary deployment or override the approved destination.
 
-Vite replaces `VITE_*` settings at build time; changing hosting environment variables requires rebuilding. `.env.local` is loaded even in a production build, so choose explicit overrides rather than relying on `NODE_ENV` or `--mode production`.
+Approved per-request policy: gas limit <=400,000; total maxFeePerGas <=125 gwei including priority; maximum estimated cost <=0.05 MON; remaining reserve >=0.1 MON; transaction value 0 MON. Missing or increased estimates require a fresh review or block submission. Never transfer or approve the NFT to play. Pending/uncertain actions block duplicates and persist across refreshes.
 
-| Setting | Public demo | Existing local contract mode |
-|---|---|---|
-| `VITE_CHOG_ENV` | `production` | `local` |
-| `VITE_MONAD_RPC_URL` | Empty → existing `https://rpc.monad.xyz` default for optional genuine NFT reads; alternatively a public HTTPS/CORS-compatible URL without private credentials | Not needed for local mode |
-| `VITE_LOCAL_RPC_URL` | Empty/unset | Exactly `http://127.0.0.1:8545` |
-| `VITE_LOCAL_CHOG_SURVIVOR_ADDRESS` | Empty/unset | Previously verified local game address |
-| `VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK` | Empty/unset | Verified local deployment block; necessary for journal reads |
+## Production configuration
 
-Every `VITE_*` value is public browser data. Do not put keys or private RPC/API credentials in these settings. `VITE_CHOG_SURVIVOR_ADDRESS` does **not** activate a production deployment in current code. The verified source manifest pins the real game address; explicit mainnet build mode is additionally required and publication remains gated.
-
-From `frontend` in a complete clean checkout, install the existing lockfile with `npm ci`, then:
+Vercel project root remains `frontend`, Vite framework, Node 22, `npm ci`, output `dist`. The existing `vercel.json` build command remains:
 
 ```sh
-VITE_CHOG_ENV=production \
-VITE_MONAD_RPC_URL= \
-VITE_LOCAL_RPC_URL= \
-VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= \
-VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= \
-npm run build
+VITE_CHOG_ENV=production VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm run build
 ```
 
-Output: `frontend/dist`. It includes the existing local font and the same license text at `/licenses/LilitaOne-OFL.txt`. Home/Character/Settings retain their existing remote font imports; do not replace fonts or introduce a CSP that prevents the established sources from loading.
+Explicit empty local settings prevent a developer .env.local from selecting Anvil. Every VITE value is public browser data; never put wallet secrets or private RPC credentials there. The deployed address comes from the checked-in verified manifest, not an environment override.
 
-For a local static preview of this artifact, run `npm exec vite preview -- --host 127.0.0.1` from `frontend`. This serves files locally; it is not a public deployment. No wallet or Anvil is required. Do not upload the whole workspace or `.env.local`; only the approved static output is website content.
+Production is https://chog-survivor.vercel.app/. GitHub main can trigger an automatic Vercel deployment. Task 7S grants publication approval for its verified release; do not treat it as standing authorization for unrelated future releases. Never upload raw evidence, operator tools, local env files or private footage. Only approved static build output is website content.
 
-## Future deployment — execute only after approval
+After deployment, verify the exact remote commit and Vercel success status, compare the public bundle with the tested build, and check desktop/mobile navigation, walletless empty states, owner-only choices, genuine read-only contract data and unsigned review/cancellation. Agent checks must use no real wallet or send/sign methods. Do not claim an actual holder transaction from a public-address observer or mocks.
 
-1. Resolve the artwork/release blockers in the [staging plan](TASK_4K_STAGING_PLAN.md), review all required source files, verify evidence/license notices, and approve the exact release revision/artifact. No commit/push is authorized by this guide.
-2. Choose **one** provider/destination and approve account access, visibility and environment. Creating a connected Git hosting project can deploy immediately; do not do it as a harmless preliminary step.
-3. Vercel proposal: root `frontend`, framework Vite, Node **22.x** selected explicitly in project settings, install `npm ci`, output `dist`. The prepared `frontend/vercel.json` pins the framework, install command, output directory and the explicit public build command above for Preview and Production, overriding accidental local/private RPC settings. Root directory and Node version still require project settings; they are not configured by this file. No provider dependency is needed. See [Task 4T](TASK_4T_VERCEL_PREPARATION.md) for current results and the exact publication sequence. Official references: [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite), [build settings](https://vercel.com/docs/builds/configure-a-build).
-4. Equivalent Netlify proposal: base/package directory `frontend`, build `npm run build`, publish `dist` relative to it; or manually upload only the approved static `dist` directory. No plugin is required for a static artifact. [Vite setup](https://docs.netlify.com/build/frameworks/framework-setup-guides/vite/), [project/manual deployment](https://docs.netlify.com/manage/projects/add-new-project/).
-5. Obtain explicit **frontend deployment approval** for the concrete artifact/revision and destination. Obtain **separate repository/video/evidence publication approval** where applicable. No public URL is claimed before deployment and independent access verification.
-6. After authorized deployment, verify `/` from a private browser on a separate network: no authentication wall; simulation disclosure; all three interactions and Skip; correct static assets/fonts/license; no localhost dependence or gameplay transaction request; keyboard, mobile/desktop, reduced motion and existing audio preferences. Test the exact demo/repository/video links used in the submission.
+The four screens use in-app navigation rather than separate URLs. Existing fonts, artwork and bundled Lilita One license remain unchanged. Optional external fonts/RPC/metadata may be unavailable; never replace failed reads with invented progression.
 
-Deploy at the origin root; current Vite base is `/`. The four screens are state-based, not `/adventure` or `/character` routes. No SPA rewrite is needed for current button navigation. Subdirectory hosting would require a separate base-path review. A domain is optional; a stable public HTTPS provider URL is sufficient.
+## Rollback
+
+Set `mainnetGameplayReleaseAuthorized=false`, rebuild with the same production overrides and publish an explicitly authorized read-only rollback, or restore the known prior `40036a07e97ac7301ce5778aaaf36d62ad09f23f` Vercel release. Preserve pending journals, hashes and nonces; do not clear storage or automatically resubmit. Frontend rollback cannot pause the immutable contract, cancel a wallet prompt/broadcast or reverse a mined action. See [Task 7T release](TASK_7T_MAINNET_ACTION_REVIEW_FIX.md#rollback).
 
 ## Existing local deployment — no setup transactions
 
@@ -68,29 +52,13 @@ Do not start/reset Anvil, install fixtures, deploy, mint, transfer, advance time
 
 ## Verification without live-chain mutation
 
-Current results, safe commands and release decisions: [Task 5A](TASK_5A_RELEASE_READINESS.md). Read-only mainnet/fork compatibility: [eligibility report](TASK_5A_MAINNET_ELIGIBILITY.md).
-
-From `frontend`:
-
 ```sh
+# From frontend
 npm test
-VITE_CHOG_ENV=production VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm test
 npm run typecheck
-node scripts/mini-game-integration-smoke.mjs
+# From repository root, against the explicitly prepared production artifact
+node frontend/scripts/public-demo-preflight.mjs --artifact-dir /tmp/chog-task7s-production --expect-gameplay
+node frontend/scripts/task7l-authentic-browser.mjs --artifact-dir /tmp/chog-task7s-production --expect-gameplay --evidence-dir /tmp/chog-readonly-observer
 ```
 
-The browser smoke uses intercepted wallet/RPC fixtures and temporary local Vite servers. Its “confirmed” actions are mocked, not new Anvil evidence. It requires installed Playwright Chromium and local socket/browser permissions. Unit tests intentionally isolate developer env values while local suites opt in explicitly. `git diff --check` checks tracked diffs; also inspect new untracked documents for whitespace and secrets.
-
-Do **not** substitute `npm run test:e2e` or the real Task 4H script: those can mutate the live local chain. No dependency installation or transaction is part of Task 4K verification.
-
-## Task 7A local mainnet build — do not publish
-
-From `frontend`, prepare the verified mainnet candidate into a separate temporary directory:
-
-```sh
-VITE_CHOG_ENV=mainnet VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm run build -- --outDir /tmp/chog-task7a-mainnet
-```
-
-This is a local build, not permission to interact or publish. Simulation remains available without a wallet; compatible injected EVM wallets are explicitly selected via EIP-6963. Real actions require current NFT ownership on chain 143, matching runtime/NFT binding, fresh day/preview/simulation/gas checks and explicit wallet confirmation. Never transfer or approve the NFT to play. Mainnet gas is real MON. Reject unexpected wallet warnings or transaction fields.
-
-Keep the checked-in Vercel build command in production simulation until a separate approval identifies the exact mainnet artifact, destination and risk disposition. The owner has completed explorer source publication, independently confirmed in Task 7D. The Task 7A Standard JSON remains the matching historical input; no resubmission or redeployment is needed. Frontend publication/activation remains separately gated.
+The artifact observer has no signer, permits read-only RPC, prepares/cancels review and rejects send/sign methods. It does not establish actual installed-holder wallet acceptance. Isolated controller tests use fake clients and cannot establish genuine progression. Do not run legacy Anvil e2e/reset/install/deploy scripts for release verification.

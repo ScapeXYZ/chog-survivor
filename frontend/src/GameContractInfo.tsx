@@ -1,12 +1,12 @@
 import {MainnetRiskNotice} from './MainnetRiskNotice'
-import {CHOG_GENESIS} from './contracts'
+import {CHOG_GENESIS, mainnetTransactionsEnabled} from './contracts'
 import {mainnetDeployment, mainnetDeploymentReceipt, validMainnetDeployment} from './mainnetDeployment'
 
 export function GameContractInfo() {
   const verified = validMainnetDeployment(mainnetDeployment) ? mainnetDeployment : null
   return <section aria-labelledby="game-contract-title">
     <h3 id="game-contract-title">Game contract information</h3>
-    <p>On-chain gameplay not yet enabled. Verified Monad mainnet reads only.</p>
+    <p>{mainnetTransactionsEnabled ? 'Mainnet gameplay requires current NFT ownership, a fresh bounded-cost review and explicit wallet confirmation.' : 'On-chain gameplay not yet enabled. Verified Monad mainnet reads only.'}</p>
     <dl className="settings-info">
       <div><dt>Network</dt><dd>Monad mainnet · chain 143</dd></div>
       <div><dt>Chog Genesis NFT collection</dt><dd className="survivor-address">{CHOG_GENESIS}</dd></div>

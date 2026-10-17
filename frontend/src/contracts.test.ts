@@ -11,7 +11,7 @@ async function configured(environment: string | undefined, rpc: string | undefin
 afterEach(() => { vi.unstubAllEnvs(); vi.resetModules() })
 
 describe('local contract configuration boundary', () => {
-  it('defaults to a deterministic read-only test environment before explicit local opt-in', async () => {
+  it('uses a deterministic read-only environment when source authorization is withheld', async () => {
     const contracts = await import('./contracts')
     expect(contracts.localMode).toBe(false)
     expect(contracts.environmentReady).toBe(true)
@@ -56,7 +56,7 @@ describe('local contract configuration boundary', () => {
    expect(contracts.approvedGameAddress).toBe('0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390')
    expect(contracts.deploymentStartBlock).toBe(113947533n)
  })
- it('enables verified reads but never transactions in production even with a populated manifest and environment address', async () => {
+ it('keeps production transactions disabled when source authorization is withheld', async () => {
    vi.stubEnv('VITE_CHOG_SURVIVOR_ADDRESS', '0x1111111111111111111111111111111111111111')
    const contracts = await configured('production', undefined, undefined)
    expect(contracts.mainnetMode).toBe(false)

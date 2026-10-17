@@ -5,7 +5,7 @@ import path from 'node:path'
 import {createRequire} from 'node:module'
 import {fileURLToPath} from 'node:url'
 const frontend=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
-const allowFonts=process.argv.includes('--allow-fonts')
+const allowFonts=process.argv.includes('--allow-fonts'),expectGameplay=process.argv.includes('--expect-gameplay')
 const require=createRequire(path.join(frontend,'package.json'))
 const {chromium}=require('playwright')
 const artifactArg=process.argv.indexOf('--artifact-dir')
@@ -26,7 +26,7 @@ try{
  await context.route('**/*',route=>{if(route.request().url().startsWith('http://127.0.0.1:5190/'))return route.continue();external.push(route.request().url());return allowFonts&&/^https:\/\/(fonts.googleapis.com|fonts.gstatic.com)\//.test(route.request().url())?route.continue():route.abort()})
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url())})
  await page.goto('http://127.0.0.1:5190/');await page.getByRole('heading',{name:/SURVIVE/}).waitFor()
- check('production artifact labels mainnet read-only and disabled gameplay',await page.locator('.landing-disclosure').filter({hasText:/MONAD MAINNET · READ ONLY/}).isVisible())
+ check('production artifact labels its expected authorized mode',await page.locator('.landing-disclosure').filter({hasText:expectGameplay?'MONAD MAINNET · REAL TRANSACTIONS':'MONAD MAINNET · READ ONLY'}).isVisible())
  check('artifact excludes old demo progression markers',!['DEMO STATS — NOT SAVED','Demo seed: token','Simulated chronicle','Demo unlocked'].some(marker=>artifactText.includes(marker)))
  for(const width of [320,375,768,1440]){
   await page.setViewportSize({width,height:900})
@@ -40,10 +40,10 @@ try{
  await page.getByRole('navigation').getByRole('button',{name:/^adventure$/i}).click()
  check('no walletless generated choices',await page.locator('.adventure-choice').count()===0)
  check('walletless stats are unavailable, not fabricated zeroes',await page.getByLabel('Recorded survivor statistics').getByText('Unavailable',{exact:true}).count()===4)
- check('mainnet action remains disabled',await page.getByRole('button',{name:'On-chain gameplay not yet enabled',exact:true}).isDisabled())
+ if(expectGameplay){check('no walletless gameplay or wallet-confirmation controls',await page.getByRole('button',{name:'Request wallet confirmation',exact:true}).count()===0&&await page.locator('.adventure-choice').count()===0)}else check('mainnet action remains disabled',await page.getByRole('button',{name:'On-chain gameplay not yet enabled',exact:true}).isDisabled())
  check('no simulated result dialog or receipt',await page.getByRole('dialog').count()===0)
  check('local Adventure font bundled',await page.evaluate(()=>document.fonts.check('16px "Chog Adventure Display"')))
  check('existing font license served unchanged',(await (await fetch('http://127.0.0.1:5190/licenses/LilitaOne-OFL.txt')).text()).trim().split('\n').map(s=>s.trimEnd()).join('\n')===(await fs.readFile(path.join(frontend,'src/assets/fonts/OFL.txt'),'utf8')).trim().split('\n').map(s=>s.trimEnd()).join('\n'))
  check('no RPC dependencies requested',external.every(u=>u.startsWith('https://fonts.googleapis.com/')||u.startsWith('https://fonts.gstatic.com/')));check('no injected wallet',await page.evaluate(()=>typeof window.ethereum==='undefined'));await page.screenshot({path:'/tmp/chog-task7l-empty-desktop.png',fullPage:true});await page.setViewportSize({width:375,height:812});await page.screenshot({path:'/tmp/chog-task7l-empty-mobile.png',fullPage:true});check('no missing runtime assets',missing.length===0);check('no uncaught errors',errors.length===0)
- console.log(JSON.stringify({passed:checks.length,failed:0,widths:[320,375,768,1440],errors,missing,externalRequestsBlocked:!allowFonts,external,checks},null,2))
+ console.log(JSON.stringify({passed:checks.length,failed:0,widths:[320,375,768,1440],errors,missing,externalRequestsBlocked:!allowFonts,expectGameplay,external,checks},null,2))
 }finally{if(browser)await browser.close();await new Promise(done=>server.close(done))}

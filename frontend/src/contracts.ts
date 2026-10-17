@@ -2,6 +2,7 @@ import {defineChain, isAddress, type Address} from 'viem'
 import {createConfig, http} from 'wagmi'
 import {injected} from 'wagmi/connectors'
 import {mainnetDeployment, validMainnetDeployment} from './mainnetDeployment'
+import {mainnetGameplayReleaseAuthorized} from './mainnetRelease'
 
 export const MONAD_CHAIN_ID = 143
 export const LOCAL_CHAIN_ID = 31338
@@ -47,10 +48,10 @@ export const wagmiConfig = createConfig({
   transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http()},
 })
 
-// Reads do not grant permission to write. Production always stays read-only.
+// Reads do not grant permission to write. The owner-authorized source release flag gates mainnet gameplay.
 export const mainnetReadMode = environmentReady && !localMode && validMainnetDeployment(mainnetDeployment)
 export const mainnetMode = import.meta.env.VITE_CHOG_ENV === 'mainnet' && mainnetReadMode
-export const mainnetTransactionsEnabled = false
+export const mainnetTransactionsEnabled = mainnetReadMode && mainnetGameplayReleaseAuthorized
 export const contractMode = localMode || mainnetReadMode
 export const deploymentStartBlock = localMode ? localDeploymentStartBlock : mainnetReadMode ? mainnetDeployment!.deploymentBlock : undefined
 export const approvedGameAddress: Address | undefined = localMode ? localGameAddress as Address :
