@@ -1,7 +1,6 @@
-import {isAddress, type Address} from 'viem'
+import {type Address} from 'viem'
 import {activeChainId} from './contracts'
 
-export type GameMode = 'local-demo' | 'live-read-only'
 export type OwnershipState = 'idle' | 'owned' | 'not-owner' | 'unavailable'
 
 export function parseTokenId(value: string): bigint | undefined {
@@ -28,9 +27,7 @@ export function isWrongNetwork(chainId: number | undefined): boolean {
   return chainId !== undefined && chainId !== activeChainId
 }
 
-export function gameMode(address: string | undefined): GameMode {
-  return address && isAddress(address) ? 'live-read-only' : 'local-demo'
-}
+
 
 export function transactionEnabled(): false {
   return false

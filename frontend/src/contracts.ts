@@ -47,14 +47,14 @@ export const wagmiConfig = createConfig({
   transports: {[MONAD_CHAIN_ID]: http(), [LOCAL_CHAIN_ID]: http()},
 })
 
-export const mainnetMode = import.meta.env.VITE_CHOG_ENV === 'mainnet' &&
-  validMainnetDeployment(mainnetDeployment)
-export const contractMode = localMode || mainnetMode
-export const deploymentStartBlock = localMode ? localDeploymentStartBlock : mainnetMode ? mainnetDeployment!.deploymentBlock : undefined
-
-// An approved source manifest AND explicit mainnet mode are both required.
+// Reads do not grant permission to write. Production always stays read-only.
+export const mainnetReadMode = environmentReady && !localMode && validMainnetDeployment(mainnetDeployment)
+export const mainnetMode = import.meta.env.VITE_CHOG_ENV === 'mainnet' && mainnetReadMode
+export const mainnetTransactionsEnabled = false
+export const contractMode = localMode || mainnetReadMode
+export const deploymentStartBlock = localMode ? localDeploymentStartBlock : mainnetReadMode ? mainnetDeployment!.deploymentBlock : undefined
 export const approvedGameAddress: Address | undefined = localMode ? localGameAddress as Address :
-  mainnetMode ? mainnetDeployment!.address : undefined
+  mainnetReadMode ? mainnetDeployment!.address : undefined
 
 export const nftAbi = [
   {

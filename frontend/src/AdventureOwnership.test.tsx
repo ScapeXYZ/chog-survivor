@@ -25,14 +25,14 @@ beforeAll(() => {
 })
 beforeEach(() => {vi.clearAllMocks(); mock.owner = mock.address; mock.fetching = false})
 afterEach(cleanup)
-describe.each([false, true])('ownership, local contract = %s', local => {
+describe.each([true])('ownership, local contract = %s', local => {
   beforeEach(() => {mock.local = local})
   it('shows dynamic ownership state and navigation while disabling choices, previews and writes', async () => {
     mock.owner = '0x2222222222222222222222222222222222222222'
     const find = vi.fn(), history = vi.fn()
     const props = {now: 86400000, selectedToken: 1001n, onHome: vi.fn(), onFindChogs: find, onHistory: history}
     const view = render(<Adventure {...props}/>)
-    expect(screen.getByText('CHOG #1001 HAS A NEW OWNER')).toBeVisible()
+    expect(screen.getByText('CHOG #1001 · CONTROLLED BY ANOTHER WALLET')).toBeVisible()
     expect(screen.getByText(/progression, achievements and survival history remain with the NFT/)).toBeVisible()
     fireEvent.click(screen.getByRole('button', {name: /find my chogs/i})); expect(find).toHaveBeenCalledOnce()
     fireEvent.click(screen.getByRole('button', {name: /view survivor history/i})); expect(history).toHaveBeenCalledOnce()
@@ -43,7 +43,7 @@ describe.each([false, true])('ownership, local contract = %s', local => {
     expect(mock.write).not.toHaveBeenCalled()
     expect(mock.read.mock.calls.filter(([r]) => r.functionName === 'preview').every(([r]) => !r.query.enabled)).toBe(true)
     view.rerender(<Adventure {...props} selectedToken={2042n}/>)
-    expect(screen.getByText('CHOG #2042 HAS A NEW OWNER')).toBeVisible()
+    expect(screen.getByText('CHOG #2042 · CONTROLLED BY ANOTHER WALLET')).toBeVisible()
   })
   it('closes open previews on transfer and discards stale choices on regaining ownership', async () => {
     const props = {now: 86400000, selectedToken: 1001n, onHome: vi.fn()}
@@ -61,7 +61,7 @@ describe.each([false, true])('ownership, local contract = %s', local => {
   it('fails closed during ownership verification without claiming a transfer', () => {
     mock.fetching = true
     render(<Adventure now={86400000} selectedToken={1001n} onHome={vi.fn()}/>)
-    expect(screen.queryByText(/HAS A NEW OWNER/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/· CONTROLLED BY ANOTHER WALLET/)).not.toBeInTheDocument()
     expect(mock.read.mock.calls.filter(([r]) => r.functionName === 'preview').every(([r]) => !r.query.enabled)).toBe(true)
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })

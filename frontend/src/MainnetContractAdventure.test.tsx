@@ -12,7 +12,7 @@ const mock = vi.hoisted(() => ({
   acted: false, actedDays: new Map<string, bigint>(), refreshError: false,
   read: vi.fn(), write: vi.fn(), refresh: vi.fn(), block: vi.fn(), receipt: vi.fn(), preflight: vi.fn(),
 }))
-vi.mock('./contracts', async original => ({...await original<typeof import('./contracts')>(), localMode: false, mainnetMode: true, contractMode: true, activeChain: {id: 143}, environmentReady: true, approvedGameAddress: '0x3333333333333333333333333333333333333333'}))
+vi.mock('./contracts', async original => ({...await original<typeof import('./contracts')>(), localMode: false, mainnetMode: true, mainnetTransactionsEnabled: true, contractMode: true, activeChain: {id: 143}, environmentReady: true, approvedGameAddress: '0x3333333333333333333333333333333333333333'}))
 vi.mock('./mainnetDeployment', async original => ({...await original<typeof import('./mainnetDeployment')>(), mainnetDeployment: {chainId: 143, address: '0x3333333333333333333333333333333333333333', deploymentBlock: 4n, runtimeCodeHash: keccak256('0x6000')}}))
 vi.mock('wagmi', async original => ({
   ...await original<typeof import('wagmi')>(),

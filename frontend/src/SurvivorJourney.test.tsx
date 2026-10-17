@@ -24,6 +24,8 @@ vi.mock('wagmi', async (original) => ({
   useSignMessage: () => ({signMessage: wallet.sign}),
   useSendTransaction: () => ({sendTransaction: wallet.send}),
 }))
+// Identity/discovery unit fixtures; runtime proof has dedicated fail-closed tests.
+vi.mock('./useVerifiedDeployment', () => ({useVerifiedDeployment: () => ({verified: true, loading: false, error: undefined})}))
 import {App} from './App'
 import {Adventure} from './Adventure'
 import {CHOG_GENESIS} from './contracts'
@@ -54,11 +56,11 @@ describe('shared survivor journey', () => {
     wallet.connected = false
     render(<App/>)
     fireEvent.click(screen.getByRole('button', {name: /enter the wild/i}))
-    expect(strip()).toHaveTextContent('No Chog selected')
+    expect(strip()).toHaveTextContent('No verified Chog selected')
     expect(strip()).toHaveTextContent('Wallet disconnected')
-    expect(strip()).toHaveTextContent('LOCAL DEMONSTRATION')
+    expect(strip()).toHaveTextContent('NO VERIFIED SURVIVOR')
     expect(latestOwner().query.enabled).toBe(false)
-    expect(screen.getAllByRole('button', {name: /Preview Choice/}).every((choice) => !choice.hasAttribute('disabled'))).toBe(true)
+    expect(screen.queryByRole('button', {name: /Preview Choice/})).not.toBeInTheDocument()
     fireEvent.click(within(strip()).getByRole('button', {name: /View survivor profile/}))
     expect(screen.getByRole('heading', {name: 'A Chog. A story.'})).toBeInTheDocument()
   })
@@ -67,7 +69,7 @@ describe('shared survivor journey', () => {
     fireEvent.click(screen.getByRole('button', {name: /^character$/i}))
     fireEvent.change(screen.getByLabelText('Token ID'), {target: {value: '1425'}})
     adventure()
-    expect(strip()).toHaveTextContent('No Chog selected')
+    expect(strip()).toHaveTextContent('No verified Chog selected')
     expect(latestOwner().args).toBeUndefined()
     expect(latestOwner().query.enabled).toBe(false)
   })
@@ -88,7 +90,7 @@ describe('shared survivor journey', () => {
     const characterRead = latestOwner()
     adventure()
     expect(strip()).toHaveTextContent('CHOG #1425')
-    expect(strip()).toHaveTextContent(owned ? 'VERIFIED NFT IDENTITY · LOCAL DEMO' : 'CHOG #1425 HAS A NEW OWNER')
+    expect(strip()).toHaveTextContent(owned ? 'VERIFIED NFT IDENTITY' : 'CHOG #1425 · CONTROLLED BY ANOTHER WALLET')
     expect(strip()).toHaveTextContent(owned ? 'You control this survivor' : 'Your connected wallet does not own this Chog')
     expect(latestOwner()).toMatchObject({scopeKey: characterRead.scopeKey, args: characterRead.args})
     fireEvent.click(within(strip()).getByRole('button', {name: owned ? /View survivor profile/ : /View Survivor History/}))
@@ -145,7 +147,7 @@ describe('shared survivor journey', () => {
     expect(latestOwner().scopeKey).not.toBe(scope)
     expect(strip()).not.toHaveTextContent('You control this survivor')
     wallet.owners['1425'] = {data: '0x1234567890123456789012345678901234567890'}; view.rerender(<App/>)
-    expect(strip()).toHaveTextContent('CHOG #1425 HAS A NEW OWNER')
+    expect(strip()).toHaveTextContent('CHOG #1425 · CONTROLLED BY ANOTHER WALLET')
     expect(latestOwner().query).toMatchObject({staleTime: 0, refetchOnMount: 'always', refetchInterval: 30000, refetchOnWindowFocus: true})
   })
   it('rechecks a newly selected token and shares it without carrying over prior ownership', () => {
@@ -156,14 +158,14 @@ describe('shared survivor journey', () => {
     expect(strip()).toHaveTextContent('Requested token #1426 · unverified')
     expect(strip()).not.toHaveTextContent('CHOG #1425')
     expect(latestOwner().args).toEqual([1426n])
-    expect(screen.getByText(/Demo seed: token 1426/)).toBeInTheDocument()
+    expect(screen.queryByText(/Demo seed/)).not.toBeInTheDocument()
   })
   it('reflects ownership changes while retaining the same survivor token', () => {
     wallet.owners['1425'] = {data: wallet.account}
     const view = render(<App/>); lookup(); adventure()
     wallet.owners['1425'] = {data: '0x2222222222222222222222222222222222222222'}; view.rerender(<App/>)
     expect(strip()).toHaveTextContent('CHOG #1425')
-    expect(strip()).toHaveTextContent('CHOG #1425 HAS A NEW OWNER')
+    expect(strip()).toHaveTextContent('CHOG #1425 · CONTROLLED BY ANOTHER WALLET')
     fireEvent.click(within(strip()).getByRole('button', {name: /View Survivor History/}))
     expect(screen.getByText(/Another wallet controls/)).toBeInTheDocument()
   })
@@ -178,32 +180,13 @@ describe('shared survivor journey', () => {
     expect(strip()).not.toHaveTextContent('VERIFIED NFT IDENTITY')
     expect(strip()).not.toHaveTextContent('You control this survivor')
   })
-  it('keeps all verified-owner choices local and never reads game outcomes or submits writes', () => {
+  it('never substitutes a simulated encounter or success when game verification is unavailable', () => {
     wallet.owners['1425'] = {data: wallet.account}
     render(<App/>); lookup(); adventure()
-    const hud = screen.getByLabelText('Simulated character statistics').textContent
-    for (const choice of screen.getAllByRole('button', {name: /Preview Choice/})) {
-      fireEvent.click(choice)
-      fireEvent.click(screen.getByRole('button', {name: 'Skip interaction'}))
-      expect(screen.getByRole('dialog')).toHaveTextContent('Simulation only')
-      expect(screen.getByRole('dialog')).toHaveTextContent('No progress is saved')
-      fireEvent.click(screen.getByRole('button', {name: /Try another choice/i}))
-    }
-    expect(screen.getByLabelText('Simulated character statistics').textContent).toBe(hud)
-    expect(strip()).toHaveTextContent('Choices do not change your Chog')
-    expect(screen.getByRole('button', {name: /Act onchain/})).toBeDisabled()
-    expect(wallet.read.mock.calls.some(([request]) => ['eventFor', 'preview'].includes(request.functionName))).toBe(false)
-    for (const fn of [wallet.write, wallet.sign, wallet.send]) expect(fn).not.toHaveBeenCalled()
-    fireEvent.click(within(strip()).getByRole('button', {name: /View survivor profile/}))
-    const history = screen.getByRole('heading', {name: 'Survival History'}).closest('section')!
-    expect(history.querySelector('ol,ul,time')).toBeNull()
-  })
-  it('dismisses an open preview when the selected token changes', () => {
-    wallet.owners['1425'] = {data: wallet.account}
-    const view = render(<Adventure now={20740 * 86400000} selectedToken={1425n} onHome={vi.fn()}/>)
-    fireEvent.click(screen.getAllByRole('button', {name: /Preview Choice/})[0])
-    expect(screen.getByRole('dialog')).toBeVisible()
-    view.rerender(<Adventure now={20740 * 86400000} selectedToken={1426n} onHome={vi.fn()}/>)
+    expect(screen.getByLabelText('Recorded survivor statistics')).toHaveTextContent('Unavailable')
+    expect(screen.queryByRole('button', {name: /Preview Choice/})).not.toBeInTheDocument()
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', {name: 'On-chain gameplay not yet enabled'})).toBeDisabled()
+    for (const fn of [wallet.write, wallet.sign, wallet.send]) expect(fn).not.toHaveBeenCalled()
   })
 })

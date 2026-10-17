@@ -1,12 +1,12 @@
 import {MainnetRiskNotice} from './MainnetRiskNotice'
-import {CHOG_GENESIS, mainnetMode} from './contracts'
+import {CHOG_GENESIS} from './contracts'
 import {mainnetDeployment, mainnetDeploymentReceipt, validMainnetDeployment} from './mainnetDeployment'
 
 export function GameContractInfo() {
   const verified = validMainnetDeployment(mainnetDeployment) ? mainnetDeployment : null
   return <section aria-labelledby="game-contract-title">
     <h3 id="game-contract-title">Game contract information</h3>
-    <p>{mainnetMode ? 'Monad mainnet gameplay enabled · real transactions require MON gas.' : 'Simulation available · mainnet gameplay is not enabled.'}</p>
+    <p>On-chain gameplay not yet enabled. Verified Monad mainnet reads only.</p>
     <dl className="settings-info">
       <div><dt>Network</dt><dd>Monad mainnet · chain 143</dd></div>
       <div><dt>Chog Genesis NFT collection</dt><dd className="survivor-address">{CHOG_GENESIS}</dd></div>
@@ -17,6 +17,6 @@ export function GameContractInfo() {
     </dl>
     <p>Runtime verified against the frozen artifact. Source verified on MonadScan (Exact Match); deployment remains unaudited.</p>
     {verified && <MainnetRiskNotice/>}
-    <p>Genuine holders keep their NFT in its current wallet. Gameplay requires no NFT transfer, staking or approval. One action per token per UTC day; simulation remains available without an NFT.</p>
+    <p>Genuine holders keep their NFT in its current wallet. Gameplay requires no NFT transfer, staking or approval. One action per token per UTC day; browsing is available without a wallet. No survivor data is fabricated for visitors.</p>
   </section>
 }

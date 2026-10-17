@@ -181,3 +181,4 @@ body:has(.game-shell-character) { min-width: 0; }
 .journal-evidence summary:focus-visible { outline: 3px solid #4c6570; outline-offset: 2px; }
 .journal-evidence code, .journal-evidence dd { overflow-wrap: anywhere; word-break: break-word; }
 @media (max-width: 640px) { .survivor-history-list .journal-entry { padding: 14px 12px; } }
+.survivor-stats dd.read-unavailable{font-size:17px;overflow-wrap:anywhere;min-width:0}

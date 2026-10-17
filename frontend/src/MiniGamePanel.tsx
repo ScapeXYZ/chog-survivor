@@ -26,7 +26,7 @@ function useReducedMotion() {
 // Reset local attempts when the interaction or display identity changes.
 // Progression and contract arguments never leave the no-argument callbacks.
 export function MiniGamePanel(props: MiniGamePanelProps) {
-  return <MiniGameSession key={`${JSON.stringify(props.config)}:${props.tokenId ?? 'demo'}`} {...props}/>
+  return <MiniGameSession key={`${JSON.stringify(props.config)}:${props.tokenId ?? 'unselected'}`} {...props}/>
 }
 
 function MiniGameSession({config, tokenId, onComplete, onSkip}: MiniGamePanelProps) {

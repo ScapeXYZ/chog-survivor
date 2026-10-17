@@ -26,7 +26,8 @@ try{
  await context.route('**/*',route=>{if(route.request().url().startsWith('http://127.0.0.1:5190/'))return route.continue();external.push(route.request().url());return allowFonts&&/^https:\/\/(fonts.googleapis.com|fonts.gstatic.com)\//.test(route.request().url())?route.continue():route.abort()})
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)missing.push(r.url())})
  await page.goto('http://127.0.0.1:5190/');await page.getByRole('heading',{name:/SURVIVE/}).waitFor()
- check('production artifact explicitly labels demo',await page.getByText(/LOCAL DEMO · Mainnet gameplay is not enabled/).isVisible())
+ check('production artifact labels mainnet read-only and disabled gameplay',await page.locator('.landing-disclosure').filter({hasText:/MONAD MAINNET · READ ONLY/}).isVisible())
+ check('artifact excludes old demo progression markers',!['DEMO STATS — NOT SAVED','Demo seed: token','Simulated chronicle','Demo unlocked'].some(marker=>artifactText.includes(marker)))
  for(const width of [320,375,768,1440]){
   await page.setViewportSize({width,height:900})
   for(const name of ['Adventure','Character','Settings','Home']){
@@ -37,15 +38,12 @@ try{
   }
  }
  await page.getByRole('navigation').getByRole('button',{name:/^adventure$/i}).click()
- check('walletless choices available',await page.locator('.adventure-choice').count()===3)
- for(let i=0;i<3;i++){
-  await page.locator('.adventure-choice').nth(i).click();await page.getByRole('button',{name:'Skip interaction'}).click()
-  check(`choice ${i+1}: simulation disclosure`,await page.getByText(/Simulation only\. These are documented base values/).isVisible())
-  check(`choice ${i+1}: no wallet confirmation`,await page.getByRole('button',{name:'CONFIRM LOCAL ACTION'}).count()===0)
-  await page.keyboard.press('Escape')
- }
+ check('no walletless generated choices',await page.locator('.adventure-choice').count()===0)
+ check('walletless stats are unavailable, not fabricated zeroes',await page.getByLabel('Recorded survivor statistics').getByText('Unavailable',{exact:true}).count()===4)
+ check('mainnet action remains disabled',await page.getByRole('button',{name:'On-chain gameplay not yet enabled',exact:true}).isDisabled())
+ check('no simulated result dialog or receipt',await page.getByRole('dialog').count()===0)
  check('local Adventure font bundled',await page.evaluate(()=>document.fonts.check('16px "Chog Adventure Display"')))
  check('existing font license served unchanged',(await (await fetch('http://127.0.0.1:5190/licenses/LilitaOne-OFL.txt')).text()).trim().split('\n').map(s=>s.trimEnd()).join('\n')===(await fs.readFile(path.join(frontend,'src/assets/fonts/OFL.txt'),'utf8')).trim().split('\n').map(s=>s.trimEnd()).join('\n'))
- check('no RPC dependencies requested',external.every(u=>u.startsWith('https://fonts.googleapis.com/')||u.startsWith('https://fonts.gstatic.com/')));check('no injected wallet',await page.evaluate(()=>typeof window.ethereum==='undefined'));await page.screenshot({path:'/tmp/chog-4p-desktop.png',fullPage:true});await page.setViewportSize({width:375,height:812});await page.screenshot({path:'/tmp/chog-4p-mobile.png',fullPage:true});check('no missing runtime assets',missing.length===0);check('no uncaught errors',errors.length===0)
+ check('no RPC dependencies requested',external.every(u=>u.startsWith('https://fonts.googleapis.com/')||u.startsWith('https://fonts.gstatic.com/')));check('no injected wallet',await page.evaluate(()=>typeof window.ethereum==='undefined'));await page.screenshot({path:'/tmp/chog-task7l-empty-desktop.png',fullPage:true});await page.setViewportSize({width:375,height:812});await page.screenshot({path:'/tmp/chog-task7l-empty-mobile.png',fullPage:true});check('no missing runtime assets',missing.length===0);check('no uncaught errors',errors.length===0)
  console.log(JSON.stringify({passed:checks.length,failed:0,widths:[320,375,768,1440],errors,missing,externalRequestsBlocked:!allowFonts,external,checks},null,2))
 }finally{if(browser)await browser.close();await new Promise(done=>server.close(done))}

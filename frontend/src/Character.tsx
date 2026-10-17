@@ -1,10 +1,9 @@
 import {useEffect, useRef, useState} from 'react'
-import {useReadContract} from 'wagmi'
 import {zeroAddress} from 'viem'
-import {activeChain, approvedGameAddress, CHOG_GENESIS, gameReadAbi, localMode, contractMode, mainnetMode} from './contracts'
-import {achievements, events, titles} from './game-data'
+import {approvedGameAddress, CHOG_GENESIS, localMode, contractMode} from './contracts'
+import {achievements, events} from './game-data'
 import {parseTokenId} from './utils'
-import {useSurvivorIdentity, survivorReadFreshness as freshness} from './useSurvivorIdentity'
+import {useSurvivorProgress} from './useSurvivorProgress'
 import './character.css'
 import {YourSurvivors} from './YourSurvivors'
 import {useSurvivalHistory} from './useSurvivalHistory'
@@ -37,7 +36,8 @@ function SurvivorSeal() {
 }
 
 export function Character({selectedToken, onSelectToken, initialSection}: {selectedToken?: bigint; onSelectToken: (token: bigint) => void; initialSection?: 'your-survivors-title' | 'history-title'}) {
-  const {owner, enabled, scopeKey, contextKey, checkingOwner, verified, controls, ownershipMessage} = useSurvivorIdentity(selectedToken)
+  const {identity, proof, binding, bound, character, title, state, titleName} = useSurvivorProgress(selectedToken)
+  const {owner, enabled, scopeKey, contextKey, checkingOwner, verified, controls, ownershipMessage} = identity
   useEffect(() => {
     if (!initialSection) return
     const heading = document.getElementById(initialSection)
@@ -49,29 +49,20 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
   const token = parseTokenId(enteredId)
   const currentContext = useRef(contextKey)
   currentContext.current = contextKey
-  const binding = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'CHOG_GENESIS',
-    chainId: activeChain.id, scopeKey, query: {...freshness, enabled: verified && approvedGameAddress !== undefined}})
-  const bound = verified && approvedGameAddress !== undefined && !binding.isFetching && !binding.isLoading && !binding.isError && binding.data?.toLowerCase() === CHOG_GENESIS.toLowerCase()
-  const character = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'characterOf',
-    args: selectedToken === undefined ? undefined : [selectedToken], chainId: activeChain.id, scopeKey,
-    query: {...freshness, enabled: bound}})
-  const title = useReadContract({address: approvedGameAddress, abi: gameReadAbi, functionName: 'titleOf',
-    args: selectedToken === undefined ? undefined : [selectedToken], chainId: activeChain.id, scopeKey,
-    query: {...freshness, enabled: bound}})
-  const state = bound && !character.isFetching && !character.isLoading && !character.isError ? character.data : undefined
-  const titleName = bound && !title.isFetching && !title.isLoading && !title.isError && title.data !== undefined ? titles[title.data] : undefined
   const history = useSurvivalHistory(selectedToken, bound)
   const metadata = useNftMetadata(selectedToken, verified, scopeKey)
 
   let progressionMessage = `Progression unavailable — contract-backed gameplay is not enabled in this build. NFT ownership can still be verified on ${localMode ? 'the local test fixture' : 'Monad'}.`
   if (approvedGameAddress !== undefined) {
-    if (!verified) progressionMessage = 'Progression unavailable until this NFT identity has been verified on Monad.'
+    if (proof.error) progressionMessage = `Unavailable — ${proof.error}. Retry verification.`
+    else if (proof.loading) progressionMessage = 'Verifying mainnet runtime and finalized collection binding…'
+    else if (!verified) progressionMessage = 'Progression unavailable until this NFT identity has been verified on Monad.'
     else if (binding.isFetching || binding.isLoading) progressionMessage = 'Checking the game’s canonical collection binding…'
     else if (binding.isError) progressionMessage = 'Game binding read failed. Progression is unavailable; retry to verify the deployment binding.'
     else if (!bound) progressionMessage = 'Game binding unavailable or mismatched. Survivor progression is not trusted.'
     else if (character.isError) progressionMessage = 'Progression read failed. No stats or achievements can be verified; retry the read.'
     else if (!state) progressionMessage = 'Reading recorded survivor state…'
-    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. Recorded local contract state.' : 'Recorded contract state · Monad mainnet. Actions require explicit wallet confirmation.'}`
+    else progressionMessage = `${localMode ? 'LOCAL TEST FIXTURE — NOT CHOG GENESIS. Recorded local contract state.' : 'Recorded contract state · Monad mainnet. On-chain gameplay not yet enabled.'}`
   }
 
   async function refresh() {
@@ -130,16 +121,16 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
         <div className="survivor-title"><span>Survivor title</span><strong>{titleName ?? 'Unavailable'}</strong></div>
         {bound && title.isError && <p className="survivor-error">Title read failed. Refresh to retrieve the actual title.</p>}
         <dl className="survivor-stats">
-          <div className="survivor-stat-xp"><dt>XP</dt><dd>{state?.xp.toLocaleString() ?? '—'}</dd><span className="survivor-stat-note">Recorded experience</span></div>
+          <div className="survivor-stat-xp"><dt>XP</dt><dd className={state ? undefined : 'read-unavailable'}>{state?.xp?.toLocaleString() ?? 'Unavailable'}</dd><span className="survivor-stat-note">Recorded experience</span></div>
           {(['Trust', 'Scars'] as const).map((label) => {
             const value = state?.[label === 'Trust' ? 'trust' : 'scars']
-            return <div className={`survivor-stat-${label.toLowerCase()}`} key={label}><dt>{label}</dt><dd>{value === undefined ? '—' : `${value}/100`}</dd>
+            return <div className={`survivor-stat-${label.toLowerCase()}`} key={label}><dt>{label}</dt><dd className={value === undefined ? 'read-unavailable' : undefined}>{value === undefined ? 'Unavailable' : `${value}/100`}</dd>
               {value === undefined ? <span className="survivor-meter-unavailable" aria-hidden="true"/> : <meter aria-label={label} min={0} max={100} value={value}/>}
             </div>
           })}
-          <div className="survivor-stat-streak"><dt>Stored streak</dt><dd>{state ? `${state.streak} days` : '—'}</dd><span className="survivor-stat-note">Consecutive UTC days</span></div>
+          <div className="survivor-stat-streak"><dt>Stored streak</dt><dd className={state?.streak === undefined ? 'read-unavailable' : undefined}>{state?.streak === undefined ? 'Unavailable' : `${state.streak} days`}</dd><span className="survivor-stat-note">Consecutive UTC days</span></div>
         </dl>
-        <p className="survivor-small">{state ? `Unmarked run: ${state.unmarkedStreak}/7 qualifying consecutive actions.` : 'Stats and achievement status are unavailable. No demo values are substituted.'}</p>
+        <p className="survivor-small">{state ? `Unmarked run: ${state.unmarkedStreak}/7 qualifying consecutive actions.` : 'Stats and achievement status are unavailable. No fabricated values are substituted.'}</p>
         <p className="survivor-small">The stored streak updates on an action. A missed UTC day breaks continuation on the next action.</p>
         <section className="survivor-daily" aria-labelledby="daily-title"><h2 id="daily-title">One Chog. One daily decision.</h2><p>Each NFT can resolve one encounter per UTC day. A transfer carries that daily lock to the new owner.</p>
           <dl><dt>Last recorded action</dt><dd>{state ? state.hasActed ? `UTC day ${state.lastActionDay.toString()} · ${outcome ?? `Outcome ${state.lastOutcomeId}`}` : 'No action recorded in this game contract.' : 'Unavailable'}</dd><dt>Daily availability</dt><dd>Unverified — a current chain-day eligibility check is unavailable here. Gameplay remains disabled.</dd></dl>
@@ -156,12 +147,12 @@ export function Character({selectedToken, onSelectToken, initialSection}: {selec
         {!contractMode && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>History unavailable — contract-backed gameplay is not enabled in this build. Recorded decisions belong to the token ID, across owners.</p><p>No timeline has been loaded. This does not mean the survivor has no history.</p></div></div>}
         {contractMode && !bound && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>The story stays with the Chog.</h3><p>Verify NFT ownership and game binding before reading token-bound history.</p></div></div>}
         {contractMode && bound && history.loading && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>Reading the survival journal…</h3><p>Events are being retrieved from the verified game contract.</p></div></div>}
-        {contractMode && bound && !history.loading && history.result?.error && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>{history.result.partial ? (mainnetMode ? 'Partial mainnet history' : 'Partial local history') : 'History unavailable'}</h3><p>{history.result.error} {history.result.partial ? 'Shown entries are incomplete; refresh before relying on them.' : 'No history claim is made.'}</p><button className="survivor-retry" onClick={history.refresh}>Retry history</button></div></div>}
+        {contractMode && bound && !history.loading && history.result?.error && <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>{history.result.partial ? (localMode ? 'Partial local history' : 'Partial mainnet history') : 'History unavailable'}</h3><p>{history.result.error} {history.result.partial ? 'Shown entries are incomplete; refresh before relying on them.' : 'No history claim is made.'}</p><button className="survivor-retry" onClick={history.refresh}>Retry history</button></div></div>}
         {contractMode && bound && !history.loading && history.result?.nextBlock !== undefined && !history.result.error && <p>History is incomplete. <button className="survivor-retry" onClick={history.loadOlder}>Load older history</button></p>}
         {contractMode && bound && !history.loading && history.result && <>{history.result.records.length === 0 && !history.result.error ? <div className="survivor-history-unavailable"><span className="survivor-history-symbol" aria-hidden="true">✧</span><div><h3>No recorded decisions.</h3><p>No AdventureResolved events were found in the loaded range. Older pages may still contain decisions.</p></div></div> : <SurvivorJournal tokenId={selectedToken!} currentOwner={owner.data!} records={history.result.records}/>}</>}
       </section>
     </div>
 
-    <aside className="survivor-inheritance"><span className="survivor-inheritance-seal" aria-hidden="true">✦</span><div><h2>A new owner. The same survivor.</h2><p>When ownership changes, the new owner controls the same Chog’s progression, achievements and history. The wallet is the controller; the NFT is the survivor.</p><p className="survivor-small">Progress belongs to the numeric token ID, including if that ID is ever reissued. This interface does not prove collection immutability, governance safety or token-ID non-reuse. Contract-backed play requires an explicitly enabled, verified deployment; simulation never changes this state.</p></div></aside>
+    <aside className="survivor-inheritance"><span className="survivor-inheritance-seal" aria-hidden="true">✦</span><div><h2>A new owner. The same survivor.</h2><p>When ownership changes, the new owner controls the same Chog’s progression, achievements and history. The wallet is the controller; the NFT is the survivor.</p><p className="survivor-small">Progress belongs to the numeric token ID, including if that ID is ever reissued. This interface does not prove collection immutability, governance safety or token-ID non-reuse. Only verified contract reads are shown. On-chain gameplay is not yet enabled.</p></div></aside>
   </section>
 }

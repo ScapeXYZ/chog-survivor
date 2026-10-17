@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {gameMode, isWrongNetwork, ownershipState, parseTokenId, transactionEnabled} from './utils'
+import {isWrongNetwork, ownershipState, parseTokenId, transactionEnabled} from './utils'
 
 describe('token selection validation', () => {
   it('accepts a whole-number token ID and rejects unsafe UI input', () => {
@@ -40,11 +40,6 @@ describe('safety modes', () => {
     expect(isWrongNetwork(143)).toBe(false)
   })
 
-  it('labels only a configured valid address as live read-only', () => {
-    expect(gameMode(undefined)).toBe('local-demo')
-    expect(gameMode('not-an-address')).toBe('local-demo')
-    expect(gameMode('0xc96d31f8626c6d03fae5dcd3d61e3fb9f4a73763')).toBe('live-read-only')
-  })
 
   it('never enables transaction actions in this local-only milestone', () => {
     expect(transactionEnabled()).toBe(false)

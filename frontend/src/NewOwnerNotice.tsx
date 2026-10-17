@@ -7,8 +7,8 @@ export type AdventureNavigation = {
 export function NewOwnerNotice({tokenId, onFindChogs, onHistory}: {tokenId: bigint} & AdventureNavigation) {
   return <div>
     <div role="status" aria-live="polite">
-      <span className="adventure-survivor-label">READ ONLY · OWNERSHIP CHANGED</span>
-      <strong>{`CHOG #${tokenId} HAS A NEW OWNER`}</strong>
+      <span className="adventure-survivor-label">READ ONLY · CURRENT OWNER VERIFIED</span>
+      <strong>{`CHOG #${tokenId} · CONTROLLED BY ANOTHER WALLET`}</strong>
       <p>Your connected wallet does not own this Chog. Its progression, achievements and survival history remain with the NFT. Only its current owner can continue the adventure.</p>
       <p>Public survivor history is read-only and shows only verified on-chain events. Unavailable history is never replaced with simulated results.</p>
     </div>

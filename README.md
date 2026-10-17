@@ -1,5 +1,7 @@
 # Chog Survivor
 
+**Authentic mainnet data release:** the frontend displays verified Monad mainnet reads and honest empty states instead of simulated progression. Mainnet gameplay transactions remain **hard-disabled**. The owner approved publication in Task 7M; the submitted video remains a historical simulation recording. See the [release scope and safety checks](docs/TASK_7M_AUTHENTIC_DATA_RELEASE.md).
+
 ## Verified Monad mainnet deployment and source
 
 Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
@@ -8,53 +10,43 @@ Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/ad
 
 Genuine mainnet NFT collection: **[Chog Genesis · 0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763](https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763)** on Monad **143**. This collection is distinct from the game contract above and from local Anvil fixtures.
 
-The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](docs/TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
+The checked-in manifest records the real deployment. This checkout enables genuine production reads independently of write permission: verified runtime/collection binding, NFT ownership, survivor state, titles, achievements and bounded finalized history. Missing or failed reads display Unavailable. `mainnetTransactionsEnabled` is false even if a mainnet build flag is supplied. No query or local-storage flag activates gameplay.
+
 
 **“The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.”**
 
 Each token ID carries its XP, Trust, Scars, streak, achievements, title, daily lock and verified adventure journal. The wallet is only its current controller. Transfer the NFT and the next owner inherits the same survivor, including its history and daily eligibility.
 
-## Start here, judges
+## Browse verified records
 
-The [public demo](https://chog-survivor.vercel.app/) is a **walletless simulation**, not a live blockchain game. The [GitHub repository](https://github.com/ScapeXYZ/chog-survivor) is public. Public website/repository and MonadScan links were checked again in Task 7H; the website still disables production transactions. Watch the **[2:51 demo video](https://youtu.be/qV-c7AP0VAg)**, supplied by the owner in Task 7I. It distinguishes the public simulation from historical local-Anvil evidence. See the [judge quick-start](docs/JUDGE_QUICK_START.md) and [final Chogathon submission package](docs/FINAL_CHOGATHON_SUBMISSION.md).
+Website: https://chog-survivor.vercel.app/ · [public repository](https://github.com/ScapeXYZ/chog-survivor) · [historical demo video](https://youtu.be/qV-c7AP0VAg).
 
-1. Open https://chog-survivor.vercel.app/, or run the demo locally below.
-2. Choose **Enter the Wild**. No wallet, NFT, funds or account is required.
-3. Try any of the three cards: Survivor's Trial, Timing or Story. Complete the interaction or use **Skip** to see the same original choice preview.
-4. Previews show simulated rulebook base effects. **No XP, achievements or journal entries are earned or saved. No wallet confirmation is requested.**
-5. Inspect the [real local-Anvil evidence](docs/evidence/task4h-2006/README.md) for actual confirmed progression, reaction, First Light and transfer continuity. It is separate from the simulation and is not Monad-mainnet evidence.
+The app provides read-only access to authentic records. The linked video shows the historical simulation and does not demonstrate live mainnet gameplay:
 
-The intended contract loop is **encounter → meaningful choice → optional interaction → wallet confirmation → verified reaction → permanent NFT journal**. The hosted simulation demonstrates the encounter, interaction and preview; recorded local evidence demonstrates the confirmed part. Completing a mini-game never changes contract rewards, choice IDs or daily eligibility.
+1. Open the app and choose **Enter the Wild**. No wallet is needed to browse Home, Adventure, Character or Settings. No sample survivor or statistics are generated for visitors.
+2. To read a specific Chog, explicitly select a compatible EVM wallet and select Monad mainnet, **chain 143**. No private key, recovery phrase, NFT approval or signature is required.
+3. Open **Character**, enter a genuine Chog Genesis token ID and choose **Check token**. **Find my Chogs** is optional, bounded read-only discovery; ownership is rechecked for every candidate. No NFT is assumed owned from an entry or metadata name alone.
+4. Runtime hashes and collection binding are verified at a finalized block before game fields are shown. Actual XP, Trust, Scars, stored streak, achievements and title are displayed from that contract snapshot. Real returned zeroes are valid data; missing/error/loading/network states remain **Unavailable**.
+5. Adventure shows that token's actual records. A daily encounter is shown only after a current contract read; no device-time or token-zero encounter is generated. **On-chain gameplay not yet enabled** remains visible and submission buttons are disabled.
 
-## Run the walletless demo
+`Wandering Chog` is the frozen rulebook's title ID 0. It is no longer a default demo character: it can appear only when the real `titleOf(tokenId)` call returns 0 for a verified NFT/game snapshot. Other title/achievement names are canonical display mappings, never evidence that a title or achievement was earned.
 
-Use Node.js 22 (the verified version), npm and the existing lockfile. From a clean checkout containing the full reviewed source set:
+The journal reads finalized contract events in bounded pages. A partial/error result is labelled; missing RPC blocks do not become a fabricated empty history. Wallet/account/token changes invalidate scoped records. Metadata and decorative artwork do not establish ownership or character progression. Local storage stores audio preferences only, not survivor state or receipts.
+
+<a id="run-the-walletless-demo"></a>
+
+## Run the read-only candidate locally
+
+From frontend with the existing lockfile and Node.js 22:
 
 ```sh
-cd frontend
 npm ci
-VITE_CHOG_ENV=production \
-VITE_MONAD_RPC_URL= \
-VITE_LOCAL_RPC_URL= \
-VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= \
-VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= \
-npm run dev -- --host 127.0.0.1
+VITE_CHOG_ENV=production VITE_MONAD_RPC_URL= VITE_LOCAL_RPC_URL= VITE_LOCAL_CHOG_SURVIVOR_ADDRESS= VITE_LOCAL_CHOG_SURVIVOR_DEPLOYMENT_BLOCK= npm run dev -- --host 127.0.0.1
 ```
 
-Open the URL printed by Vite. The explicit overrides prevent an existing `.env.local` from selecting Anvil. Do not assume `--mode production` alone overrides that file. For a production artifact, use the same settings with `npm run build`; output is `frontend/dist`. Hosting instructions and the approval boundary are in the [environment/deployment guide](docs/DEMO_DEPLOYMENT_GUIDE.md).
+These explicit settings prevent a developer `.env.local` from choosing Anvil. They enable verified mainnet **reads**, not writes. Build with the same overrides and `npm run build`. Mainnet gameplay needs separate owner approval after transaction-cost, nonce/pending recovery and wallet acceptance gates are resolved. Do not change Vercel settings or publish implicitly.
 
-Use the in-app Home, Adventure, Character and Settings buttons. These are not separate URL routes. A refresh returns to Home. Character intentionally does not substitute simulation values for unavailable real progression/history. If you optionally select an NFT, ownership checks apply; an unowned or unverified token cannot be used for Adventure previews. A fresh walletless session is the simplest judge path.
-
-## What is real, and what is simulated?
-
-| Experience | Data and limitations |
-|---|---|
-| Walletless Adventure | Device-UTC deterministic encounter, fixed demo stats/achievement marks, optional mini-games, repeatable base-delta previews. No saved progression, transaction, confirmed reaction or generated history. |
-| Optional NFT identity reads | Genuine Chog Genesis ownership on Monad chain 143 when an injected wallet and working RPC are available. This does not activate production gameplay. |
-| Existing local contract mode | Real isolated Anvil chain 31338, fixture NFT, frozen contract execution, receipt-derived progression/reactions/achievements and verified event journal. Requires localhost access and a local wallet. Judges cannot access this workstation's Anvil through a hosted site. |
-| Prepared evidence package | Captured CHOG #2006 local receipts, before/after state and screenshots. Historical evidence, not a live public network or a newly executed transaction. |
-
-Only the current `ownerOf(tokenId)` may act, once per NFT per contract UTC day. A transfer does not reset progression or permit another same-day action. The journal retains the historical acting wallet separately from the current owner. See the [CHOG #2006 transfer explanation](docs/evidence/task4h-2006/README.md).
+The [recorded CHOG #2006 local evidence](docs/evidence/task4h-2006/README.md) and [submitted package](docs/FINAL_CHOGATHON_SUBMISSION.md) are retained with their original provenance. They are not proof of a new holder action or new mainnet progress. The existing local contract mode below remains an explicitly labelled isolated test fixture, with no Anvil reset or new transaction performed by Task 7L.
 
 ## Existing local Anvil deployment — inspect safely
 
@@ -82,7 +74,7 @@ The frozen contract SHA-256 remains:
 
 ## Release status
 
-The owner-deployed Monad game and its published source are verified above. The public website remains simulation-only; mainnet gameplay activation is not approved. Collection governance/custody and wallet-policy gates remain separate from source verification. The game has no NFT custody, staking, inventory, currency, wagering or marketplace.
+The owner-deployed Monad game and its published source are verified above. Task 7M publishes authentic read-only records and removes simulated gameplay from the public interface; mainnet gameplay activation is not approved. Collection governance/custody and wallet-policy gates remain separate from source verification. The game has no NFT custody, staking, inventory, currency, wagering or marketplace.
 
 Current runtime illustrations are marked provisional in the [asset inventory](frontend/ASSET_INVENTORY.md). Public demo/repository/video release requires explicit review of those exact assets and intended uses. No artwork was replaced or generated. Existing fonts and typography are preserved; the bundled Lilita One license is also included with unchanged license terms at `frontend/public/licenses/LilitaOne-OFL.txt` for distribution. Genuine collection metadata or ownership does not grant artwork permission.
 
@@ -99,4 +91,4 @@ Task 7E pushed the verified release through `2db718d`; GitHub main still matches
 - [Judge-access audit](docs/TASK_4J_JUDGE_ACCESS_AUDIT.md)
 - [Game rules](docs/GAME_RULES.md), [backend freeze](docs/BACKEND_FREEZE.md), [security review](docs/SECURITY_REVIEW.md)
 
-Submission deadline: **October 23, 2026, 15:00 UTC** (16:00 Lagos), confirmed from the [official Chogathon page](https://chogathon.chog.xyz/) in Task 7H. The organizer requires an essential NFT role, working demo, a video of up to three minutes and testing instructions. Our public demo is a simulation; the deployed contract is separately source-verified. Organizer acceptance of that demonstrated scope is not claimed. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; public mainnet frontend activation remains separately gated.
+Submission deadline: **October 23, 2026, 15:00 UTC** (16:00 Lagos), confirmed from the [official Chogathon page](https://chogathon.chog.xyz/) in Task 7H. The organizer requires an essential NFT role, working demo, a video of up to three minutes and testing instructions. The submitted demo video shows the historical simulation; the current frontend reads genuine records from the source-verified deployed contract. Organizer acceptance of that demonstrated scope is not claimed. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; public mainnet frontend activation remains separately gated.

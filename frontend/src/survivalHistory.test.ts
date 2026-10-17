@@ -60,3 +60,15 @@ it('loads the newest bounded page and exposes an older finalized cursor', async 
   await readSurvivalHistory(older as never, game, token, 4n, () => true, {finalized: true, maxChunks: 1, endBlock: 1900n})
   expect(older.getLogs).toHaveBeenCalledWith(expect.objectContaining({fromBlock: 1801n, toBlock: 1900n}))
 })
+
+  it('never calls an unavailable or pre-deployment RPC head an empty complete history', async () => {
+    const rpc = client([], false, 2n)
+    const result = await readSurvivalHistory(rpc as never, game, token, 4n, () => true)
+    expect(result.complete).toBe(false)
+    expect(result.error).toMatch(/unavailable/)
+    expect(rpc.getLogs).not.toHaveBeenCalled()
+    const missing = {...rpc, getBlock: vi.fn(async () => ({number: null, hash: undefined}))}
+    const absent = await readSurvivalHistory(missing as never, game, token, 4n, () => true)
+    expect(absent.complete).toBe(false)
+    expect(absent.error).toMatch(/unavailable/)
+  })

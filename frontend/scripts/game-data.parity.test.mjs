@@ -1,9 +1,7 @@
 // @vitest-environment node
 import {readFileSync} from 'node:fs'
 import {describe, expect, it} from 'vitest'
-import {encodePacked, keccak256} from 'viem'
-import {CHOG_GENESIS} from '../src/contracts'
-import {demoEventIndex, events} from '../src/game-data'
+import {events} from '../src/game-data'
 const source = readFileSync(new URL('../../src/ChogSurvivor.sol', import.meta.url), 'utf8')
 const rules = readFileSync(new URL('../../docs/GAME_RULES.md', import.meta.url), 'utf8')
 
@@ -42,12 +40,5 @@ describe('frozen backend parity', () => {
     expect(events.flatMap((event) => event.tags.map((tag) => tag))).toEqual(tags.map((tag) => ['cautious', 'reckless', 'compassionate'][tag]))
     expect(source).toContain('uint8 outcomeId = (eventId - 1) * 3 + choiceId;')
     expect(source).toContain('if (choiceId < 1 || choiceId > 3) revert InvalidChoice(choiceId);')
-  })
-  it('preserves the local deterministic formula while distinguishing its device-day input', () => {
-    expect(source).toContain('keccak256(abi.encodePacked(CHOG_GENESIS, tokenId, day))) % 6) + 1')
-    for (const token of [0n, 1425n, (1n << 256n) - 1n]) for (const day of [0n, 20740n, 20741n]) {
-      const eventId = Number(BigInt(keccak256(encodePacked(['address', 'uint256', 'uint64'], [CHOG_GENESIS, token, day]))) % 6n) + 1
-      expect(demoEventIndex(token, day) + 1).toBe(eventId)
-    }
   })
 })

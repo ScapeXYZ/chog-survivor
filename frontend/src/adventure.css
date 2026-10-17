@@ -279,3 +279,5 @@
 .confirmed-survivor-reaction { display: flow-root; }
 .confirmed-chog-illustration { float: left; width: 64px; height: 90px; object-fit: contain; margin: 0 12px 6px 0; filter: drop-shadow(0 3px 4px #31565044); }
 .confirmed-achievements { clear: both; }
+/* Missing data is a state, never a fabricated numeric value. */
+.adventure-stats .read-unavailable{font-size:clamp(11px,2.6vw,15px);overflow-wrap:anywhere}.adventure-choice:disabled{cursor:not-allowed}.adventure-scene-heading{min-width:0}

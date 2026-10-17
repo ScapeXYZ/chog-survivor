@@ -2,7 +2,7 @@ import {act, cleanup, renderHook, waitFor} from '@testing-library/react'
 import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
 const mocks = vi.hoisted(() => ({read: vi.fn(), client: {}}))
 vi.mock('wagmi', () => ({usePublicClient: () => mocks.client}))
-vi.mock('./contracts', () => ({activeChain: {id: 31338}, approvedGameAddress: '0x3333333333333333333333333333333333333333', deploymentStartBlock: 4n, contractMode: true, mainnetMode: false}))
+vi.mock('./contracts', () => ({activeChain: {id: 31338}, approvedGameAddress: '0x3333333333333333333333333333333333333333', deploymentStartBlock: 4n, contractMode: true, localMode: true}))
 vi.mock('./survivalHistory', () => ({readSurvivalHistory: mocks.read}))
 import {useSurvivalHistory} from './useSurvivalHistory'
 const history = {records: [], complete: true, partial: false, latestBlock: 10n}

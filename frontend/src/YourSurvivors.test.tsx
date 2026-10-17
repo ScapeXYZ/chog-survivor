@@ -17,7 +17,7 @@ vi.mock('viem', async original => {
 vi.mock('wagmi', async original => ({
   ...await original<typeof import('wagmi')>(),
   useAccount: () => ({address: fixture.connected ? fixture.account : undefined, isConnected: fixture.connected, chainId: fixture.chain}),
-  usePublicClient: () => ({call: fixture.call, getChainId: fixture.getChainId, getBlock: fixture.getBlock, getBytecode: fixture.getBytecode}),
+  usePublicClient: () => stableClient,
   useChainId: () => 143,
   useConnect: () => ({connect: vi.fn(), connectors: [], isPending: false}),
   useDisconnect: () => ({disconnect: vi.fn()}),
@@ -29,7 +29,10 @@ vi.mock('wagmi', async original => ({
   useSignMessage: () => ({signMessage: fixture.sign}),
   useSendTransaction: () => ({sendTransaction: fixture.send}),
 }))
+const stableClient = {call: fixture.call, getChainId: fixture.getChainId, getBlock: fixture.getBlock, getBytecode: fixture.getBytecode}
 import {YourSurvivors} from './YourSurvivors'
+// Identity/discovery unit fixtures; runtime proof has dedicated fail-closed tests.
+vi.mock('./useVerifiedDeployment', () => ({useVerifiedDeployment: () => ({verified: true, loading: false, error: undefined})}))
 import {App} from './App'
 import {CHOG_GENESIS} from './contracts'
 
@@ -175,7 +178,7 @@ describe('read-only collection discovery', () => {
     expect(screen.getByText(/Discovery unavailable/)).toBeInTheDocument()
     expect(screen.queryByRole('button', {name: 'CHOG #1425'})).not.toBeInTheDocument()
   })
-  it('preserves discovered selection, manual fallback and demo-only Adventure continuity without writes', async () => {
+  it('preserves discovered selection, manual fallback and read-only Adventure continuity without writes', async () => {
     render(<App/>); fireEvent.click(screen.getByRole('button', {name: 'character'})); start(); await finish()
     fireEvent.click(screen.getByRole('button', {name: 'CHOG #1425'}))
     expect(screen.getByLabelText('Token ID')).toHaveValue('1425')
@@ -184,7 +187,7 @@ describe('read-only collection discovery', () => {
     fireEvent.click(screen.getByRole('button', {name: 'adventure'}))
     const strip = document.querySelector('.adventure-survivor') as HTMLElement
     expect(within(strip).getByText('CHOG #1425')).toBeInTheDocument()
-    expect(within(strip).getByText(/LOCAL DEMO/)).toBeInTheDocument()
+    expect(within(strip).getByText(/On-chain gameplay not yet enabled/)).toBeInTheDocument()
     fireEvent.click(within(strip).getByRole('button', {name: /View survivor profile/}))
     fixture.fail = 'tokensOfOwner'; start(); await finish()
     fireEvent.change(screen.getByLabelText('Token ID'), {target: {value: '1047'}})

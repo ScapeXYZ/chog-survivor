@@ -1,6 +1,3 @@
-import {keccak256, encodePacked} from 'viem'
-import {CHOG_GENESIS} from './contracts'
-
 export const titles = ['Wandering Chog', 'Scarred Pathfinder', 'Trusted Trailblazer', 'Mythic Survivor']
 
 export const achievements = [
@@ -58,19 +55,3 @@ export const events = [
     consequences: ['The low-scar Beast route offers XP without base Scars.', 'Greater Trust than setting a ward trades away XP and adds two base Scars.', 'The highest base XP in the rulebook costs Trust and adds seven base Scars.'],
   },
 ] as const
-
-// Frozen GAME_RULES.md formula, evaluated locally using device UTC time.
-// This is a demo encounter selection, never an authoritative chain event.
-export function demoEventIndex(tokenId: bigint, day: bigint): number {
-  return Number(BigInt(keccak256(encodePacked(['address', 'uint256', 'uint64'], [CHOG_GENESIS, tokenId, day]))) % 6n)
-}
-
-export const demoCharacter = {
-  xp: 184,
-  trust: 62,
-  scars: 14,
-  streak: 3,
-  unmarkedStreak: 3,
-  achievementMask: 0b00100111,
-  titleId: 0,
-}

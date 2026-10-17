@@ -15,7 +15,7 @@ export async function readSurvivalHistory(client: HistoryClient, address: Addres
   const chunkSize = options?.finalized ? 100n : 500n
   const first = await client.getBlock(options?.endBlock === undefined ? {blockTag: options?.finalized ? 'finalized' : 'latest'} : {blockNumber: options.endBlock})
   const latest = first.number
-  if (latest === null || latest < startBlock) return {records: [], complete: true, partial: false, latestBlock: latest ?? 0n}
+  if (latest === null || latest < startBlock) return {records: [], complete: false, partial: false, error: 'History unavailable — RPC block is missing or precedes deployment.', latestBlock: latest ?? 0n}
   const records: HistoryRecord[] = []
   // Newest bounded page first. Older pages retain this finalized boundary.
   const pageStart = options && latest - BigInt(options.maxChunks) * chunkSize + 1n > startBlock ? latest - BigInt(options.maxChunks) * chunkSize + 1n : startBlock

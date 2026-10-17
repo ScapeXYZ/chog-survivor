@@ -18,7 +18,8 @@ describe('local contract configuration boundary', () => {
     expect(contracts.activeChainId).toBe(143)
     expect(contracts.wagmiConfig.chains.map(chain => chain.id)).toEqual([143])
     expect(contracts.wagmiConfig.getClient().transport.url).toBe('https://rpc.monad.xyz')
-    expect(contracts.approvedGameAddress).toBeUndefined()
+    expect(contracts.approvedGameAddress).toBe('0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390')
+    expect(contracts.mainnetTransactionsEnabled).toBe(false)
     expect(contracts.localDeploymentStartBlock).toBeUndefined()
   })
 
@@ -42,7 +43,8 @@ describe('local contract configuration boundary', () => {
   it('does not enable a local fixture without explicit local mode', async () => {
     const contracts = await configured(undefined, 'http://127.0.0.1:8545', '0x1111111111111111111111111111111111111111')
     expect(contracts.localMode).toBe(false)
-    expect(contracts.approvedGameAddress).toBeUndefined()
+    expect(contracts.approvedGameAddress).toBe('0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390')
+    expect(contracts.mainnetTransactionsEnabled).toBe(false)
   })
 })
 
@@ -54,10 +56,11 @@ describe('local contract configuration boundary', () => {
    expect(contracts.approvedGameAddress).toBe('0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390')
    expect(contracts.deploymentStartBlock).toBe(113947533n)
  })
- it('retains simulation in production even with a populated manifest and environment address', async () => {
+ it('enables verified reads but never transactions in production even with a populated manifest and environment address', async () => {
    vi.stubEnv('VITE_CHOG_SURVIVOR_ADDRESS', '0x1111111111111111111111111111111111111111')
    const contracts = await configured('production', undefined, undefined)
    expect(contracts.mainnetMode).toBe(false)
-   expect(contracts.contractMode).toBe(false)
-   expect(contracts.approvedGameAddress).toBeUndefined()
+   expect(contracts.contractMode).toBe(true)
+   expect(contracts.approvedGameAddress).toBe('0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390')
+    expect(contracts.mainnetTransactionsEnabled).toBe(false)
  })

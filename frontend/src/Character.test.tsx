@@ -26,6 +26,7 @@ vi.mock('wagmi', async (original) => ({
   useSignMessage: () => ({signMessage: fixture.sign}),
   useSendTransaction: () => ({sendTransaction: fixture.send}),
 }))
+vi.mock('./useVerifiedDeployment', () => ({useVerifiedDeployment: () => ({verified: true, loading: false, error: undefined, blockNumber: undefined})}))
 import {Character} from './Character'
 import {CHOG_GENESIS, gameReadAbi} from './contracts'
 
@@ -189,7 +190,7 @@ describe('authoritative progression and unavailable states', () => {
     expect(screen.queryByText('184')).not.toBeInTheDocument()
     expect(screen.queryByText('62/100')).not.toBeInTheDocument()
     const history = screen.getByRole('heading', {name: 'Survival History'}).closest('section')!
-    expect(within(history).getByText(/No timeline has been loaded/)).toBeInTheDocument()
+    expect(within(history).getByText(/Verify NFT ownership and game binding/)).toBeInTheDocument()
     expect(history.querySelector('ol, ul, time')).toBeNull()
   })
   it('retrieves actual title and maps every CharacterView field', () => {
