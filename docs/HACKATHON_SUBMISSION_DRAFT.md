@@ -1,5 +1,7 @@
 # Chogathon 2026 submission draft
 
+**Superseded for final submission by [FINAL_CHOGATHON_SUBMISSION.md](FINAL_CHOGATHON_SUBMISSION.md).** This draft retains historical task evidence; use the final package for current fields, official requirements and video status.
+
 ## Verified Monad mainnet deployment and source
 
 Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
@@ -16,7 +18,7 @@ Prepared for the owner-supplied deadline: **October 23, 2026, 15:00 UTC**. Confi
 **Tagline:** Every choice leaves a mark—and the Chog carries every one.
 **Demo:** https://chog-survivor.vercel.app/
 **Repository:** https://github.com/ScapeXYZ/chog-survivor
-**Video:** `[PUBLIC VIDEO URL, MAXIMUM THREE MINUTES — PENDING CREATION/PUBLICATION]`
+**Video:** `https://youtu.be/qV-c7AP0VAg`
 **Team/contact:** `[NAMES, EMAIL, DISCORD AND X HANDLES]`
 
 **Core pitch:** “The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.”

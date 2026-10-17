@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-17T00:12:03.832041+00:00",
+  "unauthenticatedGETOnly": true,
+  "links": [
+    {
+      "name": "website",
+      "url": "https://chog-survivor.vercel.app/",
+      "httpStatus": "200",
+      "finalURL": "https://chog-survivor.vercel.app/",
+      "curlExit": 0,
+      "bytes": 610,
+      "sha256": "4332dc4a478e2b7690369ac378e8ba739c7e484d7763384ec428244a65161545"
+    },
+    {
+      "name": "repository",
+      "url": "https://github.com/ScapeXYZ/chog-survivor",
+      "httpStatus": "200",
+      "finalURL": "https://github.com/ScapeXYZ/chog-survivor",
+      "curlExit": 0,
+      "bytes": 310451,
+      "sha256": "ee97658155d6c80b6fb1e9512fa532dca05d35ccadb18784f0ada7752d5b0546"
+    },
+    {
+      "name": "repository_api",
+      "url": "https://api.github.com/repos/ScapeXYZ/chog-survivor",
+      "httpStatus": "200",
+      "finalURL": "https://api.github.com/repos/ScapeXYZ/chog-survivor",
+      "curlExit": 0,
+      "bytes": 5838,
+      "sha256": "4035a0b9624ad792627820796b1b660917025daa1e357fe1492ccfa32b855883",
+      "private": false,
+      "defaultBranch": "main"
+    },
+    {
+      "name": "remote_main",
+      "url": "https://api.github.com/repos/ScapeXYZ/chog-survivor/commits/main",
+      "httpStatus": "200",
+      "finalURL": "https://api.github.com/repos/ScapeXYZ/chog-survivor/commits/main",
+      "curlExit": 0,
+      "bytes": 75432,
+      "sha256": "125ab7d1b48d02776d6c3f493c6c3ae826b73fbddeb569cbde87c040450ef8db",
+      "sha": "2db718dfa9f1a929e29fbf83d66b65adfeaf7c1a"
+    },
+    {
+      "name": "game_source",
+      "url": "https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code",
+      "httpStatus": "200",
+      "finalURL": "https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code",
+      "curlExit": 0,
+      "bytes": 460594,
+      "sha256": "2952cd5da1878e12b0a9baaf21f6c221336131829bb1627ab72fcaa6914b4ef6",
+      "markers": {
+        "Source Code Verified": true,
+        "Exact Match": true,
+        "ChogSurvivor": true,
+        "0.8.28+commit.7893614a": true,
+        "cancun": true
+      }
+    },
+    {
+      "name": "deployment_transaction",
+      "url": "https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956",
+      "httpStatus": "200",
+      "finalURL": "https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956",
+      "curlExit": 0,
+      "bytes": 175025,
+      "sha256": "05f35131632cfea5b47abaf787c4426d22b415beeca151a6f322f68f761fc13a"
+    },
+    {
+      "name": "nft_collection",
+      "url": "https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+      "httpStatus": "200",
+      "finalURL": "https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763",
+      "curlExit": 0,
+      "bytes": 1004940,
+      "sha256": "cacc85ad6933aff14966218ad4640fe7cc3e103ba6aa4bd12e6e7a67c205dcd5"
+    }
+  ]
+}

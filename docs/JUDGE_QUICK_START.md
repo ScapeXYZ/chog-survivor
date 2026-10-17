@@ -10,7 +10,9 @@ The checked-in manifest now records the real deployment. **The existing public d
 
 **The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.**
 
-Public demo: **https://chog-survivor.vercel.app/**. Public repository: **https://github.com/ScapeXYZ/chog-survivor**. Independently accessible during Task 5A; no final video URL is available. The public frontend is a simulation; live game transactions are disabled.
+Public demo: **https://chog-survivor.vercel.app/**. Public repository: **https://github.com/ScapeXYZ/chog-survivor**. Checked again in Task 7H; watch the owner-supplied **[2:51 demo video](https://youtu.be/qV-c7AP0VAg)**. See the [final submission package](FINAL_CHOGATHON_SUBMISSION.md). The public frontend is a simulation; live game transactions are disabled.
+
+Video walkthrough: **https://youtu.be/qV-c7AP0VAg**. It shows simulation footage and clearly labelled historical local-Anvil evidence, not live mainnet gameplay.
 
 ## Play in one minute — no wallet needed
 
@@ -51,7 +53,7 @@ The existing hosted release does not enable the actual contract loop. The new lo
 ## Evidence and limitations
 
 - [Receipts, token state and transfer explanation](evidence/task4h-2006/README.md)
-- [Three-minute video outline](DEMO_VIDEO_OUTLINE.md) — final video not yet produced/published by this task.
+- [Final submission/video status](FINAL_CHOGATHON_SUBMISSION.md) — [owner-supplied 2:51 video](https://youtu.be/qV-c7AP0VAg).
 - [Deployment guide](DEMO_DEPLOYMENT_GUIDE.md) — real mainnet deployment is verified above; frontend publication remains gated.
 
 Local receipts are not Monad explorer transactions. Artwork release permission and the reported MetaMask/Blockaid warning remain unresolved; do not bypass wallet warnings. Wallet connection is optional. Optional external fonts, RPC and metadata have availability limits. Verify the final public links and organizer requirements before submission.

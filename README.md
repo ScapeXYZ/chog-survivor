@@ -16,7 +16,7 @@ Each token ID carries its XP, Trust, Scars, streak, achievements, title, daily l
 
 ## Start here, judges
 
-The [public demo](https://chog-survivor.vercel.app/) is a **walletless simulation**, not a live blockchain game. The [GitHub repository](https://github.com/ScapeXYZ/chog-survivor) is public. Both were independently accessible during Task 5A; no final video URL has been supplied. See the [judge quick-start](docs/JUDGE_QUICK_START.md) and [submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md).
+The [public demo](https://chog-survivor.vercel.app/) is a **walletless simulation**, not a live blockchain game. The [GitHub repository](https://github.com/ScapeXYZ/chog-survivor) is public. Public website/repository and MonadScan links were checked again in Task 7H; the website still disables production transactions. Watch the **[2:51 demo video](https://youtu.be/qV-c7AP0VAg)**, supplied by the owner in Task 7I. It distinguishes the public simulation from historical local-Anvil evidence. See the [judge quick-start](docs/JUDGE_QUICK_START.md) and [final Chogathon submission package](docs/FINAL_CHOGATHON_SUBMISSION.md).
 
 1. Open https://chog-survivor.vercel.app/, or run the demo locally below.
 2. Choose **Enter the Wild**. No wallet, NFT, funds or account is required.
@@ -86,7 +86,7 @@ The owner-deployed Monad game and its published source are verified above. The p
 
 Current runtime illustrations are marked provisional in the [asset inventory](frontend/ASSET_INVENTORY.md). Public demo/repository/video release requires explicit review of those exact assets and intended uses. No artwork was replaced or generated. Existing fonts and typography are preserved; the bundled Lilita One license is also included with unchanged license terms at `frontend/public/licenses/LilitaOne-OFL.txt` for distribution. Genuine collection metadata or ownership does not grant artwork permission.
 
-Tasks 5A–7C were organized into local commits through `8e5e537`; no release push or frontend publication was performed. See [Task 7C](docs/TASK_7C_SOURCE_VERIFICATION_AND_GIT.md) for commit scope/exclusions and [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md) for the current source-verification result and remaining blockers.
+Task 7E pushed the verified release through `2db718d`; GitHub main still matches that commit in Task 7H. Its automatic Vercel deployment retained production simulation. Task 7I prepares a documentation-only update with the owner-supplied video; holder tools and operator evidence remain local. See [Task 7C](docs/TASK_7C_SOURCE_VERIFICATION_AND_GIT.md) for commit scope/exclusions, [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md) for source verification, and the [final submission package](docs/FINAL_CHOGATHON_SUBMISSION.md) for current links and outstanding submission fields.
 
 ## Submission materials
 
@@ -94,8 +94,9 @@ Tasks 5A–7C were organized into local commits through `8e5e537`; no release pu
 - [Environment and deployment approval guide](docs/DEMO_DEPLOYMENT_GUIDE.md)
 - [Real local transfer evidence](docs/evidence/task4h-2006/README.md)
 - [Three-minute video outline](docs/DEMO_VIDEO_OUTLINE.md)
-- [Submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md)
+- [Final submission fields, links and readiness decision](docs/FINAL_CHOGATHON_SUBMISSION.md)
+- [Historical submission draft](docs/HACKATHON_SUBMISSION_DRAFT.md)
 - [Judge-access audit](docs/TASK_4J_JUDGE_ACCESS_AUDIT.md)
 - [Game rules](docs/GAME_RULES.md), [backend freeze](docs/BACKEND_FREEZE.md), [security review](docs/SECURITY_REVIEW.md)
 
-Submission deadline supplied by the owner: **October 23, 2026, 15:00 UTC**. Confirm organizer requirements and acceptance of a simulated public demo plus genuine local evidence. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; public mainnet frontend activation remains separately gated.
+Submission deadline: **October 23, 2026, 15:00 UTC** (16:00 Lagos), confirmed from the [official Chogathon page](https://chogathon.chog.xyz/) in Task 7H. The organizer requires an essential NFT role, working demo, a video of up to three minutes and testing instructions. Our public demo is a simulation; the deployed contract is separately source-verified. Organizer acceptance of that demonstrated scope is not claimed. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; public mainnet frontend activation remains separately gated.

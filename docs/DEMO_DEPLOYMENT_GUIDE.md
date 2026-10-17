@@ -8,7 +8,7 @@ Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/ad
 
 The checked-in manifest now records the real deployment. **The existing public demo remains a walletless simulation; public mainnet gameplay has not been activated or republished.** A mainnet-enabled build is prepared locally and requires explicit `VITE_CHOG_ENV=mainnet`; checked-in Vercel configuration still forces `production` simulation. Contract existence does not authorize new transactions or frontend publication. See [Task 7A verification](TASK_7A_POST_DEPLOYMENT_VERIFICATION.md) for evidence and the separate publication gate.
 
-The existing public static demo is **https://chog-survivor.vercel.app/** and the repository is public. Task 5A verified access independently; hosted project settings and the exact source SHA behind the deployed bundle remain unverified. This guide governs a **future** release: approve its exact artifact, destination and environment before any deployment. The owner-deployed contract is verified above; frontend publication and further mainnet transactions require separate approval.
+The existing public static demo is **https://chog-survivor.vercel.app/** and the repository is public. Task 7E verified the production-simulation Vercel release through commit `2db718d`; Task 7H rechecked unauthenticated website access and its simulation-only browser behavior. This guide governs a **future** release: approve its exact artifact, destination and environment before any deployment. The owner-deployed contract is verified above; frontend publication and further mainnet transactions require separate approval.
 
 ## Public walletless build
 

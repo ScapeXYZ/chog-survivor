@@ -1,0 +1,11 @@
+{
+  "descriptionCharacters": 2825,
+  "judgeInstructionsCharacters": 1183,
+  "localDocumentLinksPass": true,
+  "requiredREADMEFieldsPresent": true,
+  "productionSimulationForced": true,
+  "frozenSourceSHA256": "5a996b04ee91f99c9da5bbe04ccaed69b2d0f887d3fef640be10e205123638c7",
+  "privateVideoRemainsLocal": true,
+  "publicVideoURLAvailable": false,
+  "fullTestSuitesRepeated": false
+}

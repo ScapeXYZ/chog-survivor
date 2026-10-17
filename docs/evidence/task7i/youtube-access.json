@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-17T00:06:01.212Z",
+  "url": "https://youtu.be/qV-c7AP0VAg",
+  "freshUnauthenticatedContext": true,
+  "ownerAccountUsed": false,
+  "httpStatus": 429,
+  "finalURL": "https://www.google.com/sorry/",
+  "title": "https://www.youtube.com/watch?v=qV-c7AP0VAg&feature=youtu.be",
+  "hasStreamingData": false,
+  "playback": null,
+  "playbackAdvanced": false,
+  "publiclyPlayable": null,
+  "bodyIndicators": {
+    "signInRequired": false,
+    "robotCheck": true
+  },
+  "playbackVerification": "INCONCLUSIVE_HTTP_429_BOT_CHECK",
+  "note": "No CAPTCHA bypass or owner login attempted. Public metadata retrieval succeeded separately; complete playback requires a normal signed-out browser check.",
+  "publicOEmbed": {
+    "httpStatus": 200,
+    "authenticationUsed": false,
+    "title": "CHOG SURVIVOR | NFT Survival Game on Monad | Chogathon 2026",
+    "provider": "YouTube",
+    "type": "video",
+    "embedURL": "https://www.youtube.com/embed/qV-c7AP0VAg"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-17T00:13:32.238736+00:00",
+  "reviewedTask7EThrough7H": true,
+  "publicationFiles": [
+    "README.md",
+    "docs/DEMO_DEPLOYMENT_GUIDE.md",
+    "docs/JUDGE_QUICK_START.md",
+    "docs/HACKATHON_SUBMISSION_DRAFT.md",
+    "docs/FINAL_CHOGATHON_SUBMISSION.md",
+    "docs/TASK_7I_SUBMISSION_UPDATE.md",
+    "docs/evidence/task7h/document-checks.json",
+    "docs/evidence/task7h/hosted-readonly.json",
+    "docs/evidence/task7h/official-requirements.json",
+    "docs/evidence/task7h/public-links.json",
+    "docs/evidence/task7h/video-review.json",
+    "docs/evidence/task7i/youtube-access.json",
+    "docs/evidence/task7i/public-links.json",
+    "docs/evidence/task7i/production-browser.json",
+    "docs/evidence/task7i/hosted-before.json",
+    "docs/evidence/task7i/document-review.json"
+  ],
+  "secretPatternHits": [],
+  "privateTesterInformationCollected": false,
+  "rawPrivateMediaIncluded": false,
+  "botCheckQueryTokensRemoved": true,
+  "localMarkdownLinksValid": true,
+  "organizerFieldCharacterCounts": {
+    "SUBMISSION DESCRIPTION": 2825,
+    "JUDGE INSTRUCTIONS": 1236
+  },
+  "videoLinksPresent": true,
+  "allPublishedChangesDocumentationOnly": true,
+  "excluded": [
+    ".gitignore",
+    "tools/holder-test/",
+    "docs/TASK_7E_RELEASE_HANDOFF.md",
+    "docs/TASK_7F_CONTROLLED_MAINNET_TEST.md",
+    "docs/TASK_7G_TRANSACTION_READINESS.md",
+    "docs/evidence/task7e/",
+    "docs/evidence/task7f/",
+    "docs/evidence/task7g/",
+    "demo-video/",
+    "docs/evidence/task7i/production-build.log"
+  ],
+  "frozenSourceUnchanged": true
+}
