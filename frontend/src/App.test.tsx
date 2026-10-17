@@ -1,18 +1,18 @@
 import {cleanup, fireEvent, render, screen} from '@testing-library/react'
 import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest'
 
-const wallet = vi.hoisted(() => ({connect: vi.fn(), connectors: [] as {id: string; name?: string}[]}))
+const wallet = vi.hoisted(() => ({connect: vi.fn(), connectors: [] as {id: string; name?: string}[], chainId: 143, connected: false}))
 
 vi.mock('wagmi', async (importOriginal) => ({
   ...(await importOriginal<typeof import('wagmi')>()),
   usePublicClient: () => undefined,
-  useAccount: () => ({address: undefined, isConnected: false}), useChainId: () => 143,
+  useAccount: () => ({address: wallet.connected ? '0x0000000000000000000000000000000000000001' : undefined, isConnected: wallet.connected, chainId: wallet.chainId}), useChainId: () => 143,
   useConnect: () => ({connect: wallet.connect, connectors: wallet.connectors, isPending: false}), useDisconnect: () => ({disconnect: vi.fn()}),
   useReadContract: () => ({data: undefined, isError: false, isLoading: false}),
 }))
 import {App} from './App'
 
-beforeEach(() => { wallet.connect.mockClear(); wallet.connectors = [] })
+beforeEach(() => { wallet.connect.mockClear(); wallet.connectors = []; wallet.chainId = 143; wallet.connected = false })
 afterEach(cleanup)
 
 describe('game lobby navigation', () => {
@@ -48,6 +48,8 @@ describe('game lobby navigation', () => {
     for (const button of buttons) {
       wallet.connect.mockClear()
       fireEvent.click(button)
+      expect(wallet.connect).not.toHaveBeenCalled()
+      fireEvent.click(screen.getByRole('button', {name: 'injected'}))
       expect(wallet.connect).toHaveBeenCalledExactlyOnceWith({connector})
     }
   })
@@ -65,6 +67,42 @@ describe('game lobby navigation', () => {
     fireEvent.click(screen.getByRole('button', {name: 'Rabby'}))
     expect(wallet.connect).toHaveBeenCalledExactlyOnceWith({connector: rabby})
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+  it('keeps keyboard focus in the wallet dialog and restores the trigger on Escape', () => {
+    wallet.connectors = [{id: 'io.metamask', name: 'MetaMask'}, {id: 'io.rabby', name: 'Rabby'}]
+    render(<App />)
+    const trigger = screen.getAllByRole('button', {name: /connect wallet/i})[0]
+    trigger.focus(); fireEvent.click(trigger)
+    const close = screen.getByRole('button', {name: 'Close wallet selection'})
+    expect(close).toHaveFocus()
+    expect(document.body.style.overflow).toBe('hidden')
+    fireEvent.keyDown(close, {key: 'Tab', shiftKey: true})
+    expect(screen.getByRole('button', {name: 'Cancel'})).toHaveFocus()
+    fireEvent.keyDown(document.activeElement!, {key: 'Tab'})
+    expect(close).toHaveFocus()
+    fireEvent.keyDown(close, {key: 'Escape'})
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(trigger).toHaveFocus()
+    expect(document.body.style.overflow).not.toBe('hidden')
+    expect(wallet.connect).not.toHaveBeenCalled()
+  })
+  it('always offers an explicit choice even with only one discovered wallet', () => {
+    wallet.connectors = [{id: 'io.metamask', name: 'MetaMask'}]
+    render(<App />)
+    fireEvent.click(screen.getAllByRole('button', {name: /connect wallet/i})[0])
+    expect(screen.getByRole('dialog')).toHaveAccessibleDescription(/Simulation needs no wallet/)
+    expect(wallet.connect).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', {name: 'Close wallet selection'}))
+    expect(wallet.connect).not.toHaveBeenCalled()
+  })
+  it('shows the actual unsupported wallet chain instead of the configured RPC chain', () => {
+    wallet.connected = true; wallet.chainId = 1
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', {name: /^settings$/i}))
+    expect(screen.getByText('Wrong network.')).toBeVisible()
+    expect(screen.getByText('Wallet chain 1 · wallet mismatch')).toBeVisible()
+    expect(screen.getByText('Production transactions disabled')).toBeVisible()
+    expect(wallet.connect).not.toHaveBeenCalled()
   })
   it('persists functional channel, mute, and volume settings across remounts', () => {
     localStorage.clear()

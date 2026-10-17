@@ -69,10 +69,10 @@ describe('approved Home and navigation', () => {
   it('preserves Home connect buttons and Adventure connect/disconnect behavior', () => {
     wallet.connectors = [{id: 'injected'}]
     const view = render(<App/>)
-    for (const button of screen.getAllByRole('button', {name: /connect wallet/i})) fireEvent.click(button)
+    for (const button of screen.getAllByRole('button', {name: /connect wallet/i})) { fireEvent.click(button); fireEvent.click(screen.getByRole('button', {name: 'injected'})) }
     expect(wallet.connect).toHaveBeenCalledTimes(2)
     expect(wallet.connect).toHaveBeenCalledWith({connector: wallet.connectors[0]})
-    enter(); fireEvent.click(screen.getByRole('button', {name: /connect wallet/i}))
+    enter(); fireEvent.click(screen.getByRole('button', {name: /connect wallet/i})); fireEvent.click(screen.getByRole('button', {name: 'injected'}))
     expect(wallet.connect).toHaveBeenCalledTimes(3)
     wallet.isConnected = true; wallet.address = '0x1234567890123456789012345678901234567890'
     view.rerender(<App/>); fireEvent.click(screen.getByRole('button', {name: /disconnect/i}))

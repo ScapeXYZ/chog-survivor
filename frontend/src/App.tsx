@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import {useAccount, useChainId, useConnect, useDisconnect} from 'wagmi'
 import {activeChain, activeNetworkName, CHOG_GENESIS, approvedGameAddress, environmentReady, localMode, mainnetMode} from './contracts'
+import {WalletChooser} from './WalletChooser'
 import {Character} from './Character'
 import {GameContractInfo} from './GameContractInfo'
 import {Adventure} from './Adventure'
@@ -19,12 +20,12 @@ function Clock({now}: {now: number}) {
 }
 
 export function App() {
-  const {address, isConnected} = useAccount(); const chainId = useChainId(); const {connect, connectors, isPending, error: connectionError} = useConnect(); const {disconnect} = useDisconnect()
+  const {address, isConnected, chainId: walletChainId} = useAccount(); const configuredChainId = useChainId(); const chainId = isConnected ? walletChainId : configuredChainId; const {connect, connectors, isPending, error: connectionError} = useConnect(); const {disconnect} = useDisconnect()
   const [walletChooser, setWalletChooser] = useState(false)
   const [screen, setScreen] = useState<Screen>('lobby'); const [selectedToken, setSelectedToken] = useState<bigint>(); const [now, setNow] = useState(Date.now())
   const [characterSection, setCharacterSection] = useState<'your-survivors-title' | 'history-title'>()
   const [audio, setAudio] = useState<AudioPreferences>(() => loadAudioPreferences()); const [audioMessage, setAudioMessage] = useState('Audio is ready. Interact with the game to begin the original forest score.'); const audioEngine = useRef<GameAudioEngine | null>(null)
-  const mode = gameMode(approvedGameAddress); const wrongNetwork = isWrongNetwork(chainId)
+  const mode = gameMode(approvedGameAddress); const wrongNetwork = isWrongNetwork(chainId ?? 0)
   useEffect(() => { const id = window.setInterval(() => setNow(Date.now()), 1000); return () => window.clearInterval(id) }, [])
   useEffect(() => {
     saveAudioPreferences(audio); audioEngine.current?.update(audio)
@@ -44,15 +45,10 @@ export function App() {
   async function testAudio() { const result = await audioEngine.current!.unlock(); if (result === 'blocked') setAudioMessage('Browser audio remains blocked. Check site permissions and try again.'); else if (audio.muted || !audio.effectsEnabled) setAudioMessage('Test sound is silent because mute or Sound Effects is off.'); else { emitGameSound('test'); setAudioMessage('Test chime played through the effects channel.') } }
   function enter() { emitGameSound('enter-adventure'); setScreen('adventure') }
   function navigate(item: Screen) { setCharacterSection(undefined); if (item === 'adventure' && screen !== 'adventure') emitGameSound('enter-adventure'); setScreen(item) }
-  function connectWallet() { if (!connectors.length || isPending) return; if (connectors.length === 1) connect({connector: connectors[0]}); else setWalletChooser(true) }
+  function connectWallet() { if (!connectors.length || isPending) return; setWalletChooser(true) }
 
   return <main className={screen === 'lobby' ? 'game-shell game-shell-lobby' : screen === 'adventure' ? 'game-shell game-shell-adventure' : screen === 'character' ? 'game-shell game-shell-character' : 'game-shell'}>
-    {walletChooser && <section role="dialog" aria-modal="true" aria-labelledby="wallet-chooser-title" className="framed">
-      <h2 id="wallet-chooser-title">Choose wallet</h2>
-      <p>Select a discovered EVM wallet that supports Monad. Connection is optional; simulation needs no wallet.</p>
-      {connectors.map((connector) => <button key={connector.uid ?? connector.id} disabled={isPending} onClick={() => { setWalletChooser(false); connect({connector}) }}>{connector.name ?? connector.id}</button>)}
-      <button onClick={() => setWalletChooser(false)}>Cancel</button>
-    </section>}
+    {walletChooser && <WalletChooser connectors={connectors} pending={isPending} onClose={() => setWalletChooser(false)} onSelect={(connector) => { setWalletChooser(false); connect({connector}) }}/> }
     {connectionError && <p className="notice warning" role="alert">Wallet connection failed or was rejected. Try your chosen EVM wallet again and check that it supports Monad.</p>}
     <div className="grain" aria-hidden="true"/><div className="mountains far" aria-hidden="true"/><div className="mountains near" aria-hidden="true"/>
     <header className="game-header"><button className="crest" onClick={() => navigate('lobby')} aria-label="Chog Survivor home">CS</button><nav aria-label="Game navigation">{(['lobby', 'adventure', 'character', 'settings'] as Screen[]).map((item) => <button className={screen === item ? 'active' : ''} key={item} onClick={() => navigate(item)}>{item === 'lobby' ? 'Home' : item}</button>)}</nav><div className="header-tools"><span className={`mode ${mode}`}>{!environmentReady ? 'CONFIGURATION BLOCKED' : localMode ? 'LOCAL CONTRACT TEST' : mainnetMode ? 'MONAD MAINNET' : mode === 'local-demo' ? 'LOCAL DEMO' : 'READ ONLY'}</span>{isConnected ? <button className="wallet" onClick={() => disconnect()}>{shortAddress(address)} · Disconnect</button> : <button className="wallet" disabled={!connectors[0] || isPending} onClick={connectWallet} title={localMode ? undefined : mainnetMode ? "Optional connection; mainnet actions require separate wallet confirmation and MON gas." : "Optional NFT ownership verification; live gameplay is unavailable."}>{isPending ? 'Connecting…' : 'Connect wallet'}</button>}</div></header>
