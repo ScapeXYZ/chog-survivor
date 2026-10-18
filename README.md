@@ -10,11 +10,29 @@ Lead a Chog through a ruined forest where every daily decision trades experience
 - **Carry your story:** XP, Trust, Scars and achievements stay with the NFT across transfers.
 - **Start immediately:** Guest Mode needs no NFT, wallet or MON; real NFT play resolves one action per UTC day.
 
+**[Judge testing guide](docs/JUDGE_TESTING_GUIDE.md)** — guest and holder checks with expected results.
+
 ## Play in 60 seconds
 
-1. Choose **Play as Guest** (or [open Guest Mode directly](https://chog-survivor.vercel.app/#guest)). No wallet, NFT or gas is required.
-2. Meet the Guest Chog, choose among three survival decisions and watch guest XP, Trust and Scars change. Continue through six encounters; restart whenever you like.
-3. Guest Mode is an **off-chain preview**. Its accelerated base-rulebook progress is temporary and never becomes real NFT state. Choose **Play with Your NFT** for Monad gameplay.
+1. **No NFT?** Open [Guest Mode](https://chog-survivor.vercel.app/#guest). Choose a path through six encounters. Expect immediate guest XP, Trust and Scars changes, with no wallet or gas. A rare bonus detour may appear after the journey; restarting clears only guest progress.
+2. **Own a Chog Genesis NFT?** Choose **Play with Your NFT**, connect an EVM wallet and switch to Monad (chain 143). Select a discovered Chog or enter its token ID. Expect verified ownership and genuine survivor records; failed reads show errors, never invented statistics.
+3. **Inspect real gameplay safely:** choose an eligible daily decision to open its unsigned review. Expect the token, action and bounded gas estimate. Cancel to finish testing without a transaction. Only the holder’s separate app confirmation and native wallet approval can submit; MON gas is real. Already acted today? Expect the UTC daily lock.
+
+## Feedback & What's Next
+
+These are **reviewer observations and suggestions**, not collected real-player feedback. No player counts, retention metrics or testimonials are claimed.
+
+| Reviewer observation | Shipped response / next step |
+| --- | --- |
+| Guest accessibility was initially limited | Walletless, clearly off-chain six-encounter Guest Mode with visible consequences and an optional rare surprise |
+| Original demo was too long or appeared simulated | Narrated, subtitled 60-second product walkthrough; Guest Mode is labelled and no completed mainnet transaction is claimed |
+| Documentation needed a clearer opening | Product hook, Play Now, Guest Mode, video and concise judge testing guide near the top |
+| Daily play needs stronger reasons to return | Next-dawn teaser and explanations of existing streak XP, earned badges and scar consequences; impact on retention is unmeasured |
+| More variety would improve fun | The Moonlit Seed adds a guest-only surprise; wider encounter variety remains a roadmap suggestion |
+
+**Roadmap — proposed, not live promises:** more encounters; additional streak rewards beyond existing XP/badges; rare mainnet events; community challenges; and possible $CHOG utility subject to feasibility, permissions and owner decisions. The verified immutable contract still has exactly six encounters; new on-chain mechanics would require a separately reviewed future design/deployment. No $CHOG payout, token reward or new mainnet event is implemented here.
+
+We have not collected substantiated real-player feedback in this work. Future consenting playtests should ask which choices felt meaningful and whether players want to return, then report the actual findings.
 
 ## Browse records and play with a verified Chog
 

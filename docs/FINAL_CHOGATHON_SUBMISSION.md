@@ -1,5 +1,16 @@
 # CHOG SURVIVOR — final Chogathon submission package
 
+## Current judging update — Task 7X
+
+The owner reports CHOG SURVIVOR has been submitted. This documentation update does not change the organizer entry. For the current release, use the **[judge testing guide](JUDGE_TESTING_GUIDE.md)** and **[README testing steps and feedback/roadmap](../README.md#play-in-60-seconds)**.
+
+- [Play as Guest](https://chog-survivor.vercel.app/#guest): no wallet or NFT; six off-chain encounters plus an optional 1-in-10 guest-only Moonlit Seed detour after completion.
+- [Play with your NFT](https://chog-survivor.vercel.app/): genuine owner-verified Monad mainnet gameplay, one action per token per UTC day. Review and cancel without a transaction; submission requires the holder’s explicit wallet approval and real MON gas.
+- [Narrated, subtitled 60-second product walkthrough](https://chog-survivor.vercel.app/chog-survivor-narrated-60s.mp4): clearly labelled guest footage, no completed mainnet action depicted. The historical YouTube submission remains unchanged.
+- Return cues now explain existing streak XP, Seven Suns, Unmarked Week and scar modifiers. Additional encounters/rewards, community challenges and possible $CHOG utility remain proposals, not implemented mainnet promises.
+
+Feedback statements are reviewer suggestions relayed by the owner, not measured player feedback or retention results. The immutable unaudited contract, six mainnet encounters and spending limits are unchanged. Earlier readiness decisions and simulation-era paste fields below are **historical records, not current submission copy**.
+
 **Historical submission package:** the fields and preparation decision below describe the submitted simulation-era package. They do not describe the current runtime. The Tasks 7S/7T gameplay release is owner-authorized with incomplete holder-wallet acceptance acknowledged. Task 7T resolves the unsigned-review blocker and validates the gameplay release. See the [current release guide](TASK_7T_MAINNET_ACTION_REVIEW_FIX.md). The linked video remains historical footage.
 
 **Decision: NOT READY to submit yet.** Submission text and core public links are prepared and verified. The owner has supplied the demo-video link. Remaining: owner-supplied team/contact information and registration confirmation, authorship/rights attestation, and banner publication approval. No further holder-testing milestone is required by this package. Public mainnet transactions remain disabled.
