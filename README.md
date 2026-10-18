@@ -18,9 +18,15 @@ Lead a Chog through a ruined forest where every daily decision trades experience
 2. **Own a Chog Genesis NFT?** Choose **Play with Your NFT**, connect an EVM wallet and switch to Monad (chain 143). Select a discovered Chog or enter its token ID. Expect verified ownership and genuine survivor records; failed reads show errors, never invented statistics.
 3. **Inspect real gameplay safely:** choose an eligible daily decision to open its unsigned review. Expect the token, action and bounded gas estimate. Cancel to finish testing without a transaction. Only the holder’s separate app confirmation and native wallet approval can submit; MON gas is real. Already acted today? Expect the UTC daily lock.
 
+## Guest Playtester Feedback
+
+> "I played all six guest encounters without a wallet. The XP, Trust and Scars trade-offs were clear and every choice worked, but I wanted a short story consequence after each decision, not just the stat changes." — Lauki Antonson, guest-mode playtester
+
+**What we improved:** Guest Mode now shows a short, choice-specific story consequence after each decision, making the survivor's journey feel more personal than stat changes alone.
+
 ## Feedback & What's Next
 
-These are **reviewer observations and suggestions**, not collected real-player feedback. No player counts, retention metrics or testimonials are claimed.
+The following are **reviewer observations and suggestions**, separate from the attributed guest-playtester feedback above. No additional testimonials, player counts or retention metrics are claimed.
 
 | Reviewer observation | Shipped response / next step |
 | --- | --- |
@@ -32,7 +38,7 @@ These are **reviewer observations and suggestions**, not collected real-player f
 
 **Roadmap — proposed, not live promises:** more encounters; additional streak rewards beyond existing XP/badges; rare mainnet events; community challenges; and possible $CHOG utility subject to feasibility, permissions and owner decisions. The verified immutable contract still has exactly six encounters; new on-chain mechanics would require a separately reviewed future design/deployment. No $CHOG payout, token reward or new mainnet event is implemented here.
 
-We have not collected substantiated real-player feedback in this work. Future consenting playtests should ask which choices felt meaningful and whether players want to return, then report the actual findings.
+Beyond the attributed report above, no further player feedback or measured retention improvement is claimed. Future consenting playtests should ask which choices felt meaningful and whether players want to return, then report the actual findings.
 
 ## Browse records and play with a verified Chog
 
