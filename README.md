@@ -1,21 +1,20 @@
-# Chog Survivor
+# CHOG SURVIVOR — Your Chog NFT isn't just a ticket to the game. It is the survivor itself.
 
-**Owner-authorized mainnet gameplay release:** this version connects genuine Chog Genesis owners to the deployed game's daily `act(tokenId, choiceId)` action. The Task 7S unsigned-review blocker is fixed and the production-bundle gate passed three consecutive desktop/mobile runs. See the [fix, validation and rollback](docs/TASK_7T_MAINNET_ACTION_REVIEW_FIX.md). Real-holder installed-wallet acceptance remains incomplete and owner-acknowledged; no independent audit or official wallet-provider clearance is claimed. The submitted video is historical simulation footage.
+Lead a Chog through a ruined forest where every daily decision trades experience, trust and scars. Its story stays with the NFT—even when a new wallet takes control. Try the six-encounter guest journey in seconds, then bring your own Chog Genesis NFT to the real Monad mainnet game.
 
-## Verified Monad mainnet deployment and source
+**[Play Now](https://chog-survivor.vercel.app/) · [Play as Guest Chog — no wallet needed](https://chog-survivor.vercel.app/#guest)**
 
-Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+**[60-second product walkthrough](https://chog-survivor.vercel.app/chog-survivor-walkthrough-60s.mp4)** — live website + off-chain Guest Mode; no completed mainnet action is depicted.
 
-[Published verified source](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code) · Solidity **0.8.28+commit.7893614a**, optimizer **200**, **Cancun**. Independently confirmed on the public Code page in [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md); source verification does not imply an audit or frontend release approval.
+- **Choose your path:** six encounters, three decisions each, visible consequences.
+- **Carry your story:** XP, Trust, Scars and achievements stay with the NFT across transfers.
+- **Start immediately:** Guest Mode needs no NFT, wallet or MON; real NFT play resolves one action per UTC day.
 
-Genuine mainnet NFT collection: **[Chog Genesis · 0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763](https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763)** on Monad **143**. This collection is distinct from the game contract above and from local Anvil fixtures.
+## Play in 60 seconds
 
-The checked-in manifest records the real deployment. This checkout enables genuine production reads independently of write permission: verified runtime/collection binding, NFT ownership, survivor state, titles, achievements and bounded finalized history. Missing or failed reads display Unavailable. The owner-authorized source-controlled `mainnetGameplayReleaseAuthorized` flag is true in this release; valid mainnet configuration and the verified manifest are additionally required. Every action repeats ownership, simulation, nonce and spending checks. No query or local-storage flag overrides release authorization.
-
-
-**“The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.”**
-
-Each token ID carries its XP, Trust, Scars, streak, achievements, title, daily lock and verified adventure journal. The wallet is only its current controller. Transfer the NFT and the next owner inherits the same survivor, including its history and daily eligibility.
+1. Choose **Play as Guest** (or [open Guest Mode directly](https://chog-survivor.vercel.app/#guest)). No wallet, NFT or gas is required.
+2. Meet the Guest Chog, choose among three survival decisions and watch guest XP, Trust and Scars change. Continue through six encounters; restart whenever you like.
+3. Guest Mode is an **off-chain preview**. Its accelerated base-rulebook progress is temporary and never becomes real NFT state. Choose **Play with Your NFT** for Monad gameplay.
 
 ## Browse records and play with a verified Chog
 
@@ -23,7 +22,7 @@ Website: https://chog-survivor.vercel.app/ · [public repository](https://github
 
 This release provides authentic mainnet records and owner-verified daily gameplay. The linked video shows the historical simulation and does not demonstrate live mainnet gameplay:
 
-1. Open the app and choose **Enter the Wild**. No wallet is needed to browse Home, Adventure, Character or Settings. No sample survivor or statistics are generated for visitors.
+1. Open the app and choose **Play with Your NFT** for mainnet mode, or **Play as Guest** for the separate off-chain preview. No wallet is needed to browse Home, Adventure, Character or Settings. The NFT view never generates survivor records. Guest Mode is a separately labelled off-chain preview with isolated, temporary progression.
 2. To read a specific Chog, explicitly select a compatible EVM wallet and select Monad mainnet, **chain 143**. Browsing and ownership reads need no signature. Gameplay requires a separate explicit wallet confirmation, never a private key, recovery phrase or NFT approval.
 3. After connecting on Monad, your owned Chogs are discovered automatically using bounded on-chain reads and individual ownerOf verification. Choose a survivor card; the first verified candidate is selected when no token is selected. If discovery is unavailable or incomplete, open **Enter a Chog Genesis token ID** for manual verification. Current ownership and daily eligibility are checked again before play; connection or metadata alone never establishes ownership.
 4. Runtime hashes and collection binding are verified at a finalized block before game fields are shown. Actual XP, Trust, Scars, stored streak, achievements and title are displayed from that contract snapshot. Real returned zeroes are valid data; missing/error/loading/network states remain **Unavailable**.
@@ -55,6 +54,25 @@ The existing workspace uses `http://127.0.0.1:8545`, chain **31338**, game **`0x
 Do not restart/reset an existing node, rerun fixture installation, advance time or run transaction scripts to view evidence. The [recorded verification](docs/evidence/task4h-2006/verification.json) and screenshots require no running node. For an already verified existing node, the [deployment guide](docs/DEMO_DEPLOYMENT_GUIDE.md) explains local frontend settings. Foundry and an injected local wallet are needed for live local inspection; no action is necessary to read the existing survivor and journal.
 
 `script/local-anvil.sh install/deploy` creates or changes local state. `npm run test:e2e` and `scripts/task4h-real-anvil-e2e.mjs` can submit real local transactions; the older journey also advances isolated time. **They are not safe preparation/verification commands for the current node and were not run for Task 4K.** A new fixture setup or transaction requires its own authorization. Standard public Anvil credentials must never be funded or reused on public chains.
+
+## Release history and security context
+
+**Owner-authorized mainnet gameplay release:** this version connects genuine Chog Genesis owners to the deployed game's daily `act(tokenId, choiceId)` action. The Task 7S unsigned-review blocker is fixed and the production-bundle gate passed three consecutive desktop/mobile runs. See the [fix, validation and rollback](docs/TASK_7T_MAINNET_ACTION_REVIEW_FIX.md). Real-holder installed-wallet acceptance remains incomplete and owner-acknowledged; no independent audit or official wallet-provider clearance is claimed. The submitted video is historical simulation footage.
+
+## Verified Monad mainnet deployment and source
+
+Game CA: **[0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code)**. [Deployment transaction](https://monadscan.com/tx/0xea1ed7f6978f3e4c4c8c01ec83f79f394591e73810aa0622d8b95c1177be4956), block **113947533**, chain **143**; deployer `0x320eDAe253259053d53feD8eEe6D9C0274A91E85`. Two independent RPC providers confirmed finalized creation, exact frozen-artifact runtime and the immutable Chog Genesis binding. **Source verified publicly on MonadScan (Exact Match); deployment remains unaudited.** Collection governance/custody attestations and official wallet-provider clearance remain incomplete.
+
+[Published verified source](https://monadscan.com/address/0x4735A5263bAC1bDFB4715A5bed143cCD4d62d390#code) · Solidity **0.8.28+commit.7893614a**, optimizer **200**, **Cancun**. Independently confirmed on the public Code page in [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md); source verification does not imply an audit or frontend release approval.
+
+Genuine mainnet NFT collection: **[Chog Genesis · 0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763](https://monadscan.com/address/0xc96d31F8626c6D03Fae5dCD3d61e3FB9F4a73763)** on Monad **143**. This collection is distinct from the game contract above and from local Anvil fixtures.
+
+The checked-in manifest records the real deployment. This checkout enables genuine production reads independently of write permission: verified runtime/collection binding, NFT ownership, survivor state, titles, achievements and bounded finalized history. Missing or failed reads display Unavailable. The owner-authorized source-controlled `mainnetGameplayReleaseAuthorized` flag is true in this release; valid mainnet configuration and the verified manifest are additionally required. Every action repeats ownership, simulation, nonce and spending checks. No query or local-storage flag overrides release authorization.
+
+
+**“The Chog NFT is not a key that unlocks Chog Survivor. The Chog NFT is the survivor itself.”**
+
+Each token ID carries its XP, Trust, Scars, streak, achievements, title, daily lock and verified adventure journal. The wallet is only its current controller. Transfer the NFT and the next owner inherits the same survivor, including its history and daily eligibility.
 
 ## Architecture and verification
 

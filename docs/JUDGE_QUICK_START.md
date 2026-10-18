@@ -10,12 +10,13 @@ Tasks 7S/7T authorize this release of genuine daily actions for verified Chog Ge
 
 Website: **https://chog-survivor.vercel.app/** · [GitHub](https://github.com/ScapeXYZ/chog-survivor) · [historical 2:51 demo video](https://youtu.be/qV-c7AP0VAg).
 
-## Without an NFT
+## Without an NFT — play immediately
 
-1. Open Home and choose Enter the Wild. Navigate Adventure, Character and Settings without a wallet.
-2. No sample NFT, progression, encounter choice or transaction result is generated. Missing statistics say Unavailable.
-3. Watch the historical video for the original simulation and labelled local-Anvil evidence. It is not evidence of a real holder mainnet transaction.
-4. Character explains token-bound progression and Settings provides audio controls and verified contract links. No wallet, NFT purchase or gas is necessary for browsing.
+1. Open **[Guest Mode](https://chog-survivor.vercel.app/#guest)** or click Play as Guest on Home. No wallet, NFT or MON is needed.
+2. Meet the Guest Chog, choose Reinforce, Leap the gap or Guide others around, and see the guest consequence and XP/Trust/Scars change.
+3. Continue the short six-encounter journey. Everything remains labelled **Guest Mode — off-chain preview**; none of its progress is an NFT record or transaction.
+4. Watch the **[60-second product walkthrough](https://chog-survivor.vercel.app/chog-survivor-walkthrough-60s.mp4)**. It contains real public-site footage and guest gameplay, but no completed mainnet action. The older YouTube submission video remains historical.
+5. Click Play with Your NFT to see the separate real Monad game. Ownership and MON gas are required for actual actions; NFT progression follows the token when it changes owners.
 
 ## Holder flow — owner-authorized mainnet gameplay
 

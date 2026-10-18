@@ -55,7 +55,7 @@ describe('shared survivor journey', () => {
   it('lets a disconnected visitor explore and return to Character without a selected token', () => {
     wallet.connected = false
     render(<App/>)
-    fireEvent.click(screen.getByRole('button', {name: /enter the wild/i}))
+    fireEvent.click(screen.getByRole('button', {name: /^play with your nft/i}))
     expect(strip()).toHaveTextContent('No verified Chog selected')
     expect(strip()).toHaveTextContent('Wallet disconnected')
     expect(strip()).toHaveTextContent('NO VERIFIED SURVIVOR')
