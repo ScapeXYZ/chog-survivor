@@ -4,7 +4,7 @@ Lead a Chog through a ruined forest where every daily decision trades experience
 
 **[Play Now](https://chog-survivor.vercel.app/) · [Play as Guest Chog — no wallet needed](https://chog-survivor.vercel.app/#guest)**
 
-**[60-second product walkthrough](https://chog-survivor.vercel.app/chog-survivor-walkthrough-60s.mp4)** — live website + off-chain Guest Mode; no completed mainnet action is depicted.
+**[60-second narrated product walkthrough](https://chog-survivor.vercel.app/chog-survivor-narrated-60s.mp4)** — English narration and subtitles; live website + off-chain Guest Mode; no completed mainnet action is depicted. [Video provenance and original version](docs/TASK_7W_NARRATED_VIDEO.md).
 
 - **Choose your path:** six encounters, three decisions each, visible consequences.
 - **Carry your story:** XP, Trust, Scars and achievements stay with the NFT across transfers.

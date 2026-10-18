@@ -15,7 +15,7 @@ Website: **https://chog-survivor.vercel.app/** · [GitHub](https://github.com/Sc
 1. Open **[Guest Mode](https://chog-survivor.vercel.app/#guest)** or click Play as Guest on Home. No wallet, NFT or MON is needed.
 2. Meet the Guest Chog, choose Reinforce, Leap the gap or Guide others around, and see the guest consequence and XP/Trust/Scars change.
 3. Continue the short six-encounter journey. Everything remains labelled **Guest Mode — off-chain preview**; none of its progress is an NFT record or transaction.
-4. Watch the **[60-second product walkthrough](https://chog-survivor.vercel.app/chog-survivor-walkthrough-60s.mp4)**. It contains real public-site footage and guest gameplay, but no completed mainnet action. The older YouTube submission video remains historical.
+4. Watch the **[60-second narrated product walkthrough](https://chog-survivor.vercel.app/chog-survivor-narrated-60s.mp4)** with English narration and burned-in subtitles. It contains real public-site footage and off-chain guest gameplay, but no completed mainnet action. The older YouTube submission video remains historical. [Provenance and original version](TASK_7W_NARRATED_VIDEO.md).
 5. Click Play with Your NFT to see the separate real Monad game. Ownership and MON gas are required for actual actions; NFT progression follows the token when it changes owners.
 
 ## Holder flow — owner-authorized mainnet gameplay
