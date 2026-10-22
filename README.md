@@ -4,13 +4,15 @@ Lead a Chog through a ruined forest where every daily decision trades experience
 
 **[Play Now](https://chog-survivor.vercel.app/) · [Play as Guest Chog — no wallet needed](https://chog-survivor.vercel.app/#guest)**
 
-**[60-second narrated product walkthrough](https://chog-survivor.vercel.app/chog-survivor-narrated-60s.mp4)** — English narration and subtitles; live website + off-chain Guest Mode; no completed mainnet action is depicted. [Video provenance and original version](docs/TASK_7W_NARRATED_VIDEO.md).
+**[Watch the narrated 60-second demo on YouTube](https://youtu.be/0b-KZseOu8I)** — English narration and subtitles; live website + off-chain Guest Mode; no completed mainnet action is depicted. [Direct MP4](https://chog-survivor.vercel.app/chog-survivor-narrated-60s.mp4) · [Video provenance and original version](docs/TASK_7W_NARRATED_VIDEO.md).
 
 - **Choose your path:** six encounters, three decisions each, visible consequences.
 - **Carry your story:** XP, Trust, Scars and achievements stay with the NFT across transfers.
 - **Start immediately:** Guest Mode needs no NFT, wallet or MON; real NFT play resolves one action per UTC day.
 
 **[Judge testing guide](docs/JUDGE_TESTING_GUIDE.md)** — guest and holder checks with expected results.
+
+**Why the Chog NFT is essential:** Real survivor progression belongs to the Chog Genesis token ID, with ownership verified on Monad. XP, Trust, Scars, streaks and achievements follow the NFT when transferred. Guest Mode is an isolated off-chain preview.
 
 ## Play in 60 seconds
 
@@ -42,9 +44,9 @@ Beyond the attributed report above, no further player feedback or measured reten
 
 ## Browse records and play with a verified Chog
 
-Website: https://chog-survivor.vercel.app/ · [public repository](https://github.com/ScapeXYZ/chog-survivor) · [historical demo video](https://youtu.be/qV-c7AP0VAg).
+Website: https://chog-survivor.vercel.app/ · [public repository](https://github.com/ScapeXYZ/chog-survivor) · [current narrated demo](https://youtu.be/0b-KZseOu8I).
 
-This release provides authentic mainnet records and owner-verified daily gameplay. The linked video shows the historical simulation and does not demonstrate live mainnet gameplay:
+This release provides authentic mainnet records and owner-verified daily gameplay. The current narrated demo shows the live website and off-chain Guest Mode; it does not show a completed mainnet transaction:
 
 1. Open the app and choose **Play with Your NFT** for mainnet mode, or **Play as Guest** for the separate off-chain preview. No wallet is needed to browse Home, Adventure, Character or Settings. The NFT view never generates survivor records. Guest Mode is a separately labelled off-chain preview with isolated, temporary progression.
 2. To read a specific Chog, explicitly select a compatible EVM wallet and select Monad mainnet, **chain 143**. Browsing and ownership reads need no signature. Gameplay requires a separate explicit wallet confirmation, never a private key, recovery phrase or NFT approval.
@@ -81,7 +83,7 @@ Do not restart/reset an existing node, rerun fixture installation, advance time 
 
 ## Release history and security context
 
-**Owner-authorized mainnet gameplay release:** this version connects genuine Chog Genesis owners to the deployed game's daily `act(tokenId, choiceId)` action. The Task 7S unsigned-review blocker is fixed and the production-bundle gate passed three consecutive desktop/mobile runs. See the [fix, validation and rollback](docs/TASK_7T_MAINNET_ACTION_REVIEW_FIX.md). Real-holder installed-wallet acceptance remains incomplete and owner-acknowledged; no independent audit or official wallet-provider clearance is claimed. The submitted video is historical simulation footage.
+**Owner-authorized mainnet gameplay release:** this version connects genuine Chog Genesis owners to the deployed game's daily `act(tokenId, choiceId)` action. The Task 7S unsigned-review blocker is fixed and the production-bundle gate passed three consecutive desktop/mobile runs. See the [fix, validation and rollback](docs/TASK_7T_MAINNET_ACTION_REVIEW_FIX.md). Real-holder installed-wallet acceptance remains incomplete and owner-acknowledged; no independent audit or official wallet-provider clearance is claimed. The current submitted demo shows the live website and off-chain Guest Mode, with no completed mainnet transaction depicted. Historical demo provenance remains in the [video documentation](docs/TASK_7W_NARRATED_VIDEO.md).
 
 ## Verified Monad mainnet deployment and source
 
@@ -133,4 +135,4 @@ Task 7E pushed the verified release through `2db718d`; GitHub main still matches
 - [Judge-access audit](docs/TASK_4J_JUDGE_ACCESS_AUDIT.md)
 - [Game rules](docs/GAME_RULES.md), [backend freeze](docs/BACKEND_FREEZE.md), [security review](docs/SECURITY_REVIEW.md)
 
-Submission deadline: **October 23, 2026, 15:00 UTC** (16:00 Lagos), confirmed from the [official Chogathon page](https://chogathon.chog.xyz/) in Task 7H. The organizer requires an essential NFT role, working demo, a video of up to three minutes and testing instructions. The submitted demo video shows the historical simulation; the current frontend reads genuine records from the source-verified deployed contract. Organizer acceptance of that demonstrated scope is not claimed. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; the Task 7S owner authorization covers this frontend gameplay release; it does not authorize the agent to transact for a user.
+Submission deadline: **October 23, 2026, 15:00 UTC** (16:00 Lagos), confirmed from the [official Chogathon page](https://chogathon.chog.xyz/) in Task 7H. The organizer requires an essential NFT role, working demo, a video of up to three minutes and testing instructions. The current submitted demo video shows the live website and off-chain Guest Mode, not a completed mainnet transaction; the current frontend reads genuine records from the source-verified deployed contract. Organizer acceptance of that demonstrated scope is not claimed. The repository and static demo are already public; video upload, submission and any new release require approval. Mainnet contract deployment is complete; the Task 7S owner authorization covers this frontend gameplay release; it does not authorize the agent to transact for a user.
