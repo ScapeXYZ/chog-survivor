@@ -6,13 +6,20 @@ Lead a Chog through a ruined forest where every daily decision trades experience
 
 **[Watch the narrated 60-second demo on YouTube](https://youtu.be/0b-KZseOu8I)** — English narration and subtitles; live website + off-chain Guest Mode; no completed mainnet action is depicted. [Direct MP4](https://chog-survivor.vercel.app/chog-survivor-narrated-60s.mp4) · [Video provenance and original version](docs/TASK_7W_NARRATED_VIDEO.md).
 
-- **Choose your path:** six encounters, three decisions each, visible consequences.
-- **Carry your story:** XP, Trust, Scars and achievements stay with the NFT across transfers.
-- **Start immediately:** Guest Mode needs no NFT, wallet or MON; real NFT play resolves one action per UTC day.
+## Gameplay Preview
+
+| Choose a route | See its consequence |
+| --- | --- |
+| ![Broken Bridge choices — Off-chain Guest Mode — no wallet required.](docs/images/guest-broken-bridge-choices.png) | ![Reinforce story consequence — Off-chain Guest Mode — no wallet required.](docs/images/guest-bridge-story-consequence.png) |
+| **Off-chain Guest Mode — no wallet required.** Meet your Guest Chog and weigh three survival choices. | **Off-chain Guest Mode — no wallet required.** Reinforce resolves to +12 XP, +5 Trust and unchanged Scars. |
+
+Captured directly from the [deployed Guest Mode](https://chog-survivor.vercel.app/#guest) on October 22, 2026 using Playwright with Chromium (1280px desktop viewport). These are unaltered screenshots of the introduction/first encounter and its actual result, not completed mainnet gameplay or NFT-holder evidence.
+
+## Why the Chog NFT is essential
+
+Real survivor progression belongs to the Chog Genesis token ID, with ownership verified on Monad. XP, Trust, Scars, streaks and achievements follow the NFT when transferred. Guest Mode is an isolated off-chain preview. Real NFT play resolves one action per UTC day.
 
 **[Judge testing guide](docs/JUDGE_TESTING_GUIDE.md)** — guest and holder checks with expected results.
-
-**Why the Chog NFT is essential:** Real survivor progression belongs to the Chog Genesis token ID, with ownership verified on Monad. XP, Trust, Scars, streaks and achievements follow the NFT when transferred. Guest Mode is an isolated off-chain preview.
 
 ## Play in 60 seconds
 
@@ -25,6 +32,12 @@ Lead a Chog through a ruined forest where every daily decision trades experience
 > "I played all six guest encounters without a wallet. The XP, Trust and Scars trade-offs were clear and every choice worked, but I wanted a short story consequence after each decision, not just the stat changes." — Lauki Antonson, guest-mode playtester
 
 **What we improved:** Guest Mode now shows a short, choice-specific story consequence after each decision, making the survivor's journey feel more personal than stat changes alone.
+
+<!-- Planning note (optional feedback evidence): No authentic feedback-message screenshot
+or public-sharing permission record was found in the existing project documentation
+and evidence. Obtain the tester's permission and original screenshot before adding
+one; crop/redact unrelated private details while preserving the feedback wording.
+Do not reconstruct a message or use gameplay imagery as feedback evidence. -->
 
 ## Feedback & What's Next
 
@@ -122,7 +135,11 @@ The owner-deployed Monad game and its published source are verified above. Task 
 
 Current runtime illustrations are marked provisional in the [asset inventory](frontend/ASSET_INVENTORY.md). Public demo/repository/video release requires explicit review of those exact assets and intended uses. No artwork was replaced or generated. Existing fonts and typography are preserved; the bundled Lilita One license is also included with unchanged license terms at `frontend/public/licenses/LilitaOne-OFL.txt` for distribution. Genuine collection metadata or ownership does not grant artwork permission.
 
-Task 7E pushed the verified release through `2db718d`; GitHub main still matches that commit in Task 7H. Its automatic Vercel deployment retained production simulation. Task 7I prepares a documentation-only update with the owner-supplied video; holder tools and operator evidence remain local. See [Task 7C](docs/TASK_7C_SOURCE_VERIFICATION_AND_GIT.md) for commit scope/exclusions, [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md) for source verification, and the [final submission package](docs/FINAL_CHOGATHON_SUBMISSION.md) for current links and outstanding submission fields.
+**Historical observation (Tasks 7E–7I):** Task 7E pushed `2db718d`; Task 7H observed GitHub main at that commit and its automatic Vercel deployment retaining production simulation. Task 7I then prepared a documentation-only video update. Those observations describe that earlier release, not the current frontend.
+
+**Current release evidence:** `40036a0` replaced simulated progression with verified mainnet reads; `b95da41` enabled guarded mainnet gameplay and fixed the unsigned-review race. Later releases added isolated Guest Mode, the narrated demo, and choice-specific story consequences (`ccef7c7`). The [Task 7Y release report](docs/TASK_7Y_PLAYER_FEEDBACK_AND_PERFORMANCE.md) records validation; its retained deployment evidence records production assets matching that tested build. The fresh Guest Mode captures above confirm the deployed story-consequence interface. This is not evidence of a completed mainnet gameplay transaction; genuine holder-wallet acceptance and finalized action/event/state evidence remain incomplete.
+
+See [Task 7C](docs/TASK_7C_SOURCE_VERIFICATION_AND_GIT.md) for historical commit scope/exclusions, [Task 7D](docs/TASK_7D_SOURCE_VERIFICATION_RESULT.md) for source verification, and the [final submission package](docs/FINAL_CHOGATHON_SUBMISSION.md) for submission fields and historical evidence. Holder tools and operator evidence remain local.
 
 ## Submission materials
 
